@@ -15,8 +15,9 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table = 'user';
     protected $fillable = [
-        'name', 'email', 'password',
+        'username', 'password', 'role', 'status',
     ];
 
     /**
@@ -36,4 +37,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Relasi 
+    public function admin()
+    {
+        return $this->hasOne('App\Admin');
+    }
 }

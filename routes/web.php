@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-});
+
+
+Route::get('/', 'AuthController@index')->name('login');
+Route::post('/', 'AuthController@store')->name('login');
+
+Route::get('/logout', 'AuthController@logout')->name('logout');
+Route::get('/password', 'AuthController@view_ganti_password')->name('gantipassword');
+Route::post('/password', 'AuthController@ganti_password')->name('gantipassword');
+
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
