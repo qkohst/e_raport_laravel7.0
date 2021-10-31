@@ -13,13 +13,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/unauthorized', function () {
+  $title = 'Unauthorized';
+  return view('errorpage.401', compact('title'));
+});
 
 
 Route::get('/', 'AuthController@index')->name('login');
 Route::post('/', 'AuthController@store')->name('login');
 
-Route::get('/logout', 'AuthController@logout')->name('logout');
-Route::get('/password', 'AuthController@view_ganti_password')->name('gantipassword');
-Route::post('/password', 'AuthController@ganti_password')->name('gantipassword');
+Route::group(['middleware' => ['auth']], function () {
 
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+  Route::get('/logout', 'AuthController@logout')->name('logout');
+  Route::get('/password', 'AuthController@view_ganti_password')->name('gantipassword');
+  Route::post('/password', 'AuthController@ganti_password')->name('gantipassword');
+
+  Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+  // Route User Admin 
+  Route::group(['middleware' => 'checkRole:1'], function () {
+    Route::group(['prefix' => 'admin'], function () {
+      Route::get('user/export', 'Admin\UserController@export')->name('user.export');
+      Route::resource('user', 'Admin\UserController',  [
+        'uses' => ['index', 'store', 'update']
+      ]);
+    });
+  });
+  // End Route User Admin 
+
+});

@@ -11,7 +11,7 @@
         <p class="login-box-msg">Aplikasi <b>E</b>-Raport</p>
 
         <form method="post" action="{{ route('login') }}">
-          {{csrf_field()}}
+          @csrf
           <div class="input-group mb-3">
             <input type="text" class="form-control" name="username" placeholder="Username">
             <div class="input-group-append">

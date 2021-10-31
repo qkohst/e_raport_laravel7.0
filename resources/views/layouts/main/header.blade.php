@@ -9,13 +9,13 @@
   <title>E-Raport | {{$title}}</title>
 
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="assets/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="/assets/plugins/fontawesome-free/css/all.min.css">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/dist/css/adminlte.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -32,19 +32,19 @@
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <!-- Notifications Dropdown Menu -->
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown pr-2">
           <!-- User Block  -->
-          <a class="user-block mb-1 mt-1" data-toggle="dropdown" href="#">
+          <a class="user-block" data-toggle="dropdown" href="#">
             @if (Auth::user()->role == 1)
-            <img class="img-circle" src="assets/dist/img/avatar/{{Auth::user()->admin->avatar}}" alt="User Image">
+            <img class="img-circle" src="/assets/dist/img/avatar/{{Auth::user()->admin->avatar}}" alt="User Image">
             <span class="username">{{Auth::user()->admin->nama_lengkap}}</span>
             <span class="description">Administrator</span>
             @elseif(Auth::user()->role == 2)
-            <img class="img-circle" src="assets/dist/img/user1-128x128.jpg" alt="User Image">
+            <img class="img-circle" src="/assets/dist/img/user1-128x128.jpg" alt="User Image">
             <span class="username">{{Auth::user()->username}}</span>
             <span class="description">Guru</span>
             @else
-            <img class="img-circle" src="assets/dist/img/user1-128x128.jpg" alt="User Image">
+            <img class="img-circle" src="/assets/dist/img/user1-128x128.jpg" alt="User Image">
             <span class="username">{{Auth::user()->username}}</span>
             <span class="description">Siswa</span>
             @endif

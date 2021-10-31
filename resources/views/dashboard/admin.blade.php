@@ -24,6 +24,14 @@
   <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
+
+      <!-- Info -->
+      <div class="callout callout-success">
+        <h5>SMP DARUT TAUHID TAMBAKBOYO</h5>
+        <p>Tahun Pelajaran 2021/2022 Genap</p>
+      </div>
+      <!-- End Info  -->
+
       <!-- Info boxes -->
       <div class="row">
         <div class="col-12 col-sm-6 col-md-3">
@@ -169,36 +177,54 @@
             <!-- /.card-header -->
             <div class="card-body p-0">
               <ul class="products-list product-list-in-card pl-2 pr-2">
+                @foreach($data_riwayat_login as $riwayat_login)
                 <li class="item">
+
                   <div class="product-img">
+                    @if($riwayat_login->user->role == 1)
+                    <img src="assets/dist/img/avatar/{{$riwayat_login->user->admin->avatar}}" alt="Avatar" class="img-size-50">
+                    @elseif($riwayat_login->user->role == 2)
                     <img src="assets/dist/img/avatar/default.png" alt="Avatar" class="img-size-50">
+                    @elseif($riwayat_login->user->role == 3)
+                    <img src="assets/dist/img/avatar/default.png" alt="Avatar" class="img-size-50">
+                    @endif
                   </div>
+
                   <div class="product-info">
-                    <a href="javascript:void(0)" class="product-title">Samsung TV
-                      <span class="badge badge-success float-right">Online</span></a>
+                    <a href="javascript:void(0)" class="product-title">
+                      @if($riwayat_login->user->role == 1)
+                      {{$riwayat_login->user->admin->nama_lengkap}}
+                      @elseif($riwayat_login->user->role == 2)
+                      {{$riwayat_login->user->guru->nama_lengkap}}
+                      @elseif($riwayat_login->user->role == 3)
+                      {{$riwayat_login->user->siswa->nama_lengkap}}
+                      @endif
+
+                      @if($riwayat_login->status_login == true)
+                      <span class="badge badge-success float-right">Online</span>
+                      @else
+                      <span class="badge badge-warning float-right">Offline</span>
+                      @endif
+
+                    </a>
+
                     <span class="product-description">
+                      @if($riwayat_login->user->role == 1)
                       Administrator
+                      @elseif($riwayat_login->user->role == 2)
+                      Guru
+                      @elseif($riwayat_login->user->role == 3)
+                      Siswa
+                      @endif
                     </span>
                   </div>
                 </li>
                 <!-- /.item -->
-                <li class="item">
-                  <div class="product-img">
-                    <img src="assets/dist/img/avatar/default.png" alt="Avatar" class="img-size-50">
-                  </div>
-                  <div class="product-info">
-                    <a href="javascript:void(0)" class="product-title">Samsung TV
-                      <span class="badge badge-success float-right">Online</span></a>
-                    <span class="product-description">
-                      Administrator
-                    </span>
-                  </div>
-                </li>
-                <!-- /.item -->
+                @endforeach
               </ul>
             </div>
             <!-- /.card-body -->
-          
+
           </div>
           <!-- /.card -->
         </div>

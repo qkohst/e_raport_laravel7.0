@@ -11,7 +11,7 @@
         <p class="login-box-msg">Aplikasi <b>E</b>-Raport</p>
 
         <form method="post" action="{{ route('gantipassword') }}">
-          {{csrf_field()}}
+          @csrf
           <div class="form-group mb-3">
             <input type="password" class="form-control" name="password_lama" placeholder="Password Lama">
           </div>
