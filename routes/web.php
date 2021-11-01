@@ -37,6 +37,10 @@ Route::group(['middleware' => ['auth']], function () {
       Route::resource('user', 'Admin\UserController',  [
         'uses' => ['index', 'store', 'update']
       ]);
+
+      Route::resource('sekolah', 'Admin\SekolahController',  [
+        'uses' => ['index', 'update']
+      ]);
     });
   });
   // End Route User Admin 

@@ -37,6 +37,14 @@
 <script src="/assets/plugins/datatables/jquery.dataTables.js"></script>
 <script src="/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
+<!-- bs-custom-file-input -->
+<script src="/assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    bsCustomFileInput.init();
+  });
+</script>
+
 <!-- PAGE SCRIPTS -->
 <script src="/assets/dist/js/pages/dashboard2.js"></script>
 
@@ -60,7 +68,7 @@
       "info": true,
       "autoWidth": false,
     });
-    
+
     $('#example4').DataTable({
       "paging": true,
       "lengthChange": false,

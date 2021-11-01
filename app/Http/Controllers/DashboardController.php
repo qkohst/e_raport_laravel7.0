@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\RiwayatLogin;
+use App\Sekolah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,11 +17,13 @@ class DashboardController extends Controller
     public function index()
     {
         $title = 'Dashboard';
+        $sekolah = Sekolah::first();
         $data_riwayat_login = RiwayatLogin::where('user_id', '!=', Auth::user()->id)->orderBy('status_login', 'DESC')->orderBy('updated_at', 'DESC')->get();
         if (Auth::user()->role == 1) {
             return view('dashboard.admin', compact(
                 'title',
-                'data_riwayat_login'
+                'data_riwayat_login',
+                'sekolah'
             ));
         }
     }

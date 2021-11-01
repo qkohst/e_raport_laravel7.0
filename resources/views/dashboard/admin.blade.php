@@ -27,7 +27,7 @@
 
       <!-- Info -->
       <div class="callout callout-success">
-        <h5>SMP DARUT TAUHID TAMBAKBOYO</h5>
+        <h5>{{$sekolah->nama_sekolah}}</h5>
         <p>Tahun Pelajaran 2021/2022 Genap</p>
       </div>
       <!-- End Info  -->

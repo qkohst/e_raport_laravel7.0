@@ -39,7 +39,7 @@
           </a>
           <ul class="nav nav-treeview bg-secondary">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ route('sekolah.index') }}" class="nav-link">
                 <i class="fas fa-school nav-icon"></i>
                 <p>Profil Sekolah</p>
               </a>
