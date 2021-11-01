@@ -41,6 +41,11 @@ Route::group(['middleware' => ['auth']], function () {
       Route::resource('sekolah', 'Admin\SekolahController',  [
         'uses' => ['index', 'update']
       ]);
+
+      Route::get('guru/export', 'Admin\GuruController@export')->name('guru.export');
+      Route::resource('guru', 'Admin\GuruController',  [
+        'uses' => ['index', 'store', 'update', 'destroy']
+      ]);
     });
   });
   // End Route User Admin 
