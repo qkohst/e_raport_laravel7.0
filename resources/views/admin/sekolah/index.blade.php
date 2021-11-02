@@ -49,7 +49,7 @@
 
                 </div>
                 <div class="form-group row">
-                  <label for="nss" class="col-sm-2 col-form-label">NSS</label>
+                  <label for="nss" class="col-sm-2 col-form-label">NSS <small><i>(opsional)</i></small></label>
                   <div class="col-sm-10">
                     <input type="number" class="form-control" id="nss" name="nss" placeholder="NSS" value="{{$sekolah->nss}}">
                   </div>
@@ -73,7 +73,7 @@
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="website" class="col-sm-2 col-form-label">Website</label>
+                  <label for="website" class="col-sm-2 col-form-label">Website <small><i>(opsional)</i></small></label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" id="website" name="website" placeholder="Website" value="{{$sekolah->website}}">
                   </div>
@@ -91,7 +91,7 @@
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="nip_kepala_sekolah" class="col-sm-2 col-form-label">NIP Kepala Sekolah</label>
+                  <label for="nip_kepala_sekolah" class="col-sm-2 col-form-label">NIP Kepala Sekolah <small><i>(opsional)</i></small></label>
                   <div class="col-sm-10">
                     <input type="number" class="form-control" id="nip_kepala_sekolah" name="nip_kepala_sekolah" placeholder="NIP Kepala Sekolah" value="{{$sekolah->nip_kepala_sekolah}}">
                   </div>

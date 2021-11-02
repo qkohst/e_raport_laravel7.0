@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Exports\GuruExport;
 use App\Guru;
 use App\Http\Controllers\Controller;
+use App\Imports\GuruImport;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Excel;
+use Illuminate\Support\Facades\Response;
 
 class GuruController extends Controller
 {
@@ -34,14 +36,14 @@ class GuruController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama_lengkap' => 'required|min:3',
-            'gelar' => 'required|min:3',
+            'nama_lengkap' => 'required|min:3|max:100|unique:guru',
+            'gelar' => 'required|min:3|max:10',
             'nip' => 'nullable|digits:18',
             'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required|min:3',
             'tanggal_lahir' => 'required',
             'nuptk' => 'nullable|digits:16',
-            'alamat' => 'required|min:4',
+            'alamat' => 'required|min:4|max:255',
         ]);
         if ($validator->fails()) {
             return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
@@ -60,7 +62,7 @@ class GuruController extends Controller
 
             $guru = new Guru([
                 'user_id' => $user->id,
-                'nama_lengkap' => $request->input('nama_lengkap'),
+                'nama_lengkap' => strtoupper($request->input('nama_lengkap')),
                 'gelar' => $request->input('gelar'),
                 'nip' => $request->input('nip'),
                 'jenis_kelamin' => $request->input('jenis_kelamin'),
@@ -86,13 +88,13 @@ class GuruController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'gelar' => 'required|min:3',
+            'gelar' => 'required|min:3|max:10',
             'nip' => 'nullable|digits:18',
             'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required|min:3',
             'tanggal_lahir' => 'required',
             'nuptk' => 'nullable|digits:16',
-            'alamat' => 'required|min:4',
+            'alamat' => 'required|min:4|max:255',
         ]);
         if ($validator->fails()) {
             return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
@@ -134,7 +136,26 @@ class GuruController extends Controller
 
     public function export()
     {
-        $filename = 'data_guru ' . date('Y-m-d H_i_s') . '.xlsx';
+        $filename = 'data_guru ' . date('Y-m-d H_i_s') . '.xls';
         return Excel::download(new GuruExport, $filename);
+    }
+
+    public function format_import()
+    {
+        $file = public_path() . "/format_import/format_import_guru.xls";
+        $headers = array(
+            'Content-Type: application/xls',
+        );
+        return Response::download($file, 'format_import_guru ' . date('Y-m-d H_i_s') . '.xls', $headers);
+    }
+
+    public function import(Request $request)
+    {
+        try {
+            Excel::import(new GuruImport, $request->file('file_import'));
+            return back()->with('toast_success', 'Data guru berhasil diimport');
+        } catch (\Throwable $th) {
+            return back()->with('toast_error', 'Maaf, format data tidak sesuai');
+        }
     }
 }

@@ -43,6 +43,8 @@ Route::group(['middleware' => ['auth']], function () {
       ]);
 
       Route::get('guru/export', 'Admin\GuruController@export')->name('guru.export');
+      Route::get('guru/import', 'Admin\GuruController@format_import')->name('guru.format_import');
+      Route::post('guru/import', 'Admin\GuruController@import')->name('guru.import');
       Route::resource('guru', 'Admin\GuruController',  [
         'uses' => ['index', 'store', 'update', 'destroy']
       ]);

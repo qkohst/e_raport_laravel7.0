@@ -53,19 +53,19 @@
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <form action="{{ route('guru.store') }}" method="POST">
+                  <form name="contact-form" action="{{ route('guru.import') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                       <div class="callout callout-info">
                         <h5>Download format import</h5>
                         <p>Silahkan download file format import melalui tombol dibawah ini.</p>
-                        <button type="button" class="btn btn-primary"><i class="fas fa-file-download"></i> Download</button>
+                        <a href="{{ route('guru.format_import') }}" class="btn btn-primary text-white" style="text-decoration:none"><i class="fas fa-file-download"></i> Download</a>
                       </div>
                       <div class="form-group row pt-2">
-                        <label for="file_upload" class="col-sm-3 col-form-label">File Import</label>
-                        <div class="col-sm-9">
+                        <label for="file_import" class="col-sm-2 col-form-label">File Import</label>
+                        <div class="col-sm-10">
                           <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="file_upload" name="file_upload" id="customFile" accept="application/vnd.ms-excel">
+                            <input type="file" class="custom-file-input" name="file_import" id="customFile" accept="application/vnd.ms-excel">
                             <label class="custom-file-label" for="customFile">Pilih file</label>
                           </div>
                         </div>
@@ -107,7 +107,7 @@
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="nip" class="col-sm-3 col-form-label">NIP</label>
+                        <label for="nip" class="col-sm-3 col-form-label">NIP <small><i>(opsional)</i></small></label>
                         <div class="col-sm-9">
                           <input type="number" class="form-control" id="nip" name="nip" placeholder="NIP" value="{{old('nip')}}">
                         </div>
@@ -132,7 +132,7 @@
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="nuptk" class="col-sm-3 col-form-label">NUPTK</label>
+                        <label for="nuptk" class="col-sm-3 col-form-label">NUPTK <small><i>(opsional)</i></small></label>
                         <div class="col-sm-9">
                           <input type="number" class="form-control" id="nuptk" name="nuptk" placeholder="NUPTK" value="{{old('nuptk')}}">
                         </div>

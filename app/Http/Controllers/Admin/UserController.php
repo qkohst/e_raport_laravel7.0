@@ -36,10 +36,10 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama_lengkap' => 'required|min:3',
+            'nama_lengkap' => 'required|min:3|max:100',
             'jenis_kelamin' => 'required',
             'tanggal_lahir' => 'required',
-            'email' => 'required|email|min:5|unique:admin',
+            'email' => 'required|email|min:5|max:100|unique:admin',
             'nomor_hp' => 'required|numeric|digits_between:11,13|unique:admin',
         ]);
         if ($validator->fails()) {
@@ -55,7 +55,7 @@ class UserController extends Controller
 
             $admin = new Admin([
                 'user_id' => $user->id,
-                'nama_lengkap' => $request->input('nama_lengkap'),
+                'nama_lengkap' => strtoupper($request->input('nama_lengkap')),
                 'jenis_kelamin' => $request->input('jenis_kelamin'),
                 'tanggal_lahir' => $request->input('tanggal_lahir'),
                 'email' => $request->input('email'),
@@ -93,7 +93,7 @@ class UserController extends Controller
 
     public function export()
     {
-        $filename = 'user_e_raport ' . date('Y-m-d H_i_s') . '.xlsx';
+        $filename = 'user_e_raport ' . date('Y-m-d H_i_s') . '.xls';
         return Excel::download(new UserExport, $filename);
     }
 }

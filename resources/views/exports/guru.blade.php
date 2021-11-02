@@ -11,13 +11,13 @@
   <table>
     <thead>
       <tr>
-        <td colspan="7"><strong>DATA GURU</strong></td>
+        <td colspan="9"><strong>DATA GURU</strong></td>
       </tr>
       <tr>
-        <td colspan="7">Waktu download : {{$time_download}}</td>
+        <td colspan="9">Waktu download : {{$time_download}}</td>
       </tr>
       <tr>
-        <td colspan="7">Didownload oleh : {{Auth::user()->admin->nama_lengkap}} ({{Auth::user()->username}})</td>
+        <td colspan="9">Didownload oleh : {{Auth::user()->admin->nama_lengkap}} ({{Auth::user()->username}})</td>
       </tr>
     </thead>
     <tbody>
@@ -27,6 +27,7 @@
       <tr>
         <td><strong>NO</strong></td>
         <td align="center"><strong>NAMA LENGKAP</strong></td>
+        <td align="center"><strong>GELAR</strong></td>
         <td align="center"><strong>NIP</strong></td>
         <td align="center"><strong>NUPTK</strong></td>
         <td align="center"><strong>TEMPAT LAHIR</strong></td>
@@ -39,7 +40,8 @@
       <?php $no++; ?>
       <tr>
         <td align="center">{{ $no }}</td>
-        <td>{{ $guru->nama_lengkap }}, {{ $guru->gelar }}</td>
+        <td>{{ $guru->nama_lengkap }}</td>
+        <td>{{ $guru->gelar }}</td>
         <td>{{ $guru->nip }}</td>
         <td>{{ $guru->nuptk }}</td>
         <td>{{ $guru->tempat_lahir }}</td>
