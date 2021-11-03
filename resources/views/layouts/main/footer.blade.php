@@ -33,9 +33,13 @@
 <!-- ChartJS -->
 <script src="/assets/plugins/chart.js/Chart.min.js"></script>
 
+<!-- Select2 -->
+<script src="/assets/plugins/select2/js/select2.full.min.js"></script>
+
 <!-- DataTables -->
 <script src="/assets/plugins/datatables/jquery.dataTables.js"></script>
 <script src="/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+
 
 <!-- bs-custom-file-input -->
 <script src="/assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
@@ -48,9 +52,11 @@
 <!-- PAGE SCRIPTS -->
 <script src="/assets/dist/js/pages/dashboard2.js"></script>
 
-
 <script>
   $(function() {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
     $("#example1").DataTable();
     $('#example2').DataTable({
       "paging": true,

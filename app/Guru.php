@@ -24,4 +24,9 @@ class Guru extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function kelas()
+    {
+        return $this->hasMany('App\Kelas');
+    }
 }

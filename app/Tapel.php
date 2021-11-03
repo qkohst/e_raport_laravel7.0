@@ -11,4 +11,9 @@ class Tapel extends Model
         'tahun_pelajaran',
         'semester'
     ];
+
+    public function kelas()
+    {
+        return $this->hasMany('App\Kelas');
+    }
 }

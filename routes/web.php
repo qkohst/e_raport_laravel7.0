@@ -52,6 +52,10 @@ Route::group(['middleware' => ['auth']], function () {
       Route::resource('tapel', 'Admin\TapelController',  [
         'uses' => ['index', 'store', 'destroy']
       ]);
+
+      Route::resource('kelas', 'Admin\KelasController',  [
+        'uses' => ['index', 'store', 'destroy']
+      ]);
     });
   });
   // End Route User Admin 
