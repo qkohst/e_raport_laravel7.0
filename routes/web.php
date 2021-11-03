@@ -48,6 +48,10 @@ Route::group(['middleware' => ['auth']], function () {
       Route::resource('guru', 'Admin\GuruController',  [
         'uses' => ['index', 'store', 'update', 'destroy']
       ]);
+
+      Route::resource('tapel', 'Admin\TapelController',  [
+        'uses' => ['index', 'store', 'destroy']
+      ]);
     });
   });
   // End Route User Admin 

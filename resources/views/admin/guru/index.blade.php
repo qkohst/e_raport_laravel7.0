@@ -188,7 +188,6 @@
                         @endif
                       </td>
                       <td>
-
                         <form action="{{ route('guru.destroy', $guru->id) }}" method="POST">
                           @csrf
                           @method('DELETE')

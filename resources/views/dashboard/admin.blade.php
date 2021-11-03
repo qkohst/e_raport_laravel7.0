@@ -28,7 +28,13 @@
       <!-- Info -->
       <div class="callout callout-success">
         <h5>{{$sekolah->nama_sekolah}}</h5>
-        <p>Tahun Pelajaran 2021/2022 Genap</p>
+        <p>Tahun Pelajaran {{$tapel->tahun_pelajaran}}
+          @if($tapel->semester == 1)
+          Semester Ganjil
+          @else
+          Semester Genap
+          @endif
+        </p>
       </div>
       <!-- End Info  -->
 
