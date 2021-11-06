@@ -16,6 +16,8 @@
 <script src="/assets/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- pace-progress -->
+<script src="/assets/plugins/pace-progress/pace.min.js"></script>
 <!-- overlayScrollbars -->
 <script src="/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
@@ -36,6 +38,9 @@
 <!-- Select2 -->
 <script src="/assets/plugins/select2/js/select2.full.min.js"></script>
 
+<!-- Bootstrap4 Duallistbox -->
+<script src="/assets/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+
 <!-- DataTables -->
 <script src="/assets/plugins/datatables/jquery.dataTables.js"></script>
 <script src="/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
@@ -47,6 +52,36 @@
   $(document).ready(function() {
     bsCustomFileInput.init();
   });
+</script>
+
+<script type="text/javascript">
+  function CheckPendaftaran(val) {
+    var element = document.getElementById('kelas');
+    var element1 = document.getElementById('kelas_bawah');
+    var element2 = document.getElementById('kelas_all');
+    if (val == '1')
+      element.style.display = 'none',
+      element.required = '',
+      element1.style.display = 'block',
+      element1.required = 'required',
+      element1.name = 'kelas_id',
+      element2.style.display = 'none',
+      element2.required = '',
+      element2.name = '',
+      element2.value = '';
+    else
+      element2.style.display = 'block',
+      element2.required = 'required',
+      element2.name = 'kelas_id',
+      element.style.display = 'none',
+      element.required = '',
+      element1.style.display = 'none',
+      element1.required = '',
+      element1.name = '',
+      element1.value = '';
+
+
+  }
 </script>
 
 <!-- PAGE SCRIPTS -->
@@ -83,6 +118,9 @@
       "info": true,
       "autoWidth": false,
     });
+
+    //Bootstrap Duallistbox
+    $('.duallistbox').bootstrapDualListbox()
   });
 </script>
 

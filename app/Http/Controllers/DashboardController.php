@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Guru;
+use App\Kelas;
 use App\RiwayatLogin;
 use App\Sekolah;
+use App\Siswa;
 use App\Tapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,12 +27,17 @@ class DashboardController extends Controller
 
         if (Auth::user()->role == 1) {
             $jumlah_guru = Guru::all()->count();
+            $jumlah_siswa = Siswa::where('status', 1)->count();
+            $jumlah_kelas = Kelas::where('tapel_id', $tapel->id)->count();
+
             return view('dashboard.admin', compact(
                 'title',
                 'data_riwayat_login',
                 'sekolah',
                 'tapel',
-                'jumlah_guru'
+                'jumlah_guru',
+                'jumlah_siswa',
+                'jumlah_kelas',
             ));
         }
     }

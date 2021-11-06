@@ -53,8 +53,17 @@ Route::group(['middleware' => ['auth']], function () {
         'uses' => ['index', 'store', 'destroy']
       ]);
 
+      Route::post('kelas/anggota', 'Admin\KelasController@store_anggota')->name('kelas.anggota');
+      Route::delete('kelas/anggota/{anggota}', 'Admin\KelasController@delete_anggota')->name('kelas.anggota.delete');
       Route::resource('kelas', 'Admin\KelasController',  [
-        'uses' => ['index', 'store', 'destroy']
+        'uses' => ['index', 'store', 'show', 'destroy']
+      ]);
+
+      Route::get('siswa/export', 'Admin\SiswaController@export')->name('siswa.export');
+      Route::get('siswa/import', 'Admin\SiswaController@format_import')->name('siswa.format_import');
+      Route::post('siswa/import', 'Admin\SiswaController@import')->name('siswa.import');
+      Route::resource('siswa', 'Admin\SiswaController',  [
+        'uses' => ['index', 'store', 'update', 'destroy']
       ]);
     });
   });

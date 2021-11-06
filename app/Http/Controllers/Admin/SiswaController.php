@@ -1,0 +1,239 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\AnggotaKelas;
+use App\Exports\SiswaExport;
+use App\Http\Controllers\Controller;
+use App\Imports\SiswaImport;
+use App\Kelas;
+use App\Siswa;
+use App\Tapel;
+use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Excel;
+use Illuminate\Support\Facades\Response;
+
+class SiswaController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $title = 'Data Siswa';
+        $tapel = Tapel::orderBy('id', 'DESC')->limit(1)->first();
+        if (is_null($tapel)) {
+            return redirect('admin/tapel')->with('toast_warning', 'Mohon isikan data tahun pelajaran');
+        } else {
+            $jumlah_kelas = Kelas::where('tapel_id', $tapel->id)->count();
+            if ($jumlah_kelas == 0) {
+                return redirect('admin/kelas')->with('toast_warning', 'Mohon isikan data kelas');
+            } else {
+                $tingkatan_terendah = Kelas::min('tingkatan_kelas');
+                $data_kelas_terendah = Kelas::where('tapel_id', $tapel->id)->where('tingkatan_kelas', $tingkatan_terendah)->orderBy('nama_kelas', 'ASC')->get();
+                $data_kelas_all = Kelas::where('tapel_id', $tapel->id)->orderBy('tingkatan_kelas', 'ASC')->get();
+                $data_siswa = Siswa::where('status', 1)->orderBy('nis', 'ASC')->get();
+                return view('admin.siswa.index', compact('title', 'data_kelas_all', 'data_kelas_terendah', 'data_siswa'));
+            }
+        }
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'nama_lengkap' => 'required|min:3|max:100',
+            'jenis_kelamin' => 'required',
+            'jenis_pendaftaran' => 'required',
+            'kelas_id' => 'required',
+            'nis' => 'required|numeric|digits_between:1,10|unique:siswa',
+            'nisn' => 'nullable|numeric|digits:10|unique:siswa',
+            'tempat_lahir' => 'required|min:3|max:50',
+            'tanggal_lahir' => 'required',
+            'agama' => 'required',
+            'anak_ke' => 'required|numeric|digits_between:1,2',
+            'status_dalam_keluarga' => 'required',
+            'alamat' => 'required|min:3|max:255',
+            'nomor_hp' => 'nullable|numeric|digits_between:11,13|unique:siswa',
+
+            'nama_ayah' => 'required|min:3|max:100',
+            'nama_ibu' => 'required|min:3|max:100',
+            'pekerjaan_ayah' => 'required|min:3|max:100',
+            'pekerjaan_ibu' => 'required|min:3|max:100',
+            'nama_wali' => 'nullable|min:3|max:100',
+            'pekerjaan_wali' => 'nullable|min:3|max:100',
+        ]);
+        if ($validator->fails()) {
+            return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
+        } else {
+            try {
+                $user = new User([
+                    'username' => strtolower(str_replace(' ', '', $request->nama_lengkap)),
+                    'password' => bcrypt('123456'),
+                    'role' => 3,
+                    'status' => true
+                ]);
+                $user->save();
+            } catch (\Throwable $th) {
+                return back()->with('toast_error', 'Username telah digunakan');
+            }
+
+            $siswa = new Siswa([
+                'user_id' => $user->id,
+                'kelas_id' => $request->input('kelas_id'),
+                'jenis_pendaftaran' => $request->input('jenis_pendaftaran'),
+                'nis' => $request->input('nis'),
+                'nisn' => $request->input('nisn'),
+                'nama_lengkap' => strtoupper($request->input('nama_lengkap')),
+                'tempat_lahir' => $request->input('tempat_lahir'),
+                'tanggal_lahir' => $request->input('tanggal_lahir'),
+                'jenis_kelamin' => $request->input('jenis_kelamin'),
+                'agama' => $request->input('agama'),
+                'status_dalam_keluarga' => $request->input('status_dalam_keluarga'),
+                'anak_ke' => $request->input('anak_ke'),
+                'alamat' => $request->input('alamat'),
+                'nomor_hp' => $request->input('nomor_hp'),
+                'nama_ayah' => $request->input('nama_ayah'),
+                'nama_ibu' => $request->input('nama_ibu'),
+                'pekerjaan_ayah' => $request->input('pekerjaan_ayah'),
+                'pekerjaan_ibu' => $request->input('pekerjaan_ibu'),
+                'nama_wali' => $request->input('nama_wali'),
+                'pekerjaan_wali' => $request->input('pekerjaan_wali'),
+                'avatar' => 'default.png',
+                'status' => 1,
+            ]);
+            $siswa->save();
+
+            $anggota_kelas = new AnggotaKelas([
+                'siswa_id' => $siswa->id,
+                'kelas_id' => $request->input('kelas_id'),
+                'pendaftaran' => $request->input('jenis_pendaftaran'),
+            ]);
+            $anggota_kelas->save();
+
+            return back()->with('toast_success', 'Siswa berhasil ditambahkan');
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'nama_lengkap' => 'required|min:3|max:100',
+            'jenis_kelamin' => 'required',
+            'nis' => 'required|numeric|digits_between:1,10|unique:siswa' . ($id ? ",id,$id" : ''),
+            'nisn' => 'nullable|numeric|digits:10|unique:siswa' . ($id ? ",id,$id" : ''),
+            'tempat_lahir' => 'required|min:3|max:50',
+            'tanggal_lahir' => 'required',
+            'agama' => 'required',
+            'anak_ke' => 'required|numeric|digits_between:1,2',
+            'status_dalam_keluarga' => 'required',
+            'alamat' => 'required|min:3|max:255',
+            'nomor_hp' => 'nullable|numeric|digits_between:11,13|unique:siswa' . ($id ? ",id,$id" : ''),
+
+            'nama_ayah' => 'required|min:3|max:100',
+            'nama_ibu' => 'required|min:3|max:100',
+            'pekerjaan_ayah' => 'required|min:3|max:100',
+            'pekerjaan_ibu' => 'required|min:3|max:100',
+            'nama_wali' => 'nullable|min:3|max:100',
+            'pekerjaan_wali' => 'nullable|min:3|max:100',
+        ]);
+        if ($validator->fails()) {
+            return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
+        } else {
+            $siswa = Siswa::findorfail($id);
+            $data_siswa = [
+                'nis' => $request->input('nis'),
+                'nisn' => $request->input('nisn'),
+                'nama_lengkap' => strtoupper($request->input('nama_lengkap')),
+                'tempat_lahir' => $request->input('tempat_lahir'),
+                'tanggal_lahir' => $request->input('tanggal_lahir'),
+                'jenis_kelamin' => $request->input('jenis_kelamin'),
+                'agama' => $request->input('agama'),
+                'status_dalam_keluarga' => $request->input('status_dalam_keluarga'),
+                'anak_ke' => $request->input('anak_ke'),
+                'alamat' => $request->input('alamat'),
+                'nomor_hp' => $request->input('nomor_hp'),
+                'nama_ayah' => $request->input('nama_ayah'),
+                'nama_ibu' => $request->input('nama_ibu'),
+                'pekerjaan_ayah' => $request->input('pekerjaan_ayah'),
+                'pekerjaan_ibu' => $request->input('pekerjaan_ibu'),
+                'nama_wali' => $request->input('nama_wali'),
+                'pekerjaan_wali' => $request->input('pekerjaan_wali')
+            ];
+            $siswa->update($data_siswa);
+            return back()->with('toast_success', 'Siswa berhasil diedit');
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $data_siswa = Siswa::findorfail($id);
+        $data_user = User::findorfail($data_siswa->user_id);
+
+        $data_anggota_kelas = AnggotaKelas::where('siswa_id', $data_siswa->id)->get();
+        if ($data_anggota_kelas->count() == 0) {
+            $data_siswa->delete();
+            $data_user->delete();
+            return back()->with('toast_success', 'Siswa berhasil dihapus');
+        } elseif ($data_anggota_kelas->count() == 1) {
+            try {
+                $anggota_kelas = AnggotaKelas::where('siswa_id', $data_siswa->id)->first();
+                $anggota_kelas->delete();
+                $data_siswa->delete();
+                $data_user->delete();
+                return back()->with('toast_success', 'Siswa berhasil dihapus');
+            } catch (\Throwable $th) {
+                return back()->with('toast_error', 'Data siswa tidak dapat dihapus');
+            }
+        } else {
+            return back()->with('toast_error', 'Data siswa tidak dapat dihapus');
+        }
+    }
+
+    public function export()
+    {
+        $filename = 'data_siswa ' . date('Y-m-d H_i_s') . '.xls';
+        return Excel::download(new SiswaExport, $filename);
+    }
+
+    public function format_import()
+    {
+        $file = public_path() . "/format_import/format_import_siswa.xls";
+        $headers = array(
+            'Content-Type: application/xls',
+        );
+        return Response::download($file, 'format_import_siswa ' . date('Y-m-d H_i_s') . '.xls', $headers);
+    }
+
+    public function import(Request $request)
+    {
+        try {
+            Excel::import(new SiswaImport, $request->file('file_import'));
+            return back()->with('toast_success', 'Data siswa berhasil diimport');
+        } catch (\Throwable $th) {
+            return back()->with('toast_error', 'Maaf, format data tidak sesuai');
+        }
+    }
+}

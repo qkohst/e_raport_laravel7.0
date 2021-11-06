@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Siswa;
 use App\Tapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -42,7 +43,7 @@ class TapelController extends Controller
                 'semester' => $request->input('semester'),
             ]);
             $tapel->save();
-            // PesertaDidik::where('status', 1)->update(['rombel_id' => null]);
+            Siswa::where('status', 1)->update(['kelas_id' => null]);
             return back()->with('toast_success', 'Tahun Pelajaran berhasil ditambahkan');
         }
     }

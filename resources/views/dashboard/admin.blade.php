@@ -61,7 +61,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Jumlah Siswa</span>
-              <span class="info-box-number">200</span>
+              <span class="info-box-number">{{$jumlah_siswa}}</span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -77,8 +77,8 @@
             <span class="info-box-icon bg-success elevation-1"><i class="fas fa-layer-group"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Jumlah Rombel</span>
-              <span class="info-box-number">5</span>
+              <span class="info-box-text">Jumlah Kelas</span>
+              <span class="info-box-number">{{$jumlah_kelas}}</span>
             </div>
             <!-- /.info-box-content -->
           </div>

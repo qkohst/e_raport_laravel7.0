@@ -19,7 +19,7 @@ class GuruImport implements ToCollection
     {
         // dd($collection);
         foreach ($collection as $key => $row) {
-            if ($key >= 8) {
+            if ($key >= 8 && $key <= 30) {
                 $user = User::create([
                     'username' => strtolower(str_replace(' ', '', $row[1])),
                     'password' => bcrypt('123456'),

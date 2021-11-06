@@ -115,8 +115,8 @@
                       <div class="form-group row">
                         <label for="jenis_kelamin" class="col-sm-3 col-form-label">Jenis Kelamin</label>
                         <div class="col-sm-9 pt-1">
-                          <label class="radio-inline mr-3"><input type="radio" name="jenis_kelamin" value="L" @if (old('jenis_kelamin')=='L' ) checked @endif required> Laki-Laki</label>
-                          <label class="radio-inline mr-3"><input type="radio" name="jenis_kelamin" value="P" @if (old('jenis_kelamin')=='P' ) checked @endif required> Perempuan</label>
+                          <label class="form-check-label mr-3"><input type="radio" name="jenis_kelamin" value="L" @if (old('jenis_kelamin')=='L' ) checked @endif required> Laki-Laki</label>
+                          <label class="form-check-label mr-3"><input type="radio" name="jenis_kelamin" value="P" @if (old('jenis_kelamin')=='P' ) checked @endif required> Perempuan</label>
                         </div>
                       </div>
                       <div class="form-group row">
@@ -228,7 +228,7 @@
                                 </div>
                               </div>
                               <div class="form-group row">
-                                <label for="nip" class="col-sm-3 col-form-label">NIP</label>
+                                <label for="nip" class="col-sm-3 col-form-label">NIP <small><i>(opsional)</i></small></label>
                                 <div class="col-sm-9">
                                   <input type="number" class="form-control" id="nip" name="nip" value="{{$guru->nip}}">
                                 </div>
@@ -236,8 +236,8 @@
                               <div class="form-group row">
                                 <label for="jenis_kelamin" class="col-sm-3 col-form-label">Jenis Kelamin</label>
                                 <div class="col-sm-9 pt-1">
-                                  <label class="radio-inline mr-3"><input type="radio" name="jenis_kelamin" value="L" @if ($guru->jenis_kelamin=='L' ) checked @endif required> Laki-Laki</label>
-                                  <label class="radio-inline mr-3"><input type="radio" name="jenis_kelamin" value="P" @if ($guru->jenis_kelamin=='P' ) checked @endif required> Perempuan</label>
+                                  <label class="form-check-label mr-3"><input type="radio" name="jenis_kelamin" value="L" @if ($guru->jenis_kelamin=='L' ) checked @endif required> Laki-Laki</label>
+                                  <label class="form-check-label mr-3"><input type="radio" name="jenis_kelamin" value="P" @if ($guru->jenis_kelamin=='P' ) checked @endif required> Perempuan</label>
                                 </div>
                               </div>
                               <div class="form-group row">
@@ -253,7 +253,7 @@
                                 </div>
                               </div>
                               <div class="form-group row">
-                                <label for="nuptk" class="col-sm-3 col-form-label">NUPTK</label>
+                                <label for="nuptk" class="col-sm-3 col-form-label">NUPTK <small><i>(opsional)</i></small></label>
                                 <div class="col-sm-9">
                                   <input type="number" class="form-control" id="nuptk" name="nuptk" value="{{$guru->nuptk}}">
                                 </div>

@@ -124,8 +124,8 @@
                       <td>{{$kelas->nama_kelas}}</td>
                       <td>{{$kelas->guru->nama_lengkap}}, {{$kelas->guru->gelar}}</td>
                       <td>
-                        <a href="#" class="btn btn-primary btn-sm">
-                          <i class="fas fa-list"></i> 0 Siswa
+                        <a href="{{ route('kelas.show', $kelas->id) }}" class="btn btn-primary btn-sm">
+                          <i class="fas fa-list"></i> {{$kelas->jumlah_anggota}} Siswa
                         </a>
                       </td>
                       <td>

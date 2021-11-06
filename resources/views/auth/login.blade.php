@@ -28,15 +28,9 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-12">
-              <div class="icheck-primary">
-                <input type="checkbox" id="remember">
-                <label for="remember">
-                  Ingat saya
-                </label>
-              </div>
-            </div>
+          <div class="form-check mt-2 mb-2">
+            <input type="checkbox" class="form-check-input" id="exampleCheck2">
+            <label class="form-check-label" for="exampleCheck2">Remember me</label>
           </div>
           <div class="row mb-2">
             <div class="col-12">

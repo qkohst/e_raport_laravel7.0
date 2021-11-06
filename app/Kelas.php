@@ -23,4 +23,14 @@ class Kelas extends Model
     {
         return $this->belongsTo('App\Guru');
     }
+
+    public function siswa()
+    {
+        return $this->hasMany('App\Siswa');
+    }
+
+    public function anggota_kelas()
+    {
+        return $this->hasMany('App\AnggotaKelas');
+    }
 }
