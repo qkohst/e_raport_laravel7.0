@@ -66,6 +66,12 @@ Route::group(['middleware' => ['auth']], function () {
       Route::resource('siswa', 'Admin\SiswaController',  [
         'uses' => ['index', 'store', 'update', 'destroy']
       ]);
+
+      Route::get('mapel/import', 'Admin\MapelController@format_import')->name('mapel.format_import');
+      Route::post('mapel/import', 'Admin\MapelController@import')->name('mapel.import');
+      Route::resource('mapel', 'Admin\MapelController',  [
+        'uses' => ['index', 'store', 'update', 'destroy']
+      ]);
     });
   });
   // End Route User Admin 

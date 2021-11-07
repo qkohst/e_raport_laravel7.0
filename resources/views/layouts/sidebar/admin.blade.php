@@ -69,7 +69,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ route('mapel.index') }}" class="nav-link">
                 <i class="fas fa-book nav-icon"></i>
                 <p>Data Mata Pelajaran</p>
               </a>

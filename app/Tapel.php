@@ -16,4 +16,9 @@ class Tapel extends Model
     {
         return $this->hasMany('App\Kelas');
     }
+
+    public function mapel()
+    {
+        return $this->hasMany('App\Mapel');
+    }
 }
