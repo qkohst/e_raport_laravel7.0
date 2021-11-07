@@ -47,21 +47,4 @@ class TapelController extends Controller
             return back()->with('toast_success', 'Tahun Pelajaran berhasil ditambahkan');
         }
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $tapel = Tapel::findorfail($id);
-        try {
-            $tapel->delete();
-            return back()->with('toast_success', 'Tahun Pelajaran berhasil dihapus');
-        } catch (\Throwable $th) {
-            return back()->with('toast_error', 'Tahun Pelajaran tidak dapat dihapus');
-        }
-    }
 }

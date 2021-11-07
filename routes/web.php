@@ -50,7 +50,7 @@ Route::group(['middleware' => ['auth']], function () {
       ]);
 
       Route::resource('tapel', 'Admin\TapelController',  [
-        'uses' => ['index', 'store', 'destroy']
+        'uses' => ['index', 'store']
       ]);
 
       Route::post('kelas/anggota', 'Admin\KelasController@store_anggota')->name('kelas.anggota');
@@ -62,6 +62,7 @@ Route::group(['middleware' => ['auth']], function () {
       Route::get('siswa/export', 'Admin\SiswaController@export')->name('siswa.export');
       Route::get('siswa/import', 'Admin\SiswaController@format_import')->name('siswa.format_import');
       Route::post('siswa/import', 'Admin\SiswaController@import')->name('siswa.import');
+      Route::post('siswa/registrasi', 'Admin\SiswaController@registrasi')->name('siswa.registrasi');
       Route::resource('siswa', 'Admin\SiswaController',  [
         'uses' => ['index', 'store', 'update', 'destroy']
       ]);

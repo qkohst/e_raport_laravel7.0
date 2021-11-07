@@ -82,7 +82,6 @@
                       <th>No</th>
                       <th>Tahun Pelajaran</th>
                       <th>Semester</th>
-                      <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -99,17 +98,7 @@
                         Semester Genap
                         @endif
                       </td>
-                      <td>
-                        <form action="{{ route('tapel.destroy', $tapel->id) }}" method="POST">
-                          @csrf
-                          @method('DELETE')
-                          <button type="submit" class="btn btn-danger btn-sm mt-1" onclick="return confirm('Hapus {{$title}} ?')">
-                            <i class="fas fa-trash-alt"></i>
-                          </button>
-                        </form>
-                      </td>
                     </tr>
-
                     @endforeach
                   </tbody>
                 </table>

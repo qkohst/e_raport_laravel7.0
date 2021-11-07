@@ -46,4 +46,9 @@ class Siswa extends Model
     {
         return $this->hasMany('App\AnggotaKelas');
     }
+
+    public function siswa_keluar()
+    {
+        return $this->hasOne('App\SiswaKeluar');
+    }
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Imports\SiswaImport;
 use App\Kelas;
 use App\Siswa;
+use App\SiswaKeluar;
 use App\Tapel;
 use App\User;
 use Illuminate\Http\Request;
@@ -34,10 +35,11 @@ class SiswaController extends Controller
                 return redirect('admin/kelas')->with('toast_warning', 'Mohon isikan data kelas');
             } else {
                 $tingkatan_terendah = Kelas::min('tingkatan_kelas');
+                $tingkatan_akhir = Kelas::max('tingkatan_kelas');
                 $data_kelas_terendah = Kelas::where('tapel_id', $tapel->id)->where('tingkatan_kelas', $tingkatan_terendah)->orderBy('nama_kelas', 'ASC')->get();
                 $data_kelas_all = Kelas::where('tapel_id', $tapel->id)->orderBy('tingkatan_kelas', 'ASC')->get();
                 $data_siswa = Siswa::where('status', 1)->orderBy('nis', 'ASC')->get();
-                return view('admin.siswa.index', compact('title', 'data_kelas_all', 'data_kelas_terendah', 'data_siswa'));
+                return view('admin.siswa.index', compact('title', 'data_kelas_all', 'data_kelas_terendah', 'data_siswa', 'tingkatan_akhir'));
             }
         }
     }
@@ -234,6 +236,46 @@ class SiswaController extends Controller
             return back()->with('toast_success', 'Data siswa berhasil diimport');
         } catch (\Throwable $th) {
             return back()->with('toast_error', 'Maaf, format data tidak sesuai');
+        }
+    }
+
+    public function registrasi(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'siswa_id' => 'required',
+            'keluar_karena' => 'required|max:30',
+            'tanggal_keluar' => 'required',
+            'alasan_keluar' => 'nullable|max:255',
+        ]);
+        if ($validator->fails()) {
+            return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
+        } else {
+            $siswa_keluar = new SiswaKeluar([
+                'siswa_id' => $request->input('siswa_id'),
+                'keluar_karena' => $request->input('keluar_karena'),
+                'tanggal_keluar' => $request->input('tanggal_keluar'),
+                'alasan_keluar' => $request->input('alasan_keluar'),
+            ]);
+            $siswa_keluar->save();
+
+            $siswa = Siswa::findorfail($request->siswa_id);
+            $anggota_kelas = AnggotaKelas::where('siswa_id', $siswa->id)->where('kelas_id', $siswa->kelas_id)->first();
+            $anggota_kelas->delete();
+            
+            if ($request->keluar_karena == 'Lulus') {
+                $update_siswa = [
+                    'kelas_id' => null,
+                    'status' => 3
+                ];
+            } else {
+                $update_siswa = [
+                    'kelas_id' => null,
+                    'status' => 2
+                ];
+            }
+            $siswa->update($update_siswa);
+            User::findorfail($siswa->user_id)->update(['status' => false]);
+            return redirect('admin/siswa')->with('toast_success', 'Registrasi siswa berhasil');
         }
     }
 }
