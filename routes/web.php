@@ -72,6 +72,17 @@ Route::group(['middleware' => ['auth']], function () {
       Route::resource('mapel', 'Admin\MapelController',  [
         'uses' => ['index', 'store', 'update', 'destroy']
       ]);
+      Route::resource('mapel', 'Admin\MapelController',  [
+        'uses' => ['index', 'store', 'update', 'destroy']
+      ]);
+
+      Route::get('pembelajaran/export', 'Admin\PembelajaranController@export')->name('pembelajaran.export');
+      Route::post('pembelajaran/settings', 'Admin\PembelajaranController@settings')->name('pembelajaran.settings');
+      Route::resource('pembelajaran', 'Admin\PembelajaranController',  [
+        'uses' => ['index', 'store']
+      ]);
+
+      // Lanjut ke data pembelajaran
     });
   });
   // End Route User Admin 

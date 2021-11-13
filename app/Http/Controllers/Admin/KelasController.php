@@ -6,6 +6,7 @@ use App\AnggotaKelas;
 use App\Guru;
 use App\Http\Controllers\Controller;
 use App\Kelas;
+use App\Mapel;
 use App\Siswa;
 use App\Tapel;
 use Illuminate\Http\Request;
@@ -21,8 +22,11 @@ class KelasController extends Controller
     public function index()
     {
         $tapel = Tapel::orderBy('id', 'DESC')->limit(1)->first();
+        $data_mapel = Mapel::where('tapel_id', $tapel->id)->get();
         if (is_null($tapel)) {
             return redirect('admin/tapel')->with('toast_warning', 'Mohon isikan data tahun pelajaran');
+        } elseif (count($data_mapel) == 0) {
+            return redirect('admin/mapel')->with('toast_warning', 'Mohon isikan data mata pelajaran');
         } else {
             $title = 'Data Kelas';
             $data_kelas = Kelas::where('tapel_id', $tapel->id)->orderBy('tingkatan_kelas', 'ASC')->get();
@@ -59,7 +63,7 @@ class KelasController extends Controller
                 'tingkatan_kelas' => $request->input('tingkatan_kelas'),
                 'nama_kelas' => $request->input('nama_kelas'),
             ]);
-            $kelas->save();
+            $kelas->save(); 
             return back()->with('toast_success', 'Kelas berhasil ditambahkan');
         }
     }

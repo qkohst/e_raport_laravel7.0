@@ -17,4 +17,9 @@ class Mapel extends Model
     {
         return $this->belongsTo('App\Tapel');
     }
+
+    public function pembelajaran()
+    {
+        return $this->hasMany('App\Pembelajaran');
+    }
 }

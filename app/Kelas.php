@@ -33,4 +33,9 @@ class Kelas extends Model
     {
         return $this->hasMany('App\AnggotaKelas');
     }
+
+    public function pembelajaran()
+    {
+        return $this->hasMany('App\Pembelajaran');
+    }
 }

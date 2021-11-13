@@ -57,6 +57,12 @@
               </a>
             </li>
             <li class="nav-item">
+              <a href="{{ route('mapel.index') }}" class="nav-link">
+                <i class="fas fa-book nav-icon"></i>
+                <p>Data Mata Pelajaran</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="{{ route('kelas.index') }}" class="nav-link">
                 <i class="fas fa-layer-group nav-icon"></i>
                 <p>Data Kelas & Wali</p>
@@ -69,13 +75,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('mapel.index') }}" class="nav-link">
-                <i class="fas fa-book nav-icon"></i>
-                <p>Data Mata Pelajaran</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ route('pembelajaran.index') }}" class="nav-link">
                 <i class="fas fa-book-open nav-icon"></i>
                 <p>Data Pembelajaran</p>
               </a>

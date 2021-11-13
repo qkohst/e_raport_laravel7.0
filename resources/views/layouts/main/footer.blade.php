@@ -12,12 +12,12 @@
 @include('sweetalert::alert')
 
 <!-- REQUIRED SCRIPTS -->
+<!-- pace-progress -->
+<script src="/assets/plugins/pace-progress/pace.min.js"></script>
 <!-- jQuery -->
 <script src="/assets/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- pace-progress -->
-<script src="/assets/plugins/pace-progress/pace.min.js"></script>
 <!-- overlayScrollbars -->
 <script src="/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
