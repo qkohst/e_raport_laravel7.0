@@ -91,25 +91,25 @@ class SiswaController extends Controller
 
             $siswa = new Siswa([
                 'user_id' => $user->id,
-                'kelas_id' => $request->input('kelas_id'),
-                'jenis_pendaftaran' => $request->input('jenis_pendaftaran'),
-                'nis' => $request->input('nis'),
-                'nisn' => $request->input('nisn'),
-                'nama_lengkap' => strtoupper($request->input('nama_lengkap')),
-                'tempat_lahir' => $request->input('tempat_lahir'),
-                'tanggal_lahir' => $request->input('tanggal_lahir'),
-                'jenis_kelamin' => $request->input('jenis_kelamin'),
-                'agama' => $request->input('agama'),
-                'status_dalam_keluarga' => $request->input('status_dalam_keluarga'),
-                'anak_ke' => $request->input('anak_ke'),
-                'alamat' => $request->input('alamat'),
-                'nomor_hp' => $request->input('nomor_hp'),
-                'nama_ayah' => $request->input('nama_ayah'),
-                'nama_ibu' => $request->input('nama_ibu'),
-                'pekerjaan_ayah' => $request->input('pekerjaan_ayah'),
-                'pekerjaan_ibu' => $request->input('pekerjaan_ibu'),
-                'nama_wali' => $request->input('nama_wali'),
-                'pekerjaan_wali' => $request->input('pekerjaan_wali'),
+                'kelas_id' => $request->kelas_id,
+                'jenis_pendaftaran' => $request->jenis_pendaftaran,
+                'nis' => $request->nis,
+                'nisn' => $request->nisn,
+                'nama_lengkap' => strtoupper($request->nama_lengkap),
+                'tempat_lahir' => $request->tempat_lahir,
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'agama' => $request->agama,
+                'status_dalam_keluarga' => $request->status_dalam_keluarga,
+                'anak_ke' => $request->anak_ke,
+                'alamat' => $request->alamat,
+                'nomor_hp' => $request->nomor_hp,
+                'nama_ayah' => $request->nama_ayah,
+                'nama_ibu' => $request->nama_ibu,
+                'pekerjaan_ayah' => $request->pekerjaan_ayah,
+                'pekerjaan_ibu' => $request->pekerjaan_ibu,
+                'nama_wali' => $request->nama_wali,
+                'pekerjaan_wali' => $request->pekerjaan_wali,
                 'avatar' => 'default.png',
                 'status' => 1,
             ]);
@@ -117,8 +117,8 @@ class SiswaController extends Controller
 
             $anggota_kelas = new AnggotaKelas([
                 'siswa_id' => $siswa->id,
-                'kelas_id' => $request->input('kelas_id'),
-                'pendaftaran' => $request->input('jenis_pendaftaran'),
+                'kelas_id' => $request->kelas_id,
+                'pendaftaran' => $request->jenis_pendaftaran,
             ]);
             $anggota_kelas->save();
 
@@ -160,23 +160,23 @@ class SiswaController extends Controller
         } else {
             $siswa = Siswa::findorfail($id);
             $data_siswa = [
-                'nis' => $request->input('nis'),
-                'nisn' => $request->input('nisn'),
-                'nama_lengkap' => strtoupper($request->input('nama_lengkap')),
-                'tempat_lahir' => $request->input('tempat_lahir'),
-                'tanggal_lahir' => $request->input('tanggal_lahir'),
-                'jenis_kelamin' => $request->input('jenis_kelamin'),
-                'agama' => $request->input('agama'),
-                'status_dalam_keluarga' => $request->input('status_dalam_keluarga'),
-                'anak_ke' => $request->input('anak_ke'),
-                'alamat' => $request->input('alamat'),
-                'nomor_hp' => $request->input('nomor_hp'),
-                'nama_ayah' => $request->input('nama_ayah'),
-                'nama_ibu' => $request->input('nama_ibu'),
-                'pekerjaan_ayah' => $request->input('pekerjaan_ayah'),
-                'pekerjaan_ibu' => $request->input('pekerjaan_ibu'),
-                'nama_wali' => $request->input('nama_wali'),
-                'pekerjaan_wali' => $request->input('pekerjaan_wali')
+                'nis' => $request->nis,
+                'nisn' => $request->nisn,
+                'nama_lengkap' => strtoupper($request->nama_lengkap),
+                'tempat_lahir' => $request->tempat_lahir,
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'agama' => $request->agama,
+                'status_dalam_keluarga' => $request->status_dalam_keluarga,
+                'anak_ke' => $request->anak_ke,
+                'alamat' => $request->alamat,
+                'nomor_hp' => $request->nomor_hp,
+                'nama_ayah' => $request->nama_ayah,
+                'nama_ibu' => $request->nama_ibu,
+                'pekerjaan_ayah' => $request->pekerjaan_ayah,
+                'pekerjaan_ibu' => $request->pekerjaan_ibu,
+                'nama_wali' => $request->nama_wali,
+                'pekerjaan_wali' => $request->pekerjaan_wali
             ];
             $siswa->update($data_siswa);
             return back()->with('toast_success', 'Siswa berhasil diedit');
@@ -261,7 +261,7 @@ class SiswaController extends Controller
             $siswa = Siswa::findorfail($request->siswa_id);
             $anggota_kelas = AnggotaKelas::where('siswa_id', $siswa->id)->where('kelas_id', $siswa->kelas_id)->first();
             $anggota_kelas->delete();
-            
+
             if ($request->keluar_karena == 'Lulus') {
                 $update_siswa = [
                     'kelas_id' => null,

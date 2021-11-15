@@ -48,9 +48,9 @@ class MapelController extends Controller
             return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
         } else {
             $mapel = new Mapel([
-                'tapel_id' => $request->input('tapel_id'),
-                'nama_mapel' => $request->input('nama_mapel'),
-                'ringkasan_mapel' => $request->input('ringkasan_mapel'),
+                'tapel_id' => $request->tapel_id,
+                'nama_mapel' => $request->nama_mapel,
+                'ringkasan_mapel' => $request->ringkasan_mapel,
             ]);
             $mapel->save();
             return back()->with('toast_success', 'Mata Pelajaran berhasil ditambahkan');
@@ -75,7 +75,7 @@ class MapelController extends Controller
         } else {
             $mapel = Mapel::findorfail($id);
             $data_mapel = [
-                'ringkasan_mapel' => $request->input('ringkasan_mapel'),
+                'ringkasan_mapel' => $request->ringkasan_mapel,
             ];
             $mapel->update($data_mapel);
             return back()->with('toast_success', 'Mata Pelajaran berhasil diedit');

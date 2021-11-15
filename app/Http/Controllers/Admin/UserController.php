@@ -55,11 +55,11 @@ class UserController extends Controller
 
             $admin = new Admin([
                 'user_id' => $user->id,
-                'nama_lengkap' => strtoupper($request->input('nama_lengkap')),
-                'jenis_kelamin' => $request->input('jenis_kelamin'),
-                'tanggal_lahir' => $request->input('tanggal_lahir'),
-                'email' => $request->input('email'),
-                'nomor_hp' => $request->input('nomor_hp'),
+                'nama_lengkap' => strtoupper($request->nama_lengkap),
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'email' => $request->email,
+                'nomor_hp' => $request->nomor_hp,
                 'avatar' => 'default.png'
             ]);
             $admin->save();

@@ -39,8 +39,8 @@ class TapelController extends Controller
             return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
         } else {
             $tapel = new Tapel([
-                'tahun_pelajaran' => $request->input('tahun_pelajaran'),
-                'semester' => $request->input('semester'),
+                'tahun_pelajaran' => $request->tahun_pelajaran,
+                'semester' => $request->semester,
             ]);
             $tapel->save();
             Siswa::where('status', 1)->update(['kelas_id' => null]);

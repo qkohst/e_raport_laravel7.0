@@ -81,7 +81,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ route('ekstrakulikuler.index') }}" class="nav-link">
                 <i class="fas fa-book-reader nav-icon"></i>
                 <p>Data Ekstrakulikuler</p>
               </a>

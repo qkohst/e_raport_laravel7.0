@@ -35,7 +35,7 @@ class PembelajaranController extends Controller
         } else {
             $title = 'Data Pembelajaran';
             $id_kelas = Kelas::where('tapel_id', $tapel->id)->orderBy('tingkatan_kelas', 'ASC')->get('id');
-            $data_pembelajaran = Pembelajaran::whereIn('kelas_id', $id_kelas)->where('status', 1)->get();
+            $data_pembelajaran = Pembelajaran::whereIn('kelas_id', $id_kelas)->whereNotNull('guru_id')->where('status', 1)->orderBy('kelas_id', 'ASC')->get();
             return view('admin.pembelajaran.index', compact('title', 'data_kelas', 'data_pembelajaran'));
         }
     }
@@ -47,8 +47,8 @@ class PembelajaranController extends Controller
         $kelas = Kelas::findorfail($request->kelas_id);
         $data_kelas = Kelas::where('tapel_id', $tapel->id)->orderBy('tingkatan_kelas', 'ASC')->get();
 
-        $data_pembelajaran_kelas = Pembelajaran::where('kelas_id', $request->kelas_id)->whereNotNull('guru_id')->get();
-        $mapel_id_pembelajaran_kelas = Pembelajaran::where('kelas_id', $request->kelas_id)->whereNotNull('guru_id')->get('mapel_id');
+        $data_pembelajaran_kelas = Pembelajaran::where('kelas_id', $request->kelas_id)->whereNotNull('guru_id')->where('status', 1)->get();
+        $mapel_id_pembelajaran_kelas = Pembelajaran::where('kelas_id', $request->kelas_id)->whereNotNull('guru_id')->where('status', 1)->get('mapel_id');
         $data_mapel = Mapel::whereNotIn('id', $mapel_id_pembelajaran_kelas)->get();
         $data_guru = Guru::orderBy('nama_lengkap', 'ASC')->get();
         return view('admin.pembelajaran.settings', compact('title', 'tapel', 'kelas', 'data_kelas', 'data_pembelajaran_kelas', 'data_mapel', 'data_guru'));

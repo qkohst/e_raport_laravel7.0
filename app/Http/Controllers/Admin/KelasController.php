@@ -56,14 +56,13 @@ class KelasController extends Controller
             return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
         } else {
             $tapel = Tapel::orderBy('id', 'DESC')->limit(1)->first();
-            $wali_kelas = Guru::findorfail($request->input('guru_id'));
             $kelas = new Kelas([
                 'tapel_id' => $tapel->id,
-                'guru_id' => $wali_kelas->id,
-                'tingkatan_kelas' => $request->input('tingkatan_kelas'),
-                'nama_kelas' => $request->input('nama_kelas'),
+                'guru_id' => $request->guru_id,
+                'tingkatan_kelas' => $request->tingkatan_kelas,
+                'nama_kelas' => $request->nama_kelas,
             ]);
-            $kelas->save(); 
+            $kelas->save();
             return back()->with('toast_success', 'Kelas berhasil ditambahkan');
         }
     }
@@ -109,8 +108,8 @@ class KelasController extends Controller
         } else {
             $kelas = Kelas::findorfail($id);
             $data_kelas = [
-                'nama_kelas' => $request->input('nama_kelas'),
-                'guru_id' => $request->input('guru_id'),
+                'nama_kelas' => $request->nama_kelas,
+                'guru_id' => $request->guru_id,
             ];
             $kelas->update($data_kelas);
             return back()->with('toast_success', 'Kelas berhasil diedit');
@@ -146,8 +145,8 @@ class KelasController extends Controller
             for ($count = 0; $count < count($siswa_id); $count++) {
                 $data = array(
                     'siswa_id' => $siswa_id[$count],
-                    'kelas_id'  => $request->input('kelas_id'),
-                    'pendaftaran'  => $request->input('pendaftaran')
+                    'kelas_id'  => $request->kelas_id,
+                    'pendaftaran'  => $request->pendaftaran
                 );
                 $insert_data[] = $data;
             }
@@ -160,14 +159,18 @@ class KelasController extends Controller
 
     public function delete_anggota($id)
     {
-        $anggota_kelas = AnggotaKelas::findorfail($id);
-        $siswa = Siswa::findorfail($anggota_kelas->siswa_id);
+        try {
+            $anggota_kelas = AnggotaKelas::findorfail($id);
+            $siswa = Siswa::findorfail($anggota_kelas->siswa_id);
 
-        $update_kelas_id = [
-            'kelas_id' => null,
-        ];
-        $anggota_kelas->delete();
-        $siswa->update($update_kelas_id);
-        return back()->with('toast_success', 'Anggota kelas berhasil dihapus');
+            $update_kelas_id = [
+                'kelas_id' => null,
+            ];
+            $anggota_kelas->delete();
+            $siswa->update($update_kelas_id);
+            return back()->with('toast_success', 'Anggota kelas berhasil dihapus');
+        } catch (\Throwable $th) {
+            return back()->with('toast_error', 'Anggota kelas tidak dapat dihapus');
+        }
     }
 }

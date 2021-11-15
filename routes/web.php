@@ -82,7 +82,13 @@ Route::group(['middleware' => ['auth']], function () {
         'uses' => ['index', 'store']
       ]);
 
-      // Lanjut ke data pembelajaran
+      Route::post('ekstrakulikuler/anggota', 'Admin\EkstrakulikulerController@store_anggota')->name('ekstrakulikuler.anggota');
+      Route::delete('ekstrakulikuler/anggota/{anggota}', 'Admin\EkstrakulikulerController@delete_anggota')->name('ekstrakulikuler.anggota.delete');
+      Route::resource('ekstrakulikuler', 'Admin\EkstrakulikulerController',  [
+        'uses' => ['index', 'store', 'show', 'destroy']
+      ]);
+      // Lanjut ke anggota ekstrakulikuler (show)
+
     });
   });
   // End Route User Admin 

@@ -62,14 +62,14 @@ class GuruController extends Controller
 
             $guru = new Guru([
                 'user_id' => $user->id,
-                'nama_lengkap' => strtoupper($request->input('nama_lengkap')),
-                'gelar' => $request->input('gelar'),
-                'nip' => $request->input('nip'),
-                'jenis_kelamin' => $request->input('jenis_kelamin'),
-                'tempat_lahir' => $request->input('tempat_lahir'),
-                'tanggal_lahir' => $request->input('tanggal_lahir'),
-                'nuptk' => $request->input('nuptk'),
-                'alamat' => $request->input('alamat'),
+                'nama_lengkap' => strtoupper($request->nama_lengkap),
+                'gelar' => $request->gelar,
+                'nip' => $request->nip,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'tempat_lahir' => $request->tempat_lahir,
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'nuptk' => $request->nuptk,
+                'alamat' => $request->alamat,
                 'avatar' => 'default.png'
             ]);
             $guru->save();
@@ -101,13 +101,13 @@ class GuruController extends Controller
         } else {
             $guru = Guru::findorfail($id);
             $data_guru = [
-                'gelar' => $request->input('gelar'),
-                'nip' => $request->input('nip'),
-                'jenis_kelamin' => $request->input('jenis_kelamin'),
-                'tempat_lahir' => $request->input('tempat_lahir'),
-                'tanggal_lahir' => $request->input('tanggal_lahir'),
-                'nuptk' => $request->input('nuptk'),
-                'alamat' => $request->input('alamat'),
+                'gelar' => $request->gelar,
+                'nip' => $request->nip,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'tempat_lahir' => $request->tempat_lahir,
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'nuptk' => $request->nuptk,
+                'alamat' => $request->alamat,
             ];
 
             $guru->update($data_guru);

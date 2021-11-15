@@ -34,4 +34,9 @@ class Guru extends Model
     {
         return $this->hasMany('App\Pembelajaran');
     }
+
+    public function ekstrakulikuler()
+    {
+        return $this->hasMany('App\Ekstrakulikuler');
+    }
 }

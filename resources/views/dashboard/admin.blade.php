@@ -91,7 +91,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Jumlah Ekstrakulikuler</span>
-              <span class="info-box-number">2</span>
+              <span class="info-box-number">{{$jumlah_ekstrakulikuler}}</span>
             </div>
             <!-- /.info-box-content -->
           </div>

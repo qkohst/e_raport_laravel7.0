@@ -29,7 +29,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title"><i class="fas fa-user-tie"></i> {{$title}}</h3>
+              <h3 class="card-title"><i class="fas fa-book-reader"></i> {{$title}}</h3>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool btn-sm" data-toggle="modal" data-target="#modal-tambah">
                   <i class="fas fa-plus"></i>
@@ -47,7 +47,7 @@
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <form action="{{ route('kelas.store') }}" method="POST">
+                  <form action="{{ route('ekstrakulikuler.store') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                       <div class="form-group row">
@@ -60,22 +60,16 @@
                           @endif </div>
                       </div>
                       <div class="form-group row">
-                        <label for="tingkatan_kelas" class="col-sm-3 col-form-label">Tingkatan Kelas</label>
+                        <label for="nama_ekstrakulikuler" class="col-sm-3 col-form-label">Nama Ekstrakulikuler</label>
                         <div class="col-sm-9">
-                          <input type="number" class="form-control" id="tingkatan_kelas" name="tingkatan_kelas" placeholder="Tingkatan Kelas" value="{{old('tingkatan_kelas')}}">
+                          <input type="text" class="form-control" id="nama_ekstrakulikuler" name="nama_ekstrakulikuler" placeholder="Nama Ekstrakulikuler" value="{{old('nama_ekstrakulikuler')}}">
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="nama_kelas" class="col-sm-3 col-form-label">Nama Kelas</label>
+                        <label for="pembina_id" class="col-sm-3 col-form-label">Pembina</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" id="nama_kelas" name="nama_kelas" placeholder="Nama Kelas" value="{{old('nama_kelas')}}">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="guru_id" class="col-sm-3 col-form-label">Wali Kelas</label>
-                        <div class="col-sm-9">
-                          <select class="form-control select2" name="guru_id" style="width: 100%;" required>
-                            <option value="">-- Pilih Wali Kelas --</option>
+                          <select class="form-control select2" name="pembina_id" style="width: 100%;" required>
+                            <option value="">-- Pilih Pembina --</option>
                             @foreach($data_guru as $guru)
                             <option value="{{$guru->id}}">{{$guru->nama_lengkap}}, {{$guru->gelar}}</option>
                             @endforeach
@@ -100,39 +94,37 @@
                     <tr>
                       <th>No</th>
                       <th>Semester</th>
-                      <th>Tingkat</th>
-                      <th>Nama Kelas</th>
-                      <th>Wali Kelas</th>
+                      <th>Nama Ekstrakulikuler</th>
+                      <th>Pembina</th>
                       <th>Jml Anggota</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php $no = 0; ?>
-                    @foreach($data_kelas as $kelas)
+                    @foreach($data_ekstrakulikuler as $ekstrakulikuler)
                     <?php $no++; ?>
                     <tr>
                       <td>{{$no}}</td>
-                      <td>{{$kelas->tapel->tahun_pelajaran}}
-                        @if($kelas->tapel->semester == 1)
+                      <td>{{$ekstrakulikuler->tapel->tahun_pelajaran}}
+                        @if($ekstrakulikuler->tapel->semester == 1)
                         Ganjil
                         @else
                         Genap
                         @endif
                       </td>
-                      <td>{{$kelas->tingkatan_kelas}}</td>
-                      <td>{{$kelas->nama_kelas}}</td>
-                      <td>{{$kelas->guru->nama_lengkap}}, {{$kelas->guru->gelar}}</td>
+                      <td>{{$ekstrakulikuler->nama_ekstrakulikuler}}</td>
+                      <td>{{$ekstrakulikuler->pembina->nama_lengkap}}, {{$ekstrakulikuler->pembina->gelar}}</td>
                       <td>
-                        <a href="{{ route('kelas.show', $kelas->id) }}" class="btn btn-primary btn-sm">
-                          <i class="fas fa-list"></i> {{$kelas->jumlah_anggota}} Siswa
+                        <a href="{{ route('ekstrakulikuler.show', $ekstrakulikuler->id) }}" class="btn btn-primary btn-sm">
+                          <i class="fas fa-list"></i> {{$ekstrakulikuler->jumlah_anggota}} Anggota
                         </a>
                       </td>
                       <td>
-                        <form action="{{ route('kelas.destroy', $kelas->id) }}" method="POST">
+                        <form action="{{ route('ekstrakulikuler.destroy', $ekstrakulikuler->id) }}" method="POST">
                           @csrf
                           @method('DELETE')
-                          <button type="button" class="btn btn-warning btn-sm mt-1" data-toggle="modal" data-target="#modal-edit{{$kelas->id}}">
+                          <button type="button" class="btn btn-warning btn-sm mt-1" data-toggle="modal" data-target="#modal-edit{{$ekstrakulikuler->id}}">
                             <i class="fas fa-pencil-alt"></i>
                           </button>
                           <button type="submit" class="btn btn-danger btn-sm mt-1" onclick="return confirm('Hapus {{$title}} ?')">
@@ -143,7 +135,7 @@
                     </tr>
 
                     <!-- Modal edit  -->
-                    <div class="modal fade" id="modal-edit{{$kelas->id}}">
+                    <div class="modal fade" id="modal-edit{{$ekstrakulikuler->id}}">
                       <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                           <div class="modal-header">
@@ -152,29 +144,23 @@
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
-                          <form action="{{ route('kelas.update', $kelas->id) }}" method="POST">
+                          <form action="{{ route('ekstrakulikuler.update', $ekstrakulikuler->id) }}" method="POST">
                             {{ method_field('PATCH') }}
                             @csrf
                             <div class="modal-body">
                               <div class="form-group row">
-                                <label for="tingkatan_kelas" class="col-sm-3 col-form-label">Tingkatan Kelas</label>
+                                <label for="nama_ekstrakulikuler" class="col-sm-3 col-form-label">Nama Ekstrakulikuler</label>
                                 <div class="col-sm-9">
-                                  <input type="text" class="form-control" id="tingkatan_kelas" name="tingkatan_kelas" value="{{$kelas->tingkatan_kelas}}" readonly>
+                                  <input type="text" class="form-control" id="nama_ekstrakulikuler" name="nama_ekstrakulikuler" value="{{$ekstrakulikuler->nama_ekstrakulikuler}}" readonly>
                                 </div>
                               </div>
                               <div class="form-group row">
-                                <label for="nama_kelas" class="col-sm-3 col-form-label">Nama Kelas</label>
+                                <label for="pembina_id" class="col-sm-3 col-form-label">Pembina</label>
                                 <div class="col-sm-9">
-                                  <input type="text" class="form-control" id="nama_kelas" name="nama_kelas" value="{{$kelas->nama_kelas}}">
-                                </div>
-                              </div>
-                              <div class="form-group row">
-                                <label for="guru_id" class="col-sm-3 col-form-label">Wali Kelas</label>
-                                <div class="col-sm-9">
-                                  <select class="form-control select2" name="guru_id" style="width: 100%;" required>
-                                    <option value="" disabled>-- Pilih Wali Kelas -- </option>
+                                  <select class="form-control select2" name="pembina_id" style="width: 100%;" required>
+                                    <option value="" disabled>-- Pilih Pembina -- </option>
                                     @foreach($data_guru as $guru)
-                                    <option value="{{$guru->id}}" @if($guru->id == $kelas->guru->id) selected @endif>
+                                    <option value="{{$guru->id}}" @if($guru->id == $ekstrakulikuler->pembina->id) selected @endif>
                                       {{$guru->nama_lengkap}}, {{$guru->gelar}}
                                     </option>
                                     @endforeach

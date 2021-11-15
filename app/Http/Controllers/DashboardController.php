@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Ekstrakulikuler;
 use App\Guru;
 use App\Kelas;
 use App\RiwayatLogin;
@@ -29,6 +30,7 @@ class DashboardController extends Controller
             $jumlah_guru = Guru::all()->count();
             $jumlah_siswa = Siswa::where('status', 1)->count();
             $jumlah_kelas = Kelas::where('tapel_id', $tapel->id)->count();
+            $jumlah_ekstrakulikuler = Ekstrakulikuler::where('tapel_id', $tapel->id)->count();
 
             return view('dashboard.admin', compact(
                 'title',
@@ -38,6 +40,7 @@ class DashboardController extends Controller
                 'jumlah_guru',
                 'jumlah_siswa',
                 'jumlah_kelas',
+                'jumlah_ekstrakulikuler',
             ));
         }
     }
