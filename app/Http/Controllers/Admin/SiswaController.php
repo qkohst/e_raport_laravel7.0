@@ -26,21 +26,18 @@ class SiswaController extends Controller
     public function index()
     {
         $title = 'Data Siswa';
-        $tapel = Tapel::orderBy('id', 'DESC')->limit(1)->first();
-        if (is_null($tapel)) {
-            return redirect('admin/tapel')->with('toast_warning', 'Mohon isikan data tahun pelajaran');
+        $tapel = Tapel::findorfail(session()->get('tapel_id'));
+        $jumlah_kelas = Kelas::where('tapel_id', $tapel->id)->count();
+        
+        if ($jumlah_kelas == 0) {
+            return redirect('admin/kelas')->with('toast_warning', 'Mohon isikan data kelas');
         } else {
-            $jumlah_kelas = Kelas::where('tapel_id', $tapel->id)->count();
-            if ($jumlah_kelas == 0) {
-                return redirect('admin/kelas')->with('toast_warning', 'Mohon isikan data kelas');
-            } else {
-                $tingkatan_terendah = Kelas::min('tingkatan_kelas');
-                $tingkatan_akhir = Kelas::max('tingkatan_kelas');
-                $data_kelas_terendah = Kelas::where('tapel_id', $tapel->id)->where('tingkatan_kelas', $tingkatan_terendah)->orderBy('nama_kelas', 'ASC')->get();
-                $data_kelas_all = Kelas::where('tapel_id', $tapel->id)->orderBy('tingkatan_kelas', 'ASC')->get();
-                $data_siswa = Siswa::where('status', 1)->orderBy('nis', 'ASC')->get();
-                return view('admin.siswa.index', compact('title', 'data_kelas_all', 'data_kelas_terendah', 'data_siswa', 'tingkatan_akhir'));
-            }
+            $tingkatan_terendah = Kelas::min('tingkatan_kelas');
+            $tingkatan_akhir = Kelas::max('tingkatan_kelas');
+            $data_kelas_terendah = Kelas::where('tapel_id', $tapel->id)->where('tingkatan_kelas', $tingkatan_terendah)->orderBy('nama_kelas', 'ASC')->get();
+            $data_kelas_all = Kelas::where('tapel_id', $tapel->id)->orderBy('tingkatan_kelas', 'ASC')->get();
+            $data_siswa = Siswa::where('status', 1)->orderBy('nis', 'ASC')->get();
+            return view('admin.siswa.index', compact('title', 'data_kelas_all', 'data_kelas_terendah', 'data_siswa', 'tingkatan_akhir'));
         }
     }
 

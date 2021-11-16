@@ -22,13 +22,11 @@ class PembelajaranController extends Controller
      */
     public function index()
     {
-        $tapel = Tapel::orderBy('id', 'DESC')->limit(1)->first();
+        $tapel = Tapel::findorfail(session()->get('tapel_id'));
         $data_mapel = Mapel::where('tapel_id', $tapel->id)->orderBy('nama_mapel', 'ASC')->get();
         $data_kelas = Kelas::where('tapel_id', $tapel->id)->orderBy('tingkatan_kelas', 'ASC')->get();
 
-        if (is_null($tapel)) {
-            return redirect('admin/tapel')->with('toast_warning', 'Mohon isikan data tahun pelajaran');
-        } elseif (count($data_mapel) == 0) {
+        if (count($data_mapel) == 0) {
             return redirect('admin/mapel')->with('toast_warning', 'Mohon isikan data mata pelajaran');
         } elseif (count($data_kelas) == 0) {
             return redirect('admin/kelas')->with('toast_warning', 'Mohon isikan data kelas');
@@ -43,7 +41,7 @@ class PembelajaranController extends Controller
     public function settings(Request $request)
     {
         $title = 'Setting Pembelajaran';
-        $tapel = Tapel::orderBy('id', 'DESC')->limit(1)->first();
+        $tapel = Tapel::findorfail(session()->get('tapel_id'));
         $kelas = Kelas::findorfail($request->kelas_id);
         $data_kelas = Kelas::where('tapel_id', $tapel->id)->orderBy('tingkatan_kelas', 'ASC')->get();
 

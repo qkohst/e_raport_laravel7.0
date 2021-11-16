@@ -20,13 +20,34 @@
               </div>
             </div>
           </div>
-          <div class="input-group mb-1">
+          <div class="input-group mb-3">
             <input type="password" class="form-control" name="password" placeholder="Password">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-key"></span>
               </div>
             </div>
+          </div>
+          <div class="mb-3">
+            <select class="form-control" name="kurikulum" style="width: 100%;">
+              <option value="">-- Pilih Kurikulum Sekolah -- </option>
+              <option value="2006">Kurikulum 2006 (KTSP) </option>
+              <option value="2013">Kurikulum 2013 </option>
+            </select>
+          </div>
+          <div class="mb-1">
+            <select class="form-control" name="tahun_pelajaran" style="width: 100%;">
+              <option value="">-- Pilih Tahun Pelajaran -- </option>
+              @foreach($data_tapel as $tapel)
+              <option value="{{$tapel->id}}">{{$tapel->tahun_pelajaran}}
+                @if($tapel->semester == 1)
+                Ganjil
+                @else
+                Genap
+                @endif
+              </option>
+              @endforeach
+            </select>
           </div>
           <div class="form-check mt-2 mb-2">
             <input type="checkbox" class="form-check-input" id="exampleCheck2">

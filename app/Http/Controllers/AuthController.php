@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\RiwayatLogin;
 use App\Rules\MatchOldPassword;
+use App\Tapel;
 use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -18,10 +19,33 @@ class AuthController extends Controller
      */
     public function index()
     {
-        $title = 'Login';
-        return view('auth.login', compact('title'));
+        $data_tapel = Tapel::orderBy('id', 'DESC')->get();
+        if (count($data_tapel) == 0) {
+            $title = 'Setting Tahun Pelajaran';
+            return view('auth.setting_tapel', compact('title'));
+        } else {
+            $title = 'Login';
+            return view('auth.login', compact('title', 'data_tapel'));
+        }
     }
 
+    public function setting_tapel(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'tahun_pelajaran' => 'required|min:9|max:9',
+            'semester' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
+        } else {
+            $tapel = new Tapel([
+                'tahun_pelajaran' => $request->tahun_pelajaran,
+                'semester' => $request->semester,
+            ]);
+            $tapel->save();
+            return back()->with('toast_success', 'Regitrasi berhasil');
+        }
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -34,6 +58,8 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'username' => 'required|exists:user',
             'password' => 'required|min:6',
+            'kurikulum' => 'required',
+            'tahun_pelajaran' => 'required',
         ]);
         if ($validator->fails()) {
             return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
@@ -54,6 +80,10 @@ class AuthController extends Controller
                 } else {
                     $cek_riwayat->update(['status_login' => true]);
                 }
+                session([
+                    'kurikulum' => $request->kurikulum,
+                    'tapel_id' => $request->tahun_pelajaran,
+                ]);
                 return redirect('/dashboard')->with('toast_success', 'Login berhasil');
             }
         }
@@ -62,6 +92,7 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         RiwayatLogin::where('user_id', Auth::id())->update(['status_login' => false]);
+        $request->session()->flush();
         Auth::logout();
         return redirect('/')->with('toast_success', 'Logout berhasil');
     }

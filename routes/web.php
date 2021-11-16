@@ -21,6 +21,7 @@ Route::get('/unauthorized', function () {
 
 Route::get('/', 'AuthController@index')->name('login');
 Route::post('/', 'AuthController@store')->name('login');
+Route::post('/settingtapel', 'AuthController@setting_tapel')->name('setting.tapel');
 
 Route::group(['middleware' => ['auth']], function () {
 
@@ -87,7 +88,25 @@ Route::group(['middleware' => ['auth']], function () {
       Route::resource('ekstrakulikuler', 'Admin\EkstrakulikulerController',  [
         'uses' => ['index', 'store', 'show', 'destroy']
       ]);
-      // Lanjut ke anggota ekstrakulikuler (show)
+
+      // Raport K13 Admin
+      Route::group(['middleware' => 'checkKurikulum:2013'], function () {
+
+        Route::resource('k13mapping', 'Admin\K13\MapingMapelController',  [
+          'uses' => ['index', 'store']
+        ]);
+      });
+      // End  Raport K13 Admin
+
+      // Raport KTPS Admin
+      Route::group(['middleware' => 'checkKurikulum:2006'], function () {
+
+        // Route::resource('k13mapping', 'Admin\K13\MapingMapelController',  [
+        //   'uses' => ['index', 'store', 'destroy']
+        // ]);
+
+      });
+      // End  Raport KTPS Admin
 
     });
   });

@@ -90,13 +90,15 @@
           </ul>
         </li>
 
-        <li class="nav-header">EXAMPLES</li>
+        @if(Session::get('kurikulum') == '2013')
+
+        <!-- Kurikulum 2013 -->
+        <li class="nav-header">RAPORT KURIKULUM 2013</li>
         <li class="nav-item">
-          <a href="pages/calendar.html" class="nav-link">
-            <i class="nav-icon fas fa-calendar-alt"></i>
+          <a href="{{ route('k13mapping.index') }}" class="nav-link">
+            <i class="nav-icon fas fa-list-ol"></i>
             <p>
-              Calendar
-              <span class="badge badge-info right">2</span>
+              Mapping Mapel
             </p>
           </a>
         </li>
@@ -129,6 +131,23 @@
             </li>
           </ul>
         </li>
+        <!-- End Kurikulum 2013 -->
+
+        @elseif(Session::get('kurikulum') == '2006')
+
+        <!-- Kurikulum 2006 -->
+        <li class="nav-header">RAPORT KURIKULUM 2006</li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-list-ol"></i>
+            <p>
+              Mapping Mapel
+            </p>
+          </a>
+        </li>
+        <!-- End Kurikulum 2006 -->
+
+        @endif
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

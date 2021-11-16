@@ -21,11 +21,9 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $tapel = Tapel::orderBy('id', 'DESC')->limit(1)->first();
+        $tapel = Tapel::findorfail(session()->get('tapel_id'));
         $data_mapel = Mapel::where('tapel_id', $tapel->id)->get();
-        if (is_null($tapel)) {
-            return redirect('admin/tapel')->with('toast_warning', 'Mohon isikan data tahun pelajaran');
-        } elseif (count($data_mapel) == 0) {
+        if (count($data_mapel) == 0) {
             return redirect('admin/mapel')->with('toast_warning', 'Mohon isikan data mata pelajaran');
         } else {
             $title = 'Data Kelas';
@@ -55,7 +53,7 @@ class KelasController extends Controller
         if ($validator->fails()) {
             return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
         } else {
-            $tapel = Tapel::orderBy('id', 'DESC')->limit(1)->first();
+            $tapel = Tapel::findorfail(session()->get('tapel_id'));
             $kelas = new Kelas([
                 'tapel_id' => $tapel->id,
                 'guru_id' => $request->guru_id,

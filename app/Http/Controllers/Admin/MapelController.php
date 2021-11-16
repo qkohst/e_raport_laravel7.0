@@ -21,14 +21,10 @@ class MapelController extends Controller
      */
     public function index()
     {
-        $tapel = Tapel::orderBy('id', 'DESC')->limit(1)->first();
-        if (is_null($tapel)) {
-            return redirect('admin/tapel')->with('toast_warning', 'Mohon isikan data tahun pelajaran');
-        } else {
-            $title = 'Data Mata Pelajaran';
-            $data_mapel = Mapel::where('tapel_id', $tapel->id)->orderBy('nama_mapel', 'ASC')->get();
-            return view('admin.mapel.index', compact('title', 'data_mapel', 'tapel'));
-        }
+        $title = 'Data Mata Pelajaran';
+        $tapel = Tapel::findorfail(session()->get('tapel_id'));
+        $data_mapel = Mapel::where('tapel_id', $tapel->id)->orderBy('nama_mapel', 'ASC')->get();
+        return view('admin.mapel.index', compact('title', 'data_mapel', 'tapel'));
     }
 
     /**

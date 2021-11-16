@@ -23,7 +23,7 @@ class DashboardController extends Controller
     {
         $title = 'Dashboard';
         $sekolah = Sekolah::first();
-        $tapel = Tapel::first();
+        $tapel = Tapel::findorfail(session()->get('tapel_id'));
         $data_riwayat_login = RiwayatLogin::where('user_id', '!=', Auth::user()->id)->orderBy('status_login', 'DESC')->orderBy('updated_at', 'DESC')->get();
 
         if (Auth::user()->role == 1) {

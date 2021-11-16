@@ -21,19 +21,15 @@ class EkstrakulikulerController extends Controller
      */
     public function index()
     {
-        $tapel = Tapel::orderBy('id', 'DESC')->limit(1)->first();
-        if (is_null($tapel)) {
-            return redirect('admin/tapel')->with('toast_warning', 'Mohon isikan data tahun pelajaran');
-        } else {
-            $title = 'Data Ekstrakulikuler';
-            $data_ekstrakulikuler = Ekstrakulikuler::where('tapel_id', $tapel->id)->orderBy('nama_ekstrakulikuler', 'ASC')->get();
-            foreach ($data_ekstrakulikuler as $ekstrakulikuler) {
-                $jumlah_anggota = AnggotaEkstrakulikuler::where('ekstrakulikuler_id', $ekstrakulikuler->id)->count();
-                $ekstrakulikuler->jumlah_anggota = $jumlah_anggota;
-            }
-            $data_guru = Guru::orderBy('nama_lengkap', 'ASC')->get();
-            return view('admin.ekstrakulikuler.index', compact('title', 'data_ekstrakulikuler', 'tapel', 'data_guru'));
+        $title = 'Data Ekstrakulikuler';
+        $tapel = Tapel::findorfail(session()->get('tapel_id'));
+        $data_ekstrakulikuler = Ekstrakulikuler::where('tapel_id', $tapel->id)->orderBy('nama_ekstrakulikuler', 'ASC')->get();
+        foreach ($data_ekstrakulikuler as $ekstrakulikuler) {
+            $jumlah_anggota = AnggotaEkstrakulikuler::where('ekstrakulikuler_id', $ekstrakulikuler->id)->count();
+            $ekstrakulikuler->jumlah_anggota = $jumlah_anggota;
         }
+        $data_guru = Guru::orderBy('nama_lengkap', 'ASC')->get();
+        return view('admin.ekstrakulikuler.index', compact('title', 'data_ekstrakulikuler', 'tapel', 'data_guru'));
     }
 
 
@@ -52,7 +48,7 @@ class EkstrakulikulerController extends Controller
         if ($validator->fails()) {
             return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
         } else {
-            $tapel = Tapel::orderBy('id', 'DESC')->limit(1)->first();
+            $tapel = Tapel::findorfail(session()->get('tapel_id'));
             $ekstrakulikuler = new Ekstrakulikuler([
                 'tapel_id' => $tapel->id,
                 'nama_ekstrakulikuler' => $request->nama_ekstrakulikuler,

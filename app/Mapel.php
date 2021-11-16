@@ -22,4 +22,9 @@ class Mapel extends Model
     {
         return $this->hasMany('App\Pembelajaran');
     }
+
+    public function k13_mapping_mapel()
+    {
+        return $this->hasOne('App\K13MappingMapel');
+    }
 }
