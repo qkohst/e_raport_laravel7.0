@@ -38,4 +38,9 @@ class Kelas extends Model
     {
         return $this->hasMany('App\Pembelajaran');
     }
+
+    public function k13_kkm_mapel()
+    {
+        return $this->hasOne('App\K13KkmMapel');
+    }
 }

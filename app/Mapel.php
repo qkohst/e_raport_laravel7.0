@@ -27,4 +27,9 @@ class Mapel extends Model
     {
         return $this->hasOne('App\K13MappingMapel');
     }
+
+    public function k13_kkm_mapel()
+    {
+        return $this->hasOne('App\K13KkmMapel');
+    }
 }

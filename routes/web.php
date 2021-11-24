@@ -95,6 +95,16 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('k13mapping', 'Admin\K13\MapingMapelController',  [
           'uses' => ['index', 'store']
         ]);
+
+        Route::get('getKelas/ajax/{id}', 'AjaxController@ajax_kelas');
+
+        Route::get('k13kkm/import', 'Admin\K13\KkmMapelController@format_import')->name('k13kkm.format_import');
+        Route::post('k13kkm/import', 'Admin\K13\KkmMapelController@import')->name('k13kkm.import');
+        Route::resource('k13kkm', 'Admin\K13\KkmMapelController',  [
+          'uses' => ['index', 'store', 'update', 'destroy']
+        ]);
+
+        // Lanjut ke proses import kkm
       });
       // End  Raport K13 Admin
 

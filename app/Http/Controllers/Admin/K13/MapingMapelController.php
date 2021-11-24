@@ -20,17 +20,22 @@ class MapingMapelController extends Controller
         $title = 'Mapping Mata Pelajaran';
         $tapel = Tapel::findorfail(session()->get('tapel_id'));
         $data_mapel = Mapel::where('tapel_id', $tapel->id)->orderBy('nama_mapel', 'ASC')->get();
-        foreach ($data_mapel as $mapel) {
-            $mapping = K13MappingMapel::where('mapel_id', $mapel->id)->first();
-            if (is_null($mapping)) {
-                $mapel->kelompok = null;
-                $mapel->nomor_urut = null;
-            } else {
-                $mapel->kelompok = $mapping->kelompok;
-                $mapel->nomor_urut = $mapping->nomor_urut;
+
+        if (count($data_mapel) == 0) {
+            return redirect('admin/mapel')->with('toast_warning', 'Mohon isikan data mata pelajaran');
+        } else {
+            foreach ($data_mapel as $mapel) {
+                $mapping = K13MappingMapel::where('mapel_id', $mapel->id)->first();
+                if (is_null($mapping)) {
+                    $mapel->kelompok = null;
+                    $mapel->nomor_urut = null;
+                } else {
+                    $mapel->kelompok = $mapping->kelompok;
+                    $mapel->nomor_urut = $mapping->nomor_urut;
+                }
             }
+            return view('admin.k13.mapping.index', compact('title', 'data_mapel'));
         }
-        return view('admin.k13.mapping.index', compact('title', 'data_mapel'));
     }
 
     /**

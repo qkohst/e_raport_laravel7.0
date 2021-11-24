@@ -9,7 +9,7 @@ use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class PembelajaranExport implements FromView, ShouldAutoSize
+class FormatImportKKMK13Export implements FromView, ShouldAutoSize
 {
     public function view(): View
     {
@@ -19,6 +19,7 @@ class PembelajaranExport implements FromView, ShouldAutoSize
         $id_kelas = Kelas::where('tapel_id', $tapel->id)->orderBy('tingkatan_kelas', 'ASC')->get('id');
         $data_pembelajaran = Pembelajaran::whereIn('kelas_id', $id_kelas)->whereNotNull('guru_id')->where('status', 1)->orderBy('kelas_id', 'ASC')->get();
 
-        return view('exports.pembelajaran', compact('time_download', 'data_pembelajaran'));
+        return view('exports.format_import_kkm_k13', compact('time_download', 'tapel', 'data_pembelajaran'));
     }
+
 }
