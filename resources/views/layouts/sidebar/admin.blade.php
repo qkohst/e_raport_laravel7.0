@@ -111,8 +111,16 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="{{ route('k13interval.index') }}" class="nav-link">
+            <i class="nav-icon fas fa-columns"></i>
+            <p>
+              Interval Predikat
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-terminal"></i>
+            <i class="nav-icon fas fa-clipboard"></i>
             <p>
               Butir-Butir Sikap
             </p>
@@ -120,7 +128,7 @@
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-terminal"></i>
+            <i class="nav-icon fas fa-clipboard-list"></i>
             <p>
               Data Kompetensi Dasar
             </p>

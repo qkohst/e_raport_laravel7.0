@@ -104,6 +104,10 @@ Route::group(['middleware' => ['auth']], function () {
           'uses' => ['index', 'store', 'update', 'destroy']
         ]);
 
+        Route::resource('k13interval', 'Admin\K13\IntervalPredikatController',  [
+          'uses' => ['index']
+        ]);
+
         // Lanjut ke proses import kkm
       });
       // End  Raport K13 Admin

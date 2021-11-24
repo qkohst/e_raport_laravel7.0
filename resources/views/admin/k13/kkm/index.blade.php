@@ -171,7 +171,7 @@
 
                     <!-- Modal edit  -->
                     <div class="modal fade" id="modal-edit{{$kkm->id}}">
-                      <div class="modal-dialog modal-xl">
+                      <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                           <div class="modal-header">
                             <h5 class="modal-title">Edit {{$title}}</h5>
