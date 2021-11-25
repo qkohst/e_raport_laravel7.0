@@ -108,7 +108,13 @@ Route::group(['middleware' => ['auth']], function () {
           'uses' => ['index']
         ]);
 
-        // Lanjut ke proses import kkm
+        Route::get('k13sikap/import', 'Admin\K13\ButirSikapController@format_import')->name('k13sikap.format_import');
+        Route::post('k13sikap/import', 'Admin\K13\ButirSikapController@import')->name('k13sikap.import');
+        Route::resource('k13sikap', 'Admin\K13\ButirSikapController',  [
+          'uses' => ['index', 'store', 'update',]
+        ]);
+
+        // Lanjut ke proses import sikap
       });
       // End  Raport K13 Admin
 
