@@ -118,7 +118,9 @@ Route::group(['middleware' => ['auth']], function () {
           'uses' => ['index', 'create', 'store', 'update', 'destroy']
         ]);
 
-        // Lanjut ke proses Edit & hapus  KD 
+        Route::resource('k13tglraport', 'Admin\K13\TglRaportController',  [
+          'uses' => ['index', 'store', 'update', 'destroy']
+        ]);
       });
       // End  Raport K13 Admin
 
