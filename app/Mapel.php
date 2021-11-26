@@ -32,4 +32,9 @@ class Mapel extends Model
     {
         return $this->hasOne('App\K13KkmMapel');
     }
+
+    public function k13_kd_mapel()
+    {
+        return $this->hasMany('App\K13KdMapel');
+    }
 }

@@ -114,7 +114,11 @@ Route::group(['middleware' => ['auth']], function () {
           'uses' => ['index', 'store', 'update',]
         ]);
 
-        // Lanjut ke proses import sikap
+        Route::resource('k13kd', 'Admin\K13\KdMapelController',  [
+          'uses' => ['index', 'create', 'store', 'update', 'destroy']
+        ]);
+
+        // Lanjut ke proses Edit & hapus  KD 
       });
       // End  Raport K13 Admin
 
