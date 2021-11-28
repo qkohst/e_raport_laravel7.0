@@ -121,6 +121,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('k13tglraport', 'Admin\K13\TglRaportController',  [
           'uses' => ['index', 'store', 'update', 'destroy']
         ]);
+
+        Route::resource('k13validasi', 'Admin\K13\ValidasiController',  [
+          'uses' => ['index']
+        ]);
+
+        // Lanjut ke proses validasi data
       });
       // End  Raport K13 Admin
 
