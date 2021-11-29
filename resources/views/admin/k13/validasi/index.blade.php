@@ -129,7 +129,7 @@
                 @elseif($count_pembelajaran == $count_kkm)
                 <span class="text-success"><i class="icon fas fa-check"></i> Seluruh data KKM mapel valid.</span>
                 @else
-                <span class="text-danger"><i class="icon fas fa-ban"></i> Terdapat {{$count_pembelajaran-$count_kkm}} pembelajaran belum titentukan KKM.</span>
+                <span class="text-danger"><i class="icon fas fa-ban"></i> Terdapat {{$count_pembelajaran-$count_kkm}} pembelajaran belum ditentukan KKM.</span>
                 @endif
               </div>
               <div class="callout callout-success">

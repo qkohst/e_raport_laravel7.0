@@ -45,8 +45,8 @@ class PembelajaranController extends Controller
         $kelas = Kelas::findorfail($request->kelas_id);
         $data_kelas = Kelas::where('tapel_id', $tapel->id)->orderBy('tingkatan_kelas', 'ASC')->get();
 
-        $data_pembelajaran_kelas = Pembelajaran::where('kelas_id', $request->kelas_id)->whereNotNull('guru_id')->where('status', 1)->get();
-        $mapel_id_pembelajaran_kelas = Pembelajaran::where('kelas_id', $request->kelas_id)->whereNotNull('guru_id')->where('status', 1)->get('mapel_id');
+        $data_pembelajaran_kelas = Pembelajaran::where('kelas_id', $request->kelas_id)->get();
+        $mapel_id_pembelajaran_kelas = Pembelajaran::where('kelas_id', $request->kelas_id)->get('mapel_id');
         $data_mapel = Mapel::whereNotIn('id', $mapel_id_pembelajaran_kelas)->get();
         $data_guru = Guru::orderBy('nama_lengkap', 'ASC')->get();
         return view('admin.pembelajaran.settings', compact('title', 'tapel', 'kelas', 'data_kelas', 'data_pembelajaran_kelas', 'data_mapel', 'data_guru'));
@@ -61,6 +61,7 @@ class PembelajaranController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         if (!is_null($request->pembelajaran_id)) {
             for ($count = 0; $count < count($request->pembelajaran_id); $count++) {
                 $pembelajaran = Pembelajaran::findorfail($request->pembelajaran_id[$count]);
@@ -70,20 +71,34 @@ class PembelajaranController extends Controller
                 );
                 $pembelajaran->update($update_data);
             }
+            if (!is_null($request->mapel_id)) {
+                for ($count = 0; $count < count($request->mapel_id); $count++) {
+                    $data_baru = array(
+                        'kelas_id'  => $request->kelas_id[$count],
+                        'mapel_id'  => $request->mapel_id[$count],
+                        'guru_id'  => $request->guru_id[$count],
+                        'status'  => $request->status[$count],
+                        'created_at'  => Carbon::now(),
+                        'updated_at'  => Carbon::now(),
+                    );
+                    $store_data_baru[] = $data_baru;
+                }
+                Pembelajaran::insert($store_data_baru);
+            }
+        } else {
+            for ($count = 0; $count < count($request->mapel_id); $count++) {
+                $data_baru = array(
+                    'kelas_id'  => $request->kelas_id[$count],
+                    'mapel_id'  => $request->mapel_id[$count],
+                    'guru_id'  => $request->guru_id[$count],
+                    'status'  => $request->status[$count],
+                    'created_at'  => Carbon::now(),
+                    'updated_at'  => Carbon::now(),
+                );
+                $store_data_baru[] = $data_baru;
+            }
+            Pembelajaran::insert($store_data_baru);
         }
-
-        for ($count = 0; $count < count($request->mapel_id); $count++) {
-            $data_baru = array(
-                'kelas_id'  => $request->kelas_id[$count],
-                'mapel_id'  => $request->mapel_id[$count],
-                'guru_id'  => $request->guru_id[$count],
-                'status'  => $request->status[$count],
-                'created_at'  => Carbon::now(),
-                'updated_at'  => Carbon::now(),
-            );
-            $store_data_baru[] = $data_baru;
-        }
-        Pembelajaran::insert($store_data_baru);
         return redirect('admin/pembelajaran')->with('toast_success', 'Setting pembelajaran berhasil');
     }
 

@@ -47,12 +47,12 @@
             <span class="username">{{Auth::user()->admin->nama_lengkap}}</span>
             <span class="description">Administrator</span>
             @elseif(Auth::user()->role == 2)
-            <img class="img-circle" src="/assets/dist/img/user1-128x128.jpg" alt="User Image">
-            <span class="username">{{Auth::user()->username}}</span>
+            <img class="img-circle" src="/assets/dist/img/avatar/{{Auth::user()->guru->avatar}}" alt="User Image">
+            <span class="username">{{Auth::user()->guru->nama_lengkap}}</span>
             <span class="description">Guru</span>
             @else
-            <img class="img-circle" src="/assets/dist/img/user1-128x128.jpg" alt="User Image">
-            <span class="username">{{Auth::user()->username}}</span>
+            <img class="img-circle" src="/assets/dist/img/avatar/{{Auth::user()->siswa->avatar}}" alt="User Image">
+            <span class="username">{{Auth::user()->siswa->nama_lengkap}}</span>
             <span class="description">Siswa</span>
             @endif
           </a>

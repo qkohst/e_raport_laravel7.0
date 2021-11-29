@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\AnggotaKelas;
 use App\Ekstrakulikuler;
 use App\Guru;
+use App\K13KkmMapel;
 use App\Kelas;
+use App\Pembelajaran;
 use App\RiwayatLogin;
 use App\Sekolah;
 use App\Siswa;
@@ -41,6 +44,39 @@ class DashboardController extends Controller
                 'jumlah_siswa',
                 'jumlah_kelas',
                 'jumlah_ekstrakulikuler',
+            ));
+        } elseif (Auth::user()->role == 2) {
+            $guru = Guru::where('user_id', Auth::user()->id)->first();
+            $id_kelas = Kelas::where('tapel_id', $tapel->id)->get('id');
+
+            $jumlah_kelas_diampu = count(Pembelajaran::where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->groupBy('kelas_id')->get());
+            $jumlah_mapel_diampu = count(Pembelajaran::where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->groupBy('mapel_id')->get());
+
+            $id_kelas_diampu = Pembelajaran::where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->groupBy('kelas_id')->get('kelas_id');
+            $jumlah_siswa_diampu = AnggotaKelas::whereIn('kelas_id', $id_kelas_diampu)->count();
+
+            $jumlah_ekstrakulikuler_diampu = Ekstrakulikuler::where('pembina_id', $guru->id)->count();
+
+            $data_capaian_penilaian = Pembelajaran::where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->get();
+            foreach ($data_capaian_penilaian as $penilaian) {
+                $kkm = K13KkmMapel::where('mapel_id', $penilaian->mapel->id)->where('kelas_id', $penilaian->kelas_id)->first();
+                if (is_null($kkm)) {
+                    $penilaian->kkm = null;
+                } else {
+                    $penilaian->kkm = $kkm->kkm;
+                }
+            }
+
+            return view('dashboard.guru', compact(
+                'title',
+                'data_riwayat_login',
+                'sekolah',
+                'tapel',
+                'jumlah_kelas_diampu',
+                'jumlah_mapel_diampu',
+                'jumlah_siswa_diampu',
+                'jumlah_ekstrakulikuler_diampu',
+                'data_capaian_penilaian',
             ));
         }
     }

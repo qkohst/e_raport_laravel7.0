@@ -125,8 +125,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('k13validasi', 'Admin\K13\ValidasiController',  [
           'uses' => ['index']
         ]);
-
-        // Lanjut ke proses validasi data
       });
       // End  Raport K13 Admin
 
@@ -143,5 +141,27 @@ Route::group(['middleware' => ['auth']], function () {
     });
   });
   // End Route User Admin 
+
+  // Route User Admin 
+  Route::group(['middleware' => 'checkRole:2'], function () {
+    Route::group(['prefix' => 'guru'], function () {
+      // Raport K13 Guru
+      Route::group(['middleware' => 'checkKurikulum:2013'], function () {
+
+        Route::resource('kdk13', 'Guru\K13\KdMapelController',  [
+          'uses' => ['index', 'create', 'store', 'update', 'destroy']
+        ]);
+        // Lanjut ke data dashboard guru
+      });
+      // End  Raport K13 Guru
+
+      // Raport KTSP Guru
+      Route::group(['middleware' => 'checkKurikulum:2006'], function () {
+      });
+      // End  Raport KTSP Guru
+
+    });
+  });
+  // End Route User Guru 
 
 });

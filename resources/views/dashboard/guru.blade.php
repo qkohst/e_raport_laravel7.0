@@ -1,5 +1,5 @@
 @include('layouts.main.header')
-@include('layouts.sidebar.admin')
+@include('layouts.sidebar.guru')
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -42,13 +42,11 @@
       <div class="row">
         <div class="col-12 col-sm-6 col-md-3">
           <div class="info-box">
-            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-user-tie"></i></span>
+            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-layer-group"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Jumlah Guru</span>
-              <span class="info-box-number">
-                {{$jumlah_guru}}
-              </span>
+              <span class="info-box-text">Jumlah Kelas</span>
+              <span class="info-box-number">{{$jumlah_kelas_diampu}} <small>kelas diampu</small></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -57,11 +55,11 @@
         <!-- /.col -->
         <div class="col-12 col-sm-6 col-md-3">
           <div class="info-box mb-3">
-            <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-users"></i></span>
+            <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-book"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Jumlah Siswa</span>
-              <span class="info-box-number">{{$jumlah_siswa}}</span>
+              <span class="info-box-text">Jumlah Mapel</span>
+              <span class="info-box-number">{{$jumlah_mapel_diampu}} <small>mapel diampu</small></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -74,11 +72,11 @@
 
         <div class="col-12 col-sm-6 col-md-3">
           <div class="info-box mb-3">
-            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-layer-group"></i></span>
+            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Jumlah Kelas</span>
-              <span class="info-box-number">{{$jumlah_kelas}}</span>
+              <span class="info-box-text">Jumlah Siswa</span>
+              <span class="info-box-number">{{$jumlah_siswa_diampu}} <small>siswa diampu</small></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -91,7 +89,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Jumlah Ekstrakulikuler</span>
-              <span class="info-box-number">{{$jumlah_ekstrakulikuler}}</span>
+              <span class="info-box-number">{{$jumlah_ekstrakulikuler_diampu}} <small>ekstrakulikuler diampu</small></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -100,6 +98,86 @@
         <!-- /.col -->
       </div>
       <!-- /.row -->
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Capaian Proses Penilaian</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead class="bg-success">
+                    <tr>
+                      <th rowspan="2" class="text-center">No</th>
+                      <th rowspan="2" class="text-center">Kelas</th>
+                      <th rowspan="2" class="text-center">Mata Pelajaran</th>
+                      <th rowspan="2" class="text-center">KKM</th>
+                      <th colspan="4" class="text-center">Jumlah Perencanaan</th>
+                      <th rowspan="2" class="text-center">Bobot</th>
+                      <th colspan="4" class="text-center">Jumlah Penilaian</th>
+                      <th colspan="2" class="text-center">Input Nilai</th>
+                      <th rowspan="2" class="text-center">Proses Deskripsi</th>
+                    </tr>
+                    <tr>
+                      <th class="text-center">Peng</th>
+                      <th class="text-center">Ket</th>
+                      <th class="text-center">Skp Sprt</th>
+                      <th class="text-center">Skp Sosial</th>
+                      <th class="text-center">Peng</th>
+                      <th class="text-center">Ket</th>
+                      <th class="text-center">Skp Sprt</th>
+                      <th class="text-center">Skp Sosial</th>
+                      <th class="text-center">PTS</th>
+                      <th class="text-center">PAS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $no = 0; ?>
+                    @foreach($data_capaian_penilaian as $penilaian)
+                    <?php $no++; ?>
+                    <tr>
+                      <td class="text-center">{{$no}}</td>
+                      <td>{{$penilaian->kelas->nama_kelas}}</td>
+                      <td>{{$penilaian->mapel->nama_mapel}}</td>
+                      <td class="text-center">
+                        @if(is_null($penilaian->kkm))
+                        <span class="badge badge-danger">0</span>
+                        @else
+                        <span class="badge badge-success">{{$penilaian->kkm}}</span>
+                        @endif
+                      </td>
+                      <td class="text-center">0</td>
+                      <td class="text-center">0</td>
+                      <td class="text-center">0</td>
+                      <td class="text-center">0</td>
+                      <td class="text-center">0</td>
+                      <td class="text-center">0</td>
+                      <td class="text-center">0</td>
+                      <td class="text-center">0</td>
+                      <td class="text-center">0</td>
+                      <td><span class="badge badge-danger">Belum Input</span></td>
+                      <td><span class="badge badge-danger">Belum Input</span></td>
+                      <td><span class="badge badge-danger">Belum Proses</span></td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.table-responsive -->
+            </div>
+            <!-- /.card-body -->
+          </div>
+        </div>
+      </div>
 
 
       <!-- Main row -->
