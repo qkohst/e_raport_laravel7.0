@@ -28,4 +28,9 @@ class Pembelajaran extends Model
     {
         return $this->belongsTo('App\Guru');
     }
+
+    public function k13_rencana_nilai_pengetahuan()
+    {
+        return $this->hasMany('App\K13RencanaNilaiPengetahuan');
+    }
 }

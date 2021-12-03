@@ -128,7 +128,7 @@ Route::group(['middleware' => ['auth']], function () {
       });
       // End  Raport K13 Admin
 
-      // Raport KTPS Admin
+      // Raport KTSP Admin
       Route::group(['middleware' => 'checkKurikulum:2006'], function () {
 
         // Route::resource('k13mapping', 'Admin\K13\MapingMapelController',  [
@@ -136,7 +136,7 @@ Route::group(['middleware' => ['auth']], function () {
         // ]);
 
       });
-      // End  Raport KTPS Admin
+      // End  Raport KTSP Admin
 
     });
   });
@@ -151,7 +151,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('kdk13', 'Guru\K13\KdMapelController',  [
           'uses' => ['index', 'create', 'store', 'update', 'destroy']
         ]);
-        // Lanjut ke data dashboard guru
+
+        Route::resource('rencanapengetahuan', 'Guru\K13\RencanaNilaiPengetahuanController',  [
+          'uses' => ['index', 'create', 'store', 'show', 'edit', 'update']
+        ]);
+        // Lanjut ke Tambah Rencana penilaian pengetahuan
       });
       // End  Raport K13 Guru
 

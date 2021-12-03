@@ -21,4 +21,9 @@ class K13KdMapel extends Model
     {
         return $this->belongsTo('App\Mapel');
     }
+
+    public function k13_rencana_nilai_pengetahuan()
+    {
+        return $this->hasMany('App\K13RencanaNilaiPengetahuan');
+    }
 }

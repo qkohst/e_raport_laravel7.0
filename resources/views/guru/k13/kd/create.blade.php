@@ -1,5 +1,5 @@
 @include('layouts.main.header')
-@include('layouts.sidebar.admin')
+@include('layouts.sidebar.guru')
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
