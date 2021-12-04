@@ -51,12 +51,23 @@
                     <form action="{{ route('kdk13.create') }}" method="GET">
                       @csrf
                       <div class="form-group row">
-                        <label for="pembelajaran_id" class="col-sm-3 col-form-label">Mata Pelajaran</label>
+                        <label for="mapel_id" class="col-sm-3 col-form-label">Mata Pelajaran</label>
                         <div class="col-sm-9">
-                          <select class="form-control select2" name="pembelajaran_id" style="width: 100%;" required onchange="this.form.submit();">
+                          <select class="form-control select2" name="mapel_id" style="width: 100%;" required>
                             <option value="">-- Pilih Mapel --</option>
                             @foreach($data_mapel_diampu as $mapel)
-                            <option value="{{$mapel->id}}">{{$mapel->mapel->nama_mapel}} {{$mapel->kelas->nama_kelas}}</option>
+                            <option value="{{$mapel->id}}">{{$mapel->nama_mapel}}</option>
+                            @endforeach
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="tingkatan_kelas" class="col-sm-3 col-form-label">Tingkatan Kelas</label>
+                        <div class="col-sm-9">
+                          <select class="form-control" name="tingkatan_kelas" style="width: 100%;" required onchange="this.form.submit();">
+                            <option value="">-- Pilih Tingkatan Kelas --</option>
+                            @foreach($tingkatan_kelas_diampu as $kelas)
+                            <option value="{{$kelas->tingkatan_kelas}}">{{$kelas->tingkatan_kelas}}</option>
                             @endforeach
                           </select>
                         </div>

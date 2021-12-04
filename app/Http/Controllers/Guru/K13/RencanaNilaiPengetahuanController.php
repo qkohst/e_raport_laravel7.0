@@ -62,7 +62,7 @@ class RencanaNilaiPengetahuanController extends Controller
         ])->orderBy('kode_kd', 'ASC')->get();
 
         if (count($data_kd) == 0) {
-            return redirect('guru/kdk13')->with('toast_error', 'Belum ditemukan data kompetensi dasar, silahkan tambahkan data KD.');
+            return redirect('guru/kdk13')->with('toast_error', 'Belum ditemukan data kompetensi dasar pengetahuan, silahkan tambahkan data KD.');
         } else {
             $jumlah_penilaian = $request->jumlah_penilaian;
             return view('guru.k13.rencanapengetahuan.create', compact('title', 'pembelajaran', 'jumlah_penilaian', 'data_kd'));

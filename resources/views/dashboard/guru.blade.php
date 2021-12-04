@@ -156,17 +156,27 @@
                         @endif
                       </td>
                       <td class="text-center">
-                        @if($penilaian->jumlah_rencana_penilaian == 0)
+                        @if($penilaian->jumlah_rencana_pengetahuan == 0)
                         <b class="text-danger">
-                          {{$penilaian->jumlah_rencana_penilaian}}
+                          {{$penilaian->jumlah_rencana_pengetahuan}}
                         </b>
                         @else
                         <b class="text-success">
-                          {{$penilaian->jumlah_rencana_penilaian}}
+                          {{$penilaian->jumlah_rencana_pengetahuan}}
                         </b>
                         @endif
                       </td>
-                      <td class="text-center">0</td>
+                      <td class="text-center">
+                        @if($penilaian->jumlah_rencana_keterampilan == 0)
+                        <b class="text-danger">
+                          {{$penilaian->jumlah_rencana_keterampilan}}
+                        </b>
+                        @else
+                        <b class="text-success">
+                          {{$penilaian->jumlah_rencana_keterampilan}}
+                        </b>
+                        @endif
+                      </td>
                       <td class="text-center">0</td>
                       <td class="text-center">0</td>
                       <td class="text-center">0</td>

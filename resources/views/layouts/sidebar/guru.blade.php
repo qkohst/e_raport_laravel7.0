@@ -48,7 +48,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ route('rencanaketerampilan.index') }}" class="nav-link">
                 <i class="fas fa-check-circle nav-icon"></i>
                 <p>Nilai Keterampilan</p>
               </a>

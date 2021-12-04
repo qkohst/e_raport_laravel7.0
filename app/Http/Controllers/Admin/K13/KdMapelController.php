@@ -45,14 +45,22 @@ class KdMapelController extends Controller
      */
     public function create(Request $request)
     {
-        $title = 'Tambah Kompetensi Dasar';
-        $mapel_id = $request->mapel_id;
-        $tingkatan_kelas = $request->tingkatan_kelas;
+        $validator = Validator::make($request->all(), [
+            'mapel_id' => 'required',
+            'tingkatan_kelas' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
+        } else {
+            $title = 'Tambah Kompetensi Dasar';
+            $mapel_id = $request->mapel_id;
+            $tingkatan_kelas = $request->tingkatan_kelas;
 
-        $tapel = Tapel::findorfail(session()->get('tapel_id'));
-        $data_mapel = Mapel::where('tapel_id', $tapel->id)->orderBy('nama_mapel', 'ASC')->get();
-        $data_kelas = Kelas::where('tapel_id', $tapel->id)->groupBy('tingkatan_kelas')->orderBy('tingkatan_kelas', 'ASC')->get();
-        return view('admin.k13.kd.create', compact('title', 'mapel_id', 'tingkatan_kelas', 'tapel', 'data_mapel', 'data_kelas'));
+            $tapel = Tapel::findorfail(session()->get('tapel_id'));
+            $data_mapel = Mapel::where('tapel_id', $tapel->id)->orderBy('nama_mapel', 'ASC')->get();
+            $data_kelas = Kelas::where('tapel_id', $tapel->id)->groupBy('tingkatan_kelas')->orderBy('tingkatan_kelas', 'ASC')->get();
+            return view('admin.k13.kd.create', compact('title', 'mapel_id', 'tingkatan_kelas', 'tapel', 'data_mapel', 'data_kelas'));
+        }
     }
 
     /**

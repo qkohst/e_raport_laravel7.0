@@ -6,6 +6,7 @@ use App\AnggotaKelas;
 use App\Ekstrakulikuler;
 use App\Guru;
 use App\K13KkmMapel;
+use App\K13RencanaNilaiKeterampilan;
 use App\K13RencanaNilaiPengetahuan;
 use App\Kelas;
 use App\Pembelajaran;
@@ -61,8 +62,13 @@ class DashboardController extends Controller
             $data_capaian_penilaian = Pembelajaran::where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->get();
             foreach ($data_capaian_penilaian as $penilaian) {
                 $kkm = K13KkmMapel::where('mapel_id', $penilaian->mapel->id)->where('kelas_id', $penilaian->kelas_id)->first();
-                $rencana_penilaian = K13RencanaNilaiPengetahuan::where('pembelajaran_id', $penilaian->id)->groupBy('kode_penilaian')->get();
-                $penilaian->jumlah_rencana_penilaian = count($rencana_penilaian);
+
+                $rencana_pengetahuan = K13RencanaNilaiPengetahuan::where('pembelajaran_id', $penilaian->id)->groupBy('kode_penilaian')->get();
+                $penilaian->jumlah_rencana_pengetahuan = count($rencana_pengetahuan);
+
+                $rencana_keterampilan = K13RencanaNilaiKeterampilan::where('pembelajaran_id', $penilaian->id)->groupBy('kode_penilaian')->get();
+                $penilaian->jumlah_rencana_keterampilan = count($rencana_keterampilan);
+
                 if (is_null($kkm)) {
                     $penilaian->kkm = null;
                 } else {

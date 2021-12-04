@@ -38,11 +38,21 @@
                 <form action="{{ route('kdk13.create') }}" method="GET">
                   @csrf
                   <div class="form-group row">
-                    <label for="pembelajaran_id" class="col-sm-2 col-form-label">Mata Pelajaran</label>
-                    <div class="col-sm-10">
-                      <select class="form-control select2" name="pembelajaran_id" style="width: 100%;" required onchange="this.form.submit();">
+                    <label for="mapel_id" class="col-sm-2 col-form-label">Mata Pelajaran</label>
+                    <div class="col-sm-4">
+                      <select class="form-control select2" name="mapel_id" style="width: 100%;" required onchange="this.form.submit();">
+                        <option value="" disabled>-- Pilih Mapel --</option>
                         @foreach($data_mapel_diampu as $mapel)
-                        <option value="{{$mapel->id}}" @if ($mapel->id==$pembelajaran->id ) selected @endif>{{$mapel->mapel->nama_mapel}} {{$mapel->kelas->nama_kelas}}</option>
+                        <option value="{{$mapel->id}}" @if ($mapel->id==$mapel_id ) selected @endif>{{$mapel->nama_mapel}}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                    <label for="tingkatan_kelas" class="col-sm-2 col-form-label">Tingkatan Kelas</label>
+                    <div class="col-sm-4">
+                      <select class="form-control select2" name="tingkatan_kelas" style="width: 100%;" required onchange="this.form.submit();">
+                        <option value="" disabled>-- Pilih Tingkatan Kelas --</option>
+                        @foreach($tingkatan_kelas_diampu as $kelas)
+                        <option value="{{$kelas->tingkatan_kelas}}" @if ($kelas->tingkatan_kelas==$tingkatan_kelas ) selected @endif>{{$kelas->tingkatan_kelas}}</option>
                         @endforeach
                       </select>
                     </div>
@@ -53,8 +63,8 @@
 
               <form id="dynamic_form" action="{{ route('kdk13.store') }}" method="POST">
                 @csrf
-                <input type="hidden" name="mapel_id" value="{{$pembelajaran->mapel_id}}">
-                <input type="hidden" name="tingkatan_kelas" value="{{$pembelajaran->kelas->tingkatan_kelas}}">
+                <input type="hidden" name="mapel_id" value="{{$mapel_id}}">
+                <input type="hidden" name="tingkatan_kelas" value="{{$tingkatan_kelas}}">
                 <input type="hidden" name="semester" value="{{$tapel->semester}}">
 
                 <div class="table-responsive">

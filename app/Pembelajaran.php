@@ -33,4 +33,9 @@ class Pembelajaran extends Model
     {
         return $this->hasMany('App\K13RencanaNilaiPengetahuan');
     }
+
+    public function k13_rencana_nilai_keterampilan()
+    {
+        return $this->hasMany('App\K13RencanaNilaiKeterampilan');
+    }
 }

@@ -6,6 +6,7 @@ use App\Guru;
 use App\Http\Controllers\Controller;
 use App\K13KdMapel;
 use App\Kelas;
+use App\Mapel;
 use App\Pembelajaran;
 use App\Tapel;
 use Carbon\Carbon;
@@ -32,10 +33,11 @@ class KdMapelController extends Controller
         $id_kelas_diampu = Pembelajaran::where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->get('kelas_id');
         $tingkatan_kelas_diampu = Kelas::whereIn('id', $id_kelas_diampu)->groupBy('tingkatan_kelas')->get('tingkatan_kelas');
 
-        $data_mapel_diampu = Pembelajaran::where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->orderBy('mapel_id', 'ASC')->orderBy('kelas_id', 'ASC')->get();
+        $data_mapel_diampu = Mapel::whereIn('id', $id_mapel_diampu)->get();
+
         $data_kd = K13KdMapel::whereIn('mapel_id', $id_mapel_diampu)->whereIn('tingkatan_kelas', $tingkatan_kelas_diampu)->get();
 
-        return view('guru.k13.kd.index', compact('title', 'data_mapel_diampu', 'data_kd'));
+        return view('guru.k13.kd.index', compact('title', 'data_mapel_diampu', 'tingkatan_kelas_diampu', 'data_kd'));
     }
 
     /**
@@ -45,16 +47,29 @@ class KdMapelController extends Controller
      */
     public function create(Request $request)
     {
-        $title = 'Tambah Kompetensi Dasar';
-        $tapel = Tapel::findorfail(session()->get('tapel_id'));
+        $validator = Validator::make($request->all(), [
+            'mapel_id' => 'required',
+            'tingkatan_kelas' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
+        } else {
+            $title = 'Tambah Kompetensi Dasar';
+            $mapel_id = $request->mapel_id;
+            $tingkatan_kelas = $request->tingkatan_kelas;
 
-        $guru = Guru::where('user_id', Auth::user()->id)->first();
-        $id_kelas = Kelas::where('tapel_id', $tapel->id)->get('id');
+            $tapel = Tapel::findorfail(session()->get('tapel_id'));
+            $guru = Guru::where('user_id', Auth::user()->id)->first();
+            $id_kelas = Kelas::where('tapel_id', $tapel->id)->get('id');
 
-        $data_mapel_diampu = Pembelajaran::where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->orderBy('mapel_id', 'ASC')->orderBy('kelas_id', 'ASC')->get();
+            $id_mapel_diampu = Pembelajaran::where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->get('mapel_id');
+            $id_kelas_diampu = Pembelajaran::where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->get('kelas_id');
+            $tingkatan_kelas_diampu = Kelas::whereIn('id', $id_kelas_diampu)->groupBy('tingkatan_kelas')->get('tingkatan_kelas');
 
-        $pembelajaran = Pembelajaran::findorfail($request->pembelajaran_id);
-        return view('guru.k13.kd.create', compact('title', 'data_mapel_diampu', 'pembelajaran', 'tapel'));
+            $data_mapel_diampu = Mapel::whereIn('id', $id_mapel_diampu)->get();
+
+            return view('guru.k13.kd.create', compact('title', 'mapel_id', 'tingkatan_kelas', 'tapel', 'data_mapel_diampu', 'tingkatan_kelas_diampu'));
+        }
     }
 
     /**

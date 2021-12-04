@@ -155,7 +155,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('rencanapengetahuan', 'Guru\K13\RencanaNilaiPengetahuanController',  [
           'uses' => ['index', 'create', 'store', 'show', 'edit', 'update']
         ]);
-        // Lanjut ke Tambah Rencana penilaian pengetahuan
+
+        Route::resource('rencanaketerampilan', 'Guru\K13\RencanaNilaiKeterampilanController',  [
+          'uses' => ['index', 'create', 'store', 'show', 'edit', 'update']
+        ]);
+
+        // RUBAH TAMBAH KD UNTUK GURU
       });
       // End  Raport K13 Guru
 
