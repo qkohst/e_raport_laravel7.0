@@ -143,9 +143,13 @@ class RencanaNilaiSosialController extends Controller
                 );
                 $store_data_sikap[] = $data_sikap;
             }
-            K13RencanaNilaiSosial::where('pembelajaran_id', $id)->delete();
-            K13RencanaNilaiSosial::insert($store_data_sikap);
-            return redirect('guru/rencanasosial')->with('toast_success', 'Rencana nilai sosial berhasil diperbarui');
+            try {
+                K13RencanaNilaiSosial::where('pembelajaran_id', $id)->delete();
+                K13RencanaNilaiSosial::insert($store_data_sikap);
+                return redirect('guru/rencanasosial')->with('toast_success', 'Rencana nilai sosial berhasil diupdate');
+            } catch (\Throwable $th) {
+                return back()->with('toast_warning', 'Rencana nilai sosial tidak dapat diupdate');
+            }
         }
     }
 }

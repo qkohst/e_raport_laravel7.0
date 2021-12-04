@@ -6,6 +6,7 @@ use App\AnggotaKelas;
 use App\Ekstrakulikuler;
 use App\Guru;
 use App\K13KkmMapel;
+use App\K13RencanaBobotPenilaian;
 use App\K13RencanaNilaiKeterampilan;
 use App\K13RencanaNilaiPengetahuan;
 use App\K13RencanaNilaiSosial;
@@ -76,6 +77,17 @@ class DashboardController extends Controller
 
                 $rencana_sosial = K13RencanaNilaiSosial::where('pembelajaran_id', $penilaian->id)->get();
                 $penilaian->jumlah_rencana_sosial = count($rencana_sosial);
+
+                $bobot = K13RencanaBobotPenilaian::where('pembelajaran_id', $penilaian->id)->first();
+                if (is_null($bobot)) {
+                    $penilaian->bobot_ph = null;
+                    $penilaian->bobot_pts = null;
+                    $penilaian->bobot_pas = null;
+                } else {
+                    $penilaian->bobot_ph = $bobot->bobot_ph;
+                    $penilaian->bobot_pts = $bobot->bobot_pts;
+                    $penilaian->bobot_pas = $bobot->bobot_pas;
+                }
 
                 if (is_null($kkm)) {
                     $penilaian->kkm = null;

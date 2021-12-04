@@ -199,7 +199,17 @@
                         </b>
                         @endif
                       </td>
-                      <td class="text-center">0</td>
+                      <td class="text-center">
+                        @if(is_null($penilaian->bobot_ph))
+                        <b class="text-danger">
+                          0
+                        </b>
+                        @else
+                        <b class="text-success">
+                          {{$penilaian->bobot_ph}};{{$penilaian->bobot_pts}};{{$penilaian->bobot_pas}}
+                        </b>
+                        @endif
+                      </td>
                       <td class="text-center">0</td>
                       <td class="text-center">0</td>
                       <td class="text-center">0</td>

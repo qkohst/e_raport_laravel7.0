@@ -143,9 +143,13 @@ class RencanaNilaiSpiritualController extends Controller
                 );
                 $store_data_sikap[] = $data_sikap;
             }
-            K13RencanaNilaiSpiritual::where('pembelajaran_id', $id)->delete();
-            K13RencanaNilaiSpiritual::insert($store_data_sikap);
-            return redirect('guru/rencanaspiritual')->with('toast_success', 'Rencana nilai spiritual berhasil diperbarui');
+            try {
+                K13RencanaNilaiSpiritual::where('pembelajaran_id', $id)->delete();
+                K13RencanaNilaiSpiritual::insert($store_data_sikap);
+                return redirect('guru/rencanaspiritual')->with('toast_success', 'Rencana nilai spiritual berhasil diupdate');
+            } catch (\Throwable $th) {
+                return back()->with('toast_warning', 'Rencana nilai sosial tidak dapat diupdate');
+            }
         }
     }
 }

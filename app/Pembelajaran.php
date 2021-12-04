@@ -48,4 +48,9 @@ class Pembelajaran extends Model
     {
         return $this->hasMany('App\K13RencanaNilaiSosial');
     }
+
+    public function k13_rencana_bobot_penilaian()
+    {
+        return $this->hasOne('App\K13RencanaBobotPenilaian');
+    }
 }
