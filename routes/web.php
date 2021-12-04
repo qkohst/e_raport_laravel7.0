@@ -160,6 +160,10 @@ Route::group(['middleware' => ['auth']], function () {
           'uses' => ['index', 'create', 'store', 'show', 'edit', 'update']
         ]);
 
+        Route::resource('rencanaspiritual', 'Guru\K13\RencanaNilaiSpiritualController',  [
+          'uses' => ['index', 'create', 'store', 'show', 'edit', 'update']
+        ]);
+
         // RUBAH TAMBAH KD UNTUK GURU
       });
       // End  Raport K13 Guru

@@ -177,7 +177,17 @@
                         </b>
                         @endif
                       </td>
-                      <td class="text-center">0</td>
+                      <td class="text-center">
+                        @if($penilaian->jumlah_rencana_spiritual == 0)
+                        <b class="text-danger">
+                          {{$penilaian->jumlah_rencana_spiritual}}
+                        </b>
+                        @else
+                        <b class="text-success">
+                          {{$penilaian->jumlah_rencana_spiritual}}
+                        </b>
+                        @endif
+                      </td>
                       <td class="text-center">0</td>
                       <td class="text-center">0</td>
                       <td class="text-center">0</td>

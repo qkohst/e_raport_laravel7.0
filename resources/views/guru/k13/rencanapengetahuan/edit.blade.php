@@ -124,7 +124,7 @@
 
             <div class="card-footer clearfix">
               <button type="submit" class="btn btn-primary float-right">Simpan</button>
-              <a href="{{ route('kdk13.index') }}" class="btn btn-default float-right mr-2">Batal</a>
+              <a href="{{ route('rencanapengetahuan.index') }}" class="btn btn-default float-right mr-2">Batal</a>
             </div>
             </form>
           </div>

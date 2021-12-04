@@ -12,4 +12,9 @@ class K13ButirSikap extends Model
         'kode',
         'butir_sikap',
     ];
+
+    public function k13_rencana_nilai_spiritual()
+    {
+        return $this->hasMany('App\K13RencanaNilaiSpiritual');
+    }
 }

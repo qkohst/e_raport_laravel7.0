@@ -54,7 +54,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ route('rencanaspiritual.index') }}" class="nav-link">
                 <i class="fas fa-check-circle nav-icon"></i>
                 <p>Pilih KD/Butir Spiritual </p>
               </a>

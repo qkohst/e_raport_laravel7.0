@@ -38,4 +38,9 @@ class Pembelajaran extends Model
     {
         return $this->hasMany('App\K13RencanaNilaiKeterampilan');
     }
+
+    public function k13_rencana_nilai_spiritual()
+    {
+        return $this->hasMany('App\K13RencanaNilaiSpiritual');
+    }
 }
