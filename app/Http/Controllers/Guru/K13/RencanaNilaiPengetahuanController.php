@@ -110,7 +110,7 @@ class RencanaNilaiPengetahuanController extends Controller
     {
         $title = 'Data Rencana Nilai Pengetahuan';
         $pembelajaran = Pembelajaran::findorfail($id);
-        $data_rencana_penilaian = K13RencanaNilaiPengetahuan::where('pembelajaran_id', $id)->orderBy('k13_kd_mapel_id', 'DESC')->get();
+        $data_rencana_penilaian = K13RencanaNilaiPengetahuan::where('pembelajaran_id', $id)->orderBy('kode_penilaian', 'ASC')->orderBy('k13_kd_mapel_id', 'DESC')->get();
         return view('guru.k13.rencanapengetahuan.show', compact('title', 'pembelajaran', 'data_rencana_penilaian'));
     }
 
@@ -174,5 +174,4 @@ class RencanaNilaiPengetahuanController extends Controller
             return back()->with('toast_error', 'Pilih minimal 1 KD pada setiap kolom penilaian.');
         }
     }
-
 }
