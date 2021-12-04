@@ -164,6 +164,10 @@ Route::group(['middleware' => ['auth']], function () {
           'uses' => ['index', 'create', 'store', 'show', 'edit', 'update']
         ]);
 
+        Route::resource('rencanasosial', 'Guru\K13\RencanaNilaiSosialController',  [
+          'uses' => ['index', 'create', 'store', 'show', 'edit', 'update']
+        ]);
+
         // RUBAH TAMBAH KD UNTUK GURU
       });
       // End  Raport K13 Guru

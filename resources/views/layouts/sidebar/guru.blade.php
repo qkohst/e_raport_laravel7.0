@@ -60,7 +60,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ route('rencanasosial.index') }}" class="nav-link">
                 <i class="fas fa-check-circle nav-icon"></i>
                 <p>Pilih KD/Butir Sosial </p>
               </a>

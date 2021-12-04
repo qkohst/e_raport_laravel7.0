@@ -17,4 +17,9 @@ class K13ButirSikap extends Model
     {
         return $this->hasMany('App\K13RencanaNilaiSpiritual');
     }
+
+    public function k13_rencana_nilai_sosial()
+    {
+        return $this->hasMany('App\K13RencanaNilaiSosial');
+    }
 }

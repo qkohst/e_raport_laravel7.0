@@ -8,6 +8,7 @@ use App\Guru;
 use App\K13KkmMapel;
 use App\K13RencanaNilaiKeterampilan;
 use App\K13RencanaNilaiPengetahuan;
+use App\K13RencanaNilaiSosial;
 use App\K13RencanaNilaiSpiritual;
 use App\Kelas;
 use App\Pembelajaran;
@@ -72,6 +73,9 @@ class DashboardController extends Controller
 
                 $rencana_spiritual = K13RencanaNilaiSpiritual::where('pembelajaran_id', $penilaian->id)->get();
                 $penilaian->jumlah_rencana_spiritual = count($rencana_spiritual);
+
+                $rencana_sosial = K13RencanaNilaiSosial::where('pembelajaran_id', $penilaian->id)->get();
+                $penilaian->jumlah_rencana_sosial = count($rencana_sosial);
 
                 if (is_null($kkm)) {
                     $penilaian->kkm = null;
