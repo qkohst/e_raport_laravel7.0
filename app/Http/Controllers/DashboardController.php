@@ -6,6 +6,7 @@ use App\AnggotaKelas;
 use App\Ekstrakulikuler;
 use App\Guru;
 use App\K13KkmMapel;
+use App\K13NilaiKeterampilan;
 use App\K13NilaiPengetahuan;
 use App\K13RencanaBobotPenilaian;
 use App\K13RencanaNilaiKeterampilan;
@@ -79,9 +80,13 @@ class DashboardController extends Controller
                 $rencana_sosial = K13RencanaNilaiSosial::where('pembelajaran_id', $penilaian->id)->get();
                 $penilaian->jumlah_rencana_sosial = count($rencana_sosial);
 
-                $id_rencana_nilai = K13RencanaNilaiPengetahuan::where('pembelajaran_id', $penilaian->id)->groupBy('kode_penilaian')->get('id');
-                $telah_dinilai = K13NilaiPengetahuan::whereIn('k13_rencana_nilai_pengetahuan_id', $id_rencana_nilai)->groupBy('k13_rencana_nilai_pengetahuan_id')->get();
-                $penilaian->jumlah_telah_dinilai = count($telah_dinilai);
+                $id_rencana_nilai_pengetahuan = K13RencanaNilaiPengetahuan::where('pembelajaran_id', $penilaian->id)->groupBy('kode_penilaian')->get('id');
+                $pengetahuan_telah_dinilai = K13NilaiPengetahuan::whereIn('k13_rencana_nilai_pengetahuan_id', $id_rencana_nilai_pengetahuan)->groupBy('k13_rencana_nilai_pengetahuan_id')->get();
+                $penilaian->jumlah_pengetahuan_telah_dinilai = count($pengetahuan_telah_dinilai);
+
+                $id_rencana_nilai_keterampilan = K13RencanaNilaiKeterampilan::where('pembelajaran_id', $penilaian->id)->groupBy('kode_penilaian')->get('id');
+                $keterampilan_telah_dinilai = K13NilaiKeterampilan::whereIn('k13_rencana_nilai_keterampilan_id', $id_rencana_nilai_keterampilan)->groupBy('k13_rencana_nilai_keterampilan_id')->get();
+                $penilaian->jumlah_keterampilan_telah_dinilai = count($keterampilan_telah_dinilai);
 
                 $bobot = K13RencanaBobotPenilaian::where('pembelajaran_id', $penilaian->id)->first();
                 if (is_null($bobot)) {

@@ -210,22 +210,39 @@
                         </b>
                         @endif
                       </td>
+
                       <td class="text-center">
-                        @if($penilaian->jumlah_telah_dinilai == 0)
+                        @if($penilaian->jumlah_pengetahuan_telah_dinilai == 0)
                         <b class="text-danger">
                           0
                         </b>
-                        @elseif($penilaian->jumlah_telah_dinilai == $penilaian->jumlah_rencana_pengetahuan)
+                        @elseif($penilaian->jumlah_pengetahuan_telah_dinilai == $penilaian->jumlah_rencana_pengetahuan)
                         <b class="text-success">
-                          {{$penilaian->jumlah_telah_dinilai}}
+                          {{$penilaian->jumlah_pengetahuan_telah_dinilai}}
                         </b>
                         @else
                         <b class="text-warning">
-                          {{$penilaian->jumlah_telah_dinilai}}
+                          {{$penilaian->jumlah_pengetahuan_telah_dinilai}}
                         </b>
                         @endif
                       </td>
-                      <td class="text-center">0</td>
+
+                      <td class="text-center">
+                        @if($penilaian->jumlah_keterampilan_telah_dinilai == 0)
+                        <b class="text-danger">
+                          0
+                        </b>
+                        @elseif($penilaian->jumlah_keterampilan_telah_dinilai == $penilaian->jumlah_rencana_keterampilan)
+                        <b class="text-success">
+                          {{$penilaian->jumlah_keterampilan_telah_dinilai}}
+                        </b>
+                        @else
+                        <b class="text-warning">
+                          {{$penilaian->jumlah_keterampilan_telah_dinilai}}
+                        </b>
+                        @endif
+                      </td>
+
                       <td class="text-center">0</td>
                       <td class="text-center">0</td>
                       <td><span class="badge badge-danger">Belum Input</span></td>

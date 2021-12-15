@@ -90,7 +90,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('rencanaketerampilan.index') }}" class="nav-link">
+              <a href="{{ route('nilaiketerampilan.index') }}" class="nav-link">
                 <i class="fas fa-edit nav-icon"></i>
                 <p>Nilai Keterampilan</p>
               </a>

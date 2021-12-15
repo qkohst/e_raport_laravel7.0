@@ -157,6 +157,10 @@ Route::group(['middleware' => ['auth']], function () {
           'uses' => ['index', 'create', 'store', 'update']
         ]);
 
+        Route::resource('nilaiketerampilan', 'Guru\K13\NilaiKeterampilanController',  [
+          'uses' => ['index', 'create', 'store', 'update']
+        ]);
+
 
 
         // ARAHKAN KE PROSES EDIT NILAI KETIKA SUDAH PERNAH NILAI

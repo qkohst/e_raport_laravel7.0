@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Guru\K13;
 
 use App\Guru;
 use App\Http\Controllers\Controller;
-use App\K13NilaiPengetahuan;
-use App\K13RencanaNilaiPengetahuan;
+use App\K13NilaiKeterampilan;
+use App\K13RencanaNilaiKeterampilan;
 use App\Kelas;
 use App\Pembelajaran;
 use App\Siswa;
@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class NilaiPengetahuanController extends Controller
+class NilaiKeterampilanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +24,7 @@ class NilaiPengetahuanController extends Controller
      */
     public function index()
     {
-        $title = 'Nilai Pengetahuan';
+        $title = 'Nilai Keterampilan';
         $tapel = Tapel::findorfail(session()->get('tapel_id'));
 
         $guru = Guru::where('user_id', Auth::user()->id)->first();
@@ -33,16 +33,16 @@ class NilaiPengetahuanController extends Controller
         $data_penilaian = Pembelajaran::where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->orderBy('mapel_id', 'ASC')->orderBy('kelas_id', 'ASC')->get();
 
         foreach ($data_penilaian as $penilaian) {
-            $data_rencana_nilai = K13RencanaNilaiPengetahuan::where('pembelajaran_id', $penilaian->id)->groupBy('kode_penilaian')->get();
-            $id_rencana_nilai = K13RencanaNilaiPengetahuan::where('pembelajaran_id', $penilaian->id)->groupBy('kode_penilaian')->get('id');
-            $telah_dinilai = K13NilaiPengetahuan::whereIn('k13_rencana_nilai_pengetahuan_id', $id_rencana_nilai)->groupBy('k13_rencana_nilai_pengetahuan_id')->get();
+            $data_rencana_nilai = K13RencanaNilaiKeterampilan::where('pembelajaran_id', $penilaian->id)->groupBy('kode_penilaian')->get();
+            $id_rencana_nilai = K13RencanaNilaiKeterampilan::where('pembelajaran_id', $penilaian->id)->groupBy('kode_penilaian')->get('id');
+            $telah_dinilai = K13NilaiKeterampilan::whereIn('k13_rencana_nilai_keterampilan_id', $id_rencana_nilai)->groupBy('k13_rencana_nilai_keterampilan_id')->get();
 
             $penilaian->jumlah_rencana_penilaian = count($data_rencana_nilai);
             $penilaian->jumlah_telah_dinilai = count($telah_dinilai);
             $penilaian->data_rencana_nilai = $data_rencana_nilai;
         }
 
-        return view('guru.k13.nilaipengetahuan.index', compact('title', 'data_penilaian'));
+        return view('guru.k13.nilaiketerampilan.index', compact('title', 'data_penilaian'));
     }
 
     /**
@@ -62,23 +62,23 @@ class NilaiPengetahuanController extends Controller
             $pembelajaran = Pembelajaran::findorfail($request->pembelajaran_id);
             $data_siswa = Siswa::where('kelas_id', $pembelajaran->kelas_id)->get();
 
-            $id_data_rencana_penilaian = K13RencanaNilaiPengetahuan::where('pembelajaran_id', $request->pembelajaran_id)->where('kode_penilaian', $kode_penilaian)->orderBy('k13_kd_mapel_id', 'DESC')->get('id');
+            $id_data_rencana_penilaian = K13RencanaNilaiKeterampilan::where('pembelajaran_id', $request->pembelajaran_id)->where('kode_penilaian', $kode_penilaian)->orderBy('k13_kd_mapel_id', 'DESC')->get('id');
 
-            $data_kd_nilai = K13NilaiPengetahuan::whereIn('k13_rencana_nilai_pengetahuan_id', $id_data_rencana_penilaian)->groupBy('k13_rencana_nilai_pengetahuan_id')->get();
+            $data_kd_nilai = K13NilaiKeterampilan::whereIn('k13_rencana_nilai_keterampilan_id', $id_data_rencana_penilaian)->groupBy('k13_rencana_nilai_keterampilan_id')->get();
             $count_kd_nilai = count($data_kd_nilai);
 
             if ($count_kd_nilai == 0) {
-                $data_rencana_penilaian = K13RencanaNilaiPengetahuan::where('pembelajaran_id', $request->pembelajaran_id)->where('kode_penilaian', $kode_penilaian)->orderBy('k13_kd_mapel_id', 'DESC')->get();
+                $data_rencana_penilaian = K13RencanaNilaiKeterampilan::where('pembelajaran_id', $request->pembelajaran_id)->where('kode_penilaian', $kode_penilaian)->orderBy('k13_kd_mapel_id', 'DESC')->get();
                 $count_kd = count($data_rencana_penilaian);
-                $title = 'Input Nilai Pengetahuan';
-                return view('guru.k13.nilaipengetahuan.create', compact('title', 'kode_penilaian', 'pembelajaran', 'data_siswa', 'data_rencana_penilaian', 'count_kd'));
+                $title = 'Input Nilai Keterampilan';
+                return view('guru.k13.nilaiketerampilan.create', compact('title', 'kode_penilaian', 'pembelajaran', 'data_siswa', 'data_rencana_penilaian', 'count_kd'));
             } else {
                 foreach ($data_siswa as $nilai_siswa) {
-                    $data_nilai = K13NilaiPengetahuan::whereIn('k13_rencana_nilai_pengetahuan_id', $id_data_rencana_penilaian)->where('siswa_id', $nilai_siswa->id)->get();
+                    $data_nilai = K13NilaiKeterampilan::whereIn('k13_rencana_nilai_keterampilan_id', $id_data_rencana_penilaian)->where('siswa_id', $nilai_siswa->id)->get();
                     $nilai_siswa->data_nilai = $data_nilai;
                 }
-                $title = 'Edit Nilai Pengetahuan';
-                return view('guru.k13.nilaipengetahuan.edit', compact('title', 'kode_penilaian', 'pembelajaran', 'data_siswa', 'count_kd_nilai', 'data_kd_nilai'));
+                $title = 'Edit Nilai Keterampilan';
+                return view('guru.k13.nilaiketerampilan.edit', compact('title', 'kode_penilaian', 'pembelajaran', 'data_siswa', 'count_kd_nilai', 'data_kd_nilai'));
             }
         }
     }
@@ -92,12 +92,12 @@ class NilaiPengetahuanController extends Controller
     public function store(Request $request)
     {
         for ($cound_siswa = 0; $cound_siswa < count($request->siswa_id); $cound_siswa++) {
-            for ($count_penilaian = 0; $count_penilaian < count($request->k13_rencana_nilai_pengetahuan_id); $count_penilaian++) {
+            for ($count_penilaian = 0; $count_penilaian < count($request->k13_rencana_nilai_keterampilan_id); $count_penilaian++) {
 
                 if ($request->nilai[$count_penilaian][$cound_siswa] >= 0 && $request->nilai[$count_penilaian][$cound_siswa] <= 100) {
                     $data_nilai = array(
                         'siswa_id'  => $request->siswa_id[$cound_siswa],
-                        'k13_rencana_nilai_pengetahuan_id' => $request->k13_rencana_nilai_pengetahuan_id[$count_penilaian],
+                        'k13_rencana_nilai_keterampilan_id' => $request->k13_rencana_nilai_keterampilan_id[$count_penilaian],
                         'nilai'  => ltrim($request->nilai[$count_penilaian][$cound_siswa]),
                         'created_at'  => Carbon::now(),
                         'updated_at'  => Carbon::now(),
@@ -109,9 +109,10 @@ class NilaiPengetahuanController extends Controller
             }
             $store_data_penilaian = $data_penilaian_siswa;
         }
-        K13NilaiPengetahuan::insert($store_data_penilaian);
-        return redirect('guru/nilaipengetahuan')->with('toast_success', 'Data nilai pengetahuan berhasil disimpan.');
+        K13NilaiKeterampilan::insert($store_data_penilaian);
+        return redirect('guru/nilaiketerampilan')->with('toast_success', 'Data nilai keterampilan berhasil disimpan.');
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -123,9 +124,9 @@ class NilaiPengetahuanController extends Controller
     public function update(Request $request, $id)
     {
         for ($cound_siswa = 0; $cound_siswa < count($request->siswa_id); $cound_siswa++) {
-            for ($count_penilaian = 0; $count_penilaian < count($request->k13_rencana_nilai_pengetahuan_id); $count_penilaian++) {
+            for ($count_penilaian = 0; $count_penilaian < count($request->k13_rencana_nilai_keterampilan_id); $count_penilaian++) {
                 if ($request->nilai[$count_penilaian][$cound_siswa] >= 0 && $request->nilai[$count_penilaian][$cound_siswa] <= 100) {
-                    $nilai = K13NilaiPengetahuan::where('siswa_id', $request->siswa_id[$cound_siswa])->where('k13_rencana_nilai_pengetahuan_id', $request->k13_rencana_nilai_pengetahuan_id[$count_penilaian])->first();
+                    $nilai = K13NilaiKeterampilan::where('siswa_id', $request->siswa_id[$cound_siswa])->where('k13_rencana_nilai_keterampilan_id', $request->k13_rencana_nilai_keterampilan_id[$count_penilaian])->first();
                     $data_nilai = [
                         'nilai'  => ltrim($request->nilai[$count_penilaian][$cound_siswa]),
                         'updated_at'  => Carbon::now(),
@@ -136,6 +137,6 @@ class NilaiPengetahuanController extends Controller
                 }
             }
         }
-        return redirect('guru/nilaipengetahuan')->with('toast_success', 'Data nilai pengetahuan berhasil edit.');
+        return redirect('guru/nilaiketerampilan')->with('toast_success', 'Data nilai keterampilan berhasil edit.');
     }
 }
