@@ -28,10 +28,6 @@ class RencanaNilaiKeterampilanController extends Controller
         $guru = Guru::where('user_id', Auth::user()->id)->first();
         $id_kelas = Kelas::where('tapel_id', $tapel->id)->get('id');
 
-        $id_mapel_diampu = Pembelajaran::where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->get('mapel_id');
-        $id_kelas_diampu = Pembelajaran::where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->get('kelas_id');
-        $tingkatan_kelas_diampu = Kelas::whereIn('id', $id_kelas_diampu)->groupBy('tingkatan_kelas')->get('tingkatan_kelas');
-
         $data_rencana_penilaian = Pembelajaran::where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->orderBy('mapel_id', 'ASC')->orderBy('kelas_id', 'ASC')->get();
         foreach ($data_rencana_penilaian as $penilaian) {
             $rencana_penilaian = K13RencanaNilaiKeterampilan::where('pembelajaran_id', $penilaian->id)->groupBy('kode_penilaian')->get();

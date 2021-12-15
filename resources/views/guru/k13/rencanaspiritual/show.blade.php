@@ -47,7 +47,7 @@
                 <table class="table table-bordered table-striped">
                   <thead class="bg-primary">
                     <tr>
-                      <th class="text-center">No</th>
+                      <th class="text-center" style="width: 100px;">No</th>
                       <th class="text-center">KD/Butir Spiritual</th>
                     </tr>
                   </thead>

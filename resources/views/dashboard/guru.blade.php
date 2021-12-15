@@ -120,24 +120,24 @@
                       <th rowspan="2" class="text-center">No</th>
                       <th rowspan="2" class="text-center">Kelas</th>
                       <th rowspan="2" class="text-center">Mata Pelajaran</th>
-                      <th rowspan="2" class="text-center">KKM</th>
-                      <th colspan="4" class="text-center">Jumlah Perencanaan</th>
-                      <th rowspan="2" class="text-center">Bobot</th>
-                      <th colspan="4" class="text-center">Jumlah Penilaian</th>
-                      <th colspan="2" class="text-center">Input Nilai</th>
-                      <th rowspan="2" class="text-center">Proses Deskripsi</th>
+                      <th rowspan="2" class="text-center" style="width: 50px;">KKM</th>
+                      <th colspan="4" class="text-center" style="width: 200px;">Jumlah Perencanaan</th>
+                      <th rowspan="2" class="text-center" style="width: 100px;">Bobot</th>
+                      <th colspan="4" class="text-center" style="width: 200px;">Jumlah Penilaian</th>
+                      <th colspan="2" class="text-center" style="width: 200px;">Input Nilai</th>
+                      <th rowspan="2" class="text-center" style="width: 100px;">Proses Deskripsi</th>
                     </tr>
                     <tr>
-                      <th class="text-center">Peng</th>
-                      <th class="text-center">Ket</th>
-                      <th class="text-center">Skp Sprt</th>
-                      <th class="text-center">Skp Sosial</th>
-                      <th class="text-center">Peng</th>
-                      <th class="text-center">Ket</th>
-                      <th class="text-center">Skp Sprt</th>
-                      <th class="text-center">Skp Sosial</th>
-                      <th class="text-center">PTS</th>
-                      <th class="text-center">PAS</th>
+                      <th class="text-center" style="width: 50px;">Peng</th>
+                      <th class="text-center" style="width: 50px;">Ket</th>
+                      <th class="text-center" style="width: 50px;">Skp Sprt</th>
+                      <th class="text-center" style="width: 50px;">Skp Sosial</th>
+                      <th class="text-center" style="width: 50px;">Peng</th>
+                      <th class="text-center" style="width: 50px;">Ket</th>
+                      <th class="text-center" style="width: 50px;">Skp Sprt</th>
+                      <th class="text-center" style="width: 50px;">Skp Sosial</th>
+                      <th class="text-center" style="width: 100px;">PTS</th>
+                      <th class="text-center" style="width: 100px;">PAS</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -210,7 +210,21 @@
                         </b>
                         @endif
                       </td>
-                      <td class="text-center">0</td>
+                      <td class="text-center">
+                        @if($penilaian->jumlah_telah_dinilai == 0)
+                        <b class="text-danger">
+                          0
+                        </b>
+                        @elseif($penilaian->jumlah_telah_dinilai == $penilaian->jumlah_rencana_pengetahuan)
+                        <b class="text-success">
+                          {{$penilaian->jumlah_telah_dinilai}}
+                        </b>
+                        @else
+                        <b class="text-warning">
+                          {{$penilaian->jumlah_telah_dinilai}}
+                        </b>
+                        @endif
+                      </td>
                       <td class="text-center">0</td>
                       <td class="text-center">0</td>
                       <td class="text-center">0</td>

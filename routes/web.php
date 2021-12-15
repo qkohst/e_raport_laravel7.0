@@ -136,6 +136,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('kdk13', 'Guru\K13\KdMapelController',  [
           'uses' => ['index', 'create', 'store', 'update', 'destroy']
         ]);
+
         Route::resource('rencanapengetahuan', 'Guru\K13\RencanaNilaiPengetahuanController',  [
           'uses' => ['index', 'create', 'store', 'show', 'edit', 'update']
         ]);
@@ -148,12 +149,17 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('rencanasosial', 'Guru\K13\RencanaNilaiSosialController',  [
           'uses' => ['index', 'create', 'store', 'show', 'edit', 'update']
         ]);
-
         Route::resource('bobotnilai', 'Guru\K13\RencanaBobotPenilaianController',  [
           'uses' => ['index', 'store', 'update']
         ]);
 
-        // RUBAH TAMBAH KD UNTUK GURU
+        Route::resource('nilaipengetahuan', 'Guru\K13\NilaiPengetahuanController',  [
+          'uses' => ['index', 'create', 'store', 'update']
+        ]);
+
+
+
+        // ARAHKAN KE PROSES EDIT NILAI KETIKA SUDAH PERNAH NILAI
       });
       // End  Raport K13 Guru
 

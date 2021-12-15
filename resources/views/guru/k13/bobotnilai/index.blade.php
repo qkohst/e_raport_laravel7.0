@@ -37,16 +37,16 @@
                 <table class="table table-bordered table-hover">
                   <thead class="bg-success">
                     <tr>
-                      <th rowspan="2" class="text-center">No</th>
+                      <th rowspan="2" class="text-center" style="width: 100px;">No</th>
                       <th rowspan="2" class="text-center">Mata Pelajaran</th>
                       <th rowspan="2" class="text-center">Kelas</th>
-                      <th colspan="3" class="text-center">Bobot Penilaian</th>
-                      <th rowspan="2" class="text-center">Aksi</th>
+                      <th colspan="3" class="text-center" style="width: 300px">Bobot Penilaian</th>
+                      <th rowspan="2" class="text-center" style="width: 100px;">Aksi</th>
                     </tr>
                     <tr>
-                      <th class="text-center">PH</th>
-                      <th class="text-center">PTS</th>
-                      <th class="text-center">PAS</th>
+                      <th class="text-center" style="width: 100px;">PH</th>
+                      <th class="text-center" style="width: 100px;">PTS</th>
+                      <th class="text-center" style="width: 100px;">PAS</th>
                     </tr>
                   </thead>
                   <tbody>

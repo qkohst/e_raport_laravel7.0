@@ -74,6 +74,48 @@
           </ul>
         </li>
 
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-list-ol"></i>
+            <p>
+              Input Nilai
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview bg-secondary">
+            <li class="nav-item">
+              <a href="{{ route('nilaipengetahuan.index') }}" class="nav-link">
+                <i class="fas fa-edit nav-icon"></i>
+                <p>Nilai Pengetahuan</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('rencanaketerampilan.index') }}" class="nav-link">
+                <i class="fas fa-edit nav-icon"></i>
+                <p>Nilai Keterampilan</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('rencanaspiritual.index') }}" class="nav-link">
+                <i class="fas fa-edit nav-icon"></i>
+                <p>Nilai Sikap Spiritual </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('rencanasosial.index') }}" class="nav-link">
+                <i class="fas fa-edit nav-icon"></i>
+                <p>Nilai Sikap Sosial </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('bobotnilai.index') }}" class="nav-link">
+                <i class="fas fa-edit nav-icon"></i>
+                <p>Nilai PTS dan PAS </p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
         <!-- End Kurikulum 2013 -->
 
         @elseif(Session::get('kurikulum') == '2006')

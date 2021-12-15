@@ -59,7 +59,7 @@ class KkmMapelController extends Controller
                 $kkm = new K13KkmMapel([
                     'mapel_id' => $request->mapel_id,
                     'kelas_id' => $request->kelas_id,
-                    'kkm' => $request->kkm,
+                    'kkm' => ltrim($request->kkm),
                 ]);
                 $kkm->save();
                 return back()->with('toast_success', 'KKM berhasil ditambahkan');
@@ -86,7 +86,7 @@ class KkmMapelController extends Controller
         } else {
             $kkm = K13KkmMapel::findorfail($id);
             $data = [
-                'kkm' => $request->kkm,
+                'kkm' => ltrim($request->kkm),
             ];
             $kkm->update($data);
             return back()->with('toast_success', 'KKM berhasil diedit');
