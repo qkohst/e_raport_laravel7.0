@@ -165,7 +165,9 @@ Route::group(['middleware' => ['auth']], function () {
           'uses' => ['index', 'create', 'store', 'update']
         ]);
 
-
+        Route::resource('nilaisosial', 'Guru\K13\NilaiSosialController',  [
+          'uses' => ['index', 'create', 'store', 'update']
+        ]);
 
         // ARAHKAN KE PROSES EDIT NILAI KETIKA SUDAH PERNAH NILAI
       });

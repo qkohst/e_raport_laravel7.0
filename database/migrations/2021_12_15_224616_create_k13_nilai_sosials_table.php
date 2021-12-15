@@ -13,10 +13,22 @@ class CreateK13NilaiSosialsTable extends Migration
      */
     public function up()
     {
-        Schema::create('k13_nilai_sosials', function (Blueprint $table) {
+        Schema::create('k13_nilai_sosial', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('k13_rencana_nilai_sosial_id')->unsigned();
+            $table->unsignedBigInteger('siswa_id')->unsigned();
+            $table->enum('nilai', ['1', '2', '3', '4']);
             $table->timestamps();
+
+            $table->foreign('k13_rencana_nilai_sosial_id')->references('id')->on('k13_rencana_nilai_sosial');
+            $table->foreign('siswa_id')->references('id')->on('siswa');
         });
+
+        // Nilai 
+        // 1 = Kurang 
+        // 2 = Cukup
+        // 3 = Baik 
+        // 4 = Sangat Baik
     }
 
     /**
@@ -26,6 +38,6 @@ class CreateK13NilaiSosialsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('k13_nilai_sosials');
+        Schema::dropIfExists('k13_nilai_sosial');
     }
 }

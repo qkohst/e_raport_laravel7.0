@@ -21,4 +21,9 @@ class K13RencanaNilaiSosial extends Model
     {
         return $this->belongsTo('App\K13ButirSikap');
     }
+
+    public function k13_nilai_sosial()
+    {
+        return $this->hasMany('App\K13NilaiSosial');
+    }
 }

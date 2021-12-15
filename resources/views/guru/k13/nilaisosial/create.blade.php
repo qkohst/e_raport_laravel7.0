@@ -13,7 +13,7 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item "><a href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item "><a href="{{ route('nilaispiritual.index') }}">Nilai Spiritual</a></li>
+            <li class="breadcrumb-item "><a href="{{ route('nilaisosial.index') }}">Nilai Sosial</a></li>
             <li class="breadcrumb-item active">{{$title}}</li>
           </ol>
         </div><!-- /.col -->
@@ -43,8 +43,7 @@
                 </div>
               </div>
 
-              <form action="{{ route('nilaispiritual.update', $pembelajaran->id) }}" method="POST">
-                {{ method_field('PATCH') }}
+              <form action="{{ route('nilaisosial.store') }}" method="POST">
                 @csrf
 
                 <div class="table-responsive">
@@ -53,12 +52,12 @@
                       <tr>
                         <th rowspan="2" class="text-center" style="width: 100px;">No</th>
                         <th rowspan="2" class="text-center">Nama Siswa</th>
-                        <th colspan="{{$count_kd_nilai}}" class="text-center">Kompetensi Dasar / Indikator Sikap Spiritual</th>
+                        <th colspan="{{$count_kd}}" class="text-center">Kompetensi Dasar / Indikator Sikap Sosial</th>
                       </tr>
                       <tr>
-                        @foreach($data_kd_nilai as $kd_nilai)
-                        <input type="hidden" name="k13_rencana_nilai_spiritual_id[]" value="{{$kd_nilai->k13_rencana_nilai_spiritual_id}}">
-                        <td style="width: 300px;"><small><b>{{$kd_nilai->k13_rencana_nilai_spiritual->k13_butir_sikap->kode}}</b> {{$kd_nilai->k13_rencana_nilai_spiritual->k13_butir_sikap->butir_sikap}}</small></td>
+                        @foreach($data_rencana_penilaian as $rencana_penilaian)
+                        <input type="hidden" name="k13_rencana_nilai_sosial_id[]" value="{{$rencana_penilaian->id}}">
+                        <td style="width: 300px;"><small><b>{{$rencana_penilaian->k13_butir_sikap->kode}}</b> {{$rencana_penilaian->k13_butir_sikap->butir_sikap}}</small></td>
                         @endforeach
                       </tr>
                     </thead>
@@ -72,15 +71,17 @@
                         <input type="hidden" name="siswa_id[]" value="{{$siswa->id}}">
 
                         <?php $i = -1; ?>
-                        @foreach($siswa->data_nilai as $nilai)
+                        @foreach($data_rencana_penilaian as $rencana_penilaian)
                         <?php $i++; ?>
                         <td>
                           <select class="form-control" name="nilai[{{$i}}][]" style="width: 100%;" required oninvalid="this.setCustomValidity('silakan pilih item dalam daftar')" oninput="setCustomValidity('')">
-                            <option value="1" @if($nilai->nilai==1) selected @endif>Sangat Baik</option>
-                            <option value="2" @if($nilai->nilai==2) selected @endif>Baik</option>
-                            <option value="3" @if($nilai->nilai==3) selected @endif>Cukup</option>
-                            <option value="4" @if($nilai->nilai==4) selected @endif>Kurang</option>
-                          </select> </td>
+                            <option value="1">Sangat Baik</option>
+                            <option value="2" selected>Baik</option>
+                            <option value="3">Cukup</option>
+                            <option value="4">Kurang</option>
+                          </select>
+
+                        </td>
                         @endforeach
 
                       </tr>
@@ -93,7 +94,7 @@
 
             <div class="card-footer clearfix">
               <button type="submit" class="btn btn-primary float-right">Simpan</button>
-              <a href="{{ route('nilaispiritual.index') }}" class="btn btn-default float-right mr-2">Batal</a>
+              <a href="{{ route('nilaisosial.index') }}" class="btn btn-default float-right mr-2">Batal</a>
             </div>
             </form>
           </div>

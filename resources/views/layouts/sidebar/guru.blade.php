@@ -102,7 +102,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('rencanasosial.index') }}" class="nav-link">
+              <a href="{{ route('nilaisosial.index') }}" class="nav-link">
                 <i class="fas fa-edit nav-icon"></i>
                 <p>Nilai Sikap Sosial </p>
               </a>

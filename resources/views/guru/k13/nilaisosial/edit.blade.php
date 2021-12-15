@@ -13,7 +13,7 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item "><a href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item "><a href="{{ route('nilaispiritual.index') }}">Nilai Spiritual</a></li>
+            <li class="breadcrumb-item "><a href="{{ route('nilaisosial.index') }}">Nilai Sosial</a></li>
             <li class="breadcrumb-item active">{{$title}}</li>
           </ol>
         </div><!-- /.col -->
@@ -43,7 +43,7 @@
                 </div>
               </div>
 
-              <form action="{{ route('nilaispiritual.update', $pembelajaran->id) }}" method="POST">
+              <form action="{{ route('nilaisosial.update', $pembelajaran->id) }}" method="POST">
                 {{ method_field('PATCH') }}
                 @csrf
 
@@ -53,12 +53,12 @@
                       <tr>
                         <th rowspan="2" class="text-center" style="width: 100px;">No</th>
                         <th rowspan="2" class="text-center">Nama Siswa</th>
-                        <th colspan="{{$count_kd_nilai}}" class="text-center">Kompetensi Dasar / Indikator Sikap Spiritual</th>
+                        <th colspan="{{$count_kd_nilai}}" class="text-center">Kompetensi Dasar / Indikator Sikap Sosial</th>
                       </tr>
                       <tr>
                         @foreach($data_kd_nilai as $kd_nilai)
-                        <input type="hidden" name="k13_rencana_nilai_spiritual_id[]" value="{{$kd_nilai->k13_rencana_nilai_spiritual_id}}">
-                        <td style="width: 300px;"><small><b>{{$kd_nilai->k13_rencana_nilai_spiritual->k13_butir_sikap->kode}}</b> {{$kd_nilai->k13_rencana_nilai_spiritual->k13_butir_sikap->butir_sikap}}</small></td>
+                        <input type="hidden" name="k13_rencana_nilai_sosial_id[]" value="{{$kd_nilai->k13_rencana_nilai_sosial_id}}">
+                        <td style="width: 300px;"><small><b>{{$kd_nilai->k13_rencana_nilai_sosial->k13_butir_sikap->kode}}</b> {{$kd_nilai->k13_rencana_nilai_sosial->k13_butir_sikap->butir_sikap}}</small></td>
                         @endforeach
                       </tr>
                     </thead>
@@ -93,7 +93,7 @@
 
             <div class="card-footer clearfix">
               <button type="submit" class="btn btn-primary float-right">Simpan</button>
-              <a href="{{ route('nilaispiritual.index') }}" class="btn btn-default float-right mr-2">Batal</a>
+              <a href="{{ route('nilaisosial.index') }}" class="btn btn-default float-right mr-2">Batal</a>
             </div>
             </form>
           </div>
