@@ -243,7 +243,22 @@
                         @endif
                       </td>
 
-                      <td class="text-center">0</td>
+                      <td class="text-center">
+                        @if($penilaian->jumlah_spiritual_telah_dinilai == 0)
+                        <b class="text-danger">
+                          0
+                        </b>
+                        @elseif($penilaian->jumlah_spiritual_telah_dinilai == $penilaian->jumlah_rencana_spiritual)
+                        <b class="text-success">
+                          {{$penilaian->jumlah_spiritual_telah_dinilai}}
+                        </b>
+                        @else
+                        <b class="text-warning">
+                          {{$penilaian->jumlah_spiritual_telah_dinilai}}
+                        </b>
+                        @endif
+                      </td>
+
                       <td class="text-center">0</td>
                       <td><span class="badge badge-danger">Belum Input</span></td>
                       <td><span class="badge badge-danger">Belum Input</span></td>

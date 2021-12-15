@@ -8,6 +8,7 @@ use App\Guru;
 use App\K13KkmMapel;
 use App\K13NilaiKeterampilan;
 use App\K13NilaiPengetahuan;
+use App\K13NilaiSpiritual;
 use App\K13RencanaBobotPenilaian;
 use App\K13RencanaNilaiKeterampilan;
 use App\K13RencanaNilaiPengetahuan;
@@ -87,6 +88,10 @@ class DashboardController extends Controller
                 $id_rencana_nilai_keterampilan = K13RencanaNilaiKeterampilan::where('pembelajaran_id', $penilaian->id)->groupBy('kode_penilaian')->get('id');
                 $keterampilan_telah_dinilai = K13NilaiKeterampilan::whereIn('k13_rencana_nilai_keterampilan_id', $id_rencana_nilai_keterampilan)->groupBy('k13_rencana_nilai_keterampilan_id')->get();
                 $penilaian->jumlah_keterampilan_telah_dinilai = count($keterampilan_telah_dinilai);
+
+                $id_rencana_nilai_spiritual = K13RencanaNilaiSpiritual::where('pembelajaran_id', $penilaian->id)->get('id');
+                $spiritual_telah_dinilai = K13NilaiSpiritual::whereIn('k13_rencana_nilai_spiritual_id', $id_rencana_nilai_spiritual)->groupBy('k13_rencana_nilai_spiritual_id')->get();
+                $penilaian->jumlah_spiritual_telah_dinilai = count($spiritual_telah_dinilai);
 
                 $bobot = K13RencanaBobotPenilaian::where('pembelajaran_id', $penilaian->id)->first();
                 if (is_null($bobot)) {

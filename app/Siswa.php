@@ -66,4 +66,9 @@ class Siswa extends Model
     {
         return $this->hasMany('App\K13NilaiKeterampilan');
     }
+
+    public function k13_nilai_spiritual()
+    {
+        return $this->hasMany('App\K13NilaiSpiritual');
+    }
 }

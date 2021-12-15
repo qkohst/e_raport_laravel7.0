@@ -161,6 +161,10 @@ Route::group(['middleware' => ['auth']], function () {
           'uses' => ['index', 'create', 'store', 'update']
         ]);
 
+        Route::resource('nilaispiritual', 'Guru\K13\NilaiSpiritualController',  [
+          'uses' => ['index', 'create', 'store', 'update']
+        ]);
+
 
 
         // ARAHKAN KE PROSES EDIT NILAI KETIKA SUDAH PERNAH NILAI

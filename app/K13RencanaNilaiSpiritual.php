@@ -21,4 +21,9 @@ class K13RencanaNilaiSpiritual extends Model
     {
         return $this->belongsTo('App\K13ButirSikap');
     }
+
+    public function k13_nilai_spiritual()
+    {
+        return $this->hasMany('App\K13NilaiSpiritual');
+    }
 }
