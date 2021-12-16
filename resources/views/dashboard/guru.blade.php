@@ -275,8 +275,13 @@
                         @endif
                       </td>
 
+                      @if($penilaian->nilai_pts_pas == 0)
                       <td><span class="badge badge-danger">Belum Input</span></td>
                       <td><span class="badge badge-danger">Belum Input</span></td>
+                      @else
+                      <td><span class="badge badge-success">Sudah Input</span></td>
+                      <td><span class="badge badge-success">Sudah Input</span></td>
+                      @endif
                       <td><span class="badge badge-danger">Belum Proses</span></td>
                     </tr>
                     @endforeach

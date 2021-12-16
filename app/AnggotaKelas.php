@@ -22,4 +22,9 @@ class AnggotaKelas extends Model
     {
         return $this->belongsTo('App\Kelas');
     }
+
+    public function k13_nilai_pts_pas()
+    {
+        return $this->hasOne('App\K13NilaiPtsPas');
+    }
 }

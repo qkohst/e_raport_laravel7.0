@@ -108,7 +108,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('bobotnilai.index') }}" class="nav-link">
+              <a href="{{ route('nilaiptspas.index') }}" class="nav-link">
                 <i class="fas fa-edit nav-icon"></i>
                 <p>Nilai PTS dan PAS </p>
               </a>

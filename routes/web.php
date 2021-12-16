@@ -169,7 +169,11 @@ Route::group(['middleware' => ['auth']], function () {
           'uses' => ['index', 'create', 'store', 'update']
         ]);
 
-        // ARAHKAN KE PROSES EDIT NILAI KETIKA SUDAH PERNAH NILAI
+        Route::resource('nilaiptspas', 'Guru\K13\NilaiPtsPasController',  [
+          'uses' => ['index', 'create', 'store', 'update']
+        ]);
+
+        // LANJUT KE NILAI PTS & PAS
       });
       // End  Raport K13 Guru
 

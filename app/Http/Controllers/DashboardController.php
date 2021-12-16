@@ -8,6 +8,7 @@ use App\Guru;
 use App\K13KkmMapel;
 use App\K13NilaiKeterampilan;
 use App\K13NilaiPengetahuan;
+use App\K13NilaiPtsPas;
 use App\K13NilaiSosial;
 use App\K13NilaiSpiritual;
 use App\K13RencanaBobotPenilaian;
@@ -97,6 +98,9 @@ class DashboardController extends Controller
                 $id_rencana_nilai_sosial = K13RencanaNilaiSosial::where('pembelajaran_id', $penilaian->id)->get('id');
                 $sosial_telah_dinilai = K13NilaiSosial::whereIn('k13_rencana_nilai_sosial_id', $id_rencana_nilai_sosial)->groupBy('k13_rencana_nilai_sosial_id')->get();
                 $penilaian->jumlah_sosial_telah_dinilai = count($sosial_telah_dinilai);
+
+                $nilai_pts_pas = K13NilaiPtsPas::where('pembelajaran_id', $penilaian->id)->get();
+                $penilaian->nilai_pts_pas = count($nilai_pts_pas);
 
                 $bobot = K13RencanaBobotPenilaian::where('pembelajaran_id', $penilaian->id)->first();
                 if (is_null($bobot)) {
