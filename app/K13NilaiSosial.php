@@ -9,7 +9,7 @@ class K13NilaiSosial extends Model
     protected $table = 'k13_nilai_sosial';
     protected $fillable = [
         'k13_rencana_nilai_sosial_id',
-        'siswa_id',
+        'anggota_kelas_id',
         'nilai',
     ];
 
@@ -18,8 +18,8 @@ class K13NilaiSosial extends Model
         return $this->belongsTo('App\K13RencanaNilaiSosial');
     }
 
-    public function siswa()
+    public function anggota_kelas()
     {
-        return $this->belongsTo('App\Siswa');
+        return $this->belongsTo('App\AnggotaKelas');
     }
 }

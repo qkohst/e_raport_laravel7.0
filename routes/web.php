@@ -173,7 +173,7 @@ Route::group(['middleware' => ['auth']], function () {
           'uses' => ['index', 'create', 'store', 'update']
         ]);
 
-        // LANJUT KE NILAI PTS & PAS
+        // RUBAH DARI SISWA ID KE ANGGOTA ROMBEL ID (PADA ALL NILAI)
       });
       // End  Raport K13 Guru
 

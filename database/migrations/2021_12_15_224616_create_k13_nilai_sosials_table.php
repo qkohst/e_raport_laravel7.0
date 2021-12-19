@@ -16,12 +16,12 @@ class CreateK13NilaiSosialsTable extends Migration
         Schema::create('k13_nilai_sosial', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('k13_rencana_nilai_sosial_id')->unsigned();
-            $table->unsignedBigInteger('siswa_id')->unsigned();
+            $table->unsignedBigInteger('anggota_kelas_id')->unsigned();
             $table->enum('nilai', ['1', '2', '3', '4']);
             $table->timestamps();
 
             $table->foreign('k13_rencana_nilai_sosial_id')->references('id')->on('k13_rencana_nilai_sosial');
-            $table->foreign('siswa_id')->references('id')->on('siswa');
+            $table->foreign('anggota_kelas_id')->references('id')->on('anggota_kelas');
         });
 
         // Nilai 

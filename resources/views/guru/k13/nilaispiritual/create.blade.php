@@ -63,12 +63,12 @@
                     </thead>
                     <tbody>
                       <?php $no = 0; ?>
-                      @foreach($data_siswa as $siswa)
+                      @foreach($data_anggota_kelas as $anggota_kelas)
                       <?php $no++; ?>
                       <tr>
                         <td class="text-center">{{$no}}</td>
-                        <td>{{$siswa->nama_lengkap}}</td>
-                        <input type="hidden" name="siswa_id[]" value="{{$siswa->id}}">
+                        <td>{{$anggota_kelas->siswa->nama_lengkap}}</td>
+                        <input type="hidden" name="anggota_kelas_id[]" value="{{$anggota_kelas->id}}">
 
                         <?php $i = -1; ?>
                         @foreach($data_rencana_penilaian as $rencana_penilaian)

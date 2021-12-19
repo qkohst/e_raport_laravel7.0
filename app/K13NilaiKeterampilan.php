@@ -9,7 +9,7 @@ class K13NilaiKeterampilan extends Model
     protected $table = 'k13_nilai_keterampilan';
     protected $fillable = [
         'k13_rencana_nilai_keterampilan_id',
-        'siswa_id',
+        'anggota_kelas_id',
         'nilai',
     ];
 
@@ -18,8 +18,8 @@ class K13NilaiKeterampilan extends Model
         return $this->belongsTo('App\K13RencanaNilaiKeterampilan');
     }
 
-    public function siswa()
+    public function anggota_kelas()
     {
-        return $this->belongsTo('App\Siswa');
+        return $this->belongsTo('App\AnggotaKelas');
     }
 }

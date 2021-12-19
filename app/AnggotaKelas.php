@@ -23,6 +23,26 @@ class AnggotaKelas extends Model
         return $this->belongsTo('App\Kelas');
     }
 
+    public function k13_nilai_pengetahuan()
+    {
+        return $this->hasOne('App\K13NilaiPengetahuan');
+    }
+
+    public function k13_nilai_keterampilan()
+    {
+        return $this->hasOne('App\K13NilaiKeterampilan');
+    }
+
+    public function k13_nilai_spiritual()
+    {
+        return $this->hasOne('App\K13NilaiSpiritual');
+    }
+
+    public function k13_nilai_sosial()
+    {
+        return $this->hasOne('App\K13NilaiSosial');
+    }
+
     public function k13_nilai_pts_pas()
     {
         return $this->hasOne('App\K13NilaiPtsPas');

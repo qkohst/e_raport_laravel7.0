@@ -35,18 +35,28 @@
 
             <div class="card-body">
               <div class="callout callout-info">
-                <div class="form-group row">
-                  <label class="col-sm-2 col-form-label">Mata Pelajaran</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" value="{{$pembelajaran->mapel->nama_mapel}} {{$pembelajaran->kelas->nama_kelas}}" readonly>
+                <form action="{{ route('nilaiketerampilan.create') }}" method="GET">
+                  @csrf
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Mata Pelajaran</label>
+                    <div class="col-sm-10">
+                      <select class="form-control" name="pembelajaran_id" style="width: 100%;" aria-readonly="true">
+                        <option value="{{$pembelajaran->id}}" selected>{{$pembelajaran->mapel->nama_mapel}} {{$pembelajaran->kelas->nama_kelas}}</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-sm-2 col-form-label">Kode Penilaian</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" value="{{$kode_penilaian}}" readonly>
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Kode Penilaian</label>
+                    <div class="col-sm-10">
+                      <select class="form-control select2" name="kode_penilaian" style="width: 100%;" required onchange="this.form.submit();">
+                        <option value="" disabled>-- Pilih Penilaian --</option>
+                        @foreach($data_kode_penilaian as $kode_nilai)
+                        <option value="{{$kode_nilai->kode_penilaian}}" @if($kode_penilaian==$kode_nilai->kode_penilaian) selected @endif>{{$kode_nilai->kode_penilaian}}</option>
+                        @endforeach
+                      </select>
+                    </div>
                   </div>
-                </div>
+                </form>
               </div>
 
               <form action="{{ route('nilaiketerampilan.store') }}" method="POST">
@@ -57,7 +67,7 @@
                     <thead class="bg-primary">
                       <tr>
                         <th rowspan="2" class="text-center" style="width: 100px;">No</th>
-                        <th rowspan="2" class="text-center">Nama Siswa</th>
+                        <th rowspan="2" class="text-center">Nama anggota_kelas</th>
                         <th colspan="{{$count_kd}}" class="text-center">Kompetensi Dasar</th>
                       </tr>
                       <tr>
@@ -69,12 +79,12 @@
                     </thead>
                     <tbody>
                       <?php $no = 0; ?>
-                      @foreach($data_siswa as $siswa)
+                      @foreach($data_anggota_kelas as $anggota_kelas)
                       <?php $no++; ?>
                       <tr>
                         <td class="text-center">{{$no}}</td>
-                        <td>{{$siswa->nama_lengkap}}</td>
-                        <input type="hidden" name="siswa_id[]" value="{{$siswa->id}}">
+                        <td>{{$anggota_kelas->siswa->nama_lengkap}}</td>
+                        <input type="hidden" name="anggota_kelas_id[]" value="{{$anggota_kelas->id}}">
 
                         <?php $i = -1; ?>
                         @foreach($data_rencana_penilaian as $rencana_penilaian)

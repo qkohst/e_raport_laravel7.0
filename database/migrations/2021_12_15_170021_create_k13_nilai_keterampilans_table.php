@@ -16,12 +16,12 @@ class CreateK13NilaiKeterampilansTable extends Migration
         Schema::create('k13_nilai_keterampilan', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('k13_rencana_nilai_keterampilan_id')->unsigned();
-            $table->unsignedBigInteger('siswa_id')->unsigned();
+            $table->unsignedBigInteger('anggota_kelas_id')->unsigned();
             $table->integer('nilai');
             $table->timestamps();
 
             $table->foreign('k13_rencana_nilai_keterampilan_id')->references('id')->on('k13_rencana_nilai_keterampilan');
-            $table->foreign('siswa_id')->references('id')->on('siswa');
+            $table->foreign('anggota_kelas_id')->references('id')->on('anggota_kelas');
         });
     }
 

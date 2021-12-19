@@ -9,7 +9,7 @@ class K13NilaiSpiritual extends Model
     protected $table = 'k13_nilai_spiritual';
     protected $fillable = [
         'k13_rencana_nilai_spiritual_id',
-        'siswa_id',
+        'anggota_kelas_id',
         'nilai',
     ];
 
@@ -18,8 +18,8 @@ class K13NilaiSpiritual extends Model
         return $this->belongsTo('App\K13RencanaNilaiSpiritual');
     }
 
-    public function siswa()
+    public function anggota_kelas()
     {
-        return $this->belongsTo('App\Siswa');
+        return $this->belongsTo('App\AnggotaKelas');
     }
 }
