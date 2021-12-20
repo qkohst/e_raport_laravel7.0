@@ -146,7 +146,6 @@ class KirimNilaiAkhirController extends Controller
      */
     public function store(Request $request)
     {
-        $cek_nilai = K13NilaiAkhirRaport::where('pembelajaran_id', $request->pembelajaran_id)->get();
         for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
             $data_nilai = array(
                 'pembelajaran_id' => $request->pembelajaran_id,

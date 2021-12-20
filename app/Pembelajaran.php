@@ -63,4 +63,9 @@ class Pembelajaran extends Model
     {
         return $this->hasMany('App\K13NilaiAkhirRaport');
     }
+
+    public function k13_deskripsi_nilai_siswa()
+    {
+        return $this->hasMany('App\K13DeskripsiNilaiSiswa');
+    }
 }

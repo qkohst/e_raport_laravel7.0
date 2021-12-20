@@ -181,6 +181,10 @@ Route::group(['middleware' => ['auth']], function () {
           'uses' => ['index', 'create']
         ]);
 
+        Route::resource('prosesdeskripsi', 'Guru\K13\ProsesDeskripsiSiswaController',  [
+          'uses' => ['index', 'create', 'store']
+        ]);
+
         // RUBAH DARI SISWA ID KE ANGGOTA ROMBEL ID (PADA ALL NILAI)
       });
       // End  Raport K13 Guru

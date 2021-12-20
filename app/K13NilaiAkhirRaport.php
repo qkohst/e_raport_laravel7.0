@@ -28,4 +28,9 @@ class K13NilaiAkhirRaport extends Model
     {
         return $this->belongsTo('App\AnggotaKelas');
     }
+
+    public function k13_deskripsi_nilai_siswa()
+    {
+        return $this->hasOne('App\K13DeskripsiNilaiSiswa');
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\AnggotaKelas;
 use App\Ekstrakulikuler;
 use App\Guru;
+use App\K13DeskripsiNilaiSiswa;
 use App\K13KkmMapel;
 use App\K13NilaiAkhirRaport;
 use App\K13NilaiKeterampilan;
@@ -105,6 +106,9 @@ class DashboardController extends Controller
 
                 $nilai_akhir_raport = K13NilaiAkhirRaport::where('pembelajaran_id', $penilaian->id)->get();
                 $penilaian->kirim_nilai_raport = count($nilai_akhir_raport);
+
+                $deskripsi_nilai_akhir = K13DeskripsiNilaiSiswa::where('pembelajaran_id', $penilaian->id)->get();
+                $penilaian->proses_deskripsi = count($deskripsi_nilai_akhir);
 
                 $bobot = K13RencanaBobotPenilaian::where('pembelajaran_id', $penilaian->id)->first();
                 if (is_null($bobot)) {

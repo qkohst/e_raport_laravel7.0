@@ -150,7 +150,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="{{ route('kdk13.index') }}" class="nav-link">
+          <a href="{{ route('prosesdeskripsi.index') }}" class="nav-link">
             <i class="nav-icon fas fa-file-alt"></i>
             <p>
               Proses Deskripsi Siswa

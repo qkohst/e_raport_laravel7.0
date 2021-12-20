@@ -294,7 +294,12 @@
                       <td><span class="badge badge-success">Sudah Kirim</span></td>
                       @endif
 
+                      @if($penilaian->proses_deskripsi == 0)
                       <td><span class="badge badge-danger">Belum Proses</span></td>
+                      @else
+                      <td><span class="badge badge-success">Sudah Proses</span></td>
+                      @endif
+
                     </tr>
                     @endforeach
                   </tbody>
