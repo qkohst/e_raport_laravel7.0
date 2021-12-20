@@ -2,7 +2,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
   <a href="{{ route('dashboard') }}" class="brand-link">
-    <img src="/assets/dist/img/AdminLTELogo.png" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <img src="/assets/dist/img/logo.png" alt="Logo" class="brand-image img-circle">
     <span class="brand-text font-weight-light">Aplikasi E-Raport</span>
   </a>
 
@@ -115,6 +115,50 @@
             </li>
           </ul>
         </li>
+
+        <li class="nav-item">
+          <a href="{{ route('kdk13.index') }}" class="nav-link">
+            <i class="nav-icon fas fa-book-reader"></i>
+            <p>
+              Input Nilai Ekstrakulikuler
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-clipboard-check"></i>
+            <p>
+              Nilai Akhir Raport
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview bg-secondary">
+            <li class="nav-item">
+              <a href="{{ route('kirimnilaiakhir.index') }}" class="nav-link">
+                <i class="fas fa-paper-plane nav-icon"></i>
+                <p>Kirim Nilai Akhir</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('nilaiterkirim.index') }}" class="nav-link">
+                <i class="fas fa-eye nav-icon"></i>
+                <p>Lihat Nilai Terkirim</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a href="{{ route('kdk13.index') }}" class="nav-link">
+            <i class="nav-icon fas fa-file-alt"></i>
+            <p>
+              Proses Deskripsi Siswa
+            </p>
+          </a>
+        </li>
+
+
 
         <!-- End Kurikulum 2013 -->
 

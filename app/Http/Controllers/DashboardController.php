@@ -6,6 +6,7 @@ use App\AnggotaKelas;
 use App\Ekstrakulikuler;
 use App\Guru;
 use App\K13KkmMapel;
+use App\K13NilaiAkhirRaport;
 use App\K13NilaiKeterampilan;
 use App\K13NilaiPengetahuan;
 use App\K13NilaiPtsPas;
@@ -101,6 +102,9 @@ class DashboardController extends Controller
 
                 $nilai_pts_pas = K13NilaiPtsPas::where('pembelajaran_id', $penilaian->id)->get();
                 $penilaian->nilai_pts_pas = count($nilai_pts_pas);
+
+                $nilai_akhir_raport = K13NilaiAkhirRaport::where('pembelajaran_id', $penilaian->id)->get();
+                $penilaian->kirim_nilai_raport = count($nilai_akhir_raport);
 
                 $bobot = K13RencanaBobotPenilaian::where('pembelajaran_id', $penilaian->id)->first();
                 if (is_null($bobot)) {

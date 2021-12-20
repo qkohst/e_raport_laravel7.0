@@ -8,6 +8,8 @@
 
   <title>E-Raport | {{$title}}</title>
 
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/dist/img/favicon.png">
+
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="/assets/plugins/fontawesome-free/css/all.min.css">
   <!-- pace-progress -->

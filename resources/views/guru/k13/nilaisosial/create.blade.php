@@ -75,10 +75,10 @@
                         <?php $i++; ?>
                         <td>
                           <select class="form-control" name="nilai[{{$i}}][]" style="width: 100%;" required oninvalid="this.setCustomValidity('silakan pilih item dalam daftar')" oninput="setCustomValidity('')">
-                            <option value="1">Sangat Baik</option>
-                            <option value="2" selected>Baik</option>
-                            <option value="3">Cukup</option>
-                            <option value="4">Kurang</option>
+                            <option value="4">Sangat Baik</option>
+                            <option value="3" selected>Baik</option>
+                            <option value="2">Cukup</option>
+                            <option value="1">Kurang</option>
                           </select>
 
                         </td>

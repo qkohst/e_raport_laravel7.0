@@ -47,4 +47,9 @@ class AnggotaKelas extends Model
     {
         return $this->hasOne('App\K13NilaiPtsPas');
     }
+
+    public function k13_nilai_akhir_raport()
+    {
+        return $this->hasMany('App\K13NilaiAkhirRaport');
+    }
 }

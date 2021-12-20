@@ -173,6 +173,14 @@ Route::group(['middleware' => ['auth']], function () {
           'uses' => ['index', 'create', 'store', 'update']
         ]);
 
+        Route::resource('kirimnilaiakhir', 'Guru\K13\KirimNilaiAkhirController',  [
+          'uses' => ['index', 'create', 'store']
+        ]);
+
+        Route::resource('nilaiterkirim', 'Guru\K13\LihatNilaiTerkirimController',  [
+          'uses' => ['index', 'create']
+        ]);
+
         // RUBAH DARI SISWA ID KE ANGGOTA ROMBEL ID (PADA ALL NILAI)
       });
       // End  Raport K13 Guru

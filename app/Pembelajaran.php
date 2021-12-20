@@ -58,4 +58,9 @@ class Pembelajaran extends Model
     {
         return $this->hasMany('App\K13NilaiPtsPas');
     }
+
+    public function k13_nilai_akhir_raport()
+    {
+        return $this->hasMany('App\K13NilaiAkhirRaport');
+    }
 }

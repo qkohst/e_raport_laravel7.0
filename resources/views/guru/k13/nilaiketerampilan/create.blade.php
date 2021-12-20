@@ -67,7 +67,7 @@
                     <thead class="bg-primary">
                       <tr>
                         <th rowspan="2" class="text-center" style="width: 100px;">No</th>
-                        <th rowspan="2" class="text-center">Nama anggota_kelas</th>
+                        <th rowspan="2" class="text-center">Nama Siswa</th>
                         <th colspan="{{$count_kd}}" class="text-center">Kompetensi Dasar</th>
                       </tr>
                       <tr>

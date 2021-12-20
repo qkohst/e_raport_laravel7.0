@@ -125,19 +125,24 @@
                       <th rowspan="2" class="text-center" style="width: 100px;">Bobot</th>
                       <th colspan="4" class="text-center" style="width: 200px;">Jumlah Penilaian</th>
                       <th colspan="2" class="text-center" style="width: 200px;">Input Nilai</th>
-                      <th rowspan="2" class="text-center" style="width: 100px;">Proses Deskripsi</th>
+                      <th colspan="2" class="text-center" style="width: 100px;">Status Nilai Raport</th>
                     </tr>
                     <tr>
                       <th class="text-center" style="width: 50px;">Peng</th>
                       <th class="text-center" style="width: 50px;">Ket</th>
                       <th class="text-center" style="width: 50px;">Skp Sprt</th>
                       <th class="text-center" style="width: 50px;">Skp Sosial</th>
+
                       <th class="text-center" style="width: 50px;">Peng</th>
                       <th class="text-center" style="width: 50px;">Ket</th>
                       <th class="text-center" style="width: 50px;">Skp Sprt</th>
                       <th class="text-center" style="width: 50px;">Skp Sosial</th>
+
                       <th class="text-center" style="width: 100px;">PTS</th>
                       <th class="text-center" style="width: 100px;">PAS</th>
+
+                      <th class="text-center" style="width: 100px;">Kirim Nilai</th>
+                      <th class="text-center" style="width: 100px;">Proses Deskripsi</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -282,6 +287,13 @@
                       <td><span class="badge badge-success">Sudah Input</span></td>
                       <td><span class="badge badge-success">Sudah Input</span></td>
                       @endif
+
+                      @if($penilaian->kirim_nilai_raport == 0)
+                      <td><span class="badge badge-danger">Belum Kirim</span></td>
+                      @else
+                      <td><span class="badge badge-success">Sudah Kirim</span></td>
+                      @endif
+
                       <td><span class="badge badge-danger">Belum Proses</span></td>
                     </tr>
                     @endforeach
