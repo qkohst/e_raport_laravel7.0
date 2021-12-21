@@ -51,9 +51,4 @@ class Siswa extends Model
     {
         return $this->hasOne('App\SiswaKeluar');
     }
-
-    public function anggota_ekstrakulikuler()
-    {
-        return $this->hasMany('App\AnggotaEkstrakulikuler');
-    }
 }

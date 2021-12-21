@@ -8,13 +8,13 @@ class AnggotaEkstrakulikuler extends Model
 {
     protected $table = 'anggota_ekstrakulikuler';
     protected $fillable = [
-        'siswa_id',
+        'anggota_kelas_id',
         'ekstrakulikuler_id',
     ];
 
-    public function siswa()
+    public function anggota_kelas()
     {
-        return $this->belongsTo('App\Siswa');
+        return $this->belongsTo('App\AnggotaKelas');
     }
 
     public function ekstrakulikuler()

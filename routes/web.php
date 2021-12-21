@@ -185,7 +185,7 @@ Route::group(['middleware' => ['auth']], function () {
           'uses' => ['index', 'create', 'store']
         ]);
 
-        // RUBAH DARI SISWA ID KE ANGGOTA ROMBEL ID (PADA ALL NILAI)
+        // RUBAH ANGGOTA EKSTRA DARI SISWA ID KE ANGGOTA ROMBEL ID (ADMIN )
       });
       // End  Raport K13 Guru
 
