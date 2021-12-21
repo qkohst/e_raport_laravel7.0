@@ -71,13 +71,9 @@ class EkstrakulikulerController extends Controller
         $ekstrakulikuler = Ekstrakulikuler::findorfail($id);
         $anggota_ekstrakulikuler = AnggotaEkstrakulikuler::where('ekstrakulikuler_id', $id)->get();
 
-        $id_anggota_ekstrakulikuler = AnggotaEkstrakulikuler::where('ekstrakulikuler_id', $id)->get('siswa_id');
-        $siswa_belum_masuk_ekstrakulikuler = Siswa::where('status', 1)->where('kelas_id', '<>', null)->whereNotIn('id', $id_anggota_ekstrakulikuler)->get();
+        $id_anggota_ekstrakulikuler = AnggotaEkstrakulikuler::where('ekstrakulikuler_id', $id)->get('anggota_kelas_id');
+        $siswa_belum_masuk_ekstrakulikuler = AnggotaKelas::whereNotIn('id', $id_anggota_ekstrakulikuler)->get();
 
-        foreach ($siswa_belum_masuk_ekstrakulikuler as $belum_masuk_ekstrakulikuler) {
-            $kelas_terakhir = AnggotaKelas::where('siswa_id', $belum_masuk_ekstrakulikuler->id)->orderBy('id', 'DESC')->first();
-            $belum_masuk_ekstrakulikuler->kelas_terakhir = $kelas_terakhir->kelas->nama_kelas;
-        }
         return view('admin.ekstrakulikuler.show', compact('title', 'ekstrakulikuler', 'anggota_ekstrakulikuler', 'siswa_belum_masuk_ekstrakulikuler'));
     }
 
@@ -126,15 +122,15 @@ class EkstrakulikulerController extends Controller
     public function store_anggota(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'siswa_id' => 'required',
+            'anggota_kelas_id' => 'required',
         ]);
         if ($validator->fails()) {
             return back()->with('toast_warning', 'Tidak ada siswa yang dipilih');
         } else {
-            $siswa_id = $request->input('siswa_id');
-            for ($count = 0; $count < count($siswa_id); $count++) {
+            $anggota_kelas_id = $request->input('anggota_kelas_id');
+            for ($count = 0; $count < count($anggota_kelas_id); $count++) {
                 $data = array(
-                    'siswa_id' => $siswa_id[$count],
+                    'anggota_kelas_id' => $anggota_kelas_id[$count],
                     'ekstrakulikuler_id'  => $request->ekstrakulikuler_id,
                 );
                 $insert_data[] = $data;

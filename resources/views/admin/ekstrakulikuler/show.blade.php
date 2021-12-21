@@ -62,7 +62,7 @@
                           <div class="form-group">
                             <div class="callout callout-info">
                               <label>
-                                {{$ekstrakulikuler->nama_ekstrakulikuler}} {{$ekstrakulikuler->tapel->tahun_pelajaran}} Semester
+                                Ekstrakulikuler {{$ekstrakulikuler->nama_ekstrakulikuler}} {{$ekstrakulikuler->tapel->tahun_pelajaran}} Semester
                                 @if($ekstrakulikuler->tapel->semester ==1)
                                 Ganjil
                                 @else
@@ -72,9 +72,9 @@
                               <p>Untuk menambahkan anggota ekstrakulikuler, silahkan pindahkan nama siswa ke kolom sebelah kanan lalu klik tombol simpan.</p>
                             </div>
                             <input type="hidden" name="ekstrakulikuler_id" value="{{$ekstrakulikuler->id}}">
-                            <select class="duallistbox" multiple="multiple" name="siswa_id[]">
+                            <select class="duallistbox" multiple="multiple" name="anggota_kelas_id[]">
                               @foreach($siswa_belum_masuk_ekstrakulikuler as $belum_masuk_ekstrakulikuler)
-                              <option value="{{$belum_masuk_ekstrakulikuler->id}}">{{$belum_masuk_ekstrakulikuler->nis}} | {{$belum_masuk_ekstrakulikuler->nisn}} | {{$belum_masuk_ekstrakulikuler->nama_lengkap}} ({{$belum_masuk_ekstrakulikuler->kelas_terakhir}})</option>
+                              <option value="{{$belum_masuk_ekstrakulikuler->id}}">{{$belum_masuk_ekstrakulikuler->siswa->nis}} | {{$belum_masuk_ekstrakulikuler->siswa->nisn}} | {{$belum_masuk_ekstrakulikuler->siswa->nama_lengkap}} ({{$belum_masuk_ekstrakulikuler->kelas->nama_kelas}})</option>
                               @endforeach
                             </select>
                           </div>
@@ -103,8 +103,8 @@
                       <th>NIS</th>
                       <th>NISN</th>
                       <th>Nama Siswa</th>
-                      <th>Tanggal Lahir</th>
                       <th>L/P</th>
+                      <th>Kelas</th>
                       <th>Hapus Anggota</th>
                     </tr>
                   </thead>
@@ -114,11 +114,11 @@
                     <?php $no++; ?>
                     <tr>
                       <td>{{$no}}</td>
-                      <td>{{$anggota->siswa->nis}}</td>
-                      <td>{{$anggota->siswa->nisn}}</td>
-                      <td>{{$anggota->siswa->nama_lengkap}}</td>
-                      <td>{{$anggota->siswa->tanggal_lahir}}</td>
-                      <td>{{$anggota->siswa->jenis_kelamin}}</td>
+                      <td>{{$anggota->anggota_kelas->siswa->nis}}</td>
+                      <td>{{$anggota->anggota_kelas->siswa->nisn}}</td>
+                      <td>{{$anggota->anggota_kelas->siswa->nama_lengkap}}</td>
+                      <td>{{$anggota->anggota_kelas->siswa->jenis_kelamin}}</td>
+                      <td>{{$anggota->anggota_kelas->kelas->nama_kelas}}</td>
                       <td>
                         <form action="{{ route('ekstrakulikuler.anggota.delete', $anggota->id) }}" method="POST">
                           @csrf
