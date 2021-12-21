@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Guru;
 
 use App\AnggotaEkstrakulikuler;
+use App\AnggotaKelas;
 use App\Ekstrakulikuler;
 use App\Guru;
 use App\Http\Controllers\Controller;
+use App\Kelas;
+use App\NilaiEkstrakulikuler;
 use App\Tapel;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -38,6 +42,7 @@ class NilaiEkstrakulikulerController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'ekstrakulikuler_id' => 'required',
+            'kelas_id' => 'required',
         ]);
         if ($validator->fails()) {
             return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
@@ -49,15 +54,27 @@ class NilaiEkstrakulikulerController extends Controller
             $data_ekstrakulikuler = Ekstrakulikuler::where('tapel_id', $tapel->id)->where('pembina_id', $guru->id)->orderBy('nama_ekstrakulikuler', 'ASC')->get();
 
             $ekstrakulikuler = Ekstrakulikuler::findorfail($request->ekstrakulikuler_id);
+            $kelas = Kelas::findorfail($request->kelas_id);
 
-            $data_anggota_ekstrakulikuler = AnggotaEkstrakulikuler::where('ekstrakulikuler_id', $ekstrakulikuler->id)
-            ->join('anggota_kelas', 'anggota_ekstrakulikuler.anggota_kelas_id', '=', 'anggota_kelas.id')
-            ->join('siswa', 'anggota_kelas.siswa_id', '=', 'siswa.id')
-            ->orderBy('anggota_kelas.kelas_id', 'ASC')
-            ->orderBy('siswa.nama_lengkap', 'ASC')
-            ->get();
+            $id_all_anggota_ekstra = AnggotaEkstrakulikuler::where('ekstrakulikuler_id', $ekstrakulikuler->id)->get('anggota_kelas_id');
+            $id_anggota_kelas_dipilih = AnggotaKelas::where('kelas_id', $request->kelas_id)->whereIn('id', $id_all_anggota_ekstra)->get('id');
 
-            return view('guru.nilaiekstra.create', compact('title', 'data_ekstrakulikuler', 'ekstrakulikuler', 'data_anggota_ekstrakulikuler'));
+            $id_kelas = AnggotaKelas::whereIn('id', $id_all_anggota_ekstra)->get('kelas_id');
+            $data_kelas = Kelas::whereIn('id', $id_kelas)->get();
+
+            $data_anggota_ekstrakulikuler = AnggotaEkstrakulikuler::where('ekstrakulikuler_id', $ekstrakulikuler->id)->whereIn('anggota_kelas_id', $id_anggota_kelas_dipilih)->get();
+            foreach ($data_anggota_ekstrakulikuler as $anggota) {
+                $nilai = NilaiEkstrakulikuler::where('ekstrakulikuler_id', $anggota->ekstrakulikuler_id)->where('anggota_ekstrakulikuler_id', $anggota->id)->first();
+                if (is_null($nilai)) {
+                    $anggota->nilai = null;
+                    $anggota->deskripsi = null;
+                } else {
+                    $anggota->nilai = $nilai->nilai;
+                    $anggota->deskripsi = $nilai->deskripsi;
+                }
+            }
+
+            return view('guru.nilaiekstra.create', compact('title', 'data_ekstrakulikuler', 'ekstrakulikuler', 'kelas', 'data_kelas', 'data_anggota_ekstrakulikuler'));
         }
     }
 
@@ -69,51 +86,27 @@ class NilaiEkstrakulikulerController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        // dd($request->all());
+        if (is_null($request->nilai)) {
+            return back()->with('toast_error', 'Tidak ditemukan data nilai ekstrakulikuler');
+        } else {
+            for ($cound_siswa = 0; $cound_siswa < count($request->anggota_ekstrakulikuler_id); $cound_siswa++) {
+                $data_nilai = array(
+                    'ekstrakulikuler_id' => $request->ekstrakulikuler_id,
+                    'anggota_ekstrakulikuler_id'  => $request->anggota_ekstrakulikuler_id[$cound_siswa],
+                    'nilai'  => $request->nilai[$cound_siswa],
+                    'deskripsi'  => $request->deskripsi[$cound_siswa],
+                    'created_at'  => Carbon::now(),
+                    'updated_at'  => Carbon::now(),
+                );
+                $cek_data = NilaiEkstrakulikuler::where('ekstrakulikuler_id', $request->ekstrakulikuler_id)->where('anggota_ekstrakulikuler_id', $request->anggota_ekstrakulikuler_id[$cound_siswa])->first();
+                if (is_null($cek_data)) {
+                    NilaiEkstrakulikuler::insert($data_nilai);
+                } else {
+                    $cek_data->update($data_nilai);
+                }
+            }
+            return redirect('guru/nilaiekstra')->with('toast_success', 'Nilai ekstrakulikuler berhasil disimpan');
+        }
     }
 }

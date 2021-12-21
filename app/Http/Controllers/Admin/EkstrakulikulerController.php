@@ -9,6 +9,7 @@ use App\Guru;
 use App\Http\Controllers\Controller;
 use App\Siswa;
 use App\Tapel;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -132,6 +133,8 @@ class EkstrakulikulerController extends Controller
                 $data = array(
                     'anggota_kelas_id' => $anggota_kelas_id[$count],
                     'ekstrakulikuler_id'  => $request->ekstrakulikuler_id,
+                    'created_at'  => Carbon::now(),
+                    'updated_at'  => Carbon::now(),
                 );
                 $insert_data[] = $data;
             }

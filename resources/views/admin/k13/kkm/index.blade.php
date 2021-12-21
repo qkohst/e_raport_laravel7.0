@@ -244,7 +244,12 @@
           type: "GET",
           dataType: "json",
           success: function(data) {
-            $('select[name="kelas_id"]').empty();
+            $('select[name="kelas_id"').empty();
+
+            $('select[name="kelas_id"]').append(
+              '<option value="">-- Pilih Kelas --</option>'
+            );
+            
             $.each(data, function(i, data) {
               $('select[name="kelas_id"]').append(
                 '<option value="' +

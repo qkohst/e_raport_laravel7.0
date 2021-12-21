@@ -64,7 +64,3 @@
 <!-- /.content-wrapper -->
 
 @include('layouts.main.footer')
-
-</body>
-
-</html>

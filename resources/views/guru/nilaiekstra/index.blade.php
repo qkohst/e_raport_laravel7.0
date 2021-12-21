@@ -39,11 +39,19 @@
                   <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Ekstrakulikuler</label>
                     <div class="col-sm-10">
-                      <select class="form-control select2" name="ekstrakulikuler_id" style="width: 100%;" required onchange="this.form.submit();">
+                      <select class="form-control select2" name="ekstrakulikuler_id" style="width: 100%;" required>
                         <option value="">-- Pilih Ekstrakulikuler --</option>
                         @foreach($data_ekstrakulikuler as $ekstrakulikuler)
                         <option value="{{$ekstrakulikuler->id}}">{{$ekstrakulikuler->nama_ekstrakulikuler}}</option>
                         @endforeach
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Kelas</label>
+                    <div class="col-sm-10">
+                      <select class="form-control select2" name="kelas_id" style="width: 100%;" required onchange="this.form.submit();">
+                        <!--  -->
                       </select>
                     </div>
                   </div>
@@ -65,6 +73,33 @@
 
 @include('layouts.main.footer')
 
-</body>
+<!-- ajax -->
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('select[name="ekstrakulikuler_id"]').on('change', function() {
+      var ekstrakulikuler_id = $(this).val();
+      if (ekstrakulikuler_id) {
+        $.ajax({
+          url: '/guru/getKelas/ekstra/' + ekstrakulikuler_id,
+          type: "GET",
+          dataType: "json",
+          success: function(data) {
+            $('select[name="kelas_id"').empty();
 
-</html>
+            $('select[name="kelas_id"]').append(
+              '<option value="">-- Pilih Kelas --</option>'
+            );
+
+            $.each(data, function(i, data) {
+              $('select[name="kelas_id"]').append(
+                '<option value="' +
+                data.id + '">' + data.nama_kelas + '</option>');
+            });
+          }
+        });
+      } else {
+        $('select[name="kelas_id"').empty();
+      }
+    });
+  });
+</script>

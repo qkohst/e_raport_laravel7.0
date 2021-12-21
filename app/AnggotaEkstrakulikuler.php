@@ -21,4 +21,9 @@ class AnggotaEkstrakulikuler extends Model
     {
         return $this->belongsTo('App\Ekstrakulikuler');
     }
+
+    public function nilai_ekstrakulikuler()
+    {
+        return $this->hasOne('App\NilaiEkstrakulikuler');
+    }
 }

@@ -27,4 +27,9 @@ class Ekstrakulikuler extends Model
     {
         return $this->hasMany('App\AnggotaEkstrakulikuler');
     }
+
+    public function nilai_ekstrakulikuler()
+    {
+        return $this->hasMany('App\NilaiEkstrakulikuler');
+    }
 }

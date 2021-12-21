@@ -9,6 +9,7 @@ use App\Kelas;
 use App\Mapel;
 use App\Siswa;
 use App\Tapel;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -147,7 +148,9 @@ class KelasController extends Controller
                 $data = array(
                     'siswa_id' => $siswa_id[$count],
                     'kelas_id'  => $request->kelas_id,
-                    'pendaftaran'  => $request->pendaftaran
+                    'pendaftaran'  => $request->pendaftaran,
+                    'created_at'  => Carbon::now(),
+                    'updated_at'  => Carbon::now(),
                 );
                 $insert_data[] = $data;
             }
