@@ -82,7 +82,7 @@
                       </thead>
                       <tbody>
                         <?php $no = 0; ?>
-                        @foreach($data_nilai_terkirim as $nilai_terkirim)
+                        @foreach($data_nilai_terkirim->sortBy('anggota_kelas.siswa.nama_lengkap') as $nilai_terkirim)
                         <?php $no++; ?>
                         <tr>
                           <td class="text-center" style="width: 100px;">{{$no}}</td>

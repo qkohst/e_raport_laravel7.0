@@ -131,6 +131,10 @@ Route::group(['middleware' => ['auth']], function () {
   Route::group(['middleware' => 'checkRole:2'], function () {
     Route::group(['prefix' => 'guru'], function () {
       // Raport K13 Guru
+      Route::resource('nilaiekstra', 'Guru\NilaiEkstrakulikulerController',  [
+        'uses' => ['index', 'create', 'store']
+      ]);
+
       Route::group(['middleware' => 'checkKurikulum:2013'], function () {
 
         Route::resource('kdk13', 'Guru\K13\KdMapelController',  [

@@ -117,7 +117,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="{{ route('kdk13.index') }}" class="nav-link">
+          <a href="{{ route('nilaiekstra.index') }}" class="nav-link">
             <i class="nav-icon fas fa-book-reader"></i>
             <p>
               Input Nilai Ekstrakulikuler

@@ -57,7 +57,7 @@
                     </thead>
                     <tbody>
                       <?php $no = 0; ?>
-                      @foreach($data_nilai_pts_pas as $nilai_pts_pas)
+                      @foreach($data_nilai_pts_pas->sortBy('anggota_kelas.siswa.nama_lengkap') as $nilai_pts_pas)
                       <?php $no++; ?>
                       <tr>
                         <td class="text-center">{{$no}}</td>

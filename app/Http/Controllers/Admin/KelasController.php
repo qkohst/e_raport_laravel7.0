@@ -75,7 +75,10 @@ class KelasController extends Controller
     {
         $title = 'Anggota Kelas';
         $kelas = Kelas::findorfail($id);
-        $anggota_kelas = AnggotaKelas::where('kelas_id', $id)->get();
+        $anggota_kelas = AnggotaKelas::join('siswa', 'anggota_kelas.siswa_id', '=', 'siswa.id')
+            ->orderBy('siswa.nama_lengkap', 'ASC')
+            ->where('anggota_kelas.kelas_id', $id)
+            ->get();
         $siswa_belum_masuk_kelas = Siswa::where('status', 1)->where('kelas_id', null)->get();
         foreach ($siswa_belum_masuk_kelas as $belum_masuk_kelas) {
             $kelas_sebelumhya = AnggotaKelas::where('siswa_id', $belum_masuk_kelas->id)->orderBy('id', 'DESC')->first();

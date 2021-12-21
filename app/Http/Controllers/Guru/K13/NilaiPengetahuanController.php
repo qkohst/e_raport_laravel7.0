@@ -76,7 +76,7 @@ class NilaiPengetahuanController extends Controller
                 return view('guru.k13.nilaipengetahuan.create', compact('title', 'kode_penilaian', 'pembelajaran', 'data_anggota_kelas', 'data_rencana_penilaian', 'data_kode_penilaian', 'count_kd'));
             } else {
                 foreach ($data_anggota_kelas as $anggota_kelas) {
-                    $data_nilai = K13NilaiPengetahuan::whereIn('k13_rencana_nilai_pengetahuan_id', $id_data_rencana_penilaian)->where('anggota_kelas_id', $anggota_kelas->id)->get();
+                    $data_nilai = K13NilaiPengetahuan::where('anggota_kelas_id', $anggota_kelas->id)->whereIn('k13_rencana_nilai_pengetahuan_id', $id_data_rencana_penilaian)->get();
                     $anggota_kelas->data_nilai = $data_nilai;
                 }
                 $title = 'Edit Nilai Pengetahuan';

@@ -126,7 +126,7 @@
                           <input type="hidden" name="kkm" value="{{$kkm->kkm}}">
 
                           <?php $no = 0; ?>
-                          @foreach($data_anggota_kelas as $anggota_kelas)
+                          @foreach($data_anggota_kelas->sortBy('siswa.nama_lengkap') as $anggota_kelas)
                           <?php $no++; ?>
                           <tr>
                             <td class="text-center" style="width: 100px;">{{$no}}</td>

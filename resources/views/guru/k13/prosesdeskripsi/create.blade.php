@@ -80,7 +80,7 @@
                           <input type="hidden" name="pembelajaran_id" value="{{$pembelajaran->id}}">
                           
                           <?php $no = 0; ?>
-                          @foreach($data_nilai_siswa as $nilai_siswa)
+                          @foreach($data_nilai_siswa->sortBy('anggota_kelas.siswa.nama_lengkap') as $nilai_siswa)
                           <?php $no++; ?>
                           <input type="hidden" name="nilai_akhir_raport_id[]" value="{{$nilai_siswa->id}}">
                           <tr>

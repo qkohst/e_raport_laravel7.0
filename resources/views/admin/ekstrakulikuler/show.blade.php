@@ -110,7 +110,7 @@
                   </thead>
                   <tbody>
                     <?php $no = 0; ?>
-                    @foreach($anggota_ekstrakulikuler as $anggota)
+                    @foreach($anggota_ekstrakulikuler->sortBy('anggota_kelas.siswa.nama_lengkap') as $anggota)
                     <?php $no++; ?>
                     <tr>
                       <td>{{$no}}</td>
