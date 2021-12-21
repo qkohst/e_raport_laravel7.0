@@ -156,61 +156,71 @@
         <li class="nav-header">HASIL RAPORT K-2013</li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
-            <i class="nav-icon far fa-envelope"></i>
+            <i class="nav-icon fas fa-list-ol"></i>
             <p>
               Hasil Penilaian
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
-          <ul class="nav nav-treeview">
+          <ul class="nav nav-treeview bg-secondary">
             <li class="nav-item">
               <a href="pages/mailbox/mailbox.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Inbox</p>
+                <i class="fas fa-check-square nav-icon"></i>
+                <p>Keterlaksanaan Penilaian</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="pages/mailbox/mailbox.html" class="nav-link">
+                <i class="fas fa-check-circle nav-icon"></i>
+                <p>Status Penilaian</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="pages/mailbox/mailbox.html" class="nav-link">
+                <i class="fas fa-clipboard-check nav-icon"></i>
+                <p>Nilai Raport Semester</p>
               </a>
             </li>
           </ul>
         </li>
 
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
-            <i class="nav-icon far fa-envelope"></i>
+
+        <li class="nav-item">
+          <a href="{{ route('k13validasi.index') }}" class="nav-link">
+            <i class="nav-icon fas fa-calendar-check"></i>
             <p>
-              Grafik Nilai Siswa
-              <i class="fas fa-angle-left right"></i>
+              Rekap Kehadiran Siswa
             </p>
           </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="pages/mailbox/mailbox.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Inbox</p>
-              </a>
-            </li>
-          </ul>
         </li>
 
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
-            <i class="nav-icon far fa-envelope"></i>
+            <i class="nav-icon fas fa-table"></i>
             <p>
               Leger Nilai Siswa
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
-          <ul class="nav nav-treeview">
+          <ul class="nav nav-treeview bg-secondary">
             <li class="nav-item">
               <a href="pages/mailbox/mailbox.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Inbox</p>
+                <i class="fas fa-eye nav-icon"></i>
+                <p>Lihat Leger</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="pages/mailbox/mailbox.html" class="nav-link">
+                <i class="fas fa-download nav-icon"></i>
+                <p>Download Leger</p>
               </a>
             </li>
           </ul>
         </li>
 
-        <li class="nav-item has-treeview">
+        <li class="nav-item has-treeview bg-secondary">
           <a href="#" class="nav-link">
-            <i class="nav-icon far fa-envelope"></i>
+            <i class="nav-icon fas fa-print"></i>
             <p>
               Cetak Raport
               <i class="fas fa-angle-left right"></i>
@@ -219,8 +229,16 @@
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="pages/mailbox/mailbox.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Inbox</p>
+                <i class="fas fa-print nav-icon"></i>
+                <p>Raport Tengah Semester</p>
+              </a>
+            </li>
+          </ul>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="pages/mailbox/mailbox.html" class="nav-link">
+                <i class="fas fa-print nav-icon"></i>
+                <p>Raport Semester</p>
               </a>
             </li>
           </ul>
@@ -243,6 +261,15 @@
         <!-- End Kurikulum 2006 -->
 
         @endif
+
+        <li class="nav-item bg-danger mt-2">
+          <a href="{{ route('logout') }}" class="nav-link" onclick="return confirm('Apakah anda yakin ingin keluar ?')">
+            <i class="nav-icon fas fa-sign-out-alt"></i>
+            <p>
+              Keluar / Logout
+            </p>
+          </a>
+        </li>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

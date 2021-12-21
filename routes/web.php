@@ -127,80 +127,107 @@ Route::group(['middleware' => ['auth']], function () {
   });
   // End Route User Admin 
 
-  // Route User Admin 
+  // Route User Guru 
   Route::group(['middleware' => 'checkRole:2'], function () {
     Route::group(['prefix' => 'guru'], function () {
 
-      Route::get('getKelas/ekstra/{id}', 'AjaxController@ajax_kelas_ekstra');
+      Route::get('akses', 'AuthController@ganti_akses')->name('akses');
 
-      Route::resource('nilaiekstra', 'Guru\NilaiEkstrakulikulerController',  [
-        'uses' => ['index', 'create', 'store']
-      ]);
+      // Route Guru Mapel
+      Route::group(['middleware' => 'checkAksesGuru:Guru Mapel'], function () {
+        Route::get('getKelas/ekstra/{id}', 'AjaxController@ajax_kelas_ekstra');
 
-      // Raport K13 Guru
-      Route::group(['middleware' => 'checkKurikulum:2013'], function () {
-
-        Route::resource('kdk13', 'Guru\K13\KdMapelController',  [
-          'uses' => ['index', 'create', 'store', 'update', 'destroy']
-        ]);
-
-        Route::resource('rencanapengetahuan', 'Guru\K13\RencanaNilaiPengetahuanController',  [
-          'uses' => ['index', 'create', 'store', 'show', 'edit', 'update']
-        ]);
-        Route::resource('rencanaketerampilan', 'Guru\K13\RencanaNilaiKeterampilanController',  [
-          'uses' => ['index', 'create', 'store', 'show', 'edit', 'update']
-        ]);
-        Route::resource('rencanaspiritual', 'Guru\K13\RencanaNilaiSpiritualController',  [
-          'uses' => ['index', 'create', 'store', 'show', 'edit', 'update']
-        ]);
-        Route::resource('rencanasosial', 'Guru\K13\RencanaNilaiSosialController',  [
-          'uses' => ['index', 'create', 'store', 'show', 'edit', 'update']
-        ]);
-        Route::resource('bobotnilai', 'Guru\K13\RencanaBobotPenilaianController',  [
-          'uses' => ['index', 'store', 'update']
-        ]);
-
-        Route::resource('nilaipengetahuan', 'Guru\K13\NilaiPengetahuanController',  [
-          'uses' => ['index', 'create', 'store', 'update']
-        ]);
-
-        Route::resource('nilaiketerampilan', 'Guru\K13\NilaiKeterampilanController',  [
-          'uses' => ['index', 'create', 'store', 'update']
-        ]);
-
-        Route::resource('nilaispiritual', 'Guru\K13\NilaiSpiritualController',  [
-          'uses' => ['index', 'create', 'store', 'update']
-        ]);
-
-        Route::resource('nilaisosial', 'Guru\K13\NilaiSosialController',  [
-          'uses' => ['index', 'create', 'store', 'update']
-        ]);
-
-        Route::resource('nilaiptspas', 'Guru\K13\NilaiPtsPasController',  [
-          'uses' => ['index', 'create', 'store', 'update']
-        ]);
-
-        Route::resource('kirimnilaiakhir', 'Guru\K13\KirimNilaiAkhirController',  [
+        Route::resource('nilaiekstra', 'Guru\NilaiEkstrakulikulerController',  [
           'uses' => ['index', 'create', 'store']
         ]);
 
-        Route::resource('nilaiterkirim', 'Guru\K13\LihatNilaiTerkirimController',  [
-          'uses' => ['index', 'create']
+        // Raport K13 Guru
+        Route::group(['middleware' => 'checkKurikulum:2013'], function () {
+
+          Route::resource('kdk13', 'Guru\K13\KdMapelController',  [
+            'uses' => ['index', 'create', 'store', 'update', 'destroy']
+          ]);
+
+          Route::resource('rencanapengetahuan', 'Guru\K13\RencanaNilaiPengetahuanController',  [
+            'uses' => ['index', 'create', 'store', 'show', 'edit', 'update']
+          ]);
+          Route::resource('rencanaketerampilan', 'Guru\K13\RencanaNilaiKeterampilanController',  [
+            'uses' => ['index', 'create', 'store', 'show', 'edit', 'update']
+          ]);
+          Route::resource('rencanaspiritual', 'Guru\K13\RencanaNilaiSpiritualController',  [
+            'uses' => ['index', 'create', 'store', 'show', 'edit', 'update']
+          ]);
+          Route::resource('rencanasosial', 'Guru\K13\RencanaNilaiSosialController',  [
+            'uses' => ['index', 'create', 'store', 'show', 'edit', 'update']
+          ]);
+          Route::resource('bobotnilai', 'Guru\K13\RencanaBobotPenilaianController',  [
+            'uses' => ['index', 'store', 'update']
+          ]);
+
+          Route::resource('nilaipengetahuan', 'Guru\K13\NilaiPengetahuanController',  [
+            'uses' => ['index', 'create', 'store', 'update']
+          ]);
+
+          Route::resource('nilaiketerampilan', 'Guru\K13\NilaiKeterampilanController',  [
+            'uses' => ['index', 'create', 'store', 'update']
+          ]);
+
+          Route::resource('nilaispiritual', 'Guru\K13\NilaiSpiritualController',  [
+            'uses' => ['index', 'create', 'store', 'update']
+          ]);
+
+          Route::resource('nilaisosial', 'Guru\K13\NilaiSosialController',  [
+            'uses' => ['index', 'create', 'store', 'update']
+          ]);
+
+          Route::resource('nilaiptspas', 'Guru\K13\NilaiPtsPasController',  [
+            'uses' => ['index', 'create', 'store', 'update']
+          ]);
+
+          Route::resource('kirimnilaiakhir', 'Guru\K13\KirimNilaiAkhirController',  [
+            'uses' => ['index', 'create', 'store']
+          ]);
+
+          Route::resource('nilaiterkirim', 'Guru\K13\LihatNilaiTerkirimController',  [
+            'uses' => ['index', 'create']
+          ]);
+
+          Route::resource('prosesdeskripsi', 'Guru\K13\ProsesDeskripsiSiswaController',  [
+            'uses' => ['index', 'create', 'store']
+          ]);
+
+          // RUBAH ANGGOTA EKSTRA DARI SISWA ID KE ANGGOTA ROMBEL ID (ADMIN )
+        });
+        // End  Raport K13 Guru
+
+        // Raport KTSP Guru
+        Route::group(['middleware' => 'checkKurikulum:2006'], function () {
+          # Code here
+        });
+        // End  Raport KTSP Guru
+      });
+      // End Route Guru Mapel
+
+      //Route Wali Kelas
+      Route::group(['middleware' => 'checkAksesGuru:Wali Kelas'], function () {
+
+        Route::resource('pesertadidik', 'Walikelas\PesertaDidikController',  [
+          'uses' => ['index']
         ]);
 
-        Route::resource('prosesdeskripsi', 'Guru\K13\ProsesDeskripsiSiswaController',  [
-          'uses' => ['index', 'create', 'store']
-        ]);
+        // Raport K13 Wali Kelas
+        Route::group(['middleware' => 'checkKurikulum:2013'], function () {
+          # Code here
+        });
+        // End  Raport K13 Wali Kelas
 
-        // RUBAH ANGGOTA EKSTRA DARI SISWA ID KE ANGGOTA ROMBEL ID (ADMIN )
+        // Raport KTSP Wali Kelas
+        Route::group(['middleware' => 'checkKurikulum:2006'], function () {
+          # Code here
+        });
+        // End  Raport KTSP Wali Kelas
       });
-      // End  Raport K13 Guru
-
-      // Raport KTSP Guru
-      Route::group(['middleware' => 'checkKurikulum:2006'], function () {
-      });
-      // End  Raport KTSP Guru
-
+      // End Route Wali Kelas
     });
   });
   // End Route User Guru 

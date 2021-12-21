@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Guru;
+use App\Kelas;
 use App\RiwayatLogin;
 use App\Rules\MatchOldPassword;
 use App\Tapel;
@@ -84,6 +86,13 @@ class AuthController extends Controller
                     'kurikulum' => $request->kurikulum,
                     'tapel_id' => $request->tahun_pelajaran,
                 ]);
+
+                if (Auth::user()->role == 2) {
+                    session([
+                        'akses_sebagai' => 'Guru Mapel',
+                    ]);
+                }
+
                 return redirect('/dashboard')->with('toast_success', 'Login berhasil');
             }
         }
@@ -122,6 +131,27 @@ class AuthController extends Controller
             RiwayatLogin::where('user_id', Auth::id())->update(['status_login' => false]);
             Auth::logout();
             return redirect('/')->with('toast_success', 'Password berhasil diganti, silahkan login !');
+        }
+    }
+
+    public function ganti_akses()
+    {
+        if (session()->get('akses_sebagai') == 'Guru Mapel') {
+            $guru = Guru::where('user_id', Auth::id())->first();
+            $cek_wali_kelas = Kelas::where('guru_id', $guru->id)->first();
+            if (!is_null($cek_wali_kelas)) {
+                session()->put([
+                    'akses_sebagai' => 'Wali Kelas',
+                ]);
+                return redirect('/dashboard')->with('toast_success', 'Akses wali kelas berhasil');
+            } else {
+                return back()->with('toast_error', 'Anda tidak memiliki akses sebagai wali kelas');
+            }
+        } else {
+            session()->put([
+                'akses_sebagai' => 'Guru Mapel',
+            ]);
+            return redirect('/dashboard')->with('toast_success', 'Akses guru mapel berhasil');
         }
     }
 }

@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
         // Middleware tambahan
         'checkRole' => \App\Http\Middleware\CheckRole::class,
         'checkKurikulum' => \App\Http\Middleware\CheckKurikulum::class,
+        'checkAksesGuru' => \App\Http\Middleware\CheckAksesGuru::class,
     ];
 }

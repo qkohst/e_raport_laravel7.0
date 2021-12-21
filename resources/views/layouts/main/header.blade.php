@@ -51,7 +51,7 @@
             @elseif(Auth::user()->role == 2)
             <img class="img-circle" src="/assets/dist/img/avatar/{{Auth::user()->guru->avatar}}" alt="User Image">
             <span class="username">{{Auth::user()->guru->nama_lengkap}}</span>
-            <span class="description">Guru</span>
+            <span class="description">{{session()->get('akses_sebagai')}}</span>
             @else
             <img class="img-circle" src="/assets/dist/img/avatar/{{Auth::user()->siswa->avatar}}" alt="User Image">
             <span class="username">{{Auth::user()->siswa->nama_lengkap}}</span>
@@ -68,11 +68,22 @@
               <i class="fas fa-user mr-2"></i> Profile
             </a>
             <div class="dropdown-divider"></div>
-            <a href="{{ route('gantipassword') }}" class="dropdown-item">
+            <a href="#" class="dropdown-item">
               <i class="fas fa-key mr-2"></i> Ganti Password
             </a>
+            @if(Auth::user()->role == 2)
             <div class="dropdown-divider"></div>
-            <a href="{{ route('logout') }}" class="dropdown-item dropdown-footer bg-danger"><i class="fas fa-sign-out-alt mr-1"></i> Logout</a>
+            <a href="{{ route('akses') }}" class="dropdown-item" onclick="return confirm('Apakah anda yakin akan ganti akses login ?')">
+              @if(session()->get('akses_sebagai') == 'Guru Mapel')
+              <i class="fas fa-chalkboard-teacher mr-2"></i> Akses Sebagai Wali Kelas
+              @else
+              <i class="fas fa-chalkboard-teacher mr-2"></i> Akses Sebagai Guru Mapel
+              @endif
+            </a>
+            @endif
+            <div class="dropdown-divider"></div>
+            <div class="dropdown-divider"></div>
+            <a href="{{ route('logout') }}" class="dropdown-item dropdown-footer bg-danger" onclick="return confirm('Apakah anda yakin ingin keluar ?')"><i class="fas fa-sign-out-alt mr-1"></i> Keluar / Logout</a>
           </div>
           <!-- End User Dropdown  -->
         </li>
