@@ -62,4 +62,9 @@ class AnggotaKelas extends Model
     {
         return $this->hasOne('App\KehadiranSiswa');
     }
+
+    public function prestasi_siswa()
+    {
+        return $this->hasMany('App\PrestasiSiswa');
+    }
 }
