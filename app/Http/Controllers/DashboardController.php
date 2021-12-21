@@ -144,12 +144,16 @@ class DashboardController extends Controller
                 ));
             } elseif (session()->get('akses_sebagai') == 'Wali Kelas') {
 
+                $id_kelas_diampu = Kelas::where('tapel_id', $tapel->id)->where('guru_id', $guru->id)->get('id');
+                $jumlah_anggota_kelas = count(AnggotaKelas::whereIn('kelas_id', $id_kelas_diampu)->get());
+
                 // Dashboard Wali Kelas
                 return view('dashboard.walikelas', compact(
                     'title',
                     'data_riwayat_login',
                     'sekolah',
                     'tapel',
+                    'jumlah_anggota_kelas',
                 ));
             }
         }

@@ -29,7 +29,7 @@
         </li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-list-ol"></i>
+            <i class="nav-icon fas fa-clipboard-list"></i>
             <p>
               Input Data dan Nilai
               <i class="fas fa-angle-left right"></i>
@@ -37,14 +37,14 @@
           </a>
           <ul class="nav nav-treeview bg-secondary">
             <li class="nav-item">
-              <a href="{{ route('nilaipengetahuan.index') }}" class="nav-link">
-                <i class="fas fa-edit nav-icon"></i>
+              <a href="{{ route('kehadiran.index') }}" class="nav-link">
+                <i class="fas fa-user-check nav-icon"></i>
                 <p>Input Kehadiran Siswa</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{ route('nilaipengetahuan.index') }}" class="nav-link">
-                <i class="fas fa-edit nav-icon"></i>
+                <i class="fas fa-trophy nav-icon"></i>
                 <p>Input Prestasi Siswa</p>
               </a>
             </li>

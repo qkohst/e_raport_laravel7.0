@@ -57,4 +57,9 @@ class AnggotaKelas extends Model
     {
         return $this->hasMany('App\K13NilaiAkhirRaport');
     }
+
+    public function kehadiran_siswa()
+    {
+        return $this->hasOne('App\KehadiranSiswa');
+    }
 }

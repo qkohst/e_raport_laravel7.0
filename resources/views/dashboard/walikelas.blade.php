@@ -46,7 +46,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Jumlah Siswa</span>
-              <span class="info-box-number">0 <small>siswa diampu</small></span>
+              <span class="info-box-number">{{$jumlah_anggota_kelas}} <small>siswa diampu</small></span>
             </div>
             <!-- /.info-box-content -->
           </div>

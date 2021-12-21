@@ -214,6 +214,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('pesertadidik', 'Walikelas\PesertaDidikController',  [
           'uses' => ['index']
         ]);
+        Route::resource('kehadiran', 'Walikelas\KehadiranSiswaController',  [
+          'uses' => ['index', 'store']
+        ]);
 
         // Raport K13 Wali Kelas
         Route::group(['middleware' => 'checkKurikulum:2013'], function () {
