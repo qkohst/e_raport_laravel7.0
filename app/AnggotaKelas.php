@@ -67,4 +67,9 @@ class AnggotaKelas extends Model
     {
         return $this->hasMany('App\PrestasiSiswa');
     }
+
+    public function catatan_wali_kelas()
+    {
+        return $this->hasOne('App\CatatanWaliKelas');
+    }
 }

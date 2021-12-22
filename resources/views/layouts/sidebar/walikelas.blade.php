@@ -49,7 +49,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('nilaipengetahuan.index') }}" class="nav-link">
+              <a href="{{ route('catatan.index') }}" class="nav-link">
                 <i class="fas fa-edit nav-icon"></i>
                 <p>Catatan Wali Kelas</p>
               </a>
