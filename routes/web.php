@@ -228,7 +228,9 @@ Route::group(['middleware' => ['auth']], function () {
 
         // Raport K13 Wali Kelas
         Route::group(['middleware' => 'checkKurikulum:2013'], function () {
-          # Code here
+          Route::resource('statusnilaiguru', 'Walikelas\StatusPenilaianGuruController',  [
+            'uses' => ['index']
+          ]);
         });
         // End  Raport K13 Wali Kelas
 

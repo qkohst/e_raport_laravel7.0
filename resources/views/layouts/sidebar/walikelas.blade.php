@@ -60,7 +60,7 @@
         @if(Session::get('kurikulum') == '2013')
 
         <!-- Kurikulum 2013 -->
-        <li class="nav-item">
+        <li class="nav-item bg-warning">
           <a href="{{ route('prosesdeskripsi.index') }}" class="nav-link">
             <i class="nav-icon fas fa-file-alt"></i>
             <p>
@@ -69,7 +69,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('prosesdeskripsi.index') }}" class="nav-link">
+          <a href="{{ route('statusnilaiguru.index') }}" class="nav-link">
             <i class="nav-icon fas fa-check-circle"></i>
             <p>
               Status Penilaian

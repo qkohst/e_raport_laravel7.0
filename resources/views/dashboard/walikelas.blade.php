@@ -59,7 +59,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Kirim Nilai</span>
-              <span class="info-box-number">0 <small>guru sudah kirim nilai</small></span>
+              <span class="info-box-number">{{$jumlah_kirim_nilai}} <small>guru sudah kirim nilai</small></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -72,7 +72,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Proses Deskripsi</span>
-              <span class="info-box-number">0 <small>guru sudah proses diskripsi</small></span>
+              <span class="info-box-number">{{$jumlah_proses_deskripsi}} <small>guru sudah proses diskripsi</small></span>
             </div>
             <!-- /.info-box-content -->
           </div>
