@@ -122,7 +122,6 @@ class StatusPenilaianGuruController extends Controller
                 $pembelajaran->deskripsi = 1;
             }
         }
-        // dd($data_pembelajaran_kelas);
         return view('walikelas.statusnilaiguru.index', compact('title', 'data_pembelajaran_kelas'));
     }
 }

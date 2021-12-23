@@ -231,6 +231,9 @@ Route::group(['middleware' => ['auth']], function () {
           Route::resource('statusnilaiguru', 'Walikelas\StatusPenilaianGuruController',  [
             'uses' => ['index']
           ]);
+          Route::resource('hasilnilai', 'Walikelas\HasilPengelolaanNilaiController',  [
+            'uses' => ['index']
+          ]);
         });
         // End  Raport K13 Wali Kelas
 

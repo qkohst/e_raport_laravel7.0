@@ -70,25 +70,29 @@ class NilaiPtsPasController extends Controller
      */
     public function store(Request $request)
     {
-        for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
+        if (is_null($request->anggota_kelas_id)) {
+            return back()->with('toast_error', 'Data siswa tidak ditemukan');
+        } else {
+            for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
 
-            if ($request->nilai_pts[$cound_siswa] >= 0 && $request->nilai_pts[$cound_siswa] <= 100 || $request->nilai_pas[$cound_siswa] >= 0 && $request->nilai_pas[$cound_siswa] <= 100) {
-                $data_nilai = array(
-                    'pembelajaran_id'  => $request->pembelajaran_id,
-                    'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
-                    'nilai_pts'  => ltrim($request->nilai_pts[$cound_siswa]),
-                    'nilai_pas'  => ltrim($request->nilai_pas[$cound_siswa]),
-                    'created_at'  => Carbon::now(),
-                    'updated_at'  => Carbon::now(),
-                );
-                $data_nilai_siswa[] = $data_nilai;
-            } else {
-                return back()->with('toast_error', 'Nilai harus berisi antara 0 s/d 100');
+                if ($request->nilai_pts[$cound_siswa] >= 0 && $request->nilai_pts[$cound_siswa] <= 100 || $request->nilai_pas[$cound_siswa] >= 0 && $request->nilai_pas[$cound_siswa] <= 100) {
+                    $data_nilai = array(
+                        'pembelajaran_id'  => $request->pembelajaran_id,
+                        'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
+                        'nilai_pts'  => ltrim($request->nilai_pts[$cound_siswa]),
+                        'nilai_pas'  => ltrim($request->nilai_pas[$cound_siswa]),
+                        'created_at'  => Carbon::now(),
+                        'updated_at'  => Carbon::now(),
+                    );
+                    $data_nilai_siswa[] = $data_nilai;
+                } else {
+                    return back()->with('toast_error', 'Nilai harus berisi antara 0 s/d 100');
+                }
             }
+            $store_data_nilai = $data_nilai_siswa;
+            K13NilaiPtsPas::insert($store_data_nilai);
+            return redirect('guru/nilaiptspas')->with('toast_success', 'Data nilai PTS & PAS berhasil disimpan.');
         }
-        $store_data_nilai = $data_nilai_siswa;
-        K13NilaiPtsPas::insert($store_data_nilai);
-        return redirect('guru/nilaiptspas')->with('toast_success', 'Data nilai PTS & PAS berhasil disimpan.');
     }
 
     /**

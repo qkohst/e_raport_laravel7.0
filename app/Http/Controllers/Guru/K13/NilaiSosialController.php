@@ -83,21 +83,25 @@ class NilaiSosialController extends Controller
      */
     public function store(Request $request)
     {
-        for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
-            for ($count_penilaian = 0; $count_penilaian < count($request->k13_rencana_nilai_sosial_id); $count_penilaian++) {
-                $data_nilai = array(
-                    'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
-                    'k13_rencana_nilai_sosial_id' => $request->k13_rencana_nilai_sosial_id[$count_penilaian],
-                    'nilai'  => ltrim($request->nilai[$count_penilaian][$cound_siswa]),
-                    'created_at'  => Carbon::now(),
-                    'updated_at'  => Carbon::now(),
-                );
-                $data_penilaian_siswa[] = $data_nilai;
+        if (is_null($request->anggota_kelas_id)) {
+            return back()->with('toast_error', 'Data siswa tidak ditemukan');
+        } else {
+            for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
+                for ($count_penilaian = 0; $count_penilaian < count($request->k13_rencana_nilai_sosial_id); $count_penilaian++) {
+                    $data_nilai = array(
+                        'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
+                        'k13_rencana_nilai_sosial_id' => $request->k13_rencana_nilai_sosial_id[$count_penilaian],
+                        'nilai'  => ltrim($request->nilai[$count_penilaian][$cound_siswa]),
+                        'created_at'  => Carbon::now(),
+                        'updated_at'  => Carbon::now(),
+                    );
+                    $data_penilaian_siswa[] = $data_nilai;
+                }
+                $store_data_penilaian = $data_penilaian_siswa;
             }
-            $store_data_penilaian = $data_penilaian_siswa;
+            K13NilaiSosial::insert($store_data_penilaian);
+            return redirect('guru/nilaisosial')->with('toast_success', 'Data nilai sosial berhasil disimpan.');
         }
-        K13NilaiSosial::insert($store_data_penilaian);
-        return redirect('guru/nilaisosial')->with('toast_success', 'Data nilai sosial berhasil disimpan.');
     }
 
     /**
