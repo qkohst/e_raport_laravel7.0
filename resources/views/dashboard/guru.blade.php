@@ -151,7 +151,7 @@
                     <?php $no++; ?>
                     <tr>
                       <td class="text-center">{{$no}}</td>
-                      <td>{{$penilaian->kelas->nama_kelas}}</td>
+                      <td class="text-center">{{$penilaian->kelas->nama_kelas}}</td>
                       <td>{{$penilaian->mapel->nama_mapel}}</td>
                       <td class="text-center">
                         @if(is_null($penilaian->kkm))

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\WaliKelas;
+namespace App\Http\Controllers\WaliKelas\K13;
 
 use App\AnggotaKelas;
 use App\Guru;
@@ -46,6 +46,7 @@ class HasilPengelolaanNilaiController extends Controller
             $anggota_kelas->data_nilai_kelompok_a = $data_nilai_kelompok_a;
             $anggota_kelas->data_nilai_kelompok_b = $data_nilai_kelompok_b;
         }
-        return view('walikelas.hasilnilai.index', compact('title', 'sekolah', 'data_anggota_kelas'));
+        return view('walikelas.k13.hasilnilai.index', compact('title', 'sekolah', 'data_anggota_kelas'));
     }
+
 }

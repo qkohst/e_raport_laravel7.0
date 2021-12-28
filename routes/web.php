@@ -228,10 +228,15 @@ Route::group(['middleware' => ['auth']], function () {
 
         // Raport K13 Wali Kelas
         Route::group(['middleware' => 'checkKurikulum:2013'], function () {
-          Route::resource('statusnilaiguru', 'Walikelas\StatusPenilaianGuruController',  [
+          Route::resource('statusnilaiguru', 'Walikelas\K13\StatusPenilaianGuruController',  [
             'uses' => ['index']
           ]);
-          Route::resource('hasilnilai', 'Walikelas\HasilPengelolaanNilaiController',  [
+          Route::resource('hasilnilai', 'Walikelas\K13\HasilPengelolaanNilaiController',  [
+            'uses' => ['index']
+          ]);
+
+          Route::get('leger/export', 'Walikelas\K13\LihatLegerNilaiController@export')->name('leger.export');
+          Route::resource('leger', 'Walikelas\K13\LihatLegerNilaiController',  [
             'uses' => ['index']
           ]);
         });

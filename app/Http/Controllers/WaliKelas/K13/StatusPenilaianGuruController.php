@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\WaliKelas;
+namespace App\Http\Controllers\WaliKelas\K13;
 
 use App\Guru;
 use App\Http\Controllers\Controller;
@@ -122,6 +122,7 @@ class StatusPenilaianGuruController extends Controller
                 $pembelajaran->deskripsi = 1;
             }
         }
-        return view('walikelas.statusnilaiguru.index', compact('title', 'data_pembelajaran_kelas'));
+        return view('walikelas.k13.statusnilaiguru.index', compact('title', 'data_pembelajaran_kelas'));
     }
+
 }
