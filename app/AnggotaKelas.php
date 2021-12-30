@@ -72,4 +72,9 @@ class AnggotaKelas extends Model
     {
         return $this->hasOne('App\CatatanWaliKelas');
     }
+
+    public function k13_deskripsi_sikap_siswa()
+    {
+        return $this->hasOne('App\K13DeskripsiSikapSiswa');
+    }
 }

@@ -39,8 +39,10 @@
                     <thead class="bg-info">
                       <tr>
                         <th class="text-center" style="width: 5%;">No</th>
-                        <th class="text-center" style="width: 35%;">Nama Siswa</th>
+                        <th class="text-center" style="width: 5%;">NIS</th>
+                        <th class="text-center" style="width: 25%;">Nama Siswa</th>
                         <th class="text-center" style="width: 5%;">L/P</th>
+                        <th class="text-center" style="width: 5%;">Kelas</th>
                         <th class="text-center">Catatan Perkembangan Peserta Didik</th>
                       </tr>
                     </thead>
@@ -51,8 +53,10 @@
                       <tr>
                         <input type="hidden" name="anggota_kelas_id[]" value="{{$anggota_kelas->id}}">
                         <td class="text-center">{{$no}}</td>
+                        <td class="text-center">{{$anggota_kelas->siswa->nis}}</td>
                         <td>{{$anggota_kelas->siswa->nama_lengkap}}</td>
                         <td class="text-center">{{$anggota_kelas->siswa->jenis_kelamin}}</td>
+                        <td class="text-center">{{$anggota_kelas->kelas->nama_kelas}}</td>
                         <td>
                           <textarea class="form-control" name="catatan_wali_kelas[]" rows="3" minlength="30" maxlength="200" required oninvalid="this.setCustomValidity('Catatan harus berisi antara 20 s/d 100 karekter')" oninput="setCustomValidity('')">{{$anggota_kelas->catatan_wali_kelas}}</textarea>
                         </td>

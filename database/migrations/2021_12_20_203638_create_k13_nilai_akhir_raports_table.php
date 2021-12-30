@@ -22,8 +22,8 @@ class CreateK13NilaiAkhirRaportsTable extends Migration
             $table->enum('predikat_pengetahuan', ['A', 'B', 'C', 'D']);
             $table->integer('nilai_keterampilan');
             $table->enum('predikat_keterampilan', ['A', 'B', 'C', 'D']);
-            $table->enum('nilai_spiritual', ['4', '3', '2', '1']);
-            $table->enum('nilai_sosial', ['4', '3', '2', '1']);
+            $table->enum('nilai_spiritual', ['1', '2', '3', '4']);
+            $table->enum('nilai_sosial', ['1', '2', '3', '4']);
             $table->timestamps();
 
             $table->foreign('pembelajaran_id')->references('id')->on('pembelajaran');

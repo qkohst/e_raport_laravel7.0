@@ -39,11 +39,13 @@
                     <thead class="bg-info">
                       <tr>
                         <th class="text-center" style="width: 5%;">No</th>
-                        <th class="text-center" style="width: 36%;">Nama Siswa</th>
+                        <th class="text-center" style="width: 5%;">NIS</th>
+                        <th class="text-center" style="width: 35%;">Nama Siswa</th>
                         <th class="text-center" style="width: 5%;">L/P</th>
-                        <th class="text-center" style="width: 18%;">Sakit</th>
-                        <th class="text-center" style="width: 18%;">Izin</th>
-                        <th class="text-center" style="width: 18%;">Tanpa Keterangan</th>
+                        <th class="text-center" style="width: 5%;">Kelas</th>
+                        <th class="text-center" style="width: 15%;">Sakit</th>
+                        <th class="text-center" style="width: 15%;">Izin</th>
+                        <th class="text-center" style="width: 15%;">Tanpa Keterangan</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -53,8 +55,10 @@
                       <tr>
                         <input type="hidden" name="anggota_kelas_id[]" value="{{$anggota_kelas->id}}">
                         <td class="text-center">{{$no}}</td>
+                        <td class="text-center">{{$anggota_kelas->siswa->nis}}</td>
                         <td>{{$anggota_kelas->siswa->nama_lengkap}}</td>
                         <td class="text-center">{{$anggota_kelas->siswa->jenis_kelamin}}</td>
+                        <td class="text-center">{{$anggota_kelas->kelas->nama_kelas}}</td>
                         <td>
                           <input type="number" class="form-control" name="sakit[]" value="{{$anggota_kelas->sakit}}" required oninvalid="this.setCustomValidity('Isian tidak boleh kosong')" oninput="setCustomValidity('')">
                         </td>

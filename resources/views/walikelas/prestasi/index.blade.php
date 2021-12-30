@@ -92,9 +92,11 @@
                   <thead>
                     <tr>
                       <th style="width: 5%;">No</th>
-                      <th style="width: 25%;">Nama Siswa</th>
+                      <th style="width: 5%;">NIS</th>
+                      <th style="width: 20%;">Nama Siswa</th>
                       <th style="width: 5%;">L/P</th>
-                      <th style="width: 15%;">Jenis Prestasi</th>
+                      <th style="width: 5%;">Kelas</th>
+                      <th style="width: 10%;">Jenis Prestasi</th>
                       <th>Deskripsi Prestasi</th>
                       <th style="width: 6%;">Hapus</th>
                     </tr>
@@ -105,8 +107,10 @@
                     <?php $no++; ?>
                     <tr>
                       <td>{{$no}}</td>
+                      <td>{{$prestasi->anggota_kelas->siswa->nis}}</td>
                       <td>{{$prestasi->anggota_kelas->siswa->nama_lengkap}}</td>
                       <td>{{$prestasi->anggota_kelas->siswa->jenis_kelamin}}</td>
+                      <td>{{$prestasi->anggota_kelas->kelas->nama_kelas}}</td>
                       <td>
                         @if($prestasi->jenis_prestasi == 1)
                         Akademik

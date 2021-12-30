@@ -60,11 +60,11 @@
         @if(Session::get('kurikulum') == '2013')
 
         <!-- Kurikulum 2013 -->
-        <li class="nav-item bg-warning">
-          <a href="{{ route('prosesdeskripsi.index') }}" class="nav-link">
+        <li class="nav-item">
+          <a href="{{ route('prosesdeskripsisikap.index') }}" class="nav-link">
             <i class="nav-icon fas fa-file-alt"></i>
             <p>
-              Proses Deskripsi Siswa
+              Proses Deskripsi Sikap
             </p>
           </a>
         </li>
