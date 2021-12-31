@@ -241,6 +241,10 @@ Route::group(['middleware' => ['auth']], function () {
           Route::resource('leger', 'Walikelas\K13\LihatLegerNilaiController',  [
             'uses' => ['index']
           ]);
+
+          Route::resource('raportsemester', 'Walikelas\K13\CetakRaportSemesterController',  [
+            'uses' => ['index', 'create', 'store', 'show']
+          ]);
         });
         // End  Raport K13 Wali Kelas
 

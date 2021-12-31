@@ -60,19 +60,12 @@
         @if(Session::get('kurikulum') == '2013')
 
         <!-- Kurikulum 2013 -->
-        <li class="nav-item">
-          <a href="{{ route('prosesdeskripsisikap.index') }}" class="nav-link">
-            <i class="nav-icon fas fa-file-alt"></i>
-            <p>
-              Proses Deskripsi Sikap
-            </p>
-          </a>
-        </li>
+
         <li class="nav-item">
           <a href="{{ route('statusnilaiguru.index') }}" class="nav-link">
             <i class="nav-icon fas fa-check-circle"></i>
             <p>
-              Status Penilaian
+              Cek Status Penilaian
             </p>
           </a>
         </li>
@@ -81,6 +74,14 @@
             <i class="nav-icon fas fa-check-square"></i>
             <p>
               Hasil Pengelolaan Nilai
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('prosesdeskripsisikap.index') }}" class="nav-link">
+            <i class="nav-icon fas fa-file-alt"></i>
+            <p>
+              Proses Deskripsi Sikap
             </p>
           </a>
         </li>
@@ -103,13 +104,13 @@
           </a>
           <ul class="nav nav-treeview bg-secondary">
             <li class="nav-item">
-              <a href="{{ route('rencanapengetahuan.index') }}" class="nav-link">
+              <a href="#" class="nav-link">
                 <i class="fas fa-print nav-icon"></i>
                 <p>Raport Tengah Semester</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('rencanaketerampilan.index') }}" class="nav-link">
+              <a href="{{ route('raportsemester.index') }}" class="nav-link">
                 <i class="fas fa-print nav-icon"></i>
                 <p>Raport Semester</p>
               </a>

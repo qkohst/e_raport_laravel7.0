@@ -8,6 +8,7 @@ use App\Ekstrakulikuler;
 use App\Exports\WaliKelasLegerNilaiExport;
 use App\Guru;
 use App\Http\Controllers\Controller;
+use App\K13DeskripsiSikapSiswa;
 use App\K13MappingMapel;
 use App\K13NilaiAkhirRaport;
 use App\Kelas;
@@ -62,6 +63,15 @@ class LihatLegerNilaiController extends Controller
 
             $anggota_kelas->rata_rata_pengetahuan = round($rt_pengetahuan, 0);
             $anggota_kelas->rata_rata_keterampilan = round($rt_keterampilan, 0);
+
+            $cek_deskripsi_sikap = K13DeskripsiSikapSiswa::where('anggota_kelas_id', $anggota_kelas->id)->first();
+            if (is_null($cek_deskripsi_sikap)) {
+                $anggota_kelas->nilai_spiritual = '-';
+                $anggota_kelas->nilai_sosial = '-';
+            } else {
+                $anggota_kelas->nilai_spiritual = $cek_deskripsi_sikap->nilai_spiritual;
+                $anggota_kelas->nilai_sosial = $cek_deskripsi_sikap->nilai_sosial;
+            }
 
             $anggota_kelas->data_nilai_ekstrakulikuler = Ekstrakulikuler::where('tapel_id', $tapel->id)->get();
 

@@ -44,6 +44,7 @@
         @endforeach
 
         <td colspan="2" align="center" bgcolor="gray"><strong>Rata-Rata</strong></td>
+        <td colspan="2" align="center" bgcolor="gray"><strong>Nilai Sikap</strong></td>
         <td colspan="3" align="center" bgcolor="gray"><strong>Kehadiran</strong></td>
         <td colspan="{{$count_ekstrakulikuler}}" align="center" bgcolor="gray"><strong>Ekstrakulikuler</strong></td>
       </tr>
@@ -61,6 +62,9 @@
 
         <td align="center" bgcolor="gray"><strong>Peng</strong></td>
         <td align="center" bgcolor="gray"><strong>Ket</strong></td>
+
+        <td align="center" bgcolor="gray"><strong>Spr</strong></td>
+        <td align="center" bgcolor="gray"><strong>Sos</strong></td>
 
         <td align="center" bgcolor="gray"><strong>S</strong></td>
         <td align="center" bgcolor="gray"><strong>I</strong></td>
@@ -97,6 +101,30 @@
 
         <td align="center">{{$anggota_kelas->rata_rata_pengetahuan}}</td>
         <td align="center">{{$anggota_kelas->rata_rata_keterampilan}}</td>
+
+        @if($anggota_kelas->nilai_spiritual == 1)
+        <td align="center">D</td>
+        @elseif($anggota_kelas->nilai_spiritual == 2)
+        <td align="center">C</td>
+        @elseif($anggota_kelas->nilai_spiritual == 3)
+        <td align="center">B</td>
+        @elseif($anggota_kelas->nilai_spiritual == 4)
+        <td align="center">A</td>
+        @else
+        <td align="center">-</td>
+        @endif
+
+        @if($anggota_kelas->nilai_sosial == 1)
+        <td align="center">D</td>
+        @elseif($anggota_kelas->nilai_sosial == 2)
+        <td align="center">C</td>
+        @elseif($anggota_kelas->nilai_sosial == 3)
+        <td align="center">B</td>
+        @elseif($anggota_kelas->nilai_sosial == 4)
+        <td align="center">A</td>
+        @else
+        <td align="center">-</td>
+        @endif
 
         @if(!is_null($anggota_kelas->kehadiran_siswa))
         <td align="center">{{$anggota_kelas->kehadiran_siswa->sakit}}</td>

@@ -1,0 +1,136 @@
+.page-break {
+  page-break-after: always;
+}
+.invoice-box {
+  padding: 10px;
+  font-size: 14px;
+  line-height: 17px;
+  font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+  color: #333;
+}
+
+/* Identitas */
+.invoice-box div.header {
+  position: fixed;
+  border-bottom: 1px solid #333;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+.invoice-box div.header table td{
+  padding: 0px;
+  vertical-align: top;
+  right: 0;
+  left: 0;
+}
+/* End Identitas  */
+
+/* Footer  */
+.invoice-box div.footer {
+  position: fixed;
+  font-size: smaller;
+  padding-top: 5px;
+  border-top: 1px solid #333;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+/* End Footer  */
+
+/* Conten */
+.invoice-box div.content {
+  padding-top: 80px;
+  right: 0;
+  left: 0;
+}
+.invoice-box div.content h3{
+  text-align: center;
+}
+
+.invoice-box table {
+  width: 100%;
+  line-height: inherit;
+  text-align: left;
+}
+
+/* Heading */
+.invoice-box table tr.heading td {
+  background: #eee;
+  border: 1px solid #333;
+  font-weight: bold;
+  text-align: center;
+  height: 25px;
+}
+
+/* Sikap */
+.invoice-box table tr.sikap td {
+  border: 1px solid #333;
+  padding: 6px;
+  height: 150px;
+}
+
+.invoice-box table tr.sikap td.predikat {
+  text-align: center;
+  vertical-align: top;
+}
+
+.invoice-box table tr.sikap td.description {
+  vertical-align: top;
+  text-align: justify;
+  line-height: 20px;
+  height: 150px;
+}
+/* End Sikap  */
+
+/* Nilai */
+.invoice-box table tr.nilai td {
+  border: 1px solid #333;
+  padding: 3px;
+}
+.invoice-box table tr.nilai td.center {
+  text-align: center;
+}
+.invoice-box table tr.nilai td.description {
+  text-align: justify;
+  font-size: 12px;
+  line-height: 14px;
+}
+/* .invoice-box table tr.nilai td.value {
+  border-left: 0;
+} */
+.invoice-box table tr.nilai td.false {
+  border-top: 0;
+  border-bottom: 0;
+  border-right: 0;
+}
+/* End Nilai */
+
+
+
+@media only screen and (max-width: 650px) {
+  .invoice-box table tr.top table td {
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+
+  .invoice-box table tr.information table td {
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+}
+
+/** RTL **/
+.invoice-box.rtl {
+  direction: rtl;
+  font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+}
+
+.invoice-box.rtl table {
+  text-align: right;
+}
+
+.invoice-box.rtl table tr td:nth-child(2) {
+  text-align: left;
+}

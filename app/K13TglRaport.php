@@ -12,6 +12,7 @@ class K13TglRaport extends Model
         'tempat_penerbitan',
         'tanggal_pembagian',
     ];
+    protected $dates = ['tanggal_pembagian'];
 
     public function tapel()
     {

@@ -55,6 +55,7 @@
                       @endforeach
 
                       <th colspan="2" class="text-center">Rata-Rata</th>
+                      <th colspan="2" class="text-center">Nilai Sikap</th>
                       <th colspan="3" class="text-center">Kehadiran</th>
                       <th colspan="{{$count_ekstrakulikuler}}" class="text-center">Ekstrakulikuler</th>
                     </tr>
@@ -72,6 +73,9 @@
 
                       <th class="text-center">Peng</th>
                       <th class="text-center">Ket</th>
+
+                      <th class="text-center">Spr</th>
+                      <th class="text-center">Sos</th>
 
                       <th class="text-center">S</th>
                       <th class="text-center">I</th>
@@ -108,6 +112,30 @@
 
                       <td class="text-center">{{$anggota_kelas->rata_rata_pengetahuan}}</td>
                       <td class="text-center">{{$anggota_kelas->rata_rata_keterampilan}}</td>
+
+                      @if($anggota_kelas->nilai_spiritual == 1)
+                      <td class="text-center">D</td>
+                      @elseif($anggota_kelas->nilai_spiritual == 2)
+                      <td class="text-center">C</td>
+                      @elseif($anggota_kelas->nilai_spiritual == 3)
+                      <td class="text-center">B</td>
+                      @elseif($anggota_kelas->nilai_spiritual == 4)
+                      <td class="text-center">A</td>
+                      @else
+                      <td class="text-center text-danger"><strong>0</strong></td>
+                      @endif
+
+                      @if($anggota_kelas->nilai_sosial == 1)
+                      <td class="text-center">D</td>
+                      @elseif($anggota_kelas->nilai_sosial == 2)
+                      <td class="text-center">C</td>
+                      @elseif($anggota_kelas->nilai_sosial == 3)
+                      <td class="text-center">B</td>
+                      @elseif($anggota_kelas->nilai_sosial == 4)
+                      <td class="text-center">A</td>
+                      @else
+                      <td class="text-center text-danger"><strong>0</strong></td>
+                      @endif
 
                       @if(!is_null($anggota_kelas->kehadiran_siswa))
                       <td class="text-center">{{$anggota_kelas->kehadiran_siswa->sakit}}</td>
