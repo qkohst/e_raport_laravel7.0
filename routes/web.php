@@ -224,8 +224,6 @@ Route::group(['middleware' => ['auth']], function () {
           'uses' => ['index', 'store']
         ]);
 
-        // LANJUT KE CATATAN WALI KELAS
-
         // Raport K13 Wali Kelas
         Route::group(['middleware' => 'checkKurikulum:2013'], function () {
           Route::resource('prosesdeskripsisikap', 'Walikelas\K13\ProsesDeskripsiSikapController',  [
@@ -242,6 +240,9 @@ Route::group(['middleware' => ['auth']], function () {
             'uses' => ['index']
           ]);
 
+          Route::resource('raportpts', 'Walikelas\K13\CetakRaportPTSController',  [
+            'uses' => ['index', 'store', 'show']
+          ]);
           Route::resource('raportsemester', 'Walikelas\K13\CetakRaportSemesterController',  [
             'uses' => ['index', 'store', 'show']
           ]);
