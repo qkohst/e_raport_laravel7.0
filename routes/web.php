@@ -132,6 +132,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('k13raportpts', 'Admin\K13\CetakRaportPTSController',  [
           'uses' => ['index', 'store', 'show']
         ]);
+        Route::resource('k13raportsemester', 'Admin\K13\CetakRaportSemesterController',  [
+          'uses' => ['index', 'store', 'show']
+        ]);
       });
       // End  Raport K13 Admin
 

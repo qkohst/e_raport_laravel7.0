@@ -219,7 +219,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/mailbox/mailbox.html" class="nav-link">
+              <a href="{{ route('k13raportsemester.index') }}" class="nav-link">
                 <i class="fas fa-print nav-icon"></i>
                 <p>Raport Semester</p>
               </a>
