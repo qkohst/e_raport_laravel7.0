@@ -81,6 +81,10 @@ Route::group(['middleware' => ['auth']], function () {
         'uses' => ['index', 'store', 'show', 'destroy']
       ]);
 
+      Route::resource('rekapkehadiran', 'Admin\RekapKehadiranSiswaController',  [
+        'uses' => ['index', 'store']
+      ]);
+
       // Raport K13 Admin
       Route::group(['middleware' => 'checkKurikulum:2013'], function () {
 
@@ -121,6 +125,9 @@ Route::group(['middleware' => ['auth']], function () {
         ]);
         Route::resource('k13nilairaport', 'Admin\K13\NilaiRaportSemesterController',  [
           'uses' => ['index', 'store']
+        ]);
+        Route::resource('k13leger', 'Admin\K13\LegerNilaiSiswaController',  [
+          'uses' => ['index', 'store', 'show']
         ]);
       });
       // End  Raport K13 Admin

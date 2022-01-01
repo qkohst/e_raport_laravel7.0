@@ -186,7 +186,7 @@
 
 
         <li class="nav-item">
-          <a href="{{ route('k13validasi.index') }}" class="nav-link">
+          <a href="{{ route('rekapkehadiran.index') }}" class="nav-link">
             <i class="nav-icon fas fa-calendar-check"></i>
             <p>
               Rekap Kehadiran Siswa
@@ -194,28 +194,13 @@
           </a>
         </li>
 
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
+        <li class="nav-item">
+          <a href="{{ route('k13leger.index') }}" class="nav-link">
             <i class="nav-icon fas fa-table"></i>
             <p>
               Leger Nilai Siswa
-              <i class="fas fa-angle-left right"></i>
             </p>
           </a>
-          <ul class="nav nav-treeview bg-secondary">
-            <li class="nav-item">
-              <a href="pages/mailbox/mailbox.html" class="nav-link">
-                <i class="fas fa-eye nav-icon"></i>
-                <p>Lihat Leger</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/mailbox/mailbox.html" class="nav-link">
-                <i class="fas fa-download nav-icon"></i>
-                <p>Download Leger</p>
-              </a>
-            </li>
-          </ul>
         </li>
 
         <li class="nav-item has-treeview">
