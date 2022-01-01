@@ -164,15 +164,15 @@
           </a>
           <ul class="nav nav-treeview bg-secondary">
             <li class="nav-item">
-              <a href="pages/mailbox/mailbox.html" class="nav-link">
-                <i class="fas fa-check-square nav-icon"></i>
-                <p>Keterlaksanaan Penilaian</p>
+              <a href="{{ route('k13statuspenilaian.index') }}" class="nav-link">
+                <i class="fas fa-check-circle nav-icon"></i>
+                <p>Status Penilaian</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/mailbox/mailbox.html" class="nav-link">
-                <i class="fas fa-check-circle nav-icon"></i>
-                <p>Status Penilaian</p>
+              <a href="{{ route('k13pengelolaannilai.index') }}" class="nav-link">
+                <i class="fas fa-check-square nav-icon"></i>
+                <p>Hasil Pengelolaan Nilai</p>
               </a>
             </li>
             <li class="nav-item">
@@ -218,7 +218,7 @@
           </ul>
         </li>
 
-        <li class="nav-item has-treeview bg-secondary">
+        <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-print"></i>
             <p>
@@ -226,15 +226,13 @@
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
-          <ul class="nav nav-treeview">
+          <ul class="nav nav-treeview bg-secondary">
             <li class="nav-item">
               <a href="pages/mailbox/mailbox.html" class="nav-link">
                 <i class="fas fa-print nav-icon"></i>
                 <p>Raport Tengah Semester</p>
               </a>
             </li>
-          </ul>
-          <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="pages/mailbox/mailbox.html" class="nav-link">
                 <i class="fas fa-print nav-icon"></i>

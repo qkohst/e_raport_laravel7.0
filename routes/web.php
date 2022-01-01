@@ -84,6 +84,7 @@ Route::group(['middleware' => ['auth']], function () {
       // Raport K13 Admin
       Route::group(['middleware' => 'checkKurikulum:2013'], function () {
 
+        // Setting Raport K13
         Route::resource('k13mapping', 'Admin\K13\MapingMapelController',  [
           'uses' => ['index', 'store']
         ]);
@@ -109,6 +110,14 @@ Route::group(['middleware' => ['auth']], function () {
         ]);
         Route::resource('k13validasi', 'Admin\K13\ValidasiController',  [
           'uses' => ['index']
+        ]);
+
+        // Hasil Raport K13 
+        Route::resource('k13statuspenilaian', 'Admin\K13\StatusPenilaianController',  [
+          'uses' => ['index', 'store']
+        ]);
+        Route::resource('k13pengelolaannilai', 'Admin\K13\PengelolaanNilaiController',  [
+          'uses' => ['index', 'store']
         ]);
       });
       // End  Raport K13 Admin
@@ -195,8 +204,6 @@ Route::group(['middleware' => ['auth']], function () {
           Route::resource('prosesdeskripsi', 'Guru\K13\ProsesDeskripsiSiswaController',  [
             'uses' => ['index', 'create', 'store']
           ]);
-
-          // RUBAH ANGGOTA EKSTRA DARI SISWA ID KE ANGGOTA ROMBEL ID (ADMIN )
         });
         // End  Raport K13 Guru
 
