@@ -176,7 +176,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/mailbox/mailbox.html" class="nav-link">
+              <a href="{{ route('k13nilairaport.index') }}" class="nav-link">
                 <i class="fas fa-clipboard-check nav-icon"></i>
                 <p>Nilai Raport Semester</p>
               </a>

@@ -119,6 +119,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('k13pengelolaannilai', 'Admin\K13\PengelolaanNilaiController',  [
           'uses' => ['index', 'store']
         ]);
+        Route::resource('k13nilairaport', 'Admin\K13\NilaiRaportSemesterController',  [
+          'uses' => ['index', 'store']
+        ]);
       });
       // End  Raport K13 Admin
 
