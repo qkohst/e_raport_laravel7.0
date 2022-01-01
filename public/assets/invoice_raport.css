@@ -46,6 +46,9 @@
 .invoice-box div.content h3{
   text-align: center;
 }
+.invoice-box div.content h1{
+  text-align: center;
+}
 
 .invoice-box table {
   width: 100%;

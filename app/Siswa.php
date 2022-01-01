@@ -31,6 +31,7 @@ class Siswa extends Model
         'avatar',
         'status'
     ];
+    protected $dates = ['tanggal_lahir'];
 
     public function user()
     {

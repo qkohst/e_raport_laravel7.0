@@ -85,7 +85,7 @@
                           <input type="hidden" name="data_type" value="1">
                           <input type="hidden" name="paper_size" value="{{$paper_size}}">
                           <input type="hidden" name="orientation" value="{{$orientation}}">
-                          <button type="submit" class="btn btn-info btn-sm">
+                          <button type="submit" class="btn btn-danger btn-sm">
                             <i class="fas fa-print"></i> Cetak Data
                           </button>
                         </form>
