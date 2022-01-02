@@ -266,7 +266,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('k13validasi.index') }}" class="nav-link">
+          <a href="{{ route('validasi.index') }}" class="nav-link">
             <i class="nav-icon fas fa-check-square"></i>
             <p>
               Validasi Data

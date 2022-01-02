@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admin\K13;
+namespace App\Http\Controllers\Admin\KTSP;
 
 use App\AnggotaEkstrakulikuler;
 use App\Ekstrakulikuler;
 use App\Guru;
 use App\Http\Controllers\Controller;
-use App\K13ButirSikap;
-use App\K13KdMapel;
-use App\K13KkmMapel;
-use App\K13MappingMapel;
 use App\K13TglRaport;
 use App\Kelas;
+use App\KtspKkmMapel;
+use App\KtspMappingMapel;
 use App\Mapel;
 use App\Pembelajaran;
 use App\Siswa;
@@ -57,29 +55,18 @@ class ValidasiController extends Controller
 
         // Validasi data Setting
         $id_mapel = Mapel::where('tapel_id', $tapel->id)->get('id');
-        $id_telah_mapping =  K13MappingMapel::whereIn('mapel_id', $id_mapel)->get('mapel_id');
+        $id_telah_mapping =  KtspMappingMapel::whereIn('mapel_id', $id_mapel)->get('mapel_id');
         $mapel_belum_mapping = Mapel::whereNotIn('id', $id_telah_mapping)->get();
         $count_mapel_belum_mapping = count($mapel_belum_mapping);
 
         $id_kelas = Kelas::where('tapel_id', $tapel->id)->orderBy('tingkatan_kelas', 'ASC')->get('id');
         $count_pembelajaran = Pembelajaran::whereIn('kelas_id', $id_kelas)->whereNotNull('guru_id')->where('status', 1)->count();
-        $count_kkm = K13KkmMapel::whereIn('kelas_id', $id_kelas)->whereIn('mapel_id', $id_mapel)->count();
-
-        $count_sikap_spiritual = K13ButirSikap::where('jenis_kompetensi', 1)->count();
-        $count_sikap_sosial = K13ButirSikap::where('jenis_kompetensi', 2)->count();
-
-        $data_kd = Mapel::where('tapel_id', $tapel->id)->orderBy('nama_mapel', 'ASC')->get();
-        foreach ($data_kd as $kd) {
-            $jumlah_kd_mapel = K13KdMapel::where('mapel_id', $kd->id)->count();
-            $kd->jumlah_kd_mapel = $jumlah_kd_mapel;
-        }
-        $count_data_kd = count($data_kd);
+        $count_kkm = KtspKkmMapel::whereIn('kelas_id', $id_kelas)->whereIn('mapel_id', $id_mapel)->count();
 
         $count_tgl_raport = K13TglRaport::where('tapel_id', $tapel->id)->count();
 
         // End validasi data Setting
 
-        return view('admin.k13.validasi.index', compact('title', 'tapel', 'count_guru', 'count_mapel', 'data_kelas', 'count_kelas', 'count_siswa', 'count_siswa_invalid', 'data_ekstrakulikuler', 'count_ekstrakulikuler', 'mapel_belum_mapping', 'count_mapel_belum_mapping', 'count_pembelajaran', 'count_kkm', 'count_sikap_spiritual', 'count_sikap_sosial', 'data_kd', 'count_data_kd', 'count_tgl_raport'));
+        return view('admin.ktsp.validasi.index', compact('title', 'tapel', 'count_guru', 'count_mapel', 'data_kelas', 'count_kelas', 'count_siswa', 'count_siswa_invalid', 'data_ekstrakulikuler', 'count_ekstrakulikuler', 'mapel_belum_mapping', 'count_mapel_belum_mapping', 'count_pembelajaran', 'count_kkm', 'count_tgl_raport'));
     }
-
 }

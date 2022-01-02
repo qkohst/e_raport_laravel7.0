@@ -157,6 +157,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('tglraport', 'Admin\KTSP\TglRaportController',  [
           'uses' => ['index', 'store', 'update', 'destroy']
         ]);
+        Route::resource('validasi', 'Admin\KTSP\ValidasiController',  [
+          'uses' => ['index']
+        ]);
       });
       // End  Raport KTSP Admin
 
