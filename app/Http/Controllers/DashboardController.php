@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AnggotaEkstrakulikuler;
 use App\AnggotaKelas;
 use App\Ekstrakulikuler;
 use App\Guru;
@@ -161,6 +162,30 @@ class DashboardController extends Controller
                     'jumlah_proses_deskripsi',
                 ));
             }
+        } elseif (Auth::user()->role == 3) {
+
+            $siswa = Siswa::where('user_id', Auth::user()->id)->first();
+
+            $data_id_kelas = Kelas::where('tapel_id', $tapel->id)->get('id');
+            $data_id_ekstrakulikuler = Ekstrakulikuler::where('tapel_id', $tapel->id)->get('id');
+
+            $anggota_kelas = AnggotaKelas::whereIn('kelas_id', $data_id_kelas)->where('siswa_id', $siswa->id)->first();
+            if (is_null($anggota_kelas)) {
+                $jumlah_ekstrakulikuler = '-';
+                $jumlah_mapel = '-';
+            } else {
+                $jumlah_ekstrakulikuler = AnggotaEkstrakulikuler::where('anggota_kelas_id', $anggota_kelas->id)->whereIn('ekstrakulikuler_id', $data_id_ekstrakulikuler)->count();
+                $jumlah_mapel = Pembelajaran::where('kelas_id', $anggota_kelas->kelas->id)->where('status', 1)->count();
+            }
+
+            return view('dashboard.siswa', compact(
+                'title',
+                'data_riwayat_login',
+                'sekolah',
+                'tapel',
+                'jumlah_ekstrakulikuler',
+                'jumlah_mapel',
+            ));
         }
     }
 
