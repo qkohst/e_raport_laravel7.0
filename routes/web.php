@@ -151,6 +151,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('kkm', 'Admin\KTSP\KkmMapelController',  [
           'uses' => ['index', 'store', 'update', 'destroy']
         ]);
+        Route::resource('interval', 'Admin\KTSP\IntervalPredikatController',  [
+          'uses' => ['index']
+        ]);
       });
       // End  Raport KTSP Admin
 
