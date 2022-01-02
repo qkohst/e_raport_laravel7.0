@@ -154,6 +154,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('interval', 'Admin\KTSP\IntervalPredikatController',  [
           'uses' => ['index']
         ]);
+        Route::resource('tglraport', 'Admin\KTSP\TglRaportController',  [
+          'uses' => ['index', 'store', 'update', 'destroy']
+        ]);
       });
       // End  Raport KTSP Admin
 
