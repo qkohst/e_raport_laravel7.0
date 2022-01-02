@@ -242,7 +242,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('k13kkm.index') }}" class="nav-link">
+          <a href="{{ route('kkm.index') }}" class="nav-link">
             <i class="nav-icon fas fa-greater-than-equal"></i>
             <p>
               KKM Mapel

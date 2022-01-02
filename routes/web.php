@@ -85,6 +85,8 @@ Route::group(['middleware' => ['auth']], function () {
         'uses' => ['index', 'store']
       ]);
 
+      Route::get('getKelas/ajax/{id}', 'AjaxController@ajax_kelas');
+
       // Raport K13 Admin
       Route::group(['middleware' => 'checkKurikulum:2013'], function () {
 
@@ -92,7 +94,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('k13mapping', 'Admin\K13\MapingMapelController',  [
           'uses' => ['index', 'store']
         ]);
-        Route::get('getKelas/ajax/{id}', 'AjaxController@ajax_kelas');
         Route::get('k13kkm/import', 'Admin\K13\KkmMapelController@format_import')->name('k13kkm.format_import');
         Route::post('k13kkm/import', 'Admin\K13\KkmMapelController@import')->name('k13kkm.import');
         Route::resource('k13kkm', 'Admin\K13\KkmMapelController',  [
@@ -144,6 +145,11 @@ Route::group(['middleware' => ['auth']], function () {
         // Setting Raport KTSP
         Route::resource('mapping', 'Admin\KTSP\MapingMapelController',  [
           'uses' => ['index', 'store']
+        ]);
+        Route::get('kkm/import', 'Admin\KTSP\KkmMapelController@format_import')->name('kkm.format_import');
+        Route::post('kkm/import', 'Admin\KTSP\KkmMapelController@import')->name('kkm.import');
+        Route::resource('kkm', 'Admin\KTSP\KkmMapelController',  [
+          'uses' => ['index', 'store', 'update', 'destroy']
         ]);
       });
       // End  Raport KTSP Admin

@@ -44,4 +44,8 @@ class Mapel extends Model
     {
         return $this->hasOne('App\KtspMappingMapel');
     }
+    public function ktsp_kkm_mapel()
+    {
+        return $this->hasOne('App\KtspKkmMapel');
+    }
 }
