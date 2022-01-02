@@ -23,6 +23,7 @@ class Mapel extends Model
         return $this->hasMany('App\Pembelajaran');
     }
 
+    // Relasi K13 
     public function k13_mapping_mapel()
     {
         return $this->hasOne('App\K13MappingMapel');
@@ -36,5 +37,11 @@ class Mapel extends Model
     public function k13_kd_mapel()
     {
         return $this->hasMany('App\K13KdMapel');
+    }
+
+    // Relasi KTSP
+    public function ktsp_mapping_mapel()
+    {
+        return $this->hasOne('App\KtspMappingMapel');
     }
 }

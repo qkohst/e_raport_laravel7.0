@@ -141,10 +141,10 @@ Route::group(['middleware' => ['auth']], function () {
       // Raport KTSP Admin
       Route::group(['middleware' => 'checkKurikulum:2006'], function () {
 
-        // Route::resource('k13mapping', 'Admin\K13\MapingMapelController',  [
-        //   'uses' => ['index', 'store', 'destroy']
-        // ]);
-
+        // Setting Raport KTSP
+        Route::resource('mapping', 'Admin\KTSP\MapingMapelController',  [
+          'uses' => ['index', 'store']
+        ]);
       });
       // End  Raport KTSP Admin
 

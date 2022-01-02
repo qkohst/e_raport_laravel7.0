@@ -34,7 +34,7 @@
 
             <div class="card-body">
 
-              <form action="{{ route('k13mapping.store') }}" method="POST">
+              <form action="{{ route('mapping.store') }}" method="POST">
                 @csrf
                 <div class="table-responsive">
                   <table class="table table-bordered table-striped table-hover">
@@ -58,8 +58,8 @@
                         <td>
                           <select class="form-control" name="kelompok[]" style="width: 100%;" required>
                             <option value="">-- Pilih Kelompok Mapel-- </option>
-                            <option value="A" @if($mapel->kelompok == 'A') selected @endif>Kelompok A </option>
-                            <option value="B" @if($mapel->kelompok == 'B') selected @endif>Kelompok B </option>
+                            <option value="1" @if($mapel->kelompok == 1) selected @endif>Mapel Wajib </option>
+                            <option value="2" @if($mapel->kelompok == 2) selected @endif>Muatan Lokal </option>
                           </select>
                         </td>
                         <td>

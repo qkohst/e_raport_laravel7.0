@@ -234,7 +234,7 @@
         <!-- Kurikulum 2006 -->
         <li class="nav-header">SETTING RAPORT KTSP 2006</li>
         <li class="nav-item">
-          <a href="{{ route('k13mapping.index') }}" class="nav-link">
+          <a href="{{ route('mapping.index') }}" class="nav-link">
             <i class="nav-icon fas fa-list-ol"></i>
             <p>
               Mapping Mapel
