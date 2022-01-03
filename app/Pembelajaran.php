@@ -29,6 +29,7 @@ class Pembelajaran extends Model
         return $this->belongsTo('App\Guru');
     }
 
+    // Relasi K13 
     public function k13_rencana_nilai_pengetahuan()
     {
         return $this->hasMany('App\K13RencanaNilaiPengetahuan');
@@ -67,5 +68,11 @@ class Pembelajaran extends Model
     public function k13_deskripsi_nilai_siswa()
     {
         return $this->hasMany('App\K13DeskripsiNilaiSiswa');
+    }
+
+    // Relasi KTSP 
+    public function ktsp_bobot_penilaian()
+    {
+        return $this->hasOne('App\KtspBobotPenilaian');
     }
 }

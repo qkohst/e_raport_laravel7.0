@@ -59,7 +59,8 @@
                           <select class="form-control" name="kelompok[]" style="width: 100%;" required>
                             <option value="">-- Pilih Kelompok Mapel-- </option>
                             <option value="1" @if($mapel->kelompok == 1) selected @endif>Mapel Wajib </option>
-                            <option value="2" @if($mapel->kelompok == 2) selected @endif>Muatan Lokal </option>
+                            <option value="2" @if($mapel->kelompok == 2) selected @endif>Pilihan </option>
+                            <option value="3" @if($mapel->kelompok == 3) selected @endif>Muatan Lokal </option>
                           </select>
                         </td>
                         <td>

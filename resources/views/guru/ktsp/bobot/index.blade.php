@@ -29,7 +29,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title"><i class="fas fa-list-alt"></i> {{$title}}</h3>
+              <h3 class="card-title"><i class="fas fa-balance-scale"></i> {{$title}}</h3>
             </div>
 
             <div class="card-body">
@@ -40,25 +40,29 @@
                       <th rowspan="2" class="text-center" style="width: 100px;">No</th>
                       <th rowspan="2" class="text-center">Mata Pelajaran</th>
                       <th rowspan="2" class="text-center">Kelas</th>
-                      <th colspan="3" class="text-center" style="width: 300px">Bobot Penilaian</th>
+                      <th colspan="4" class="text-center" style="width: 300px">Bobot Penilaian</th>
                       <th rowspan="2" class="text-center" style="width: 100px;">Aksi</th>
                     </tr>
                     <tr>
-                      <th class="text-center" style="width: 100px;">PH</th>
-                      <th class="text-center" style="width: 100px;">PTS</th>
-                      <th class="text-center" style="width: 100px;">PAS</th>
+                      <th class="text-center" style="width: 100px;">TUGAS</th>
+                      <th class="text-center" style="width: 100px;">UH</th>
+                      <th class="text-center" style="width: 100px;">UTS</th>
+                      <th class="text-center" style="width: 100px;">UAS</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php $no = 0; ?>
-                    @foreach($data_rencana_bobot_nilai as $bobot_nilai)
+                    @foreach($data_bobot_penilaian as $bobot_nilai)
                     <?php $no++; ?>
                     <tr>
                       <td class="text-center">{{$no}}</td>
                       <td>{{$bobot_nilai->mapel->nama_mapel}}</td>
                       <td class="text-center">{{$bobot_nilai->kelas->nama_kelas}}</td>
 
-                      @if(is_null($bobot_nilai->bobot_ph))
+                      @if(is_null($bobot_nilai->bobot_uh))
+                      <td class="text-center">
+                        <span class="badge badge-danger">0</span>
+                      </td>
                       <td class="text-center">
                         <span class="badge badge-danger">0</span>
                       </td>
@@ -70,17 +74,20 @@
                       </td>
                       @else
                       <td class="text-center">
-                        <span class="badge badge-success">{{$bobot_nilai->bobot_ph}}</span>
+                        <span class="badge badge-success">{{$bobot_nilai->bobot_tugas}}</span>
                       </td>
                       <td class="text-center">
-                        <span class="badge badge-success">{{$bobot_nilai->bobot_pts}}</span>
+                        <span class="badge badge-success">{{$bobot_nilai->bobot_uh}}</span>
                       </td>
                       <td class="text-center">
-                        <span class="badge badge-success">{{$bobot_nilai->bobot_pas}}</span>
+                        <span class="badge badge-success">{{$bobot_nilai->bobot_uts}}</span>
+                      </td>
+                      <td class="text-center">
+                        <span class="badge badge-success">{{$bobot_nilai->bobot_uas}}</span>
                       </td>
                       @endif
 
-                      @if(is_null($bobot_nilai->bobot_ph))
+                      @if(is_null($bobot_nilai->bobot_uh))
                       <td class="text-center">
                         <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-tambah{{$bobot_nilai->id}}">
                           <i class="fas fa-plus"></i>
@@ -88,7 +95,7 @@
                       </td>
                       <!-- Modal tambah  -->
                       <div class="modal fade" id="modal-tambah{{$bobot_nilai->id}}">
-                        <div class="modal-dialog modal-lg">
+                        <div class="modal-dialog modal-xl">
                           <div class="modal-content">
                             <div class="modal-header">
                               <h5 class="modal-title">Setting Bobot Penilaian</h5>
@@ -96,27 +103,33 @@
                                 <span aria-hidden="true">&times;</span>
                               </button>
                             </div>
-                            <form action="{{ route('bobotnilai.store') }}" method="POST">
+                            <form action="{{ route('bobot.store') }}" method="POST">
                               @csrf
                               <div class="modal-body">
                                 <input type="hidden" name="pembelajaran_id" value="{{$bobot_nilai->id}}">
                                 <div class="row">
-                                  <div class="col-sm-4">
+                                  <div class="col-sm-3">
                                     <div class="form-group">
-                                      <label>Penilaian Harian (PH)</label>
-                                      <input type="number" class="form-control" name="bobot_ph" value="2">
+                                      <label>Tugas</label>
+                                      <input type="number" class="form-control" name="bobot_tugas" value="1">
                                     </div>
                                   </div>
-                                  <div class="col-sm-4">
+                                  <div class="col-sm-3">
                                     <div class="form-group">
-                                      <label>Penilaian Tengah Semester (PTS)</label>
-                                      <input type="number" class="form-control" name="bobot_pts" value="1">
+                                      <label>Ulangan Harian (UH)</label>
+                                      <input type="number" class="form-control" name="bobot_uh" value="2">
                                     </div>
                                   </div>
-                                  <div class="col-sm-4">
+                                  <div class="col-sm-3">
                                     <div class="form-group">
-                                      <label>Penilaian Akhir Semester (PAS)</label>
-                                      <input type="number" class="form-control" name="bobot_pas" value="1">
+                                      <label>Ulangan Tengah Semester (UTS)</label>
+                                      <input type="number" class="form-control" name="bobot_uts" value="1">
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-3">
+                                    <div class="form-group">
+                                      <label>Ulangan Akhir Semester (UAS)</label>
+                                      <input type="number" class="form-control" name="bobot_uas" value="1">
                                     </div>
                                   </div>
                                 </div>
@@ -138,9 +151,9 @@
                         </button>
                       </td>
 
-                      <!-- Modal tambah  -->
+                      <!-- Modal edit  -->
                       <div class="modal fade" id="modal-edit{{$bobot_nilai->id}}">
-                        <div class="modal-dialog modal-lg">
+                        <div class="modal-dialog modal-xl">
                           <div class="modal-content">
                             <div class="modal-header">
                               <h5 class="modal-title">Edit Bobot Penilaian</h5>
@@ -149,28 +162,34 @@
                               </button>
                             </div>
 
-                            <form action="{{ route('bobotnilai.update', $bobot_nilai->id) }}" method="POST">
+                            <form action="{{ route('bobot.update', $bobot_nilai->id) }}" method="POST">
                               {{ method_field('PATCH') }}
                               @csrf
 
                               <div class="modal-body">
                                 <div class="row">
-                                  <div class="col-sm-4">
+                                  <div class="col-sm-3">
                                     <div class="form-group">
-                                      <label>Penilaian Harian (PH)</label>
-                                      <input type="number" class="form-control" name="bobot_ph" value="{{$bobot_nilai->bobot_ph}}">
+                                      <label>Tugas</label>
+                                      <input type="number" class="form-control" name="bobot_tugas" value="{{$bobot_nilai->bobot_tugas}}">
                                     </div>
                                   </div>
-                                  <div class="col-sm-4">
+                                  <div class="col-sm-3">
                                     <div class="form-group">
-                                      <label>Penilaian Tengah Semester (PTS)</label>
-                                      <input type="number" class="form-control" name="bobot_pts" value="{{$bobot_nilai->bobot_pts}}">
+                                      <label>Ulangan Harian (UH)</label>
+                                      <input type="number" class="form-control" name="bobot_uh" value="{{$bobot_nilai->bobot_uh}}">
                                     </div>
                                   </div>
-                                  <div class="col-sm-4">
+                                  <div class="col-sm-3">
                                     <div class="form-group">
-                                      <label>Penilaian Akhir Semester (PAS)</label>
-                                      <input type="number" class="form-control" name="bobot_pas" value="{{$bobot_nilai->bobot_pas}}">
+                                      <label>Ulangan Tengah Semester (UTS)</label>
+                                      <input type="number" class="form-control" name="bobot_uts" value="{{$bobot_nilai->bobot_uts}}">
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-3">
+                                    <div class="form-group">
+                                      <label>Ulangan Akhir Semester (UAS)</label>
+                                      <input type="number" class="form-control" name="bobot_uas" value="{{$bobot_nilai->bobot_uas}}">
                                     </div>
                                   </div>
                                 </div>
@@ -183,7 +202,7 @@
                           </div>
                         </div>
                       </div>
-                      <!-- End Modal tambah -->
+                      <!-- End Modal edit -->
 
                       @endif
 

@@ -12,8 +12,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-use function PHPUnit\Framework\isNull;
-
 class RencanaBobotPenilaianController extends Controller
 {
     /**
@@ -27,7 +25,7 @@ class RencanaBobotPenilaianController extends Controller
         $tapel = Tapel::findorfail(session()->get('tapel_id'));
 
         $guru = Guru::where('user_id', Auth::user()->id)->first();
-        $id_kelas = Kelas::where('tapel_id', $tapel->id)->get('id');
+    $id_kelas = Kelas::where('tapel_id', $tapel->id)->get('id');
         
         $data_rencana_bobot_nilai = Pembelajaran::where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->orderBy('mapel_id', 'ASC')->orderBy('kelas_id', 'ASC')->get();
         foreach ($data_rencana_bobot_nilai as $penilaian) {

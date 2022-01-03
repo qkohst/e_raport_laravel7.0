@@ -20,6 +20,8 @@ use App\K13RencanaNilaiPengetahuan;
 use App\K13RencanaNilaiSosial;
 use App\K13RencanaNilaiSpiritual;
 use App\Kelas;
+use App\KtspBobotPenilaian;
+use App\KtspKkmMapel;
 use App\Pembelajaran;
 use App\RiwayatLogin;
 use App\Sekolah;
@@ -74,61 +76,90 @@ class DashboardController extends Controller
                 $jumlah_ekstrakulikuler_diampu = Ekstrakulikuler::where('pembina_id', $guru->id)->count();
 
                 $data_capaian_penilaian = Pembelajaran::where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->get();
-                foreach ($data_capaian_penilaian as $penilaian) {
-                    $kkm = K13KkmMapel::where('mapel_id', $penilaian->mapel->id)->where('kelas_id', $penilaian->kelas_id)->first();
 
-                    $rencana_pengetahuan = K13RencanaNilaiPengetahuan::where('pembelajaran_id', $penilaian->id)->groupBy('kode_penilaian')->get();
-                    $penilaian->jumlah_rencana_pengetahuan = count($rencana_pengetahuan);
+                // Capaian Penilaian K13 
+                if (session()->get('kurikulum') == '2013') {
+                    foreach ($data_capaian_penilaian as $penilaian) {
+                        $kkm = K13KkmMapel::where('mapel_id', $penilaian->mapel->id)->where('kelas_id', $penilaian->kelas_id)->first();
 
-                    $rencana_keterampilan = K13RencanaNilaiKeterampilan::where('pembelajaran_id', $penilaian->id)->groupBy('kode_penilaian')->get();
-                    $penilaian->jumlah_rencana_keterampilan = count($rencana_keterampilan);
+                        $rencana_pengetahuan = K13RencanaNilaiPengetahuan::where('pembelajaran_id', $penilaian->id)->groupBy('kode_penilaian')->get();
+                        $penilaian->jumlah_rencana_pengetahuan = count($rencana_pengetahuan);
 
-                    $rencana_spiritual = K13RencanaNilaiSpiritual::where('pembelajaran_id', $penilaian->id)->get();
-                    $penilaian->jumlah_rencana_spiritual = count($rencana_spiritual);
+                        $rencana_keterampilan = K13RencanaNilaiKeterampilan::where('pembelajaran_id', $penilaian->id)->groupBy('kode_penilaian')->get();
+                        $penilaian->jumlah_rencana_keterampilan = count($rencana_keterampilan);
 
-                    $rencana_sosial = K13RencanaNilaiSosial::where('pembelajaran_id', $penilaian->id)->get();
-                    $penilaian->jumlah_rencana_sosial = count($rencana_sosial);
+                        $rencana_spiritual = K13RencanaNilaiSpiritual::where('pembelajaran_id', $penilaian->id)->get();
+                        $penilaian->jumlah_rencana_spiritual = count($rencana_spiritual);
 
-                    $id_rencana_nilai_pengetahuan = K13RencanaNilaiPengetahuan::where('pembelajaran_id', $penilaian->id)->groupBy('kode_penilaian')->get('id');
-                    $pengetahuan_telah_dinilai = K13NilaiPengetahuan::whereIn('k13_rencana_nilai_pengetahuan_id', $id_rencana_nilai_pengetahuan)->groupBy('k13_rencana_nilai_pengetahuan_id')->get();
-                    $penilaian->jumlah_pengetahuan_telah_dinilai = count($pengetahuan_telah_dinilai);
+                        $rencana_sosial = K13RencanaNilaiSosial::where('pembelajaran_id', $penilaian->id)->get();
+                        $penilaian->jumlah_rencana_sosial = count($rencana_sosial);
 
-                    $id_rencana_nilai_keterampilan = K13RencanaNilaiKeterampilan::where('pembelajaran_id', $penilaian->id)->groupBy('kode_penilaian')->get('id');
-                    $keterampilan_telah_dinilai = K13NilaiKeterampilan::whereIn('k13_rencana_nilai_keterampilan_id', $id_rencana_nilai_keterampilan)->groupBy('k13_rencana_nilai_keterampilan_id')->get();
-                    $penilaian->jumlah_keterampilan_telah_dinilai = count($keterampilan_telah_dinilai);
+                        $id_rencana_nilai_pengetahuan = K13RencanaNilaiPengetahuan::where('pembelajaran_id', $penilaian->id)->groupBy('kode_penilaian')->get('id');
+                        $pengetahuan_telah_dinilai = K13NilaiPengetahuan::whereIn('k13_rencana_nilai_pengetahuan_id', $id_rencana_nilai_pengetahuan)->groupBy('k13_rencana_nilai_pengetahuan_id')->get();
+                        $penilaian->jumlah_pengetahuan_telah_dinilai = count($pengetahuan_telah_dinilai);
 
-                    $id_rencana_nilai_spiritual = K13RencanaNilaiSpiritual::where('pembelajaran_id', $penilaian->id)->get('id');
-                    $spiritual_telah_dinilai = K13NilaiSpiritual::whereIn('k13_rencana_nilai_spiritual_id', $id_rencana_nilai_spiritual)->groupBy('k13_rencana_nilai_spiritual_id')->get();
-                    $penilaian->jumlah_spiritual_telah_dinilai = count($spiritual_telah_dinilai);
+                        $id_rencana_nilai_keterampilan = K13RencanaNilaiKeterampilan::where('pembelajaran_id', $penilaian->id)->groupBy('kode_penilaian')->get('id');
+                        $keterampilan_telah_dinilai = K13NilaiKeterampilan::whereIn('k13_rencana_nilai_keterampilan_id', $id_rencana_nilai_keterampilan)->groupBy('k13_rencana_nilai_keterampilan_id')->get();
+                        $penilaian->jumlah_keterampilan_telah_dinilai = count($keterampilan_telah_dinilai);
 
-                    $id_rencana_nilai_sosial = K13RencanaNilaiSosial::where('pembelajaran_id', $penilaian->id)->get('id');
-                    $sosial_telah_dinilai = K13NilaiSosial::whereIn('k13_rencana_nilai_sosial_id', $id_rencana_nilai_sosial)->groupBy('k13_rencana_nilai_sosial_id')->get();
-                    $penilaian->jumlah_sosial_telah_dinilai = count($sosial_telah_dinilai);
+                        $id_rencana_nilai_spiritual = K13RencanaNilaiSpiritual::where('pembelajaran_id', $penilaian->id)->get('id');
+                        $spiritual_telah_dinilai = K13NilaiSpiritual::whereIn('k13_rencana_nilai_spiritual_id', $id_rencana_nilai_spiritual)->groupBy('k13_rencana_nilai_spiritual_id')->get();
+                        $penilaian->jumlah_spiritual_telah_dinilai = count($spiritual_telah_dinilai);
 
-                    $nilai_pts_pas = K13NilaiPtsPas::where('pembelajaran_id', $penilaian->id)->get();
-                    $penilaian->nilai_pts_pas = count($nilai_pts_pas);
+                        $id_rencana_nilai_sosial = K13RencanaNilaiSosial::where('pembelajaran_id', $penilaian->id)->get('id');
+                        $sosial_telah_dinilai = K13NilaiSosial::whereIn('k13_rencana_nilai_sosial_id', $id_rencana_nilai_sosial)->groupBy('k13_rencana_nilai_sosial_id')->get();
+                        $penilaian->jumlah_sosial_telah_dinilai = count($sosial_telah_dinilai);
 
-                    $nilai_akhir_raport = K13NilaiAkhirRaport::where('pembelajaran_id', $penilaian->id)->get();
-                    $penilaian->kirim_nilai_raport = count($nilai_akhir_raport);
+                        $nilai_pts_pas = K13NilaiPtsPas::where('pembelajaran_id', $penilaian->id)->get();
+                        $penilaian->nilai_pts_pas = count($nilai_pts_pas);
 
-                    $deskripsi_nilai_akhir = K13DeskripsiNilaiSiswa::where('pembelajaran_id', $penilaian->id)->get();
-                    $penilaian->proses_deskripsi = count($deskripsi_nilai_akhir);
+                        $nilai_akhir_raport = K13NilaiAkhirRaport::where('pembelajaran_id', $penilaian->id)->get();
+                        $penilaian->kirim_nilai_raport = count($nilai_akhir_raport);
 
-                    $bobot = K13RencanaBobotPenilaian::where('pembelajaran_id', $penilaian->id)->first();
-                    if (is_null($bobot)) {
-                        $penilaian->bobot_ph = null;
-                        $penilaian->bobot_pts = null;
-                        $penilaian->bobot_pas = null;
-                    } else {
-                        $penilaian->bobot_ph = $bobot->bobot_ph;
-                        $penilaian->bobot_pts = $bobot->bobot_pts;
-                        $penilaian->bobot_pas = $bobot->bobot_pas;
+                        $deskripsi_nilai_akhir = K13DeskripsiNilaiSiswa::where('pembelajaran_id', $penilaian->id)->get();
+                        $penilaian->proses_deskripsi = count($deskripsi_nilai_akhir);
+
+                        $bobot = K13RencanaBobotPenilaian::where('pembelajaran_id', $penilaian->id)->first();
+                        if (is_null($bobot)) {
+                            $penilaian->bobot_ph = null;
+                            $penilaian->bobot_pts = null;
+                            $penilaian->bobot_pas = null;
+                        } else {
+                            $penilaian->bobot_ph = $bobot->bobot_ph;
+                            $penilaian->bobot_pts = $bobot->bobot_pts;
+                            $penilaian->bobot_pas = $bobot->bobot_pas;
+                        }
+
+                        if (is_null($kkm)) {
+                            $penilaian->kkm = null;
+                        } else {
+                            $penilaian->kkm = $kkm->kkm;
+                        }
                     }
+                } elseif (session()->get('kurikulum') == '2006') {
+                    // Capaian Penilaian KTSP
+                    foreach ($data_capaian_penilaian as $penilaian) {
+                        $kkm = KtspKkmMapel::where('mapel_id', $penilaian->mapel->id)->where('kelas_id', $penilaian->kelas_id)->first();
 
-                    if (is_null($kkm)) {
-                        $penilaian->kkm = null;
-                    } else {
-                        $penilaian->kkm = $kkm->kkm;
+
+                        $bobot = KtspBobotPenilaian::where('pembelajaran_id', $penilaian->id)->first();
+                        if (is_null($bobot)) {
+                            $penilaian->bobot_tugas = null;
+                            $penilaian->bobot_uh = null;
+                            $penilaian->bobot_uts = null;
+                            $penilaian->bobot_uas = null;
+                        } else {
+                            $penilaian->bobot_tugas = $bobot->bobot_tugas;
+                            $penilaian->bobot_uh = $bobot->bobot_uh;
+                            $penilaian->bobot_uts = $bobot->bobot_uts;
+                            $penilaian->bobot_uas = $bobot->bobot_uas;
+                        }
+
+                        if (is_null($kkm)) {
+                            $penilaian->kkm = null;
+                        } else {
+                            $penilaian->kkm = $kkm->kkm;
+                        }
                     }
                 }
 

@@ -167,10 +167,78 @@
         <!-- Kurikulum 2006 -->
         <li class="nav-header">RAPORT KURIKULUM 2006</li>
         <li class="nav-item">
+          <a href="{{ route('bobot.index') }}" class="nav-link">
+            <i class="nav-icon fas fa-balance-scale"></i>
+            <p>
+              Bobot Penilaian
+            </p>
+          </a>
+        </li>
+        <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-list-ol"></i>
             <p>
-              Mapping Mapel
+              Input Nilai
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview bg-secondary">
+            <li class="nav-item">
+              <a href="{{ route('nilaipengetahuan.index') }}" class="nav-link">
+                <i class="fas fa-edit nav-icon"></i>
+                <p>Rata-Rata Tugas</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('nilaipengetahuan.index') }}" class="nav-link">
+                <i class="fas fa-edit nav-icon"></i>
+                <p>Rata-Rata UH</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('nilaiketerampilan.index') }}" class="nav-link">
+                <i class="fas fa-edit nav-icon"></i>
+                <p>Nilai UTS & UAS</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('nilaiekstra.index') }}" class="nav-link">
+            <i class="nav-icon fas fa-book-reader"></i>
+            <p>
+              Input Nilai Ekstrakulikuler
+            </p>
+          </a>
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-clipboard-check"></i>
+            <p>
+              Nilai Akhir Raport
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview bg-secondary">
+            <li class="nav-item">
+              <a href="{{ route('kirimnilaiakhir.index') }}" class="nav-link">
+                <i class="fas fa-paper-plane nav-icon"></i>
+                <p>Kirim Nilai Akhir</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('nilaiterkirim.index') }}" class="nav-link">
+                <i class="fas fa-eye nav-icon"></i>
+                <p>Lihat Nilai Terkirim</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('prosesdeskripsi.index') }}" class="nav-link">
+            <i class="nav-icon fas fa-file-alt"></i>
+            <p>
+              Input Deskripsi Siswa
             </p>
           </a>
         </li>

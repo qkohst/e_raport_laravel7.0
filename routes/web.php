@@ -240,7 +240,9 @@ Route::group(['middleware' => ['auth']], function () {
 
         // Raport KTSP Guru
         Route::group(['middleware' => 'checkKurikulum:2006'], function () {
-          # Code here
+          Route::resource('bobot', 'Guru\KTSP\BobotPenilaianController',  [
+            'uses' => ['index', 'store', 'update']
+          ]);
         });
         // End  Raport KTSP Guru
       });
@@ -325,4 +327,4 @@ Route::group(['middleware' => ['auth']], function () {
 
 });
 
-// LANJUT KE MENU IMPORT NILAI 
+// LANJUT KE GURU KTSP
