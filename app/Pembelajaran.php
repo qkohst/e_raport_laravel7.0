@@ -95,4 +95,9 @@ class Pembelajaran extends Model
     {
         return $this->hasMany('App\KtspNilaiAkhirRaport');
     }
+
+    public function ktsp_deskripsi_nilai_siswa()
+    {
+        return $this->hasMany('App\KtspDeskripsiNilaiSiswa');
+    }
 }

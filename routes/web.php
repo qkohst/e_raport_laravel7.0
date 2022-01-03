@@ -255,6 +255,10 @@ Route::group(['middleware' => ['auth']], function () {
           Route::resource('lihatnilai', 'Guru\KTSP\LihatNilaiController',  [
             'uses' => ['index', 'create']
           ]);
+
+          Route::resource('inputdeskripsi', 'Guru\KTSP\InputDeskripsiSiswaController',  [
+            'uses' => ['index', 'create', 'store']
+          ]);
         });
         // End  Raport KTSP Guru
       });

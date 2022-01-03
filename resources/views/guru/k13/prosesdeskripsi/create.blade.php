@@ -78,7 +78,7 @@
                         </thead>
                         <tbody>
                           <input type="hidden" name="pembelajaran_id" value="{{$pembelajaran->id}}">
-                          
+
                           <?php $no = 0; ?>
                           @foreach($data_nilai_siswa->sortBy('anggota_kelas.siswa.nama_lengkap') as $nilai_siswa)
                           <?php $no++; ?>
@@ -121,7 +121,7 @@
                   </div>
                   <div class="card-footer clearfix">
                     <button type="submit" class="btn btn-primary float-right">Simpan</button>
-                    <a href="{{ route('kirimnilaiakhir.index') }}" class="btn btn-default float-right mr-2">Batal</a>
+                    <a href="{{ route('prosesdeskripsi.index') }}" class="btn btn-default float-right mr-2">Batal</a>
                   </div>
                 </form>
               </div>

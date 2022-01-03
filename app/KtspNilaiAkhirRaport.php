@@ -24,4 +24,9 @@ class KtspNilaiAkhirRaport extends Model
     {
         return $this->belongsTo('App\AnggotaKelas');
     }
+
+    public function ktsp_deskripsi_nilai_siswa()
+    {
+        return $this->hasOne('App\KtspDeskripsiNilaiSiswa');
+    }
 }

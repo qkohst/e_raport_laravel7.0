@@ -235,7 +235,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="{{ route('prosesdeskripsi.index') }}" class="nav-link">
+          <a href="{{ route('inputdeskripsi.index') }}" class="nav-link">
             <i class="nav-icon fas fa-file-alt"></i>
             <p>
               Input Deskripsi Siswa
