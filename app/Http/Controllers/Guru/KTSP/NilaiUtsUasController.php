@@ -6,14 +6,14 @@ use App\AnggotaKelas;
 use App\Guru;
 use App\Http\Controllers\Controller;
 use App\Kelas;
-use App\KtspNilaiUh;
+use App\KtspNilaiUtsUas;
 use App\Pembelajaran;
 use App\Tapel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class NilaiUhController extends Controller
+class NilaiUtsUasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,7 +22,7 @@ class NilaiUhController extends Controller
      */
     public function index()
     {
-        $title = 'Rata-Rata Ulangan Harian';
+        $title = 'Nilai UTS & UAS';
         $tapel = Tapel::findorfail(session()->get('tapel_id'));
 
         $guru = Guru::where('user_id', Auth::user()->id)->first();
@@ -32,13 +32,13 @@ class NilaiUhController extends Controller
 
         foreach ($data_penilaian as $penilaian) {
             $data_anggota_kelas = AnggotaKelas::where('kelas_id', $penilaian->kelas_id)->get();
-            $data_nilai_uh = KtspNilaiUh::where('pembelajaran_id', $penilaian->id)->get();
+            $data_nilai_uts_uas = KtspNilaiUtsUas::where('pembelajaran_id', $penilaian->id)->get();
 
             $penilaian->jumlah_anggota_kelas = count($data_anggota_kelas);
-            $penilaian->jumlah_telah_dinilai = count($data_nilai_uh);
+            $penilaian->jumlah_telah_dinilai = count($data_nilai_uts_uas);
         }
 
-        return view('guru.ktsp.nilaiuh.index', compact('title', 'data_penilaian'));
+        return view('guru.ktsp.nilaiutsuas.index', compact('title', 'data_penilaian'));
     }
 
     /**
@@ -51,14 +51,14 @@ class NilaiUhController extends Controller
         $pembelajaran = Pembelajaran::findorfail($request->pembelajaran_id);
         $data_anggota_kelas = AnggotaKelas::where('kelas_id', $pembelajaran->kelas_id)->get();
 
-        $data_nilai_uh = KtspNilaiUh::where('pembelajaran_id', $pembelajaran->id)->get();
+        $data_nilai_uts_uas = KtspNilaiUtsUas::where('pembelajaran_id', $pembelajaran->id)->get();
 
-        if (count($data_nilai_uh) == 0) {
-            $title = 'Input Rata-Rata Ulangan Harian';
-            return view('guru.ktsp.nilaiuh.create', compact('title', 'pembelajaran', 'data_anggota_kelas'));
+        if (count($data_nilai_uts_uas) == 0) {
+            $title = 'Input Nilai UTS & UAS';
+            return view('guru.ktsp.nilaiutsuas.create', compact('title', 'pembelajaran', 'data_anggota_kelas'));
         } else {
-            $title = 'Edit Rata-Rata Ulangan Harian';
-            return view('guru.ktsp.nilaiuh.edit', compact('title', 'pembelajaran', 'data_nilai_uh'));
+            $title = 'Edit Nilai UTS & UAS';
+            return view('guru.ktsp.nilaiutsuas.edit', compact('title', 'pembelajaran', 'data_nilai_uts_uas'));
         }
     }
 
@@ -75,11 +75,12 @@ class NilaiUhController extends Controller
         } else {
             for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
 
-                if ($request->nilai[$cound_siswa] >= 0 && $request->nilai[$cound_siswa] <= 100) {
+                if ($request->nilai_uts[$cound_siswa] >= 0 && $request->nilai_uts[$cound_siswa] <= 100 || $request->nilai_uas[$cound_siswa] >= 0 && $request->nilai_uas[$cound_siswa] <= 100) {
                     $data_nilai = array(
                         'pembelajaran_id'  => $request->pembelajaran_id,
                         'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
-                        'nilai'  => ltrim($request->nilai[$cound_siswa]),
+                        'nilai_uts'  => ltrim($request->nilai_uts[$cound_siswa]),
+                        'nilai_uas'  => ltrim($request->nilai_uas[$cound_siswa]),
                         'created_at'  => Carbon::now(),
                         'updated_at'  => Carbon::now(),
                     );
@@ -89,8 +90,8 @@ class NilaiUhController extends Controller
                 }
             }
             $store_data_nilai = $data_nilai_siswa;
-            KtspNilaiUh::insert($store_data_nilai);
-            return redirect('guru/nilaiuh')->with('toast_success', 'Data nilai ulangan harian berhasil disimpan.');
+            KtspNilaiUtsUas::insert($store_data_nilai);
+            return redirect('guru/nilaiutsuas')->with('toast_success', 'Data nilai UTS & UAS berhasil disimpan.');
         }
     }
 
@@ -105,11 +106,12 @@ class NilaiUhController extends Controller
     {
         for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
 
-            if ($request->nilai[$cound_siswa] >= 0 && $request->nilai[$cound_siswa] <= 100) {
-                $nilai = KtspNilaiUh::where('pembelajaran_id', $id)->where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->first();
+            if ($request->nilai_uts[$cound_siswa] >= 0 && $request->nilai_uts[$cound_siswa] <= 100 || $request->nilai_uas[$cound_siswa] >= 0 && $request->nilai_uas[$cound_siswa] <= 100) {
+                $nilai = KtspNilaiUtsUas::where('pembelajaran_id', $id)->where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->first();
 
                 $data_nilai = [
-                    'nilai'  => ltrim($request->nilai[$cound_siswa]),
+                    'nilai_uts'  => ltrim($request->nilai_uts[$cound_siswa]),
+                    'nilai_uas'  => ltrim($request->nilai_uas[$cound_siswa]),
                     'updated_at'  => Carbon::now(),
                 ];
                 $nilai->update($data_nilai);
@@ -117,6 +119,6 @@ class NilaiUhController extends Controller
                 return back()->with('toast_error', 'Nilai harus berisi antara 0 s/d 100');
             }
         }
-        return redirect('guru/nilaiuh')->with('toast_success', 'Data nilai ulangan harian berhasil diedit.');
+        return redirect('guru/nilaiutsuas')->with('toast_success', 'Data nilai UTS & UAS berhasil diedit.');
     }
 }

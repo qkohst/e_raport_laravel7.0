@@ -89,4 +89,9 @@ class AnggotaKelas extends Model
     {
         return $this->hasOne('App\KtspNilaiUh');
     }
+
+    public function anggota_kelas()
+    {
+        return $this->hasOne('App\AnggotaKelas');
+    }
 }

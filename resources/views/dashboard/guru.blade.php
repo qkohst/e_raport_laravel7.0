@@ -371,12 +371,14 @@
                       <td><span class="badge badge-success">Sudah Input</span></td>
                       @endif
 
-                      <td class="text-center">
-                        <span class="badge badge-danger">Belum Input</span>
-                      </td>
-                      <td class="text-center">
-                        <span class="badge badge-danger">Belum Input</span>
-                      </td>
+                      @if($penilaian->nilai_uts_uas == 0)
+                      <td><span class="badge badge-danger">Belum Input</span></td>
+                      <td><span class="badge badge-danger">Belum Input</span></td>
+                      @else
+                      <td><span class="badge badge-success">Sudah Input</span></td>
+                      <td><span class="badge badge-success">Sudah Input</span></td>
+                      @endif
+
                       <td class="text-center">
                         <span class="badge badge-danger">Belum Input</span>
                       </td>

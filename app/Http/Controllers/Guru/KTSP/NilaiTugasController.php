@@ -75,7 +75,7 @@ class NilaiTugasController extends Controller
         } else {
             for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
 
-                if ($request->nilai[$cound_siswa] >= 0 && $request->nilai[$cound_siswa] <= 100 || $request->nilai_pas[$cound_siswa] >= 0 && $request->nilai_pas[$cound_siswa] <= 100) {
+                if ($request->nilai[$cound_siswa] >= 0 && $request->nilai[$cound_siswa] <= 100) {
                     $data_nilai = array(
                         'pembelajaran_id'  => $request->pembelajaran_id,
                         'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
@@ -105,7 +105,7 @@ class NilaiTugasController extends Controller
     {
         for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
 
-            if ($request->nilai[$cound_siswa] >= 0 && $request->nilai[$cound_siswa] <= 100 || $request->nilai_pas[$cound_siswa] >= 0 && $request->nilai_pas[$cound_siswa] <= 100) {
+            if ($request->nilai[$cound_siswa] >= 0 && $request->nilai[$cound_siswa] <= 100) {
                 $nilai = KtspNilaiTugas::where('pembelajaran_id', $id)->where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->first();
 
                 $data_nilai = [
@@ -119,5 +119,4 @@ class NilaiTugasController extends Controller
         }
         return redirect('guru/nilaitugas')->with('toast_success', 'Data nilai tugas berhasil diedit.');
     }
-
 }
