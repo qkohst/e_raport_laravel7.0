@@ -75,4 +75,9 @@ class Pembelajaran extends Model
     {
         return $this->hasOne('App\KtspBobotPenilaian');
     }
+
+    public function ktsp_nilai_tugas()
+    {
+        return $this->hasMany('App\KtspNilaiTugas');
+    }
 }

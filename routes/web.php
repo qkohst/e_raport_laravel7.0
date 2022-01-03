@@ -207,19 +207,15 @@ Route::group(['middleware' => ['auth']], function () {
           Route::resource('nilaipengetahuan', 'Guru\K13\NilaiPengetahuanController',  [
             'uses' => ['index', 'create', 'store', 'update']
           ]);
-
           Route::resource('nilaiketerampilan', 'Guru\K13\NilaiKeterampilanController',  [
             'uses' => ['index', 'create', 'store', 'update']
           ]);
-
           Route::resource('nilaispiritual', 'Guru\K13\NilaiSpiritualController',  [
             'uses' => ['index', 'create', 'store', 'update']
           ]);
-
           Route::resource('nilaisosial', 'Guru\K13\NilaiSosialController',  [
             'uses' => ['index', 'create', 'store', 'update']
           ]);
-
           Route::resource('nilaiptspas', 'Guru\K13\NilaiPtsPasController',  [
             'uses' => ['index', 'create', 'store', 'update']
           ]);
@@ -227,11 +223,9 @@ Route::group(['middleware' => ['auth']], function () {
           Route::resource('kirimnilaiakhir', 'Guru\K13\KirimNilaiAkhirController',  [
             'uses' => ['index', 'create', 'store']
           ]);
-
           Route::resource('nilaiterkirim', 'Guru\K13\LihatNilaiTerkirimController',  [
             'uses' => ['index', 'create']
           ]);
-
           Route::resource('prosesdeskripsi', 'Guru\K13\ProsesDeskripsiSiswaController',  [
             'uses' => ['index', 'create', 'store']
           ]);
@@ -242,6 +236,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::group(['middleware' => 'checkKurikulum:2006'], function () {
           Route::resource('bobot', 'Guru\KTSP\BobotPenilaianController',  [
             'uses' => ['index', 'store', 'update']
+          ]);
+          Route::resource('nilaitugas', 'Guru\KTSP\NilaiTugasController',  [
+            'uses' => ['index', 'create', 'store', 'update']
           ]);
         });
         // End  Raport KTSP Guru

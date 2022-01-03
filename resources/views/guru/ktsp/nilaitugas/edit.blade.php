@@ -13,7 +13,7 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item "><a href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item "><a href="{{ route('nilaiptspas.index') }}">Nilai PTS & PAS</a></li>
+            <li class="breadcrumb-item "><a href="{{ route('nilaitugas.index') }}">Rata-Rata Nilai Tugas</a></li>
             <li class="breadcrumb-item active">{{$title}}</li>
           </ol>
         </div><!-- /.col -->
@@ -32,7 +32,7 @@
             <div class="card-header">
               <h3 class="card-title"><i class="fas fa-list-ol"></i> {{$title}}</h3>
             </div>
-            <form action="{{ route('nilaiptspas.update', $pembelajaran->id) }}" method="POST">
+            <form action="{{ route('nilaitugas.update', $pembelajaran->id) }}" method="POST">
               {{ method_field('PATCH') }}
               @csrf
               <div class="card-body">
@@ -51,24 +51,20 @@
                       <tr>
                         <th class="text-center" style="width: 5%;">No</th>
                         <th class="text-center">Nama Siswa</th>
-                        <th class="text-center">Nilai Tengah Semester</th>
-                        <th class="text-center">Nilai Akhir Semester</th>
+                        <th class="text-center">Rata-Rata Nilai Tugas</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php $no = 0; ?>
-                      @foreach($data_nilai_pts_pas->sortBy('anggota_kelas.siswa.nama_lengkap') as $nilai_pts_pas)
+                      @foreach($data_nilai_tugas->sortBy('anggota_kelas.siswa.nama_lengkap') as $nilai_tugas)
                       <?php $no++; ?>
                       <tr>
                         <td class="text-center">{{$no}}</td>
-                        <td>{{$nilai_pts_pas->anggota_kelas->siswa->nama_lengkap}}</td>
-                        <input type="hidden" name="anggota_kelas_id[]" value="{{$nilai_pts_pas->anggota_kelas_id}}">
+                        <td>{{$nilai_tugas->anggota_kelas->siswa->nama_lengkap}}</td>
+                        <input type="hidden" name="anggota_kelas_id[]" value="{{$nilai_tugas->anggota_kelas_id}}">
 
                         <td>
-                          <input type="number" class="form-control" name="nilai_pts[]" value="{{$nilai_pts_pas->nilai_pts}}" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
-                        </td>
-                        <td>
-                          <input type="number" class="form-control" name="nilai_pas[]" value="{{$nilai_pts_pas->nilai_pas}}" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
+                          <input type="number" class="form-control" name="nilai[]" value="{{$nilai_tugas->nilai}}" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
                         </td>
 
                       </tr>
@@ -80,7 +76,7 @@
 
               <div class="card-footer clearfix">
                 <button type="submit" class="btn btn-primary float-right">Simpan</button>
-                <a href="{{ route('nilaiptspas.index') }}" class="btn btn-default float-right mr-2">Batal</a>
+                <a href="{{ route('nilaitugas.index') }}" class="btn btn-default float-right mr-2">Batal</a>
               </div>
             </form>
           </div>

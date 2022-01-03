@@ -71,7 +71,7 @@
 
                       @if($penilaian->jumlah_anggota_kelas != 0)
                       <td class="text-center">
-                        <form action="{{ route('nilaiptspas.create') }}" method="GET">
+                        <form action="{{ route('nilaitugas.create') }}" method="GET">
                           @csrf
                           <input type="hidden" name="pembelajaran_id" value="{{$penilaian->id}}">
                           <button type="submit" class="btn btn-sm btn-primary">

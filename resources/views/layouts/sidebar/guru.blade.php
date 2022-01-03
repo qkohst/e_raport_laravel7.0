@@ -184,7 +184,7 @@
           </a>
           <ul class="nav nav-treeview bg-secondary">
             <li class="nav-item">
-              <a href="{{ route('nilaipengetahuan.index') }}" class="nav-link">
+              <a href="{{ route('nilaitugas.index') }}" class="nav-link">
                 <i class="fas fa-edit nav-icon"></i>
                 <p>Rata-Rata Tugas</p>
               </a>

@@ -22,6 +22,7 @@ use App\K13RencanaNilaiSpiritual;
 use App\Kelas;
 use App\KtspBobotPenilaian;
 use App\KtspKkmMapel;
+use App\KtspNilaiTugas;
 use App\Pembelajaran;
 use App\RiwayatLogin;
 use App\Sekolah;
@@ -141,6 +142,8 @@ class DashboardController extends Controller
                     foreach ($data_capaian_penilaian as $penilaian) {
                         $kkm = KtspKkmMapel::where('mapel_id', $penilaian->mapel->id)->where('kelas_id', $penilaian->kelas_id)->first();
 
+                        $nilai_tugas = KtspNilaiTugas::where('pembelajaran_id', $penilaian->id)->get();
+                        $penilaian->nilai_tugas = count($nilai_tugas);
 
                         $bobot = KtspBobotPenilaian::where('pembelajaran_id', $penilaian->id)->first();
                         if (is_null($bobot)) {

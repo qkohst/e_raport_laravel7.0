@@ -28,6 +28,7 @@ class AnggotaKelas extends Model
         return $this->hasMany('App\AnggotaEkstrakulikuler');
     }
 
+    // Relasi K13
     public function k13_nilai_pengetahuan()
     {
         return $this->hasOne('App\K13NilaiPengetahuan');
@@ -76,5 +77,11 @@ class AnggotaKelas extends Model
     public function k13_deskripsi_sikap_siswa()
     {
         return $this->hasOne('App\K13DeskripsiSikapSiswa');
+    }
+
+    // Relasi KTSP 
+    public function ktsp_nilai_tugas()
+    {
+        return $this->hasOne('App\KtspNilaiTugas');
     }
 }

@@ -50,7 +50,7 @@
                   <table class="table table-bordered table-hover">
                     <thead class="bg-primary">
                       <tr>
-                        <th class="text-center" style="width: 100px;">No</th>
+                        <th class="text-center" style="width: 5%;">No</th>
                         <th class="text-center">Nama Siswa</th>
                         <th class="text-center">Nilai Tengah Semester</th>
                         <th class="text-center">Nilai Akhir Semester</th>

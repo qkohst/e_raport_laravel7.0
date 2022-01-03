@@ -358,10 +358,12 @@
                         </b>
                         @endif
                       </td>
+                      @if($penilaian->nilai_tugas == 0)
+                      <td><span class="badge badge-danger">Belum Kirim</span></td>
+                      @else
+                      <td><span class="badge badge-success">Sudah Kirim</span></td>
+                      @endif
 
-                      <td class="text-center">
-                        <span class="badge badge-danger">Belum Input</span>
-                      </td>
                       <td class="text-center">
                         <span class="badge badge-danger">Belum Input</span>
                       </td>
