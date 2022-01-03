@@ -94,4 +94,9 @@ class AnggotaKelas extends Model
     {
         return $this->hasOne('App\AnggotaKelas');
     }
+
+    public function ktsp_nilai_akhir_raport()
+    {
+        return $this->hasMany('App\KtspNilaiAkhirRaport');
+    }
 }

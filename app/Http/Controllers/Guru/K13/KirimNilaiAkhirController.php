@@ -60,9 +60,12 @@ class KirimNilaiAkhirController extends Controller
             $pembelajaran = Pembelajaran::findorfail($request->pembelajaran_id);
 
             $kkm = K13KkmMapel::where('mapel_id', $pembelajaran->mapel_id)->where('kelas_id', $pembelajaran->kelas_id)->first();
+            $bobot_penilaian = K13RencanaBobotPenilaian::where('pembelajaran_id', $pembelajaran->id)->first();
 
             if (is_null($kkm)) {
                 return back()->with('toast_warning', 'KKM mata pelajaran belum ditentukan');
+            } elseif (is_null($bobot_penilaian)) {
+                return back()->with('toast_warning', 'Bobot penilaian belum ditentukan');
             }
 
             $rencana_nilai_pengetahuan = K13RencanaNilaiPengetahuan::where('pembelajaran_id', $pembelajaran->id)->get('id');
@@ -102,8 +105,6 @@ class KirimNilaiAkhirController extends Controller
                         $kkm->predikat_a = round($kkm->kkm + ($range * 2), 0);
 
                         // Data Nilai
-                        $bobot_penilaian = K13RencanaBobotPenilaian::where('pembelajaran_id', $pembelajaran->id)->first();
-
                         $data_anggota_kelas = AnggotaKelas::where('kelas_id', $pembelajaran->kelas_id)->get();
                         foreach ($data_anggota_kelas as $anggota_kelas) {
 

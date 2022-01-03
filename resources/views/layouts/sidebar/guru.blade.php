@@ -221,7 +221,7 @@
           </a>
           <ul class="nav nav-treeview bg-secondary">
             <li class="nav-item">
-              <a href="{{ route('kirimnilaiakhir.index') }}" class="nav-link">
+              <a href="{{ route('kirimnilai.index') }}" class="nav-link">
                 <i class="fas fa-paper-plane nav-icon"></i>
                 <p>Kirim Nilai Akhir</p>
               </a>

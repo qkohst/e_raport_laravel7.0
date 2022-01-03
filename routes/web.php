@@ -234,9 +234,11 @@ Route::group(['middleware' => ['auth']], function () {
 
         // Raport KTSP Guru
         Route::group(['middleware' => 'checkKurikulum:2006'], function () {
+
           Route::resource('bobot', 'Guru\KTSP\BobotPenilaianController',  [
             'uses' => ['index', 'store', 'update']
           ]);
+
           Route::resource('nilaitugas', 'Guru\KTSP\NilaiTugasController',  [
             'uses' => ['index', 'create', 'store', 'update']
           ]);
@@ -245,6 +247,10 @@ Route::group(['middleware' => ['auth']], function () {
           ]);
           Route::resource('nilaiutsuas', 'Guru\KTSP\NilaiUtsUasController',  [
             'uses' => ['index', 'create', 'store', 'update']
+          ]);
+
+          Route::resource('kirimnilai', 'Guru\KTSP\KirimNilaiController',  [
+            'uses' => ['index', 'create', 'store']
           ]);
         });
         // End  Raport KTSP Guru
