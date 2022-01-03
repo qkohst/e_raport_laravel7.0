@@ -227,7 +227,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('nilaiterkirim.index') }}" class="nav-link">
+              <a href="{{ route('lihatnilai.index') }}" class="nav-link">
                 <i class="fas fa-eye nav-icon"></i>
                 <p>Lihat Nilai Terkirim</p>
               </a>

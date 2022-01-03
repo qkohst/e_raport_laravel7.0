@@ -252,6 +252,9 @@ Route::group(['middleware' => ['auth']], function () {
           Route::resource('kirimnilai', 'Guru\KTSP\KirimNilaiController',  [
             'uses' => ['index', 'create', 'store']
           ]);
+          Route::resource('lihatnilai', 'Guru\KTSP\LihatNilaiController',  [
+            'uses' => ['index', 'create']
+          ]);
         });
         // End  Raport KTSP Guru
       });
