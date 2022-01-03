@@ -240,6 +240,9 @@ Route::group(['middleware' => ['auth']], function () {
           Route::resource('nilaitugas', 'Guru\KTSP\NilaiTugasController',  [
             'uses' => ['index', 'create', 'store', 'update']
           ]);
+          Route::resource('nilaiuh', 'Guru\KTSP\NilaiUhController',  [
+            'uses' => ['index', 'create', 'store', 'update']
+          ]);
         });
         // End  Raport KTSP Guru
       });

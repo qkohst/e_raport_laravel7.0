@@ -190,7 +190,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('nilaipengetahuan.index') }}" class="nav-link">
+              <a href="{{ route('nilaiuh.index') }}" class="nav-link">
                 <i class="fas fa-edit nav-icon"></i>
                 <p>Rata-Rata UH</p>
               </a>

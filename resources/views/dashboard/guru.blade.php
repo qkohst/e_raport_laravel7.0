@@ -307,6 +307,7 @@
                 </table>
               </div>
               <!-- /.table-responsive -->
+
               @elseif(Session::get('kurikulum') == '2006')
               <div class="table-responsive">
                 <table class="table table-bordered">
@@ -346,7 +347,6 @@
                         @endif
                       </td>
 
-
                       <td class="text-center">
                         @if(is_null($penilaian->bobot_tugas))
                         <b class="text-danger">
@@ -358,15 +358,19 @@
                         </b>
                         @endif
                       </td>
+
                       @if($penilaian->nilai_tugas == 0)
-                      <td><span class="badge badge-danger">Belum Kirim</span></td>
+                      <td><span class="badge badge-danger">Belum Input</span></td>
                       @else
-                      <td><span class="badge badge-success">Sudah Kirim</span></td>
+                      <td><span class="badge badge-success">Sudah Input</span></td>
                       @endif
 
-                      <td class="text-center">
-                        <span class="badge badge-danger">Belum Input</span>
-                      </td>
+                      @if($penilaian->nilai_uh == 0)
+                      <td><span class="badge badge-danger">Belum Input</span></td>
+                      @else
+                      <td><span class="badge badge-success">Sudah Input</span></td>
+                      @endif
+
                       <td class="text-center">
                         <span class="badge badge-danger">Belum Input</span>
                       </td>

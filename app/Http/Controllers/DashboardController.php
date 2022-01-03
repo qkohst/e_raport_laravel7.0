@@ -23,6 +23,7 @@ use App\Kelas;
 use App\KtspBobotPenilaian;
 use App\KtspKkmMapel;
 use App\KtspNilaiTugas;
+use App\KtspNilaiUh;
 use App\Pembelajaran;
 use App\RiwayatLogin;
 use App\Sekolah;
@@ -144,6 +145,9 @@ class DashboardController extends Controller
 
                         $nilai_tugas = KtspNilaiTugas::where('pembelajaran_id', $penilaian->id)->get();
                         $penilaian->nilai_tugas = count($nilai_tugas);
+
+                        $nilai_uh = KtspNilaiUh::where('pembelajaran_id', $penilaian->id)->get();
+                        $penilaian->nilai_uh = count($nilai_uh);
 
                         $bobot = KtspBobotPenilaian::where('pembelajaran_id', $penilaian->id)->first();
                         if (is_null($bobot)) {

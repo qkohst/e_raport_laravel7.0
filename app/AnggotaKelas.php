@@ -84,4 +84,9 @@ class AnggotaKelas extends Model
     {
         return $this->hasOne('App\KtspNilaiTugas');
     }
+
+    public function ktsp_nilai_uh()
+    {
+        return $this->hasOne('App\KtspNilaiUh');
+    }
 }

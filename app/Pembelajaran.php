@@ -80,4 +80,9 @@ class Pembelajaran extends Model
     {
         return $this->hasMany('App\KtspNilaiTugas');
     }
+
+    public function ktsp_nilai_uh()
+    {
+        return $this->hasMany('App\KtspNilaiUh');
+    }
 }
