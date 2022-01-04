@@ -95,7 +95,7 @@ class LihatLegerNilaiController extends Controller
 
     public function export()
     {
-        $filename = 'leger_nilai_siswa ' . date('Y-m-d H_i_s') . '.xls';
+        $filename = 'leger_nilai_siswa_k13 ' . date('Y-m-d H_i_s') . '.xls';
         return Excel::download(new WaliKelasLegerNilaiExport, $filename);
     }
 }

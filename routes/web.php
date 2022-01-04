@@ -313,6 +313,11 @@ Route::group(['middleware' => ['auth']], function () {
           Route::resource('hasilpenilaian', 'Walikelas\KTSP\HasilPenilaianController',  [
             'uses' => ['index']
           ]);
+          Route::get('legernilai/export', 'Walikelas\KTSP\LegerNilaiController@export')->name('legernilai.export');
+
+          Route::resource('legernilai', 'Walikelas\KTSP\LegerNilaiController',  [
+            'uses' => ['index']
+          ]);
         });
         // End  Raport KTSP Wali Kelas
       });
