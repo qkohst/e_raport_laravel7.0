@@ -25,60 +25,60 @@
       <tr>
       </tr>
       <tr>
-        <td><strong>NO</strong></td>
-        <td align="center"><strong>NIS</strong></td>
-        <td align="center"><strong>NISN</strong></td>
-        <td align="center"><strong>NAMA LENGKAP</strong></td>
-        <td align="center"><strong>TEMPAT LAHIR</strong></td>
-        <td align="center"><strong>TANGGAL LAHIR</strong></td>
-        <td align="center"><strong>JENIS KELAMIN</strong></td>
-        <td align="center"><strong>KELAS</strong></td>
-        <td align="center"><strong>JENIS PENDAFTARAN</strong></td>
-        <td align="center"><strong>AGAMA</strong></td>
-        <td align="center"><strong>STATUS DALAM KELUARGA</strong></td>
-        <td align="center"><strong>ANAK KE</strong></td>
-        <td align="center"><strong>ALAMAT</strong></td>
-        <td align="center"><strong>NOMOR HP</strong></td>
-        <td align="center"><strong>NAMA AYAH</strong></td>
-        <td align="center"><strong>NAMA IBU</strong></td>
-        <td align="center"><strong>PEKERJAAN AYAH</strong></td>
-        <td align="center"><strong>PEKERJAAN IBU</strong></td>
-        <td align="center"><strong>NAMA WALI</strong></td>
-        <td align="center"><strong>PEKERJAAN WALI</strong></td>
-        <td align="center"><strong>STATUS</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>NO</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>NIS</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>NISN</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>NAMA LENGKAP</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>TEMPAT LAHIR</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>TANGGAL LAHIR</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>JENIS KELAMIN</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>KELAS</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>JENIS PENDAFTARAN</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>AGAMA</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>STATUS DALAM KELUARGA</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>ANAK KE</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>ALAMAT</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>NOMOR HP</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>NAMA AYAH</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>NAMA IBU</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>PEKERJAAN AYAH</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>PEKERJAAN IBU</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>NAMA WALI</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>PEKERJAAN WALI</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>STATUS</strong></td>
       </tr>
       <?php $no = 0; ?>
       @foreach($data_siswa as $siswa)
       <?php $no++; ?>
       <tr>
-        <td align="center">{{ $no }}</td>
-        <td>{{ $siswa->nis }}</td>
-        <td>{{ $siswa->nisn }}</td>
-        <td>{{ $siswa->nama_lengkap }}</td>
-        <td>{{ $siswa->tempat_lahir }}</td>
-        <td>{{ $siswa->tanggal_lahir }}</td>
-        <td>
+        <td align="center" style="border: 1px solid #000000;">{{ $no }}</td>
+        <td align="center" style="border: 1px solid #000000;">{{ $siswa->nis }}</td>
+        <td align="center" style="border: 1px solid #000000;">{{ $siswa->nisn }}</td>
+        <td style="border: 1px solid #000000;">{{ $siswa->nama_lengkap }}</td>
+        <td style="border: 1px solid #000000;">{{ $siswa->tempat_lahir }}</td>
+        <td style="border: 1px solid #000000;">{{ date('d-m-Y', strtotime($siswa->tanggal_lahir)) }}</td>
+        <td style="border: 1px solid #000000;">
           @if($siswa->jenis_kelamin == 'L')
           Laki-Laki
           @else
           Perempuan
           @endif
         </td>
-        <td>
+        <td align="center" style="border: 1px solid #000000;">
           @if(is_null($siswa->kelas_id))
           Null
           @else
           {{ $siswa->kelas->nama_kelas }}
           @endif
         </td>
-        <td>
+        <td style="border: 1px solid #000000;">
           @if($siswa->jenis_pendaftaran == 1)
           Siswa Baru
           @else
           Pindahan
           @endif
         </td>
-        <td>
+        <td style="border: 1px solid #000000;">
           @if($siswa->agama == 1)
           Islam
           @elseif($siswa->agama == 2)
@@ -95,7 +95,7 @@
           Kepercayaan
           @endif
         </td>
-        <td>
+        <td style="border: 1px solid #000000;">
           @if($siswa->status_dalam_keluarga == 1)
           Anak Kandung
           @elseif($siswa->status_dalam_keluarga == 2)
@@ -104,16 +104,16 @@
           Anak Tiri
           @endif
         </td>
-        <td>{{ $siswa->anak_ke }}</td>
-        <td>{{ $siswa->alamat }}</td>
-        <td>{{ $siswa->nomor_hp }}</td>
-        <td>{{ $siswa->nama_ayah }}</td>
-        <td>{{ $siswa->nama_ibu }}</td>
-        <td>{{ $siswa->pekerjaan_ayah }}</td>
-        <td>{{ $siswa->pekerjaan_ibu }}</td>
-        <td>{{ $siswa->nama_wali }}</td>
-        <td>{{ $siswa->pekerjaan_wali }}</td>
-        <td>
+        <td align="center" style="border: 1px solid #000000;">{{ $siswa->anak_ke }}</td>
+        <td style="border: 1px solid #000000;">{{ $siswa->alamat }}</td>
+        <td style="border: 1px solid #000000;">{{ $siswa->nomor_hp }}</td>
+        <td style="border: 1px solid #000000;">{{ $siswa->nama_ayah }}</td>
+        <td style="border: 1px solid #000000;">{{ $siswa->nama_ibu }}</td>
+        <td style="border: 1px solid #000000;">{{ $siswa->pekerjaan_ayah }}</td>
+        <td style="border: 1px solid #000000;">{{ $siswa->pekerjaan_ibu }}</td>
+        <td style="border: 1px solid #000000;">{{ $siswa->nama_wali }}</td>
+        <td style="border: 1px solid #000000;">{{ $siswa->pekerjaan_wali }}</td>
+        <td style="border: 1px solid #000000;">
           @if($siswa->status == 1)
           Aktif
           @elseif($siswa->status == 2)

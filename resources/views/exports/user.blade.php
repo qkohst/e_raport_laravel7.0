@@ -32,21 +32,21 @@
         <td><strong>USER ADMINISTRATOR</strong></td>
       </tr>
       <tr>
-        <td><strong>NO</strong></td>
-        <td align="center"><strong>NAMA LENGKAP</strong></td>
-        <td align="center"><strong>USERNAME</strong></td>
-        <td align="center"><strong>LEVEL</strong></td>
-        <td align="center"><strong>STATUS</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>NO</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>NAMA LENGKAP</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>USERNAME</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>LEVEL</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>STATUS</strong></td>
       </tr>
       <?php $no = 0; ?>
       @foreach($data_user_admin as $admin)
       <?php $no++; ?>
       <tr>
-        <td align="center">{{ $no }}</td>
-        <td>{{ $admin->admin->nama_lengkap }}</td>
-        <td>{{ $admin->username }}</td>
-        <td>Administrator</td>
-        <td>
+        <td align="center" style="border: 1px solid #000000;">{{ $no }}</td>
+        <td style="border: 1px solid #000000;">{{ $admin->admin->nama_lengkap }}</td>
+        <td style="border: 1px solid #000000;">{{ $admin->username }}</td>
+        <td style="border: 1px solid #000000;">Administrator</td>
+        <td style="border: 1px solid #000000;">
           @if($admin->status == 1)
           Aktif
           @else
@@ -61,25 +61,25 @@
       <tr>
       </tr>
       <tr>
-        <td><strong>A.</strong></td>
+        <td><strong>B.</strong></td>
         <td><strong>USER GURU</strong></td>
       </tr>
       <tr>
-        <td><strong>NO</strong></td>
-        <td align="center"><strong>NAMA LENGKAP</strong></td>
-        <td align="center"><strong>USERNAME</strong></td>
-        <td align="center"><strong>LEVEL</strong></td>
-        <td align="center"><strong>STATUS</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>NO</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>NAMA LENGKAP</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>USERNAME</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>LEVEL</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>STATUS</strong></td>
       </tr>
       <?php $no = 0; ?>
       @foreach($data_user_guru as $guru)
       <?php $no++; ?>
       <tr>
-        <td align="center">{{ $no }}</td>
-        <td>{{ $guru->guru->nama_lengkap }}</td>
-        <td>{{ $guru->username }}</td>
-        <td>Guru</td>
-        <td>
+        <td align="center" style="border: 1px solid #000000;">{{ $no }}</td>
+        <td style="border: 1px solid #000000;">{{ $guru->guru->nama_lengkap }}</td>
+        <td style="border: 1px solid #000000;">{{ $guru->username }}</td>
+        <td style="border: 1px solid #000000;">Guru</td>
+        <td style="border: 1px solid #000000;">
           @if($guru->status == 1)
           Aktif
           @else
@@ -94,25 +94,25 @@
       <tr>
       </tr>
       <tr>
-        <td><strong>A.</strong></td>
+        <td><strong>C.</strong></td>
         <td><strong>USER SISWA</strong></td>
       </tr>
       <tr>
-        <td><strong>NO</strong></td>
-        <td align="center"><strong>NAMA LENGKAP</strong></td>
-        <td align="center"><strong>USERNAME</strong></td>
-        <td align="center"><strong>LEVEL</strong></td>
-        <td align="center"><strong>STATUS</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>NO</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>NAMA LENGKAP</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>USERNAME</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>LEVEL</strong></td>
+        <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>STATUS</strong></td>
       </tr>
       <?php $no = 0; ?>
       @foreach($data_user_siswa as $siswa)
       <?php $no++; ?>
       <tr>
-        <td align="center">{{ $no }}</td>
-        <td>{{ $siswa->siswa->nama_lengkap }}</td>
-        <td>{{ $siswa->username }}</td>
-        <td>Siswa</td>
-        <td>
+        <td align="center" style="border: 1px solid #000000;">{{ $no }}</td>
+        <td style="border: 1px solid #000000;">{{ $siswa->siswa->nama_lengkap }}</td>
+        <td style="border: 1px solid #000000;">{{ $siswa->username }}</td>
+        <td style="border: 1px solid #000000;">Siswa</td>
+        <td style="border: 1px solid #000000;">
           @if($siswa->status == 1)
           Aktif
           @else
