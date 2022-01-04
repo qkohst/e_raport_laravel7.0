@@ -167,7 +167,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('raportsemester.index') }}" class="nav-link">
+              <a href="{{ route('raportuas.index') }}" class="nav-link">
                 <i class="fas fa-print nav-icon"></i>
                 <p>Raport Semester</p>
               </a>

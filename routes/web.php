@@ -322,6 +322,9 @@ Route::group(['middleware' => ['auth']], function () {
           Route::resource('raportuts', 'Walikelas\KTSP\CetakRaportUTSController',  [
             'uses' => ['index', 'store', 'show']
           ]);
+          Route::resource('raportuas', 'Walikelas\KTSP\CetakRaportUASController',  [
+            'uses' => ['index', 'store', 'show']
+          ]);
         });
         // End  Raport KTSP Wali Kelas
       });
