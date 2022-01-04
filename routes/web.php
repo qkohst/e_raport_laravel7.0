@@ -318,6 +318,10 @@ Route::group(['middleware' => ['auth']], function () {
           Route::resource('legernilai', 'Walikelas\KTSP\LegerNilaiController',  [
             'uses' => ['index']
           ]);
+
+          Route::resource('raportuts', 'Walikelas\KTSP\CetakRaportUTSController',  [
+            'uses' => ['index', 'store', 'show']
+          ]);
         });
         // End  Raport KTSP Wali Kelas
       });
