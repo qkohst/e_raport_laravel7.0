@@ -87,12 +87,11 @@ class KirimNilaiController extends Controller
                 $data_anggota_kelas = AnggotaKelas::where('kelas_id', $pembelajaran->kelas_id)->get();
                 foreach ($data_anggota_kelas as $anggota_kelas) {
 
-                    $nilai_tugas = KtspNilaiTugas::where('anggota_kelas_id', $anggota_kelas->id)->first();
-                    $nilai_uh = KtspNilaiUh::where('anggota_kelas_id', $anggota_kelas->id)->first();
-                    $nilai_uts_uas = KtspNilaiUtsUas::where('anggota_kelas_id', $anggota_kelas->id)->first();
+                    $nilai_tugas = KtspNilaiTugas::where('anggota_kelas_id', $anggota_kelas->id)->where('pembelajaran_id', $pembelajaran->id)->first();
+                    $nilai_uh = KtspNilaiUh::where('anggota_kelas_id', $anggota_kelas->id)->where('pembelajaran_id', $pembelajaran->id)->first();
+                    $nilai_uts_uas = KtspNilaiUtsUas::where('anggota_kelas_id', $anggota_kelas->id)->where('pembelajaran_id', $pembelajaran->id)->first();
 
                     $nilai_akhir_raport = (($nilai_tugas->nilai * $bobot_penilaian->bobot_tugas) + ($nilai_uh->nilai * $bobot_penilaian->bobot_uh) + ($nilai_uts_uas->nilai_uts * $bobot_penilaian->bobot_uts) + ($nilai_uts_uas->nilai_uas * $bobot_penilaian->bobot_uas)) / ($bobot_penilaian->bobot_tugas + $bobot_penilaian->bobot_uh + $bobot_penilaian->bobot_uts + $bobot_penilaian->bobot_uas);
-
                     $anggota_kelas->nilai_akhir = round($nilai_akhir_raport, 0);
                 }
                 return view('guru.ktsp.kirimnilai.create', compact('title', 'data_pembelajaran', 'pembelajaran', 'kkm', 'data_anggota_kelas'));

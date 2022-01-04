@@ -135,7 +135,7 @@
         <!-- LANJUT DIATAS -->
 
         <li class="nav-item">
-          <a href="{{ route('hasilnilai.index') }}" class="nav-link">
+          <a href="{{ route('hasilpenilaian.index') }}" class="nav-link">
             <i class="nav-icon fas fa-check-square"></i>
             <p>
               Hasil Pengelolaan Nilai

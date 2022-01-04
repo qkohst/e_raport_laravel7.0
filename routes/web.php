@@ -310,6 +310,9 @@ Route::group(['middleware' => ['auth']], function () {
           Route::resource('statuspenilaian', 'Walikelas\KTSP\StatusPenilaianController',  [
             'uses' => ['index']
           ]);
+          Route::resource('hasilpenilaian', 'Walikelas\KTSP\HasilPenilaianController',  [
+            'uses' => ['index']
+          ]);
         });
         // End  Raport KTSP Wali Kelas
       });
