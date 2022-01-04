@@ -307,7 +307,9 @@ Route::group(['middleware' => ['auth']], function () {
 
         // Raport KTSP Wali Kelas
         Route::group(['middleware' => 'checkKurikulum:2006'], function () {
-          # Code here
+          Route::resource('statuspenilaian', 'Walikelas\KTSP\StatusPenilaianController',  [
+            'uses' => ['index']
+          ]);
         });
         // End  Raport KTSP Wali Kelas
       });

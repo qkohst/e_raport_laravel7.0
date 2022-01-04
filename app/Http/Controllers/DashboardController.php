@@ -21,7 +21,9 @@ use App\K13RencanaNilaiSosial;
 use App\K13RencanaNilaiSpiritual;
 use App\Kelas;
 use App\KtspBobotPenilaian;
+use App\KtspDeskripsiNilaiSiswa;
 use App\KtspKkmMapel;
+use App\KtspNilaiAkhirRaport;
 use App\KtspNilaiTugas;
 use App\KtspNilaiUh;
 use App\KtspNilaiUtsUas;
@@ -153,6 +155,12 @@ class DashboardController extends Controller
                         $nilai_uts_uas = KtspNilaiUtsUas::where('pembelajaran_id', $penilaian->id)->get();
                         $penilaian->nilai_uts_uas = count($nilai_uts_uas);
 
+                        $kirim_nilai = KtspNilaiAkhirRaport::where('pembelajaran_id', $penilaian->id)->get();
+                        $penilaian->kirim_nilai = count($kirim_nilai);
+
+                        $deskripsi = KtspDeskripsiNilaiSiswa::where('pembelajaran_id', $penilaian->id)->get();
+                        $penilaian->deskripsi = count($deskripsi);
+
                         $bobot = KtspBobotPenilaian::where('pembelajaran_id', $penilaian->id)->first();
                         if (is_null($bobot)) {
                             $penilaian->bobot_tugas = null;
@@ -191,8 +199,14 @@ class DashboardController extends Controller
                 $jumlah_anggota_kelas = count(AnggotaKelas::whereIn('kelas_id', $id_kelas_diampu)->get());
 
                 $id_pembelajaran_kelas = Pembelajaran::whereIn('kelas_id', $id_kelas_diampu)->where('status', 1)->get('id');
-                $jumlah_kirim_nilai = count(K13NilaiAkhirRaport::whereIn('pembelajaran_id', $id_pembelajaran_kelas)->groupBy('pembelajaran_id')->get());
-                $jumlah_proses_deskripsi = count(K13DeskripsiNilaiSiswa::whereIn('pembelajaran_id', $id_pembelajaran_kelas)->groupBy('pembelajaran_id')->get());
+                if (session()->get('kurikulum') == '2013') {
+                    $jumlah_kirim_nilai = count(K13NilaiAkhirRaport::whereIn('pembelajaran_id', $id_pembelajaran_kelas)->groupBy('pembelajaran_id')->get());
+                    $jumlah_proses_deskripsi = count(K13DeskripsiNilaiSiswa::whereIn('pembelajaran_id', $id_pembelajaran_kelas)->groupBy('pembelajaran_id')->get());
+                } elseif (session()->get('kurikulum') == '2006') {
+                    $jumlah_kirim_nilai = count(KtspNilaiAkhirRaport::whereIn('pembelajaran_id', $id_pembelajaran_kelas)->groupBy('pembelajaran_id')->get());
+                    $jumlah_proses_deskripsi = count(KtspDeskripsiNilaiSiswa::whereIn('pembelajaran_id', $id_pembelajaran_kelas)->groupBy('pembelajaran_id')->get());
+                }
+
                 // Dashboard Wali Kelas
                 return view('dashboard.walikelas', compact(
                     'title',

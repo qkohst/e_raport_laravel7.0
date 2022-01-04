@@ -379,12 +379,17 @@
                       <td><span class="badge badge-success">Sudah Input</span></td>
                       @endif
 
-                      <td class="text-center">
-                        <span class="badge badge-danger">Belum Input</span>
-                      </td>
-                      <td class="text-center">
-                        <span class="badge badge-danger">Belum Input</span>
-                      </td>
+                      @if($penilaian->kirim_nilai == 0)
+                      <td><span class="badge badge-danger">Belum Kirim</span></td>
+                      @else
+                      <td><span class="badge badge-success">Sudah Kirim</span></td>
+                      @endif
+
+                      @if($penilaian->deskripsi == 0)
+                      <td><span class="badge badge-danger">Belum Input</span></td>
+                      @else
+                      <td><span class="badge badge-success">Sudah Input</span></td>
+                      @endif
 
                     </tr>
                     @endforeach
