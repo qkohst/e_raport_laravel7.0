@@ -285,19 +285,19 @@
           </a>
           <ul class="nav nav-treeview bg-secondary">
             <li class="nav-item">
-              <a href="{{ route('k13statuspenilaian.index') }}" class="nav-link">
+              <a href="{{ route('ktspstatuspenilaian.index') }}" class="nav-link">
                 <i class="fas fa-check-circle nav-icon"></i>
                 <p>Status Penilaian</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('k13pengelolaannilai.index') }}" class="nav-link">
+              <a href="{{ route('ktsppengelolaannilai.index') }}" class="nav-link">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>Hasil Pengelolaan Nilai</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('k13nilairaport.index') }}" class="nav-link">
+              <a href="{{ route('ktspnilairaport.index') }}" class="nav-link">
                 <i class="fas fa-clipboard-check nav-icon"></i>
                 <p>Nilai Raport Semester</p>
               </a>

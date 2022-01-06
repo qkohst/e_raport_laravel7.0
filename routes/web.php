@@ -160,6 +160,17 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('validasi', 'Admin\KTSP\ValidasiController',  [
           'uses' => ['index']
         ]);
+
+        // Hasil Raport K13 
+        Route::resource('ktspstatuspenilaian', 'Admin\KTSP\StatusPenilaianController',  [
+          'uses' => ['index', 'store']
+        ]);
+        Route::resource('ktsppengelolaannilai', 'Admin\KTSP\PengelolaanNilaiController',  [
+          'uses' => ['index', 'store']
+        ]);
+        Route::resource('ktspnilairaport', 'Admin\KTSP\NilaiRaportSemesterController',  [
+          'uses' => ['index', 'store']
+        ]);
       });
       // End  Raport KTSP Admin
 
