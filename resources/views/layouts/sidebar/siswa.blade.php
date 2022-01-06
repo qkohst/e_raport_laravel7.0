@@ -55,10 +55,10 @@
 
         <!-- Kurikulum 2006 -->
         <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-list-ol"></i>
+          <a href="{{ route('nilaisemester.index') }}" class="nav-link">
+            <i class="nav-icon fas fa-table"></i>
             <p>
-              Mapping Mapel
+              Nilai Akhir Semester
             </p>
           </a>
         </li>

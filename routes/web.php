@@ -372,7 +372,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Raport KTSP Siswa
     Route::group(['middleware' => 'checkKurikulum:2006'], function () {
-      # Code here
+      Route::resource('nilaisemester', 'Siswa\KTSP\NilaiAkhirSemesterController',  [
+        'uses' => ['index']
+      ]);
     });
     // End  Raport KTSP Siswa
   });
