@@ -260,7 +260,7 @@
                       <td>{{$siswa->nis}}</td>
                       <td>{{$siswa->nisn}}</td>
                       <td>{{$siswa->nama_lengkap}}</td>
-                      <td>{{$siswa->tanggal_lahir}}</td>
+                      <td>{{$siswa->tanggal_lahir->format('d-M-Y')}}</td>
                       <td>{{$siswa->jenis_kelamin}}</td>
                       <td>
                         @if($siswa->kelas_id == null)
@@ -275,7 +275,11 @@
                           @method('DELETE')
 
                           @if($siswa->kelas_id != null)
-                          <button type="button" class="btn btn-primary btn-sm mt-1" data-toggle="modal" data-target="#modal-registrasi{{$siswa->id}}">
+                          <button type="button" class="btn btn-primary btn-sm mt-1" data-toggle="modal" data-target="#modal-registrasi{{$siswa->id}}" title="Registrasi Siswa">
+                            <i class="fas fa-user-cog"></i>
+                          </button>
+                          @else
+                          <button type="button" class="btn btn-primary btn-sm mt-1" data-toggle="modal" data-target="#modal-registrasi{{$siswa->id}}" title="Registrasi Siswa" disabled>
                             <i class="fas fa-user-cog"></i>
                           </button>
                           @endif
@@ -400,7 +404,7 @@
                                 </div>
                                 <label for="tanggal_lahir" class="col-sm-2 col-form-label">Tanggal Lahir</label>
                                 <div class="col-sm-4">
-                                  <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="{{$siswa->tanggal_lahir}}">
+                                  <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="{{$siswa->tanggal_lahir->format('Y-m-d')}}">
                                 </div>
                               </div>
                               <div class="form-group row">

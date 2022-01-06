@@ -19,7 +19,7 @@ class SiswaImport implements ToCollection
         foreach ($collection as $key => $row) {
             if ($key >= 8 && $key <= 300) {
                 $user = User::create([
-                    'username' => strtolower(str_replace(' ', '', $row[3])),
+                    'username' => strtolower(str_replace(' ', '', $row[3] . $row[1])),
                     'password' => bcrypt('123456'),
                     'role' => 3,
                     'status' => true

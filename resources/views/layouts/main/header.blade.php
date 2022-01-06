@@ -64,11 +64,11 @@
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
             <span class="dropdown-item dropdown-header">Akun Saya</span>
             <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
+            <a href="{{ route('profile') }}" class="dropdown-item">
               <i class="fas fa-user mr-2"></i> Profile
             </a>
             <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
+            <a href="{{ route('gantipassword') }}" class="dropdown-item">
               <i class="fas fa-key mr-2"></i> Ganti Password
             </a>
             @if(Auth::user()->role == 2)

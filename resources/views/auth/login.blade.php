@@ -3,12 +3,13 @@
 <body class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
-      <a href="#"><b>LOGIN</b></a>
+      <img src="/assets/dist/img/logo.png" alt="Logo" class="brand-image img-circle">
+      <p class="login-box-msg">Aplikasi <b>E</b>-Raport</p>
     </div>
     <!-- /.login-logo -->
     <div class="card">
       <div class="card-body login-card-body">
-        <p class="login-box-msg">Aplikasi <b>E</b>-Raport</p>
+        <p class="login-box-msg">LOGIN</p>
 
         <form method="post" action="{{ route('login') }}">
           @csrf

@@ -29,11 +29,17 @@ Route::group(['middleware' => ['auth']], function () {
   Route::get('/password', 'AuthController@view_ganti_password')->name('gantipassword');
   Route::post('/password', 'AuthController@ganti_password')->name('gantipassword');
 
+  Route::get('/profile', 'ProfileUserController@index')->name('profile');
+
   Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
   // Route User Admin 
   Route::group(['middleware' => 'checkRole:1'], function () {
     Route::group(['prefix' => 'admin'], function () {
+      Route::resource('profileadmin', 'Admin\ProfileController',  [
+        'uses' => ['update']
+      ]);
+
       Route::get('user/export', 'Admin\UserController@export')->name('user.export');
       Route::resource('user', 'Admin\UserController',  [
         'uses' => ['index', 'store', 'update']
@@ -190,6 +196,10 @@ Route::group(['middleware' => ['auth']], function () {
   // Route User Guru 
   Route::group(['middleware' => 'checkRole:2'], function () {
     Route::group(['prefix' => 'guru'], function () {
+
+      Route::resource('profileguru', 'Guru\ProfileController',  [
+        'uses' => ['update']
+      ]);
 
       Route::get('akses', 'AuthController@ganti_akses')->name('akses');
 
@@ -355,6 +365,10 @@ Route::group(['middleware' => ['auth']], function () {
 
   // Route User Siswa 
   Route::group(['middleware' => 'checkRole:3'], function () {
+
+    Route::resource('profilesiswa', 'Siswa\ProfileController',  [
+      'uses' => ['update']
+    ]);
     Route::resource('ekstra', 'Siswa\EkstrakulikulerController',  [
       'uses' => ['index']
     ]);

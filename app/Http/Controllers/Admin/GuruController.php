@@ -38,11 +38,11 @@ class GuruController extends Controller
         $validator = Validator::make($request->all(), [
             'nama_lengkap' => 'required|min:3|max:100|unique:guru',
             'gelar' => 'required|min:3|max:10',
-            'nip' => 'nullable|digits:18',
+            'nip' => 'nullable|digits:18|unique:guru',
             'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required|min:3',
             'tanggal_lahir' => 'required',
-            'nuptk' => 'nullable|digits:16',
+            'nuptk' => 'nullable|digits:16|unique:guru',
             'alamat' => 'required|min:4|max:255',
         ]);
         if ($validator->fails()) {

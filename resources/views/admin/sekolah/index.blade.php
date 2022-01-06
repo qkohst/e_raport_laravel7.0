@@ -100,7 +100,7 @@
                   <label for="logo" class="col-sm-2 col-form-label">Logo Sekolah</label>
                   <div class="col-sm-3">
                     <div class="custom-file">
-                      <input type="file" class="custom-file-input" name="logo" name="logo" id="customFile" accept="image/*">
+                      <input type="file" class="custom-file-input" name="logo" id="customFile" accept="image/*">
                       <label class="custom-file-label" for="customFile">{{$sekolah->logo}}</label>
                     </div>
                   </div>

@@ -28,7 +28,7 @@ class SiswaController extends Controller
         $title = 'Data Siswa';
         $tapel = Tapel::findorfail(session()->get('tapel_id'));
         $jumlah_kelas = Kelas::where('tapel_id', $tapel->id)->count();
-        
+
         if ($jumlah_kelas == 0) {
             return redirect('admin/kelas')->with('toast_warning', 'Mohon isikan data kelas');
         } else {
@@ -76,7 +76,7 @@ class SiswaController extends Controller
         } else {
             try {
                 $user = new User([
-                    'username' => strtolower(str_replace(' ', '', $request->nama_lengkap)),
+                    'username' => strtolower(str_replace(' ', '', $request->nama_lengkap . $request->nis)),
                     'password' => bcrypt('123456'),
                     'role' => 3,
                     'status' => true
@@ -132,18 +132,19 @@ class SiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $siswa = Siswa::findorfail($id);
         $validator = Validator::make($request->all(), [
             'nama_lengkap' => 'required|min:3|max:100',
             'jenis_kelamin' => 'required',
-            'nis' => 'required|numeric|digits_between:1,10|unique:siswa' . ($id ? ",id,$id" : ''),
-            'nisn' => 'nullable|numeric|digits:10|unique:siswa' . ($id ? ",id,$id" : ''),
+            'nis' => 'required|numeric|digits_between:1,10|unique:siswa,nis,' . $siswa->id,
+            'nisn' => 'nullable|numeric|digits:10|unique:siswa,nisn,' . $siswa->id,
             'tempat_lahir' => 'required|min:3|max:50',
             'tanggal_lahir' => 'required',
             'agama' => 'required',
             'anak_ke' => 'required|numeric|digits_between:1,2',
             'status_dalam_keluarga' => 'required',
             'alamat' => 'required|min:3|max:255',
-            'nomor_hp' => 'nullable|numeric|digits_between:11,13|unique:siswa' . ($id ? ",id,$id" : ''),
+            'nomor_hp' => 'nullable|numeric|digits_between:11,13|unique:siswa,nomor_hp,' . $siswa->id,
 
             'nama_ayah' => 'required|min:3|max:100',
             'nama_ibu' => 'required|min:3|max:100',
@@ -155,7 +156,6 @@ class SiswaController extends Controller
         if ($validator->fails()) {
             return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
         } else {
-            $siswa = Siswa::findorfail($id);
             $data_siswa = [
                 'nis' => $request->nis,
                 'nisn' => $request->nisn,
