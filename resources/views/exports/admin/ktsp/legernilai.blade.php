@@ -20,7 +20,7 @@
         <td colspan="9">Waktu download : {{$time_download}}</td>
       </tr>
       <tr>
-        <td colspan="9">Didownload oleh : {{Auth::user()->guru->nama_lengkap}} ({{Auth::user()->username}})</td>
+        <td colspan="9">Didownload oleh : {{Auth::user()->admin->nama_lengkap}} ({{Auth::user()->username}})</td>
       </tr>
     </thead>
     <tbody>
@@ -58,7 +58,7 @@
         @if(count($data_mapel_wajib)+count($data_mapel_pilihan)+count($data_mapel_muatan_lokal) == 0)
         <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;">-</td>
         @endif
-        
+
         <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>S</strong></td>
         <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>I</strong></td>
         <td align="center" style="border: 1px solid #000000; background-color: #d9ecd0;"><strong>A</strong></td>

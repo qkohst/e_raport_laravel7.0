@@ -34,12 +34,13 @@
 
             <div class="card-body">
               <div class="callout callout-info">
-                <form action="{{ route('k13raportsemester.store') }}" method="POST">
+                <form action="{{ route('ktspraportuts.store') }}" method="POST">
                   @csrf
                   <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Ukuran Kertas</label>
                     <div class="col-sm-4">
                       <select class="form-control" name="paper_size" style="width: 100%;" required onchange="this.form.submit();">
+                        <option value="" disabled>-- Pilih Ukuran Kertas --</option>
                         <option value="A4" @if($paper_size=='A4' ) selected @endif>A4 (21 cm x 29,7 cm)</option>
                         <option value="Folio" @if($paper_size=='Folio' ) selected @endif>Folio (21,59 cm x 33 cm)</option>
                       </select>
@@ -47,6 +48,7 @@
                     <label class="col-sm-2 col-form-label">Orientasi</label>
                     <div class="col-sm-4">
                       <select class="form-control" name="orientation" style="width: 100%;" required onchange="this.form.submit();">
+                        <option value="" disabled>-- Pilih Orientasi --</option>
                         <option value="potrait" @if($orientation=='potrait' ) selected @endif>Potrait</option>
                         <option value="landscape" @if($orientation=='landscape' ) selected @endif>Landscape</option>
                       </select>
@@ -72,10 +74,9 @@
                     <tr>
                       <th class="text-center" style="width: 5%;">No</th>
                       <th class="text-center" style="width: 5%;">NIS</th>
-                      <th class="text-center" style="width: 50%;">Nama Siswa</th>
+                      <th class="text-center">Nama Siswa</th>
                       <th class="text-center" style="width: 5%;">L/P</th>
-                      <th class="text-center" style="width: 15%;">Kelengkapan Raport</th>
-                      <th class="text-center" style="width: 15%;">Raport</th>
+                      <th class="text-center" style="width: 15%;">Raport Tengah Semester</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -89,24 +90,12 @@
                       <td>{{$anggota_kelas->siswa->nama_lengkap}}</td>
                       <td class="text-center">{{$anggota_kelas->siswa->jenis_kelamin}}</td>
                       <td class="text-center">
-                        <form action="{{ route('k13raportsemester.show', $anggota_kelas->id) }}" target="_black" method="GET">
+                        <form action="{{ route('ktspraportuts.show', $anggota_kelas->id) }}" target="_black" method="GET">
                           @csrf
-                          <input type="hidden" name="data_type" value="1">
-                          <input type="hidden" name="paper_size" value="{{$paper_size}}">
-                          <input type="hidden" name="orientation" value="{{$orientation}}">
-                          <button type="submit" class="btn btn-danger btn-sm">
-                            <i class="fas fa-print"></i> Cetak Data
-                          </button>
-                        </form>
-                      </td>
-                      <td class="text-center">
-                        <form action="{{ route('k13raportsemester.show', $anggota_kelas->id) }}" target="_black" method="GET">
-                          @csrf
-                          <input type="hidden" name="data_type" value="2">
                           <input type="hidden" name="paper_size" value="{{$paper_size}}">
                           <input type="hidden" name="orientation" value="{{$orientation}}">
                           <button type="submit" class="btn btn-primary btn-sm">
-                            <i class="fas fa-print"></i> Cetak Raport
+                            <i class="fas fa-print"></i> Raport UTS
                           </button>
                         </form>
                       </td>

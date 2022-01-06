@@ -171,6 +171,15 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('ktspnilairaport', 'Admin\KTSP\NilaiRaportSemesterController',  [
           'uses' => ['index', 'store']
         ]);
+        Route::resource('ktspleger', 'Admin\KTSP\LegerNilaiSiswaController',  [
+          'uses' => ['index', 'store', 'show']
+        ]);
+        Route::resource('ktspraportuts', 'Admin\KTSP\CetakRaportUTSController',  [
+          'uses' => ['index', 'store', 'show']
+        ]);
+        Route::resource('ktspraportsemester', 'Admin\KTSP\CetakRaportSemesterController',  [
+          'uses' => ['index', 'store', 'show']
+        ]);
       });
       // End  Raport KTSP Admin
 

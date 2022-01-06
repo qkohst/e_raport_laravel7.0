@@ -1,5 +1,5 @@
 @include('layouts.main.header')
-@include('layouts.sidebar.walikelas')
+@include('layouts.sidebar.admin')
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -30,21 +30,37 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title"><i class="fas fa-table"></i> {{$title}}</h3>
-              <div class="card-tools">
-                <a href="{{ route('legernilai.export') }}" class="btn btn-tool btn-sm" onclick="return confirm('Download {{$title}} ?')">
-                  <i class="fas fa-download"></i>
-                </a>
-              </div>
             </div>
+
             <div class="card-body">
-              <div class="table-responsive">
+              <div class="callout callout-info">
+                <form action="{{ route('ktspleger.store') }}" method="POST">
+                  @csrf
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Kelas</label>
+                    <div class="col-sm-10">
+                      <select class="form-control select2" name="kelas_id" style="width: 100%;" required onchange="this.form.submit();">
+                        <option value="" disabled>-- Pilih Kelas --</option>
+                        @foreach($data_kelas->sortBy('tingkatan_kelas') as $kls)
+                        <option value="{{$kls->id}}" @if($kls->id == $kelas->id) selected @endif>{{$kls->nama_kelas}}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <div>
+                <a href="{{ route('ktspleger.show', $kelas->id) }}" class="btn btn-primary float-right"><i class="fas fa-download"></i> Download Leger</a>
+              </div>
+
+              <div class="table-responsive pt-2">
                 <table class="table table-bordered table-striped">
                   <thead class="bg-info">
                     <tr>
                       <th rowspan="2" class="text-center" style="width: 50px;">No</th>
                       <th rowspan="2" class="text-center" style="width: 50px;">NIS</th>
                       <th rowspan="2" class="text-center">Nama Siswa</th>
-                      <th rowspan="2" class="text-center" style="width: 50px;">Kelas</th>
                       <th colspan="{{count($data_mapel_wajib)+count($data_mapel_pilihan)+count($data_mapel_muatan_lokal)}}" class="text-center">Nilai</th>
 
                       <th rowspan="2" class="text-center">Jumlah</th>
@@ -86,7 +102,6 @@
                       <td class="text-center">{{$no}}</td>
                       <td class="text-center">{{$anggota_kelas->siswa->nis}}</td>
                       <td>{{$anggota_kelas->siswa->nama_lengkap}}</td>
-                      <td class="text-center">{{$anggota_kelas->kelas->nama_kelas}}</td>
 
                       @foreach($anggota_kelas->data_nilai_mapel_wajib->sortBy('pembelajaran.mapel.ktsp_mapping_mapel.nomor_urut') as $nilai_mapel_wajib)
                       <td class="text-center">{{$nilai_mapel_wajib->nilai_akhir}}</td>
@@ -135,9 +150,8 @@
                   </tbody>
                 </table>
               </div>
-              <!-- /.table-responsive -->
             </div>
-            <!-- /.card-body -->
+
           </div>
           <!-- /.card -->
         </div>

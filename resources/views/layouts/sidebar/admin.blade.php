@@ -316,7 +316,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="{{ route('k13leger.index') }}" class="nav-link">
+          <a href="{{ route('ktspleger.index') }}" class="nav-link">
             <i class="nav-icon fas fa-table"></i>
             <p>
               Leger Nilai Siswa
@@ -334,13 +334,13 @@
           </a>
           <ul class="nav nav-treeview bg-secondary">
             <li class="nav-item">
-              <a href="{{ route('k13raportpts.index') }}" class="nav-link">
+              <a href="{{ route('ktspraportuts.index') }}" class="nav-link">
                 <i class="fas fa-print nav-icon"></i>
                 <p>Raport Tengah Semester</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('k13raportsemester.index') }}" class="nav-link">
+              <a href="{{ route('ktspraportsemester.index') }}" class="nav-link">
                 <i class="fas fa-print nav-icon"></i>
                 <p>Raport Semester</p>
               </a>

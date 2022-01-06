@@ -32,7 +32,7 @@ class CetakRaportUASController extends Controller
      */
     public function index()
     {
-        $title = 'Cetak Raport Siswa';
+        $title = 'Cetak Raport Semester';
         return view('walikelas.ktsp.raportuas.setpaper', compact('title'));
     }
 
@@ -45,7 +45,7 @@ class CetakRaportUASController extends Controller
      */
     public function store(Request $request)
     {
-        $title = 'Cetak Raport Siswa';
+        $title = 'Cetak Raport Semester';
         $tapel = Tapel::findorfail(session()->get('tapel_id'));
         $guru = Guru::where('user_id', Auth::user()->id)->first();
         $id_kelas_diampu = Kelas::where('tapel_id', $tapel->id)->where('guru_id', $guru->id)->get('id');
@@ -115,5 +115,4 @@ class CetakRaportUASController extends Controller
             }
         }
     }
-
 }

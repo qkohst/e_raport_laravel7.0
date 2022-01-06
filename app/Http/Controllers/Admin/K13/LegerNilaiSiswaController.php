@@ -112,7 +112,7 @@ class LegerNilaiSiswaController extends Controller
     public function show($id)
     {
         $kelas = Kelas::findorfail($id);
-        $filename = 'leger_nilai_siswa_kelas ' . $kelas->nama_kelas . ' ' . date('Y-m-d H_i_s') . '.xls';
+        $filename = 'leger_nilai_k13_siswa_kelas ' . $kelas->nama_kelas . ' ' . date('Y-m-d H_i_s') . '.xls';
         return Excel::download(new AdminK13LegerNilaiExport($id), $filename);
     }
 }
