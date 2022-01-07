@@ -100,7 +100,7 @@
                       <div class="callout callout-info">
                         <h5>Perhatian</h5>
                         <p>
-                          - Silahkan gunakan format import yang anda download dari menu download format import. <br>
+                          - Silahkan gunakan format yang anda download dari menu download format import. <br>
                           - Pastikan anda telah menyimpan file dalam format <b>excel 97-2003</b>. <br>
                           - Import nilai diluar prosedur dapat merusak data E-Raport.
                         </p>

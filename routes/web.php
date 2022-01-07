@@ -240,6 +240,10 @@ Route::group(['middleware' => ['auth']], function () {
           // Import Nilai
           Route::get('nilaipengetahuan/import', 'Guru\K13\NilaiPengetahuanController@format_import')->name('nilaipengetahuan.format_import');
           Route::post('nilaipengetahuan/import', 'Guru\K13\NilaiPengetahuanController@import')->name('nilaipengetahuan.import');
+
+          Route::get('nilaiketerampilan/import', 'Guru\K13\NilaiKeterampilanController@format_import')->name('nilaiketerampilan.format_import');
+          Route::post('nilaiketerampilan/import', 'Guru\K13\NilaiKeterampilanController@import')->name('nilaiketerampilan.import');
+
           // End Import Nilai 
           Route::resource('nilaipengetahuan', 'Guru\K13\NilaiPengetahuanController',  [
             'uses' => ['index', 'create', 'store', 'update']
