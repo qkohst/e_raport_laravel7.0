@@ -250,6 +250,9 @@ Route::group(['middleware' => ['auth']], function () {
           Route::get('nilaisosial/import', 'Guru\K13\NilaiSosialController@format_import')->name('nilaisosial.format_import');
           Route::post('nilaisosial/import', 'Guru\K13\NilaiSosialController@import')->name('nilaisosial.import');
 
+          Route::get('nilaiptspas/import', 'Guru\K13\NilaiPtsPasController@format_import')->name('nilaiptspas.format_import');
+          Route::post('nilaiptspas/import', 'Guru\K13\NilaiPtsPasController@import')->name('nilaiptspas.import');
+
           // End Import Nilai 
           Route::resource('nilaipengetahuan', 'Guru\K13\NilaiPengetahuanController',  [
             'uses' => ['index', 'create', 'store', 'update']

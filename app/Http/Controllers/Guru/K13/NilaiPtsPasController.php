@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Guru\K13;
 
 use App\AnggotaKelas;
+use App\Exports\FormatImportPtsPasK13Export;
 use App\Guru;
 use App\Http\Controllers\Controller;
+use App\Imports\NilaiPtsPasK13Import;
 use App\K13NilaiPtsPas;
 use App\Kelas;
 use App\Pembelajaran;
@@ -12,6 +14,7 @@ use App\Tapel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Excel;
 
 class NilaiPtsPasController extends Controller
 {
@@ -120,5 +123,28 @@ class NilaiPtsPasController extends Controller
             }
         }
         return redirect('guru/nilaiptspas')->with('toast_success', 'Data nilai PTS & PAS berhasil edit.');
+    }
+
+    public function format_import(Request $request)
+    {
+        $pembelajaran = Pembelajaran::findorfail($request->pembelajaran_id);
+        $cek_anggota = AnggotaKelas::where('kelas_id', $pembelajaran->kelas_id)->get();
+        if (count($cek_anggota) == 0) {
+            return back()->with('toast_error', 'Belum ditemukan data anggota kelas');
+        } else {
+            $filename = 'format_import_pts_pas ' . $pembelajaran->kelas->nama_kelas . ' ' . date('Y-m-d H_i_s') . '.xls';
+            $id = $pembelajaran->id;
+            return Excel::download(new FormatImportPtsPasK13Export($id), $filename);
+        }
+    }
+
+    public function import(Request $request)
+    {
+        try {
+            Excel::import(new NilaiPtsPasK13Import, $request->file('file_import'));
+            return back()->with('toast_success', 'Data nilai PTS PAS berhasil diimport');
+        } catch (\Throwable $th) {
+            return back()->with('toast_error', 'Maaf, format data tidak sesuai');
+        }
     }
 }
