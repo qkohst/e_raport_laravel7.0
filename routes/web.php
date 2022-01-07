@@ -39,6 +39,9 @@ Route::group(['middleware' => ['auth']], function () {
       Route::resource('profileadmin', 'Admin\ProfileController',  [
         'uses' => ['update']
       ]);
+      Route::resource('pengumuman', 'Admin\PengumumanController',  [
+        'uses' => ['index', 'store', 'update']
+      ]);
 
       Route::get('user/export', 'Admin\UserController@export')->name('user.export');
       Route::resource('user', 'Admin\UserController',  [
@@ -234,6 +237,10 @@ Route::group(['middleware' => ['auth']], function () {
             'uses' => ['index', 'store', 'update']
           ]);
 
+          // Import Nilai
+          Route::get('nilaipengetahuan/import', 'Guru\K13\NilaiPengetahuanController@format_import')->name('nilaipengetahuan.format_import');
+          Route::post('nilaipengetahuan/import', 'Guru\K13\NilaiPengetahuanController@import')->name('nilaipengetahuan.import');
+          // End Import Nilai 
           Route::resource('nilaipengetahuan', 'Guru\K13\NilaiPengetahuanController',  [
             'uses' => ['index', 'create', 'store', 'update']
           ]);

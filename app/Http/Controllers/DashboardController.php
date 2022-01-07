@@ -28,10 +28,12 @@ use App\KtspNilaiTugas;
 use App\KtspNilaiUh;
 use App\KtspNilaiUtsUas;
 use App\Pembelajaran;
+use App\Pengumuman;
 use App\RiwayatLogin;
 use App\Sekolah;
 use App\Siswa;
 use App\Tapel;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -47,7 +49,8 @@ class DashboardController extends Controller
         $title = 'Dashboard';
         $sekolah = Sekolah::first();
         $tapel = Tapel::findorfail(session()->get('tapel_id'));
-        $data_riwayat_login = RiwayatLogin::where('user_id', '!=', Auth::user()->id)->orderBy('status_login', 'DESC')->orderBy('updated_at', 'DESC')->get();
+        $data_pengumuman = Pengumuman::all();
+        $data_riwayat_login = RiwayatLogin::where('user_id', '!=', Auth::user()->id)->where('updated_at', '>=', Carbon::today())->orderBy('status_login', 'DESC')->orderBy('updated_at', 'DESC')->get();
 
         if (Auth::user()->role == 1) {
             $jumlah_guru = Guru::all()->count();
@@ -57,6 +60,7 @@ class DashboardController extends Controller
 
             return view('dashboard.admin', compact(
                 'title',
+                'data_pengumuman',
                 'data_riwayat_login',
                 'sekolah',
                 'tapel',
@@ -184,6 +188,7 @@ class DashboardController extends Controller
 
                 return view('dashboard.guru', compact(
                     'title',
+                    'data_pengumuman',
                     'data_riwayat_login',
                     'sekolah',
                     'tapel',
@@ -210,6 +215,7 @@ class DashboardController extends Controller
                 // Dashboard Wali Kelas
                 return view('dashboard.walikelas', compact(
                     'title',
+                    'data_pengumuman',
                     'data_riwayat_login',
                     'sekolah',
                     'tapel',
@@ -236,6 +242,7 @@ class DashboardController extends Controller
 
             return view('dashboard.siswa', compact(
                 'title',
+                'data_pengumuman',
                 'data_riwayat_login',
                 'sekolah',
                 'tapel',
@@ -243,71 +250,5 @@ class DashboardController extends Controller
                 'jumlah_mapel',
             ));
         }
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

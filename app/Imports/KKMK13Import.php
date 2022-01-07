@@ -33,7 +33,7 @@ class KKMK13Import implements ToCollection
                         ]);
                     }
                 } else {
-                    return back()->with('toast_warning', 'Maaf, KKM Nomor ' . $row[0] . ' harus bernilai antara 60 sampai 90');
+                    return back()->with('toast_warning', 'Maaf, KKM Nomor ' . $row[0] . ' harus bernilai antara 0 sampai 100');
                 }
             }
         }

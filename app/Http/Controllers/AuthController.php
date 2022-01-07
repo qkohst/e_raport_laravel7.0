@@ -8,6 +8,7 @@ use App\RiwayatLogin;
 use App\Rules\MatchOldPassword;
 use App\Tapel;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -100,7 +101,9 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        RiwayatLogin::where('user_id', Auth::id())->update(['status_login' => false]);
+        RiwayatLogin::where('user_id', Auth::id())->update([
+            'status_login' => false,
+        ]);
         $request->session()->flush();
         Auth::logout();
         return redirect('/')->with('toast_success', 'Logout berhasil');

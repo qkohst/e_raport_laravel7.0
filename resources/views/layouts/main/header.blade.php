@@ -23,6 +23,8 @@
   <link rel="stylesheet" href="/assets/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/assets/dist/css/adminlte.min.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="/assets/plugins/summernote/summernote-bs4.css">
   <!-- DataTables -->
   <link rel="stylesheet" href="/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
 </head>
