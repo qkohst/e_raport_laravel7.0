@@ -293,7 +293,7 @@
             {{$anggota_kelas->siswa->created_at->isoFormat('D MMMM Y')}}<br>
             Kepala Sekolah, <br><br><br><br>
             <b><u>{{$sekolah->kepala_sekolah}}</u></b><br>
-            NIP. {{$sekolah->nip_kepala_sekolah}}
+            NIP. {{konversi_nip($sekolah->nip_kepala_sekolah)}}
           </td>
         </tr>
       </table>

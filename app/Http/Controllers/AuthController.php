@@ -102,7 +102,7 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         RiwayatLogin::where('user_id', Auth::id())->update([
-            'status_login' => false,
+            'status_login' => false
         ]);
         $request->session()->flush();
         Auth::logout();

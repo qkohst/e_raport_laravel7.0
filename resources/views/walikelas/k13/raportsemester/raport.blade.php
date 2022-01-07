@@ -114,7 +114,7 @@
       {{$anggota_kelas->kelas->tapel->k13_tgl_raport->tempat_penerbitan}}, {{$anggota_kelas->kelas->tapel->k13_tgl_raport->tanggal_pembagian->isoFormat('D MMMM Y')}}<br>
       Wali Kelas, <br><br><br><br>
       <b><u>{{$anggota_kelas->kelas->guru->nama_lengkap}}, {{$anggota_kelas->kelas->guru->gelar}}</u></b><br>
-      NIP. {{$anggota_kelas->kelas->guru->nip}}
+      NIP. {{konversi_nip($anggota_kelas->kelas->guru->nip)}}
     </div>
     <div class="footer">
       <i>{{$anggota_kelas->kelas->nama_kelas}} | {{$anggota_kelas->siswa->nama_lengkap}} | {{$anggota_kelas->siswa->nis}}</i> <b style="float: right;"><i>Halaman 1</i></b>
@@ -219,7 +219,7 @@
       {{$anggota_kelas->kelas->tapel->k13_tgl_raport->tempat_penerbitan}}, {{$anggota_kelas->kelas->tapel->k13_tgl_raport->tanggal_pembagian->isoFormat('D MMMM Y')}}<br>
       Wali Kelas, <br><br><br><br>
       <b><u>{{$anggota_kelas->kelas->guru->nama_lengkap}}, {{$anggota_kelas->kelas->guru->gelar}}</u></b><br>
-      NIP. {{$anggota_kelas->kelas->guru->nip}}
+      NIP. {{konversi_nip($anggota_kelas->kelas->guru->nip)}}
     </div>
     <div class="footer">
       <i>{{$anggota_kelas->kelas->nama_kelas}} | {{$anggota_kelas->siswa->nama_lengkap}} | {{$anggota_kelas->siswa->nis}}</i> <b style="float: right;"><i>Halaman 2</i></b>
@@ -321,7 +321,7 @@
       {{$anggota_kelas->kelas->tapel->k13_tgl_raport->tempat_penerbitan}}, {{$anggota_kelas->kelas->tapel->k13_tgl_raport->tanggal_pembagian->isoFormat('D MMMM Y')}}<br>
       Wali Kelas, <br><br><br><br>
       <b><u>{{$anggota_kelas->kelas->guru->nama_lengkap}}, {{$anggota_kelas->kelas->guru->gelar}}</u></b><br>
-      NIP. {{$anggota_kelas->kelas->guru->nip}}
+      NIP. {{konversi_nip($anggota_kelas->kelas->guru->nip)}}
     </div>
     <div class="footer">
       <i>{{$anggota_kelas->kelas->nama_kelas}} | {{$anggota_kelas->siswa->nama_lengkap}} | {{$anggota_kelas->siswa->nis}}</i> <b style="float: right;"><i>Halaman 3</i></b>
@@ -584,7 +584,7 @@
             {{$anggota_kelas->kelas->tapel->k13_tgl_raport->tempat_penerbitan}}, {{$anggota_kelas->kelas->tapel->k13_tgl_raport->tanggal_pembagian->isoFormat('D MMMM Y')}}<br>
             Wali Kelas, <br><br><br><br>
             <b><u>{{$anggota_kelas->kelas->guru->nama_lengkap}}, {{$anggota_kelas->kelas->guru->gelar}}</u></b><br>
-            NIP. {{$anggota_kelas->kelas->guru->nip}}
+            NIP. {{konversi_nip($anggota_kelas->kelas->guru->nip)}}
           </td>
         </tr>
         <tr>
@@ -593,7 +593,7 @@
             Mengetahui <br>
             Kepala Sekolah, <br><br><br><br>
             <b><u>{{$sekolah->kepala_sekolah}}</u></b><br>
-            NIP. {{$sekolah->nip_kepala_sekolah}}
+            NIP. {{konversi_nip($sekolah->nip_kepala_sekolah)}}
           </td>
           <td style="width: 35%;"></td>
         </tr>

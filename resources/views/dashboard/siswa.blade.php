@@ -189,6 +189,10 @@
                       @elseif($riwayat_login->user->role == 3)
                       Siswa
                       @endif
+
+                      @if($riwayat_login->status_login == false)
+                      <span class="time float-right"><i class="far fa-clock"></i> {{$riwayat_login->updated_at->diffForHumans()}}</span>
+                      @endif
                     </span>
                   </div>
                 </li>

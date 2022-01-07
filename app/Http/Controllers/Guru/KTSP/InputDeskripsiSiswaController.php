@@ -59,7 +59,11 @@ class InputDeskripsiSiswaController extends Controller
             foreach ($data_nilai_siswa as $nilai_siswa) {
                 $deskripsi = KtspDeskripsiNilaiSiswa::where('ktsp_nilai_akhir_raport_id', $nilai_siswa->id)->first();
                 if (is_null($deskripsi)) {
-                    $nilai_siswa->deskripsi = null;
+                    if ($nilai_siswa->nilai_akhir < $nilai_siswa->kkm) {
+                        $nilai_siswa->deskripsi = 'Tidak Lulus';
+                    } else {
+                        $nilai_siswa->deskripsi = 'Lulus';
+                    }
                 } else {
                     $nilai_siswa->deskripsi = $deskripsi->deskripsi;
                 }

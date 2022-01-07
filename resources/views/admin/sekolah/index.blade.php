@@ -69,7 +69,7 @@
                 <div class="form-group row">
                   <label for="nomor_telpon" class="col-sm-2 col-form-label">Telepon</label>
                   <div class="col-sm-10">
-                    <input type="number" class="form-control" id="nomor_telpon" name="nomor_telpon" placeholder="Telepon" value="{{$sekolah->nomor_telpon}}">
+                    <input type="number" class="form-control" id="nomor_telpon" name="nomor_telpon" placeholder="Telepon" value="{{$sekolah->nomor_telpon}}" data-inputmask="'mask': ['999-999-9999 [x99999]', '+099 99 99 9999[9]-9999']" data-mask>
                   </div>
                 </div>
                 <div class="form-group row">

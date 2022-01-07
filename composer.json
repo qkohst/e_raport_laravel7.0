@@ -41,7 +41,8 @@
             "App\\": "app/"
         },
         "files": [
-            "app/Helpers/AngkaTerbilang.php"
+            "app/Helpers/AngkaTerbilang.php",
+            "app/Helpers/KonversiNip.php"
         ],
         "classmap": [
             "database/seeds",

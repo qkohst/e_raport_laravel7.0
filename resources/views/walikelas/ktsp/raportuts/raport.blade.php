@@ -156,7 +156,7 @@
       {{$anggota_kelas->kelas->tapel->ktsp_tgl_raport->tempat_penerbitan}}, {{$anggota_kelas->kelas->tapel->ktsp_tgl_raport->tanggal_pembagian->isoFormat('D MMMM Y')}}<br>
       Wali Kelas, <br><br><br><br>
       <b><u>{{$anggota_kelas->kelas->guru->nama_lengkap}}, {{$anggota_kelas->kelas->guru->gelar}}</u></b><br>
-      NIP. {{$anggota_kelas->kelas->guru->nip}}
+      NIP. {{konversi_nip($anggota_kelas->kelas->guru->nip)}}
     </div>
     <div class="footer">
       <i>{{$anggota_kelas->kelas->nama_kelas}} | {{$anggota_kelas->siswa->nama_lengkap}} | {{$anggota_kelas->siswa->nis}}</i> <b style="float: right;"><i>Halaman 1</i></b>
