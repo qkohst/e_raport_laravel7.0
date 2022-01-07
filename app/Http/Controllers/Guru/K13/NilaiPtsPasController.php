@@ -132,7 +132,7 @@ class NilaiPtsPasController extends Controller
         if (count($cek_anggota) == 0) {
             return back()->with('toast_error', 'Belum ditemukan data anggota kelas');
         } else {
-            $filename = 'format_import_pts_pas ' . $pembelajaran->kelas->nama_kelas . ' ' . date('Y-m-d H_i_s') . '.xls';
+            $filename = 'format_import_pts_pas ' . $pembelajaran->mapel->ringkasan_mapel . ' ' . $pembelajaran->kelas->nama_kelas . ' ' . date('Y-m-d H_i_s') . '.xls';
             $id = $pembelajaran->id;
             return Excel::download(new FormatImportPtsPasK13Export($id), $filename);
         }

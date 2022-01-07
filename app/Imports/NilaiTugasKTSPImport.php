@@ -2,11 +2,11 @@
 
 namespace App\Imports;
 
-use App\K13NilaiPtsPas;
+use App\KtspNilaiTugas;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 
-class NilaiPtsPasK13Import implements ToCollection
+class NilaiTugasKTSPImport implements ToCollection
 {
     /**
      * @param array $row
@@ -17,19 +17,17 @@ class NilaiPtsPasK13Import implements ToCollection
     {
         foreach ($collection as $key => $row) {
             if ($key >= 10) {
-                if (($row[4] > 0 && $row[4] <= 100) || ($row[5] > 0 && $row[5] <= 100)) {
-                    $cek_nilai = K13NilaiPtsPas::where('pembelajaran_id', $row[1])->where('anggota_kelas_id', $row[2])->first();
+                if ($row[4] > 0 && $row[4] <= 100) {
+                    $cek_nilai = KtspNilaiTugas::where('pembelajaran_id', $row[1])->where('anggota_kelas_id', $row[2])->first();
                     if (is_null($cek_nilai)) {
-                        K13NilaiPtsPas::create([
+                        KtspNilaiTugas::create([
                             'pembelajaran_id' => $row[1],
                             'anggota_kelas_id' => $row[2],
-                            'nilai_pts' => $row[4],
-                            'nilai_pas' => $row[5]
+                            'nilai' => $row[4],
                         ]);
                     } else {
                         $cek_nilai->update([
-                            'nilai_pts' => $row[4],
-                            'nilai_pas' => $row[5]
+                            'nilai' => $row[4],
                         ]);
                     }
                 } else {

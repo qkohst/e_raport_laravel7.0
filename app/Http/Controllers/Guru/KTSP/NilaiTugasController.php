@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Guru\KTSP;
 
 use App\AnggotaKelas;
+use App\Exports\FormatImportTugasKTSPExport;
 use App\Guru;
 use App\Http\Controllers\Controller;
+use App\Imports\NilaiTugasKTSPImport;
 use App\Kelas;
 use App\KtspNilaiTugas;
 use App\Pembelajaran;
@@ -12,6 +14,7 @@ use App\Tapel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Excel;
 
 class NilaiTugasController extends Controller
 {
@@ -118,5 +121,28 @@ class NilaiTugasController extends Controller
             }
         }
         return redirect('guru/nilaitugas')->with('toast_success', 'Data nilai tugas berhasil diedit.');
+    }
+
+    public function format_import(Request $request)
+    {
+        $pembelajaran = Pembelajaran::findorfail($request->pembelajaran_id);
+        $cek_anggota = AnggotaKelas::where('kelas_id', $pembelajaran->kelas_id)->get();
+        if (count($cek_anggota) == 0) {
+            return back()->with('toast_error', 'Belum ditemukan data anggota kelas');
+        } else {
+            $filename = 'format_import_nilai_tugas ' . $pembelajaran->mapel->ringkasan_mapel . ' ' . $pembelajaran->kelas->nama_kelas . ' ' . date('Y-m-d H_i_s') . '.xls';
+            $id = $pembelajaran->id;
+            return Excel::download(new FormatImportTugasKTSPExport($id), $filename);
+        }
+    }
+
+    public function import(Request $request)
+    {
+        try {
+            Excel::import(new NilaiTugasKTSPImport, $request->file('file_import'));
+            return back()->with('toast_success', 'Data nilai tugas berhasil diimport');
+        } catch (\Throwable $th) {
+            return back()->with('toast_error', 'Maaf, format data tidak sesuai');
+        }
     }
 }

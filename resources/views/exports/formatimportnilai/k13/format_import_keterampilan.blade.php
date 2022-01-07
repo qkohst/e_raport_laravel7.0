@@ -85,7 +85,7 @@
 
       <?php $no = 0; ?>
       @foreach($data_rencana_penilaian as $rencana_penilaian)
-      @foreach($data_anggota_kelas as $anggota_kelas)
+      @foreach($data_anggota_kelas->sortBy('siswa.nama_lengkap') as $anggota_kelas)
       <?php $no++; ?>
       <tr>
         @if($no % 2 == 0)

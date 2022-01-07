@@ -155,7 +155,7 @@ class NilaiPengetahuanController extends Controller
         if (count($cek_rencana) == 0) {
             return back()->with('toast_error', 'Belum ditemukan rencana penilaian');
         } else {
-            $filename = 'format_import_pengetahuan ' . $pembelajaran->kelas->nama_kelas . ' ' . date('Y-m-d H_i_s') . '.xls';
+            $filename = 'format_import_pengetahuan ' . $pembelajaran->mapel->ringkasan_mapel . ' ' . $pembelajaran->kelas->nama_kelas . ' ' . date('Y-m-d H_i_s') . '.xls';
             $id = $pembelajaran->id;
             return Excel::download(new FormatImportPengetahuanK13Export($id), $filename);
         }

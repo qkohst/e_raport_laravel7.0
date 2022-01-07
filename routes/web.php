@@ -289,6 +289,11 @@ Route::group(['middleware' => ['auth']], function () {
             'uses' => ['index', 'store', 'update']
           ]);
 
+          // Import Nilai
+          Route::get('nilaitugas/import', 'Guru\KTSP\NilaiTugasController@format_import')->name('nilaitugas.format_import');
+          Route::post('nilaitugas/import', 'Guru\KTSP\NilaiTugasController@import')->name('nilaitugas.import');
+          // End Import Nilai
+
           Route::resource('nilaitugas', 'Guru\KTSP\NilaiTugasController',  [
             'uses' => ['index', 'create', 'store', 'update']
           ]);
