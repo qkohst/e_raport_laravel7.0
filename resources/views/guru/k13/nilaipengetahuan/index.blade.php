@@ -148,7 +148,7 @@
                     <tr>
                       <td class="text-center">{{$no}}</td>
                       <td>{{$penilaian->mapel->nama_mapel}}</td>
-                      <td>{{$penilaian->kelas->nama_kelas}}</td>
+                      <td class="text-center">{{$penilaian->kelas->nama_kelas}}</td>
 
                       @if($penilaian->jumlah_rencana_penilaian == 0)
                       <td class="text-danger text-center"><b>0</b></td>

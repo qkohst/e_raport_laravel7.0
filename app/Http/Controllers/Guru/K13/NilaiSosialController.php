@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Guru\K13;
 
 use App\AnggotaKelas;
+use App\Exports\FormatImportSosialK13Export;
 use App\Guru;
 use App\Http\Controllers\Controller;
+use App\Imports\NilaiSosialK13Import;
 use App\K13NilaiSosial;
 use App\K13RencanaNilaiSosial;
 use App\Kelas;
@@ -14,6 +16,7 @@ use App\Tapel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Excel;
 
 class NilaiSosialController extends Controller
 {
@@ -124,5 +127,28 @@ class NilaiSosialController extends Controller
             }
         }
         return redirect('guru/nilaisosial')->with('toast_success', 'Data nilai sosial berhasil edit.');
+    }
+
+    public function format_import(Request $request)
+    {
+        $pembelajaran = Pembelajaran::findorfail($request->pembelajaran_id);
+        $cek_rencana = K13RencanaNilaiSosial::where('pembelajaran_id', $pembelajaran->id)->get();
+        if (count($cek_rencana) == 0) {
+            return back()->with('toast_error', 'Belum ditemukan rencana penilaian');
+        } else {
+            $filename = 'format_import_sosial ' . $pembelajaran->kelas->nama_kelas . ' ' . date('Y-m-d H_i_s') . '.xls';
+            $id = $pembelajaran->id;
+            return Excel::download(new FormatImportSosialK13Export($id), $filename);
+        }
+    }
+
+    public function import(Request $request)
+    {
+        try {
+            Excel::import(new NilaiSosialK13Import, $request->file('file_import'));
+            return back()->with('toast_success', 'Data nilai sosial berhasil diimport');
+        } catch (\Throwable $th) {
+            return back()->with('toast_error', 'Maaf, format data tidak sesuai');
+        }
     }
 }
