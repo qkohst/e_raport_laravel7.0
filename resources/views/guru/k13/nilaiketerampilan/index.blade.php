@@ -209,7 +209,11 @@
                       </div>
                       <!-- End Modal tambah -->
                       @else
-                      <td></td>
+                      <td class="text-center">
+                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-tambah{{$penilaian->id}}" title="Belum ada rencana penilaian" disabled>
+                          <i class="fas fa-plus"></i>
+                        </button>
+                      </td>
                       @endif
                     </tr>
                     @endforeach

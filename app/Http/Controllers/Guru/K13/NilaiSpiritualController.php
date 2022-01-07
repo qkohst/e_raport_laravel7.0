@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Guru\K13;
 
 use App\AnggotaKelas;
+use App\Exports\FormatImportSpiritualK13Export;
 use App\Guru;
 use App\Http\Controllers\Controller;
+use App\Imports\NilaiSpiritualK13Import;
 use App\K13NilaiSpiritual;
 use App\K13RencanaNilaiSpiritual;
 use App\Kelas;
@@ -13,6 +15,7 @@ use App\Tapel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Excel;
 
 class NilaiSpiritualController extends Controller
 {
@@ -124,5 +127,28 @@ class NilaiSpiritualController extends Controller
             }
         }
         return redirect('guru/nilaispiritual')->with('toast_success', 'Data nilai spiritual berhasil edit.');
+    }
+
+    public function format_import(Request $request)
+    {
+        $pembelajaran = Pembelajaran::findorfail($request->pembelajaran_id);
+        $cek_rencana = K13RencanaNilaiSpiritual::where('pembelajaran_id', $pembelajaran->id)->get();
+        if (count($cek_rencana) == 0) {
+            return back()->with('toast_error', 'Belum ditemukan rencana penilaian');
+        } else {
+            $filename = 'format_import_spiritual ' . $pembelajaran->kelas->nama_kelas . ' ' . date('Y-m-d H_i_s') . '.xls';
+            $id = $pembelajaran->id;
+            return Excel::download(new FormatImportSpiritualK13Export($id), $filename);
+        }
+    }
+
+    public function import(Request $request)
+    {
+        try {
+            Excel::import(new NilaiSpiritualK13Import, $request->file('file_import'));
+            return back()->with('toast_success', 'Data nilai spiritual berhasil diimport');
+        } catch (\Throwable $th) {
+            return back()->with('toast_error', 'Maaf, format data tidak sesuai');
+        }
     }
 }
