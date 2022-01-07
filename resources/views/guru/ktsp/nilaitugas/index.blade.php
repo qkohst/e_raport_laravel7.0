@@ -21,90 +21,6 @@
   </div>
   <!-- /.content-header -->
 
-  <!-- Modal Download  -->
-  <div class="modal fade" id="modal-download">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Download Format Import {{$title}}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <form name="contact-form" action="{{ route('nilaitugas.format_import') }}" method="GET">
-          @csrf
-          <div class="modal-body">
-            <div class="callout callout-info">
-              <h5>Perhatian</h5>
-              <p>
-                - Silahkan pilih pembelajaran & download file format import melalui tombol dibawah ini.
-              </p>
-
-            </div>
-
-            <div class="form-group row pt-2">
-              <label class="col-sm-3 col-form-label">Pilih Pembelajaran</label>
-              <div class="col-sm-9">
-                <select class="form-control select2" name="pembelajaran_id" required>
-                  <option value="">-- Pilih Pembelajaran --</option>
-                  @foreach($data_penilaian as $penilaian)
-                  <option value="{{$penilaian->id}}"> {{$penilaian->mapel->nama_mapel}} {{$penilaian->kelas->nama_kelas}}</option>
-                  @endforeach
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer justify-content-end">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-            <button type="submit" class="btn btn-primary">Download</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <!-- End Modal Download -->
-
-  <!-- Modal import  -->
-  <div class="modal fade" id="modal-import">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Import {{$title}}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <form name="contact-form" action="{{ route('nilaitugas.import') }}" method="POST" enctype="multipart/form-data">
-          @csrf
-          <div class="modal-body">
-            <div class="callout callout-info">
-              <h5>Perhatian</h5>
-              <p>
-                - Silahkan gunakan format yang anda download dari menu download format import. <br>
-                - Pastikan anda telah menyimpan file dalam format <b>excel 97-2003</b>. <br>
-                - Import nilai diluar prosedur dapat merusak data E-Raport.
-              </p>
-            </div>
-            <div class="form-group row pt-2">
-              <label for="file_import" class="col-sm-2 col-form-label">File Import</label>
-              <div class="col-sm-10">
-                <div class="custom-file">
-                  <input type="file" class="custom-file-input" name="file_import" id="customFile" accept="application/vnd.ms-excel">
-                  <label class="custom-file-label" for="customFile">Pilih file</label>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer justify-content-end">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-            <button type="submit" class="btn btn-primary">Import</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <!-- End Modal import -->
-
   <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
@@ -123,6 +39,91 @@
                 </button>
               </div>
             </div>
+
+
+            <!-- Modal Download  -->
+            <div class="modal fade" id="modal-download">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Download Format Import {{$title}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <form name="contact-form" action="{{ route('nilaitugas.format_import') }}" method="GET">
+                    @csrf
+                    <div class="modal-body">
+                      <div class="callout callout-info">
+                        <h5>Perhatian</h5>
+                        <p>
+                          - Silahkan pilih pembelajaran & download file format import melalui tombol dibawah ini.
+                        </p>
+
+                      </div>
+
+                      <div class="form-group row pt-2">
+                        <label class="col-sm-3 col-form-label">Pilih Pembelajaran</label>
+                        <div class="col-sm-9">
+                          <select class="form-control select2" name="pembelajaran_id" required>
+                            <option value="">-- Pilih Pembelajaran --</option>
+                            @foreach($data_penilaian as $penilaian)
+                            <option value="{{$penilaian->id}}"> {{$penilaian->mapel->nama_mapel}} {{$penilaian->kelas->nama_kelas}}</option>
+                            @endforeach
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer justify-content-end">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                      <button type="submit" class="btn btn-primary">Download</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <!-- End Modal Download -->
+
+            <!-- Modal import  -->
+            <div class="modal fade" id="modal-import">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Import {{$title}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <form name="contact-form" action="{{ route('nilaitugas.import') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                      <div class="callout callout-info">
+                        <h5>Perhatian</h5>
+                        <p>
+                          - Silahkan gunakan format yang anda download dari menu download format import. <br>
+                          - Pastikan anda telah menyimpan file dalam format <b>excel 97-2003</b>. <br>
+                          - Import nilai diluar prosedur dapat merusak data E-Raport.
+                        </p>
+                      </div>
+                      <div class="form-group row pt-2">
+                        <label for="file_import" class="col-sm-2 col-form-label">File Import</label>
+                        <div class="col-sm-10">
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="file_import" id="customFile" accept="application/vnd.ms-excel">
+                            <label class="custom-file-label" for="customFile">Pilih file</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer justify-content-end">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                      <button type="submit" class="btn btn-primary">Import</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <!-- End Modal import -->
 
             <div class="card-body">
               <div class="table-responsive">

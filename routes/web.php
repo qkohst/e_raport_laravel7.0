@@ -292,6 +292,12 @@ Route::group(['middleware' => ['auth']], function () {
           // Import Nilai
           Route::get('nilaitugas/import', 'Guru\KTSP\NilaiTugasController@format_import')->name('nilaitugas.format_import');
           Route::post('nilaitugas/import', 'Guru\KTSP\NilaiTugasController@import')->name('nilaitugas.import');
+
+          Route::get('nilaiuh/import', 'Guru\KTSP\NilaiUhController@format_import')->name('nilaiuh.format_import');
+          Route::post('nilaiuh/import', 'Guru\KTSP\NilaiUhController@import')->name('nilaiuh.import');
+
+          Route::get('nilaiutsuas/import', 'Guru\KTSP\NilaiUtsUasController@format_import')->name('nilaiutsuas.format_import');
+          Route::post('nilaiutsuas/import', 'Guru\KTSP\NilaiUtsUasController@import')->name('nilaiutsuas.import');
           // End Import Nilai
 
           Route::resource('nilaitugas', 'Guru\KTSP\NilaiTugasController',  [
