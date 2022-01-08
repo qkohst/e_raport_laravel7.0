@@ -1,3 +1,109 @@
+## APLIKASI E RAPORT 
+
+Aplikasi ini dibangun dengan framework laravel 7.0 dan DBMS MySQL dengan menggunakan template dari admin LTE.
+Cocok digunakan pada lembaga Jenjang SLTP Sederajat atau PKBM yang memiliki mata pelajaran muatan lokal yang banyak sehingga tidak dapat menggunakan aplikasi E raport dari Dinas Pendidikan.
+
+### Adapun fitur dari Aplikasi E Raport ini secara global antara lain :
+
+1. Multi user (Admin, Guru, Wali Kelas, Siswa).
+2. Tampilan Responsive.
+3. Mendukung 2 Jenis Kurikulum yaitu KTSP 2006 & kurikulum K13.
+4. Didukung dengan Import Excel untuk menu input data dan nilai.
+5. Data Master & Leger Nilai Siswa dapat didownload ke dalam format Excel.
+6. File Raport dan identitas peserta didik dapat didownload kedalam format PDF.
+
+## CONTOH DOKUMEN
+
+Contoh dokumen hasil download dari aplikasi dapat anda lihat pada link berikut : 
+#### A. Kurikulum K13
+1. Leger nilai siswa                : https://docs.google.com/spreadsheets/d/1wL6BHdca7pwkIcCTCpE-uZf6Qca_qK8B/edit?usp=sharing&ouid=117234314675225289717&rtpof=true&sd=true
+3. Identitas Peserta Didik          : https://drive.google.com/file/d/18tQcCNxmaVNkYzwbu3BJOeuynypIHVVG/view?usp=sharing
+4. Raport Penilaian Tengah Semester : https://drive.google.com/file/d/1r1o1U28Qn5TMpvKC6jHT_DPn4WFa1gOu/view?usp=sharing
+5. Raport Penilaian Akhir Semester  : https://drive.google.com/file/d/1hErwzXFXRKK81NaUJ0gFVl8GrL00obmn/view?usp=sharing
+
+#### B. Kurikulum KTSP 2006
+1. Leger nilai siswa                : https://docs.google.com/spreadsheets/d/1eWrWhAg0HdLRZrel5UW33lEqSt6fA-D-/edit?usp=sharing&ouid=117234314675225289717&rtpof=true&sd=true
+2. Identitas Peserta Didik          : https://drive.google.com/file/d/18tQcCNxmaVNkYzwbu3BJOeuynypIHVVG/view?usp=sharing
+3. Raport Ujian Tengah Semester     : https://drive.google.com/file/d/1WxEziJqeUtAgj1JjD7Ad4wVmhg0p4Qhy/view?usp=sharing
+4. Raport Ujia Akhir Semester       : https://drive.google.com/file/d/1sBS6FgO971HUff4nI5Pax2B-ihCLEYwJ/view?usp=sharing
+
+
+## HAK AKSES USER 
+
+#### A. Admin
+1. Mengelola data user
+2. Mengelola data pengumuman
+3. Mengelola data Master : 
+   - Profil Sekolah
+   - Data Guru
+   - Data Tahun Pelajaran
+   - Data Mata Pelajaran
+   - Data Kelas & Wali 
+   - Data Siswa
+   - Data Pembelajaran
+   - Data Ekstrakulikuler
+5. mengelola Mapping Mata Pelajaran
+6. Mengelola KKM Mata Pelajaran
+7. Menglola Butir Sikap
+8. Mengelola Data Kompetensi Dasar
+9. Input Tanggal Raport
+10. Validasi Data
+11. Akses Hasil Penilaian 
+12. Akses Leger Nilai Siswa
+13. Cetak Raport Siswa
+
+#### B. Guru Mapel
+1. Mengelola Data Kompetensi Dasar
+2. Melakukan Rencana Penilaian :
+   - Nilai Pengetahuan
+   - Nilai Keterampilan 
+   - Nilai Spiritual
+   - Nilai Sosial
+   - Setting Bobot Penilaian
+4. Input Data Penilaian :
+   - Nilai Pengetahuan
+   - Nilai Keterampilan 
+   - Nilai Spiritual
+   - Nilai Sosial
+   - Nilai PTS & UAS
+6. Input Nilai Ekstrakulikuler
+7. Kirim Nilai Akhir
+8. Proses Deskripsi Siswa
+
+#### C. Wali Kelas
+1. Akses Data Siswa Anggota Kelas
+2. Input Data & Nilai :
+   - Input Kehadiran Siswa
+   - Input kehadiran Siswa
+   - Input Catatan Wali Kelas
+   - Input Kenaikan Kelas / Kelulusan
+4. Akses Hasil Penilaian
+5. Proses Deskripsi Sikap
+6. Akses Leger Nilai Siswa
+7. Cetak Raport Siswa
+
+#### D. Siswa
+1. Akses Nilai Ekstrakulikuler
+2. Akses Rekap Kehadiaran 
+3. Akses Nilai Akhir Semester
+
+## PREVIEW APLIKASI
+
+### Interface User Admin 
+
+### Interface User Guru Mapel
+
+### Interface User Wali Kelas
+
+### Interface User Siswa 
+
+## INFORMASI TAMBAHAN 
+Account default Admin 
+- Username    : admin
+- Password    : admin123456
+
+Password default untuk semua user yang baru ditambahkan adalah 123456
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
