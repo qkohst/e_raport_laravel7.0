@@ -16,16 +16,16 @@ Cocok digunakan pada lembaga Jenjang SLTP Sederajat atau PKBM yang memiliki mata
 
 Contoh dokumen hasil download dari aplikasi dapat anda lihat pada link berikut : 
 #### A. Kurikulum K13
-1. Leger nilai siswa                : https://docs.google.com/spreadsheets/d/1wL6BHdca7pwkIcCTCpE-uZf6Qca_qK8B/edit?usp=sharing&ouid=117234314675225289717&rtpof=true&sd=true
-3. Identitas Peserta Didik          : https://drive.google.com/file/d/18tQcCNxmaVNkYzwbu3BJOeuynypIHVVG/view?usp=sharing
-4. Raport Penilaian Tengah Semester : https://drive.google.com/file/d/1r1o1U28Qn5TMpvKC6jHT_DPn4WFa1gOu/view?usp=sharing
-5. Raport Penilaian Akhir Semester  : https://drive.google.com/file/d/1hErwzXFXRKK81NaUJ0gFVl8GrL00obmn/view?usp=sharing
+1. Leger nilai siswa                : [LEGER NILAI K13.xls](https://github.com/qkohst/e_raport_laravel7.0/files/7833701/LEGER.NILAI.K13.xls)
+3. Identitas Peserta Didik          : [KELENGKAPAN RAPORT.pdf](https://github.com/qkohst/e_raport_laravel7.0/files/7833700/KELENGKAPAN.RAPORT.pdf)
+4. Raport Penilaian Tengah Semester : [RAPORT PTS K13.pdf](https://github.com/qkohst/e_raport_laravel7.0/files/7833704/RAPORT.PTS.K13.pdf)
+5. Raport Penilaian Akhir Semester  : [RAPORT PAS K13.pdf](https://github.com/qkohst/e_raport_laravel7.0/files/7833703/RAPORT.PAS.K13.pdf)
 
 #### B. Kurikulum KTSP 2006
-1. Leger nilai siswa                : https://docs.google.com/spreadsheets/d/1eWrWhAg0HdLRZrel5UW33lEqSt6fA-D-/edit?usp=sharing&ouid=117234314675225289717&rtpof=true&sd=true
-2. Identitas Peserta Didik          : https://drive.google.com/file/d/18tQcCNxmaVNkYzwbu3BJOeuynypIHVVG/view?usp=sharing
-3. Raport Ujian Tengah Semester     : https://drive.google.com/file/d/1WxEziJqeUtAgj1JjD7Ad4wVmhg0p4Qhy/view?usp=sharing
-4. Raport Ujia Akhir Semester       : https://drive.google.com/file/d/1sBS6FgO971HUff4nI5Pax2B-ihCLEYwJ/view?usp=sharing
+1. Leger nilai siswa                : [LEGER NILAI KTSP.xls](https://github.com/qkohst/e_raport_laravel7.0/files/7833707/LEGER.NILAI.KTSP.xls)
+2. Identitas Peserta Didik          : [KELENGKAPAN RAPORT.pdf](https://github.com/qkohst/e_raport_laravel7.0/files/7833700/KELENGKAPAN.RAPORT.pdf)
+3. Raport Ujian Tengah Semester     : [RAPORT UTS KTSP.pdf](https://github.com/qkohst/e_raport_laravel7.0/files/7833709/RAPORT.UTS.KTSP.pdf)
+4. Raport Ujia Akhir Semester       : [RAPORT UAS KTSP.pdf](https://github.com/qkohst/e_raport_laravel7.0/files/7833708/RAPORT.UAS.KTSP.pdf)
 
 
 ## HAK AKSES USER 
@@ -90,12 +90,37 @@ Contoh dokumen hasil download dari aplikasi dapat anda lihat pada link berikut :
 ## PREVIEW APLIKASI
 
 ### Interface User Admin 
+![1](https://user-images.githubusercontent.com/57386598/148654237-3f8acd26-1510-40dc-9998-7977e24c64dc.png)
+![2](https://user-images.githubusercontent.com/57386598/148654236-eff1118c-1453-4957-a8ae-2efc74fbebe0.png)
+![3](https://user-images.githubusercontent.com/57386598/148654235-f5005e58-827f-4f91-961a-8e6be4261c44.png)
+![4](https://user-images.githubusercontent.com/57386598/148654233-5ef48595-7342-4234-99e7-a6de5cf98c21.png)
+![5](https://user-images.githubusercontent.com/57386598/148654232-1f378bd6-acf7-4a8b-9c60-6966c5d21d57.png)
+![6](https://user-images.githubusercontent.com/57386598/148654231-4154c83f-2eb2-452c-a024-d7d4814cfa1c.png)
+![7](https://user-images.githubusercontent.com/57386598/148654230-3a40a99f-95e5-4068-84e5-efdfb1f3210c.png)
+![8](https://user-images.githubusercontent.com/57386598/148654229-5f215863-64a2-490b-ae08-17db4e1bb6d4.png)
+![9](https://user-images.githubusercontent.com/57386598/148654226-60b74aac-d20b-40e4-99ce-3e55e8d8c956.png)
+
 
 ### Interface User Guru Mapel
+![1](https://user-images.githubusercontent.com/57386598/148654302-3b3e1d15-c61d-47e6-ae3e-6510db9954b5.png)
+![2](https://user-images.githubusercontent.com/57386598/148654304-8c0593e5-aff8-4cd3-814e-41905205e038.png)
+![3](https://user-images.githubusercontent.com/57386598/148654305-3b40c377-6d3e-4805-808d-3edf1c178a9c.png)
+![4](https://user-images.githubusercontent.com/57386598/148654307-c3b77940-2dfb-4f46-98b8-590dfc37532a.png)
+![5](https://user-images.githubusercontent.com/57386598/148654308-6d94344b-63a0-4fca-8621-6b7e87d65793.png)
+
 
 ### Interface User Wali Kelas
+![0](https://user-images.githubusercontent.com/57386598/148654316-efe04144-3817-4341-b979-a5d31ab7f67e.png)
+![1](https://user-images.githubusercontent.com/57386598/148654318-e6139a9f-1ccc-41c8-b23b-6df7d82fd55b.png)
+![2](https://user-images.githubusercontent.com/57386598/148654321-439f1e15-80af-400a-8c52-787bd574aa5a.png)
+
 
 ### Interface User Siswa 
+![1](https://user-images.githubusercontent.com/57386598/148654332-b5b747f5-8e0e-482a-a92a-b0d1083d7cfe.png)
+![2](https://user-images.githubusercontent.com/57386598/148654336-663aca6c-b86d-48f7-81f6-75eb2b2e7188.png)
+![3](https://user-images.githubusercontent.com/57386598/148654337-341540c9-ca08-4380-a46d-577ac9511804.png)
+![4](https://user-images.githubusercontent.com/57386598/148654339-a4caeb95-e987-4d6b-a6ee-8012ac7ace1a.png)
+
 
 ## INFORMASI TAMBAHAN 
 Account default Admin 
@@ -103,6 +128,13 @@ Account default Admin
 - Password    : admin123456
 
 Password default untuk semua user yang baru ditambahkan adalah 123456
+
+### Cara Install Aplikasi Ke Komputer Anda 
+Untuk menginstall aplikasi E raport pada komputer anda silahkan ikuti panduan pada link berikut : 
+
+https://medium.com/angkringan/cara-clone-project-laravel-dari-git-bb2dd403dde3
+
+
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
