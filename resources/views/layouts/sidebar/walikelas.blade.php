@@ -54,6 +54,12 @@
                 <p>Catatan Wali Kelas</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('kenaikan.index') }}" class="nav-link">
+                <i class="fas fa-layer-group nav-icon"></i>
+                <p>Input Kenaikan Kelas</p>
+              </a>
+            </li>
           </ul>
         </li>
 

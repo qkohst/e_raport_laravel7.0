@@ -340,6 +340,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('catatan', 'Walikelas\CatatanWaliKelasController',  [
           'uses' => ['index', 'store']
         ]);
+        Route::resource('kenaikan', 'Walikelas\KenaikanKelasController',  [
+          'uses' => ['index', 'store']
+        ]);
 
         // Raport K13 Wali Kelas
         Route::group(['middleware' => 'checkKurikulum:2013'], function () {

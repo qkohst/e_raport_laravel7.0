@@ -57,7 +57,7 @@
                       <td>{{$anggota_kelas->siswa->nisn}}</td>
                       <td>{{$anggota_kelas->siswa->nama_lengkap}}</td>
                       <td>{{$anggota_kelas->siswa->tempat_lahir}}</td>
-                      <td>{{$anggota_kelas->siswa->tanggal_lahir}}</td>
+                      <td>{{$anggota_kelas->siswa->tanggal_lahir->format('d-M-Y')}}</td>
                       <td>{{$anggota_kelas->siswa->jenis_kelamin}}</td>
                       <td>{{$anggota_kelas->kelas->nama_kelas}}</td>
                     </tr>

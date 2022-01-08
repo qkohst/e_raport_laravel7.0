@@ -32,8 +32,8 @@ class SiswaController extends Controller
         if ($jumlah_kelas == 0) {
             return redirect('admin/kelas')->with('toast_warning', 'Mohon isikan data kelas');
         } else {
-            $tingkatan_terendah = Kelas::min('tingkatan_kelas');
-            $tingkatan_akhir = Kelas::max('tingkatan_kelas');
+            $tingkatan_terendah = Kelas::where('tapel_id', $tapel->id)->min('tingkatan_kelas');
+            $tingkatan_akhir = Kelas::where('tapel_id', $tapel->id)->max('tingkatan_kelas');
             $data_kelas_terendah = Kelas::where('tapel_id', $tapel->id)->where('tingkatan_kelas', $tingkatan_terendah)->orderBy('nama_kelas', 'ASC')->get();
             $data_kelas_all = Kelas::where('tapel_id', $tapel->id)->orderBy('tingkatan_kelas', 'ASC')->get();
             $data_siswa = Siswa::where('status', 1)->orderBy('nis', 'ASC')->get();

@@ -369,7 +369,7 @@
 
         <!-- EkstraKulikuler  -->
         <tr>
-          <td colspan="4" style="height: 30px;"><strong>C. EKSTRAKULIKULER</strong></td>
+          <td colspan="4" style="height: 25px;"><strong>C. EKSTRAKULIKULER</strong></td>
         </tr>
         <tr class="heading">
           <td style="width: 5%;">NO</td>
@@ -454,7 +454,7 @@
 
         <!-- Prestasi -->
         <tr>
-          <td colspan="4" style="height: 30px; padding-top: 10px"><strong>D. PRESTASI</strong></td>
+          <td colspan="4" style="height: 25px; padding-top: 5px"><strong>D. PRESTASI</strong></td>
         </tr>
         <tr class="heading">
           <td style="width: 5%;">NO</td>
@@ -524,7 +524,7 @@
 
         <!-- Ketidakhadiran  -->
         <tr>
-          <td colspan="4" style="height: 30px; padding-top: 10px"><strong>E. KETIDAKHADIRAN</strong></td>
+          <td colspan="4" style="height: 25px; padding-top: 5px"><strong>E. KETIDAKHADIRAN</strong></td>
         </tr>
         @if(!is_null($kehadiran_siswa))
         <tr class="nilai">
@@ -542,12 +542,16 @@
           <td style="border-left:0 ;">: {{$kehadiran_siswa->tanpa_keterangan}} hari</td>
           <td class="false"></td>
         </tr>
+        @else
+        <tr class="nilai">
+          <td colspan="4"><b>Data kehadiran belum diinput</b></td>
+        </tr>
         @endif
         <!-- End Ketidakhadiran  -->
 
         <!-- Catatan Wali Kelas -->
         <tr>
-          <td colspan="4" style="height: 30px; padding-top: 10px"><strong>F. CATATAN WALI KELAS</strong></td>
+          <td colspan="4" style="height: 25px; padding-top: 5px"><strong>F. CATATAN WALI KELAS</strong></td>
         </tr>
         <tr class="sikap">
           <td colspan="4" class="description" style="height: 50px;">
@@ -560,13 +564,39 @@
 
         <!-- Tanggapan ORANG TUA/WALI -->
         <tr>
-          <td colspan="4" style="height: 30px; padding-top: 10px"><strong>G. TANGGAPAN ORANG TUA/WALI</strong></td>
+          <td colspan="4" style="height: 25px; padding-top: 5px"><strong>G. TANGGAPAN ORANG TUA/WALI</strong></td>
         </tr>
         <tr class="sikap">
-          <td colspan="4" class="description" style="height: 50px;">
+          <td colspan="4" class="description" style="height: 45px;">
           </td>
         </tr>
         <!-- End Tanggapan ORANG TUA/WALI -->
+
+        <!-- Keputusan -->
+        @if($anggota_kelas->kelas->tapel->semester == 2)
+        <tr>
+          <td colspan="4" style="height: 25px; padding-top: 5px"><strong>H. KEPUTUSAN</strong></td>
+        </tr>
+        <tr class="sikap">
+          <td colspan="4" class="description" style="height: 45px;">
+            Berdasarkan hasil yang dicapai pada semester 1 dan 2, Peserta didik ditetapkan : <br>
+            @if(!is_null($anggota_kelas->kenaikan_kelas))
+            <b>
+              @if($anggota_kelas->kenaikan_kelas->keputusan == 1)
+              NAIK KE KELAS : {{$anggota_kelas->kenaikan_kelas->kelas_tujuan}}
+              @elseif($anggota_kelas->kenaikan_kelas->keputusan == 2)
+              TINGGAL DI KELAS : {{$anggota_kelas->kenaikan_kelas->kelas_tujuan}}
+              @elseif($anggota_kelas->kenaikan_kelas->keputusan == 3)
+              LULUS
+              @elseif($anggota_kelas->kenaikan_kelas->keputusan == 4)
+              TIDAK LULUS
+              @endif
+            </b>
+            @endif
+          </td>
+        </tr>
+        @endif
+        <!-- End Keputusan -->
 
       </table>
     </div>
