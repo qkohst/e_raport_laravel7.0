@@ -12,6 +12,21 @@ Cocok digunakan pada lembaga Jenjang SLTP Sederajat atau PKBM yang memiliki mata
 5. Data Master & Leger Nilai Siswa dapat didownload ke dalam format Excel.
 6. File Raport dan identitas peserta didik dapat didownload kedalam format PDF.
 
+
+### Link Demo : 
+
+https://bit.ly/demo-eraport
+
+#### 1. User Admin 
+- username : admin 
+- passsword : admin123456
+#### 2. Guru & Wali Kelas 
+- username : risamahmudah
+- password : 123456
+#### 3. Siswa 
+- username : alvinulilalbab
+- password : 123456
+
 ## CONTOH DOKUMEN
 
 Contoh dokumen hasil download dari aplikasi dapat anda lihat pada link berikut : 
