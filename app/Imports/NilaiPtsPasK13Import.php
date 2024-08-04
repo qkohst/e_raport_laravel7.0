@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\K13NilaiPtsPas;
+use App\Models\K13NilaiPtsPas;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 

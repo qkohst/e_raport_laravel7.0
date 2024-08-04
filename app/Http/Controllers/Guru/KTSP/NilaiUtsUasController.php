@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\Guru\KTSP;
 
-use App\AnggotaKelas;
 use App\Exports\FormatImportUtsUasExport;
-use App\Guru;
 use App\Http\Controllers\Controller;
 use App\Imports\NilaiUtsUasKTSPImport;
-use App\Kelas;
-use App\KtspNilaiUtsUas;
-use App\Pembelajaran;
-use App\Tapel;
+use App\Models\AnggotaKelas;
+use App\Models\Guru;
+use App\Models\Kelas;
+use App\Models\KtspNilaiUtsUas;
+use App\Models\Pembelajaran;
+use App\Models\Tapel;
 use Carbon\Carbon;
+use Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Excel;
 
 class NilaiUtsUasController extends Controller
 {
@@ -68,7 +68,7 @@ class NilaiUtsUasController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -80,12 +80,12 @@ class NilaiUtsUasController extends Controller
 
                 if ($request->nilai_uts[$cound_siswa] >= 0 && $request->nilai_uts[$cound_siswa] <= 100 || $request->nilai_uas[$cound_siswa] >= 0 && $request->nilai_uas[$cound_siswa] <= 100) {
                     $data_nilai = array(
-                        'pembelajaran_id'  => $request->pembelajaran_id,
-                        'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
-                        'nilai_uts'  => ltrim($request->nilai_uts[$cound_siswa]),
-                        'nilai_uas'  => ltrim($request->nilai_uas[$cound_siswa]),
-                        'created_at'  => Carbon::now(),
-                        'updated_at'  => Carbon::now(),
+                        'pembelajaran_id' => $request->pembelajaran_id,
+                        'anggota_kelas_id' => $request->anggota_kelas_id[$cound_siswa],
+                        'nilai_uts' => ltrim($request->nilai_uts[$cound_siswa]),
+                        'nilai_uas' => ltrim($request->nilai_uas[$cound_siswa]),
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now(),
                     );
                     $data_nilai_siswa[] = $data_nilai;
                 } else {
@@ -101,8 +101,8 @@ class NilaiUtsUasController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -113,9 +113,9 @@ class NilaiUtsUasController extends Controller
                 $nilai = KtspNilaiUtsUas::where('pembelajaran_id', $id)->where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->first();
 
                 $data_nilai = [
-                    'nilai_uts'  => ltrim($request->nilai_uts[$cound_siswa]),
-                    'nilai_uas'  => ltrim($request->nilai_uas[$cound_siswa]),
-                    'updated_at'  => Carbon::now(),
+                    'nilai_uts' => ltrim($request->nilai_uts[$cound_siswa]),
+                    'nilai_uas' => ltrim($request->nilai_uas[$cound_siswa]),
+                    'updated_at' => Carbon::now(),
                 ];
                 $nilai->update($data_nilai);
             } else {

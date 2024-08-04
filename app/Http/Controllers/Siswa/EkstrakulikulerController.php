@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Siswa;
 
-use App\AnggotaEkstrakulikuler;
-use App\AnggotaKelas;
-use App\Ekstrakulikuler;
 use App\Http\Controllers\Controller;
-use App\Kelas;
-use App\NilaiEkstrakulikuler;
-use App\Siswa;
-use Illuminate\Http\Request;
+use App\Models\AnggotaEkstrakulikuler;
+use App\Models\AnggotaKelas;
+use App\Models\Ekstrakulikuler;
+use App\Models\Kelas;
+use App\Models\NilaiEkstrakulikuler;
+use App\Models\Siswa;
 use Illuminate\Support\Facades\Auth;
 
 class EkstrakulikulerController extends Controller

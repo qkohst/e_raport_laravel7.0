@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Guru;
 
-use App\AnggotaEkstrakulikuler;
-use App\AnggotaKelas;
-use App\Ekstrakulikuler;
-use App\Guru;
 use App\Http\Controllers\Controller;
-use App\Kelas;
-use App\NilaiEkstrakulikuler;
-use App\Tapel;
+use App\Models\AnggotaEkstrakulikuler;
+use App\Models\AnggotaKelas;
+use App\Models\Ekstrakulikuler;
+use App\Models\Guru;
+use App\Models\Kelas;
+use App\Models\NilaiEkstrakulikuler;
+use App\Models\Tapel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,7 +47,7 @@ class NilaiEkstrakulikulerController extends Controller
         if ($validator->fails()) {
             return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
         } else {
-            // Data Master 
+            // Data Master
             $title = 'Input Nilai Ekstrakulikuler';
             $tapel = Tapel::findorfail(session()->get('tapel_id'));
             $guru = Guru::where('user_id', Auth::user()->id)->first();
@@ -81,7 +81,7 @@ class NilaiEkstrakulikulerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -93,11 +93,11 @@ class NilaiEkstrakulikulerController extends Controller
             for ($cound_siswa = 0; $cound_siswa < count($request->anggota_ekstrakulikuler_id); $cound_siswa++) {
                 $data_nilai = array(
                     'ekstrakulikuler_id' => $request->ekstrakulikuler_id,
-                    'anggota_ekstrakulikuler_id'  => $request->anggota_ekstrakulikuler_id[$cound_siswa],
-                    'nilai'  => $request->nilai[$cound_siswa],
-                    'deskripsi'  => $request->deskripsi[$cound_siswa],
-                    'created_at'  => Carbon::now(),
-                    'updated_at'  => Carbon::now(),
+                    'anggota_ekstrakulikuler_id' => $request->anggota_ekstrakulikuler_id[$cound_siswa],
+                    'nilai' => $request->nilai[$cound_siswa],
+                    'deskripsi' => $request->deskripsi[$cound_siswa],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
                 );
                 $cek_data = NilaiEkstrakulikuler::where('ekstrakulikuler_id', $request->ekstrakulikuler_id)->where('anggota_ekstrakulikuler_id', $request->anggota_ekstrakulikuler_id[$cound_siswa])->first();
                 if (is_null($cek_data)) {

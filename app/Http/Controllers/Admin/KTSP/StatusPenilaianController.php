@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Admin\KTSP;
 
 use App\Http\Controllers\Controller;
-use App\Kelas;
-use App\KtspBobotPenilaian;
-use App\KtspDeskripsiNilaiSiswa;
-use App\KtspNilaiAkhirRaport;
-use App\KtspNilaiTugas;
-use App\KtspNilaiUh;
-use App\KtspNilaiUtsUas;
-use App\Pembelajaran;
-use App\Tapel;
+use App\Models\Kelas;
+use App\Models\KtspBobotPenilaian;
+use App\Models\KtspDeskripsiNilaiSiswa;
+use App\Models\KtspNilaiAkhirRaport;
+use App\Models\KtspNilaiTugas;
+use App\Models\KtspNilaiUh;
+use App\Models\KtspNilaiUtsUas;
+use App\Models\Pembelajaran;
+use App\Models\Tapel;
 use Illuminate\Http\Request;
 
 class StatusPenilaianController extends Controller
@@ -31,7 +31,7 @@ class StatusPenilaianController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)

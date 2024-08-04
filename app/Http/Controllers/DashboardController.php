@@ -2,39 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\AnggotaEkstrakulikuler;
-use App\AnggotaKelas;
-use App\Ekstrakulikuler;
-use App\Guru;
-use App\K13DeskripsiNilaiSiswa;
-use App\K13KkmMapel;
-use App\K13NilaiAkhirRaport;
-use App\K13NilaiKeterampilan;
-use App\K13NilaiPengetahuan;
-use App\K13NilaiPtsPas;
-use App\K13NilaiSosial;
-use App\K13NilaiSpiritual;
-use App\K13RencanaBobotPenilaian;
-use App\K13RencanaNilaiKeterampilan;
-use App\K13RencanaNilaiPengetahuan;
-use App\K13RencanaNilaiSosial;
-use App\K13RencanaNilaiSpiritual;
-use App\Kelas;
-use App\KtspBobotPenilaian;
-use App\KtspDeskripsiNilaiSiswa;
-use App\KtspKkmMapel;
-use App\KtspNilaiAkhirRaport;
-use App\KtspNilaiTugas;
-use App\KtspNilaiUh;
-use App\KtspNilaiUtsUas;
-use App\Pembelajaran;
-use App\Pengumuman;
-use App\RiwayatLogin;
-use App\Sekolah;
-use App\Siswa;
-use App\Tapel;
+use App\Models\AnggotaEkstrakulikuler;
+use App\Models\AnggotaKelas;
+use App\Models\Ekstrakulikuler;
+use App\Models\Guru;
+use App\Models\K13DeskripsiNilaiSiswa;
+use App\Models\K13KkmMapel;
+use App\Models\K13NilaiAkhirRaport;
+use App\Models\K13NilaiKeterampilan;
+use App\Models\K13NilaiPengetahuan;
+use App\Models\K13NilaiPtsPas;
+use App\Models\K13NilaiSosial;
+use App\Models\K13NilaiSpiritual;
+use App\Models\K13RencanaBobotPenilaian;
+use App\Models\K13RencanaNilaiKeterampilan;
+use App\Models\K13RencanaNilaiPengetahuan;
+use App\Models\K13RencanaNilaiSosial;
+use App\Models\K13RencanaNilaiSpiritual;
+use App\Models\Kelas;
+use App\Models\KtspBobotPenilaian;
+use App\Models\KtspDeskripsiNilaiSiswa;
+use App\Models\KtspKkmMapel;
+use App\Models\KtspNilaiAkhirRaport;
+use App\Models\KtspNilaiTugas;
+use App\Models\KtspNilaiUh;
+use App\Models\KtspNilaiUtsUas;
+use App\Models\Pembelajaran;
+use App\Models\Pengumuman;
+use App\Models\RiwayatLogin;
+use App\Models\Sekolah;
+use App\Models\Siswa;
+use App\Models\Tapel;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -86,7 +85,7 @@ class DashboardController extends Controller
 
                 $data_capaian_penilaian = Pembelajaran::where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->get();
 
-                // Capaian Penilaian K13 
+                // Capaian Penilaian K13
                 if (session()->get('kurikulum') == '2013') {
                     foreach ($data_capaian_penilaian as $penilaian) {
                         $kkm = K13KkmMapel::where('mapel_id', $penilaian->mapel->id)->where('kelas_id', $penilaian->kelas_id)->first();

@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers\WaliKelas\KTSP;
 
-use App\AnggotaEkstrakulikuler;
-use App\AnggotaKelas;
-use App\CatatanWaliKelas;
-use App\Ekstrakulikuler;
-use App\Guru;
 use App\Http\Controllers\Controller;
-use App\KehadiranSiswa;
-use App\Kelas;
-use App\KtspMappingMapel;
-use App\KtspNilaiAkhirRaport;
-use App\KtspTglRaport;
-use App\Mapel;
-use App\NilaiEkstrakulikuler;
-use App\Pembelajaran;
-use App\PrestasiSiswa;
-use App\Sekolah;
-use App\Tapel;
+use App\Models\AnggotaEkstrakulikuler;
+use App\Models\AnggotaKelas;
+use App\Models\CatatanWaliKelas;
+use App\Models\Ekstrakulikuler;
+use App\Models\Guru;
+use App\Models\KehadiranSiswa;
+use App\Models\Kelas;
+use App\Models\KtspMappingMapel;
+use App\Models\KtspNilaiAkhirRaport;
+use App\Models\KtspTglRaport;
+use App\Models\Mapel;
+use App\Models\NilaiEkstrakulikuler;
+use App\Models\Pembelajaran;
+use App\Models\PrestasiSiswa;
+use App\Models\Sekolah;
+use App\Models\Tapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PDF;
@@ -40,7 +40,7 @@ class CetakRaportUASController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -60,7 +60,7 @@ class CetakRaportUASController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $id)

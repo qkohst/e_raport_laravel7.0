@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\K13NilaiSpiritual;
+use App\Models\K13NilaiSpiritual;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 

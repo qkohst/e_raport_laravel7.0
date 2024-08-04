@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\WaliKelas;
 
-use App\AnggotaKelas;
-use App\Guru;
 use App\Http\Controllers\Controller;
-use App\Kelas;
-use App\PrestasiSiswa;
-use App\Tapel;
+use App\Models\AnggotaKelas;
+use App\Models\Guru;
+use App\Models\Kelas;
+use App\Models\PrestasiSiswa;
+use App\Models\Tapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -37,7 +37,7 @@ class PrestasiSiswaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -63,7 +63,7 @@ class PrestasiSiswaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

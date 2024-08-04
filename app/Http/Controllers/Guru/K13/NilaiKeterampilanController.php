@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers\Guru\K13;
 
-use App\AnggotaKelas;
 use App\Exports\FormatImportKeterampilanK13Export;
-use App\Guru;
 use App\Http\Controllers\Controller;
 use App\Imports\NilaiKeterampilanK13Import;
-use App\K13NilaiKeterampilan;
-use App\K13RencanaNilaiKeterampilan;
-use App\Kelas;
-use App\Pembelajaran;
-use App\Tapel;
+use App\Models\AnggotaKelas;
+use App\Models\Guru;
+use App\Models\K13NilaiKeterampilan;
+use App\Models\K13RencanaNilaiKeterampilan;
+use App\Models\Kelas;
+use App\Models\Pembelajaran;
+use App\Models\Tapel;
 use Carbon\Carbon;
+use Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Excel;
 
 class NilaiKeterampilanController extends Controller
 {
@@ -91,7 +91,7 @@ class NilaiKeterampilanController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -104,11 +104,11 @@ class NilaiKeterampilanController extends Controller
 
                     if ($request->nilai[$count_penilaian][$cound_siswa] >= 0 && $request->nilai[$count_penilaian][$cound_siswa] <= 100) {
                         $data_nilai = array(
-                            'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
+                            'anggota_kelas_id' => $request->anggota_kelas_id[$cound_siswa],
                             'k13_rencana_nilai_keterampilan_id' => $request->k13_rencana_nilai_keterampilan_id[$count_penilaian],
-                            'nilai'  => ltrim($request->nilai[$count_penilaian][$cound_siswa]),
-                            'created_at'  => Carbon::now(),
-                            'updated_at'  => Carbon::now(),
+                            'nilai' => ltrim($request->nilai[$count_penilaian][$cound_siswa]),
+                            'created_at' => Carbon::now(),
+                            'updated_at' => Carbon::now(),
                         );
                         $data_penilaian_siswa[] = $data_nilai;
                     } else {
@@ -126,8 +126,8 @@ class NilaiKeterampilanController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -137,8 +137,8 @@ class NilaiKeterampilanController extends Controller
                 if ($request->nilai[$count_penilaian][$cound_siswa] >= 0 && $request->nilai[$count_penilaian][$cound_siswa] <= 100) {
                     $nilai = K13NilaiKeterampilan::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->where('k13_rencana_nilai_keterampilan_id', $request->k13_rencana_nilai_keterampilan_id[$count_penilaian])->first();
                     $data_nilai = [
-                        'nilai'  => ltrim($request->nilai[$count_penilaian][$cound_siswa]),
-                        'updated_at'  => Carbon::now(),
+                        'nilai' => ltrim($request->nilai[$count_penilaian][$cound_siswa]),
+                        'updated_at' => Carbon::now(),
                     ];
                     $nilai->update($data_nilai);
                 } else {

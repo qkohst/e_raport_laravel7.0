@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Guru\K13;
 
-use App\Guru;
 use App\Http\Controllers\Controller;
-use App\K13ButirSikap;
-use App\K13RencanaNilaiSosial;
-use App\Kelas;
-use App\Pembelajaran;
-use App\Tapel;
+use App\Models\Guru;
+use App\Models\K13ButirSikap;
+use App\Models\K13RencanaNilaiSosial;
+use App\Models\Kelas;
+use App\Models\Pembelajaran;
+use App\Models\Tapel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -60,7 +60,7 @@ class RencanaNilaiSosialController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -73,10 +73,10 @@ class RencanaNilaiSosialController extends Controller
         } else {
             for ($count = 0; $count < count($request->k13_butir_sikap_id); $count++) {
                 $data_sikap = array(
-                    'pembelajaran_id'  => $request->pembelajaran_id,
-                    'k13_butir_sikap_id'  => $request->k13_butir_sikap_id[$count],
-                    'created_at'  => Carbon::now(),
-                    'updated_at'  => Carbon::now(),
+                    'pembelajaran_id' => $request->pembelajaran_id,
+                    'k13_butir_sikap_id' => $request->k13_butir_sikap_id[$count],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
                 );
                 $store_data_sikap[] = $data_sikap;
             }
@@ -88,7 +88,7 @@ class RencanaNilaiSosialController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -102,7 +102,7 @@ class RencanaNilaiSosialController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -117,8 +117,8 @@ class RencanaNilaiSosialController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -132,10 +132,10 @@ class RencanaNilaiSosialController extends Controller
         } else {
             for ($count = 0; $count < count($request->k13_butir_sikap_id); $count++) {
                 $data_sikap = array(
-                    'pembelajaran_id'  => $id,
-                    'k13_butir_sikap_id'  => $request->k13_butir_sikap_id[$count],
-                    'created_at'  => Carbon::now(),
-                    'updated_at'  => Carbon::now(),
+                    'pembelajaran_id' => $id,
+                    'k13_butir_sikap_id' => $request->k13_butir_sikap_id[$count],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
                 );
                 $store_data_sikap[] = $data_sikap;
             }

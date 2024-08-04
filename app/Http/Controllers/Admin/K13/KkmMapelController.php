@@ -5,13 +5,13 @@ namespace App\Http\Controllers\Admin\K13;
 use App\Exports\FormatImportKKMK13Export;
 use App\Http\Controllers\Controller;
 use App\Imports\KKMK13Import;
-use App\K13KkmMapel;
-use App\Mapel;
-use App\Pembelajaran;
-use App\Tapel;
+use App\Models\K13KkmMapel;
+use App\Models\Mapel;
+use App\Models\Pembelajaran;
+use App\Models\Tapel;
+use Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Excel;
 
 class KkmMapelController extends Controller
 {
@@ -39,7 +39,7 @@ class KkmMapelController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -70,8 +70,8 @@ class KkmMapelController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -94,7 +94,7 @@ class KkmMapelController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

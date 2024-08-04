@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\KtspKkmMapel;
+use App\Models\KtspKkmMapel;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 

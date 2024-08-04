@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin\K13;
 
 use App\Http\Controllers\Controller;
-use App\K13KkmMapel;
-use App\Mapel;
-use App\Tapel;
-use Illuminate\Http\Request;
+use App\Models\K13KkmMapel;
+use App\Models\Mapel;
+use App\Models\Tapel;
 
 class IntervalPredikatController extends Controller
 {

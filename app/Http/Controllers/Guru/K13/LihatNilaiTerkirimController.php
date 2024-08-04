@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Guru\K13;
 
-use App\Guru;
 use App\Http\Controllers\Controller;
-use App\K13NilaiAkhirRaport;
-use App\Kelas;
-use App\Pembelajaran;
-use App\Tapel;
+use App\Models\Guru;
+use App\Models\K13NilaiAkhirRaport;
+use App\Models\Kelas;
+use App\Models\Pembelajaran;
+use App\Models\Tapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;

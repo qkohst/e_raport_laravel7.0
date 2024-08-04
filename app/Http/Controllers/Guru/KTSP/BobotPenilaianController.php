@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Guru\KTSP;
 
-use App\Guru;
 use App\Http\Controllers\Controller;
-use App\Kelas;
-use App\KtspBobotPenilaian;
-use App\Pembelajaran;
-use App\Tapel;
+use App\Models\Guru;
+use App\Models\Kelas;
+use App\Models\KtspBobotPenilaian;
+use App\Models\Pembelajaran;
+use App\Models\Tapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -50,7 +50,7 @@ class BobotPenilaianController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -80,8 +80,8 @@ class BobotPenilaianController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)

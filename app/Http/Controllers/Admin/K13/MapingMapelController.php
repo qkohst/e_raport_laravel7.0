@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin\K13;
 
 use App\Http\Controllers\Controller;
-use App\K13MappingMapel;
-use App\Mapel;
-use App\Tapel;
+use App\Models\K13MappingMapel;
+use App\Models\Mapel;
+use App\Models\Tapel;
 use Illuminate\Http\Request;
 
 class MapingMapelController extends Controller
@@ -41,7 +41,7 @@ class MapingMapelController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)

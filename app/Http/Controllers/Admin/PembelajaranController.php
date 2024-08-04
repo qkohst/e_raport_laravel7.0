@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Exports\PembelajaranExport;
-use App\Guru;
 use App\Http\Controllers\Controller;
-use App\Kelas;
-use App\Mapel;
-use App\Pembelajaran;
-use App\Tapel;
+use App\Models\Guru;
+use App\Models\Kelas;
+use App\Models\Mapel;
+use App\Models\Pembelajaran;
+use App\Models\Tapel;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Excel;
+use Illuminate\Http\Request;
 
 class PembelajaranController extends Controller
 {
@@ -56,7 +56,7 @@ class PembelajaranController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -66,20 +66,20 @@ class PembelajaranController extends Controller
             for ($count = 0; $count < count($request->pembelajaran_id); $count++) {
                 $pembelajaran = Pembelajaran::findorfail($request->pembelajaran_id[$count]);
                 $update_data = array(
-                    'guru_id'  => $request->update_guru_id[$count],
-                    'status'  => $request->update_status[$count],
+                    'guru_id' => $request->update_guru_id[$count],
+                    'status' => $request->update_status[$count],
                 );
                 $pembelajaran->update($update_data);
             }
             if (!is_null($request->mapel_id)) {
                 for ($count = 0; $count < count($request->mapel_id); $count++) {
                     $data_baru = array(
-                        'kelas_id'  => $request->kelas_id[$count],
-                        'mapel_id'  => $request->mapel_id[$count],
-                        'guru_id'  => $request->guru_id[$count],
-                        'status'  => $request->status[$count],
-                        'created_at'  => Carbon::now(),
-                        'updated_at'  => Carbon::now(),
+                        'kelas_id' => $request->kelas_id[$count],
+                        'mapel_id' => $request->mapel_id[$count],
+                        'guru_id' => $request->guru_id[$count],
+                        'status' => $request->status[$count],
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now(),
                     );
                     $store_data_baru[] = $data_baru;
                 }
@@ -88,12 +88,12 @@ class PembelajaranController extends Controller
         } else {
             for ($count = 0; $count < count($request->mapel_id); $count++) {
                 $data_baru = array(
-                    'kelas_id'  => $request->kelas_id[$count],
-                    'mapel_id'  => $request->mapel_id[$count],
-                    'guru_id'  => $request->guru_id[$count],
-                    'status'  => $request->status[$count],
-                    'created_at'  => Carbon::now(),
-                    'updated_at'  => Carbon::now(),
+                    'kelas_id' => $request->kelas_id[$count],
+                    'mapel_id' => $request->mapel_id[$count],
+                    'guru_id' => $request->guru_id[$count],
+                    'status' => $request->status[$count],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
                 );
                 $store_data_baru[] = $data_baru;
             }

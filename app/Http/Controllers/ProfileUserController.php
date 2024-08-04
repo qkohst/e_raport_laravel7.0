@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Admin;
-use App\Guru;
-use App\Siswa;
-use Illuminate\Http\Request;
+use App\Models\Admin;
+use App\Models\Guru;
+use App\Models\Siswa;
 use Illuminate\Support\Facades\Auth;
 
 class ProfileUserController extends Controller

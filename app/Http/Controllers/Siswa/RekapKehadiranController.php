@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Siswa;
 
-use App\AnggotaKelas;
 use App\Http\Controllers\Controller;
-use App\KehadiranSiswa;
-use App\Kelas;
-use App\Siswa;
-use Illuminate\Http\Request;
+use App\Models\AnggotaKelas;
+use App\Models\KehadiranSiswa;
+use App\Models\Kelas;
+use App\Models\Siswa;
 use Illuminate\Support\Facades\Auth;
 
 class RekapKehadiranController extends Controller

@@ -2,18 +2,18 @@
 
 namespace App\Exports;
 
-use App\AnggotaEkstrakulikuler;
-use App\AnggotaKelas;
-use App\Ekstrakulikuler;
-use App\Guru;
-use App\Kelas;
-use App\KtspMappingMapel;
-use App\KtspNilaiAkhirRaport;
-use App\Mapel;
-use App\NilaiEkstrakulikuler;
-use App\Pembelajaran;
-use App\Sekolah;
-use App\Tapel;
+use App\Models\AnggotaEkstrakulikuler;
+use App\Models\AnggotaKelas;
+use App\Models\Ekstrakulikuler;
+use App\Models\Guru;
+use App\Models\Kelas;
+use App\Models\KtspMappingMapel;
+use App\Models\KtspNilaiAkhirRaport;
+use App\Models\Mapel;
+use App\Models\NilaiEkstrakulikuler;
+use App\Models\Pembelajaran;
+use App\Models\Sekolah;
+use App\Models\Tapel;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\FromView;

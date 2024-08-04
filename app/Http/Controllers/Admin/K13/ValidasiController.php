@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers\Admin\K13;
 
-use App\AnggotaEkstrakulikuler;
-use App\Ekstrakulikuler;
-use App\Guru;
 use App\Http\Controllers\Controller;
-use App\K13ButirSikap;
-use App\K13KdMapel;
-use App\K13KkmMapel;
-use App\K13MappingMapel;
-use App\K13TglRaport;
-use App\Kelas;
-use App\Mapel;
-use App\Pembelajaran;
-use App\Siswa;
-use App\Tapel;
-use Illuminate\Http\Request;
+use App\Models\AnggotaEkstrakulikuler;
+use App\Models\Ekstrakulikuler;
+use App\Models\Guru;
+use App\Models\K13ButirSikap;
+use App\Models\K13KdMapel;
+use App\Models\K13KkmMapel;
+use App\Models\K13MappingMapel;
+use App\Models\K13TglRaport;
+use App\Models\Kelas;
+use App\Models\Mapel;
+use App\Models\Pembelajaran;
+use App\Models\Siswa;
+use App\Models\Tapel;
 
 class ValidasiController extends Controller
 {
@@ -31,7 +30,7 @@ class ValidasiController extends Controller
         $tapel = Tapel::findorfail(session()->get('tapel_id'));
 
         // Validasi Data Master
-        $count_guru =  Guru::count();
+        $count_guru = Guru::count();
         $count_mapel = Mapel::where('tapel_id', $tapel->id)->orderBy('nama_mapel', 'ASC')->count();
 
         $data_kelas = Kelas::where('tapel_id', $tapel->id)->orderBy('tingkatan_kelas', 'ASC')->get();
@@ -53,11 +52,11 @@ class ValidasiController extends Controller
             $ekstrakulikuler->jumlah_anggota = $jumlah_anggota;
         }
         $count_ekstrakulikuler = count($data_ekstrakulikuler);
-        // End Validasi Data Master 
+        // End Validasi Data Master
 
         // Validasi data Setting
         $id_mapel = Mapel::where('tapel_id', $tapel->id)->get('id');
-        $id_telah_mapping =  K13MappingMapel::whereIn('mapel_id', $id_mapel)->get('mapel_id');
+        $id_telah_mapping = K13MappingMapel::whereIn('mapel_id', $id_mapel)->get('mapel_id');
         $mapel_belum_mapping = Mapel::whereNotIn('id', $id_telah_mapping)->get();
         $count_mapel_belum_mapping = count($mapel_belum_mapping);
 

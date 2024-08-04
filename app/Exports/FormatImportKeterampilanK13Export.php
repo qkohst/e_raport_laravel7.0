@@ -2,9 +2,9 @@
 
 namespace App\Exports;
 
-use App\AnggotaKelas;
-use App\K13RencanaNilaiKeterampilan;
-use App\Pembelajaran;
+use App\Models\AnggotaKelas;
+use App\Models\K13RencanaNilaiKeterampilan;
+use App\Models\Pembelajaran;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;

@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\KtspNilaiTugas;
+use App\Models\KtspNilaiTugas;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 

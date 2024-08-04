@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Guru\K13;
 
-use App\Guru;
 use App\Http\Controllers\Controller;
-use App\K13DeskripsiNilaiSiswa;
-use App\K13KdMapel;
-use App\K13NilaiAkhirRaport;
-use App\K13NilaiKeterampilan;
-use App\K13NilaiPengetahuan;
-use App\K13RencanaNilaiKeterampilan;
-use App\K13RencanaNilaiPengetahuan;
-use App\Kelas;
-use App\Pembelajaran;
-use App\Tapel;
+use App\Models\Guru;
+use App\Models\K13DeskripsiNilaiSiswa;
+use App\Models\K13KdMapel;
+use App\Models\K13NilaiAkhirRaport;
+use App\Models\K13NilaiKeterampilan;
+use App\Models\K13NilaiPengetahuan;
+use App\Models\K13RencanaNilaiKeterampilan;
+use App\Models\K13RencanaNilaiPengetahuan;
+use App\Models\Kelas;
+use App\Models\Pembelajaran;
+use App\Models\Tapel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -83,7 +83,7 @@ class ProsesDeskripsiSiswaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -94,11 +94,11 @@ class ProsesDeskripsiSiswaController extends Controller
             for ($cound_siswa = 0; $cound_siswa < count($request->nilai_akhir_raport_id); $cound_siswa++) {
                 $data_deskripsi = array(
                     'pembelajaran_id' => $request->pembelajaran_id,
-                    'k13_nilai_akhir_raport_id'  => $request->nilai_akhir_raport_id[$cound_siswa],
-                    'deskripsi_pengetahuan'  => $request->deskripsi_pengetahuan[$cound_siswa],
-                    'deskripsi_keterampilan'  => $request->deskripsi_keterampilan[$cound_siswa],
-                    'created_at'  => Carbon::now(),
-                    'updated_at'  => Carbon::now(),
+                    'k13_nilai_akhir_raport_id' => $request->nilai_akhir_raport_id[$cound_siswa],
+                    'deskripsi_pengetahuan' => $request->deskripsi_pengetahuan[$cound_siswa],
+                    'deskripsi_keterampilan' => $request->deskripsi_keterampilan[$cound_siswa],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
                 );
 
                 $cek_data = K13DeskripsiNilaiSiswa::where('pembelajaran_id', $request->pembelajaran_id)->where('k13_nilai_akhir_raport_id', $request->nilai_akhir_raport_id[$cound_siswa])->first();

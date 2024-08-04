@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\WaliKelas;
 
-use App\AnggotaKelas;
-use App\Guru;
 use App\Http\Controllers\Controller;
-use App\KehadiranSiswa;
-use App\Kelas;
-use App\Tapel;
+use App\Models\AnggotaKelas;
+use App\Models\Guru;
+use App\Models\KehadiranSiswa;
+use App\Models\Kelas;
+use App\Models\Tapel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,7 +45,7 @@ class KehadiranSiswaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -55,12 +55,12 @@ class KehadiranSiswaController extends Controller
         } else {
             for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
                 $data = array(
-                    'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
-                    'sakit'  => $request->sakit[$cound_siswa],
-                    'izin'  => $request->izin[$cound_siswa],
-                    'tanpa_keterangan'  => $request->tanpa_keterangan[$cound_siswa],
-                    'created_at'  => Carbon::now(),
-                    'updated_at'  => Carbon::now(),
+                    'anggota_kelas_id' => $request->anggota_kelas_id[$cound_siswa],
+                    'sakit' => $request->sakit[$cound_siswa],
+                    'izin' => $request->izin[$cound_siswa],
+                    'tanpa_keterangan' => $request->tanpa_keterangan[$cound_siswa],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
                 );
                 $cek_data = KehadiranSiswa::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->first();
                 if (is_null($cek_data)) {

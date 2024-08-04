@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\AnggotaEkstrakulikuler;
-use App\AnggotaKelas;
-use App\Kelas;
-use App\Pembelajaran;
-use Illuminate\Http\Request;
+use App\Models\AnggotaEkstrakulikuler;
+use App\Models\AnggotaKelas;
+use App\Models\Kelas;
+use App\Models\Pembelajaran;
 
 class AjaxController extends Controller
 {

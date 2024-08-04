@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Siswa\K13;
 
-use App\AnggotaKelas;
 use App\Http\Controllers\Controller;
-use App\K13NilaiAkhirRaport;
-use App\Kelas;
-use App\Pembelajaran;
-use App\Siswa;
-use Illuminate\Http\Request;
+use App\Models\AnggotaKelas;
+use App\Models\K13NilaiAkhirRaport;
+use App\Models\Kelas;
+use App\Models\Pembelajaran;
+use App\Models\Siswa;
 use Illuminate\Support\Facades\Auth;
 
 class NilaiAkhirSemesterController extends Controller

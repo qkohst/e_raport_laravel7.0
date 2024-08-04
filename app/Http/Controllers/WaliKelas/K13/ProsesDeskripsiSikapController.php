@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\WaliKelas\K13;
 
-use App\AnggotaKelas;
-use App\Guru;
 use App\Http\Controllers\Controller;
-use App\K13DeskripsiSikapSiswa;
-use App\K13NilaiAkhirRaport;
-use App\K13NilaiSosial;
-use App\K13NilaiSpiritual;
-use App\K13RencanaNilaiSosial;
-use App\K13RencanaNilaiSpiritual;
-use App\Kelas;
-use App\Pembelajaran;
-use App\Tapel;
+use App\Models\AnggotaKelas;
+use App\Models\Guru;
+use App\Models\K13DeskripsiSikapSiswa;
+use App\Models\K13NilaiAkhirRaport;
+use App\Models\K13NilaiSosial;
+use App\Models\K13NilaiSpiritual;
+use App\Models\K13RencanaNilaiSosial;
+use App\Models\K13RencanaNilaiSpiritual;
+use App\Models\Kelas;
+use App\Models\Pembelajaran;
+use App\Models\Tapel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -68,14 +68,14 @@ class ProsesDeskripsiSikapController extends Controller
                 $rt_sosial = 1;
             }
 
-            // Deskripsi Spiritual 
+            // Deskripsi Spiritual
             $data_id_rencana_nilai_spiritual = K13NilaiSpiritual::whereIn('k13_rencana_nilai_spiritual_id', $data_id_rencana_spiritual)
                 ->where('anggota_kelas_id', $anggota_kelas->id)->where('nilai', $rt_spiritual)->get('k13_rencana_nilai_spiritual_id');
             $data_butir_spiritual = K13RencanaNilaiSpiritual::whereIn('id', $data_id_rencana_nilai_spiritual)->groupBy('k13_butir_sikap_id')->get();
             $anggota_kelas->data_butir_spiritual = $data_butir_spiritual;
             $anggota_kelas->count_spiritual = count($data_butir_spiritual);
 
-            // Deskripsi Sosial 
+            // Deskripsi Sosial
             $data_id_rencana_nilai_sosial = K13NilaiSosial::whereIn('k13_rencana_nilai_sosial_id', $data_id_rencana_sosial)
                 ->where('anggota_kelas_id', $anggota_kelas->id)->where('nilai', $rt_sosial)->get('k13_rencana_nilai_sosial_id');
             $data_butir_sosial = K13RencanaNilaiSosial::whereIn('id', $data_id_rencana_nilai_sosial)->groupBy('k13_butir_sikap_id')->get();
@@ -88,7 +88,7 @@ class ProsesDeskripsiSikapController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -98,13 +98,13 @@ class ProsesDeskripsiSikapController extends Controller
         } else {
             for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
                 $data = array(
-                    'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
-                    'nilai_spiritual'  => $request->nilai_spiritual[$cound_siswa],
-                    'deskripsi_spiritual'  => $request->deskripsi_spiritual[$cound_siswa],
-                    'nilai_sosial'  => $request->nilai_sosial[$cound_siswa],
-                    'deskripsi_sosial'  => $request->deskripsi_sosial[$cound_siswa],
-                    'created_at'  => Carbon::now(),
-                    'updated_at'  => Carbon::now(),
+                    'anggota_kelas_id' => $request->anggota_kelas_id[$cound_siswa],
+                    'nilai_spiritual' => $request->nilai_spiritual[$cound_siswa],
+                    'deskripsi_spiritual' => $request->deskripsi_spiritual[$cound_siswa],
+                    'nilai_sosial' => $request->nilai_sosial[$cound_siswa],
+                    'deskripsi_sosial' => $request->deskripsi_sosial[$cound_siswa],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
                 );
                 $cek_data = K13DeskripsiSikapSiswa::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->first();
                 if (is_null($cek_data)) {

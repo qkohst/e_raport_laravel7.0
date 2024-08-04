@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Admin\KTSP;
 
-use App\AnggotaKelas;
 use App\Http\Controllers\Controller;
-use App\Kelas;
-use App\KtspMappingMapel;
-use App\KtspNilaiAkhirRaport;
-use App\Mapel;
-use App\Pembelajaran;
-use App\Sekolah;
-use App\Tapel;
+use App\Models\AnggotaKelas;
+use App\Models\Kelas;
+use App\Models\KtspMappingMapel;
+use App\Models\KtspNilaiAkhirRaport;
+use App\Models\Mapel;
+use App\Models\Pembelajaran;
+use App\Models\Sekolah;
+use App\Models\Tapel;
 use Illuminate\Http\Request;
 
 class PengelolaanNilaiController extends Controller
@@ -30,7 +30,7 @@ class PengelolaanNilaiController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)

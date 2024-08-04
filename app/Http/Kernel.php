@@ -15,8 +15,8 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
-        \App\Http\Middleware\TrustProxies::class,
-        \Fruitcake\Cors\HandleCors::class,
+        \Illuminate\Http\Middleware\TrustProxies::class,
+        \Illuminate\Http\Middleware\HandleCors::class,
         \App\Http\Middleware\CheckForMaintenanceMode::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
@@ -64,10 +64,10 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        
+
         // Middleware tambahan
-        'checkRole' => \App\Http\Middleware\CheckRole::class,
-        'checkKurikulum' => \App\Http\Middleware\CheckKurikulum::class,
-        'checkAksesGuru' => \App\Http\Middleware\CheckAksesGuru::class,
+        'checkRole' => \App\Http\Middleware\checkRole::class,
+        'checkKurikulum' => \App\Http\Middleware\checkKurikulum::class,
+        'checkAksesGuru' => \App\Http\Middleware\checkAksesGuru::class,
     ];
 }

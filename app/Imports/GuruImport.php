@@ -2,8 +2,8 @@
 
 namespace App\Imports;
 
-use App\Guru;
-use App\User;
+use App\Models\Guru;
+use App\Models\User;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 

@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Guru\KTSP;
 
-use App\AnggotaKelas;
-use App\Guru;
 use App\Http\Controllers\Controller;
-use App\Kelas;
-use App\KtspBobotPenilaian;
-use App\KtspKkmMapel;
-use App\KtspNilaiAkhirRaport;
-use App\KtspNilaiTugas;
-use App\KtspNilaiUh;
-use App\KtspNilaiUtsUas;
-use App\Pembelajaran;
-use App\Tapel;
+use App\Models\AnggotaKelas;
+use App\Models\Guru;
+use App\Models\Kelas;
+use App\Models\KtspBobotPenilaian;
+use App\Models\KtspKkmMapel;
+use App\Models\KtspNilaiAkhirRaport;
+use App\Models\KtspNilaiTugas;
+use App\Models\KtspNilaiUh;
+use App\Models\KtspNilaiUtsUas;
+use App\Models\Pembelajaran;
+use App\Models\Tapel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -102,7 +102,7 @@ class KirimNilaiController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -111,11 +111,11 @@ class KirimNilaiController extends Controller
             $data_nilai = array(
                 'pembelajaran_id' => $request->pembelajaran_id,
                 'kkm' => $request->kkm,
-                'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
-                'nilai_akhir'  => ltrim($request->nilai_akhir[$cound_siswa]),
-                'predikat'  => $request->predikat[$cound_siswa],
-                'created_at'  => Carbon::now(),
-                'updated_at'  => Carbon::now(),
+                'anggota_kelas_id' => $request->anggota_kelas_id[$cound_siswa],
+                'nilai_akhir' => ltrim($request->nilai_akhir[$cound_siswa]),
+                'predikat' => $request->predikat[$cound_siswa],
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             );
 
             $cek_nilai = KtspNilaiAkhirRaport::where('pembelajaran_id', $request->pembelajaran_id)->where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->first();

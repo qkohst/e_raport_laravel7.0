@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers\Guru\K13;
 
-use App\AnggotaKelas;
-use App\Guru;
 use App\Http\Controllers\Controller;
-use App\K13KkmMapel;
-use App\K13NilaiAkhirRaport;
-use App\K13NilaiKeterampilan;
-use App\K13NilaiPengetahuan;
-use App\K13NilaiPtsPas;
-use App\K13NilaiSosial;
-use App\K13NilaiSpiritual;
-use App\K13RencanaBobotPenilaian;
-use App\K13RencanaNilaiKeterampilan;
-use App\K13RencanaNilaiPengetahuan;
-use App\K13RencanaNilaiSosial;
-use App\K13RencanaNilaiSpiritual;
-use App\Kelas;
-use App\Pembelajaran;
-use App\Tapel;
+use App\Models\AnggotaKelas;
+use App\Models\Guru;
+use App\Models\K13KkmMapel;
+use App\Models\K13NilaiAkhirRaport;
+use App\Models\K13NilaiKeterampilan;
+use App\Models\K13NilaiPengetahuan;
+use App\Models\K13NilaiPtsPas;
+use App\Models\K13NilaiSosial;
+use App\Models\K13NilaiSpiritual;
+use App\Models\K13RencanaBobotPenilaian;
+use App\Models\K13RencanaNilaiKeterampilan;
+use App\Models\K13RencanaNilaiPengetahuan;
+use App\Models\K13RencanaNilaiSosial;
+use App\Models\K13RencanaNilaiSpiritual;
+use App\Models\Kelas;
+use App\Models\Pembelajaran;
+use App\Models\Tapel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -142,7 +142,7 @@ class KirimNilaiAkhirController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -151,15 +151,15 @@ class KirimNilaiAkhirController extends Controller
             $data_nilai = array(
                 'pembelajaran_id' => $request->pembelajaran_id,
                 'kkm' => $request->kkm,
-                'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
-                'nilai_pengetahuan'  => ltrim($request->nilai_pengetahuan[$cound_siswa]),
-                'predikat_pengetahuan'  => $request->predikat_pengetahuan[$cound_siswa],
-                'nilai_keterampilan'  => ltrim($request->nilai_keterampilan[$cound_siswa]),
-                'predikat_keterampilan'  => $request->predikat_keterampilan[$cound_siswa],
-                'nilai_spiritual'  => $request->nilai_spiritual[$cound_siswa],
-                'nilai_sosial'  => $request->nilai_sosial[$cound_siswa],
-                'created_at'  => Carbon::now(),
-                'updated_at'  => Carbon::now(),
+                'anggota_kelas_id' => $request->anggota_kelas_id[$cound_siswa],
+                'nilai_pengetahuan' => ltrim($request->nilai_pengetahuan[$cound_siswa]),
+                'predikat_pengetahuan' => $request->predikat_pengetahuan[$cound_siswa],
+                'nilai_keterampilan' => ltrim($request->nilai_keterampilan[$cound_siswa]),
+                'predikat_keterampilan' => $request->predikat_keterampilan[$cound_siswa],
+                'nilai_spiritual' => $request->nilai_spiritual[$cound_siswa],
+                'nilai_sosial' => $request->nilai_sosial[$cound_siswa],
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             );
 
             $cek_nilai = K13NilaiAkhirRaport::where('pembelajaran_id', $request->pembelajaran_id)->where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->first();

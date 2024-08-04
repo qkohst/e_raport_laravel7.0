@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\K13NilaiKeterampilan;
+use App\Models\K13NilaiKeterampilan;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 

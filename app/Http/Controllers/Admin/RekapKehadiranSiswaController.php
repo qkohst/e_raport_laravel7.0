@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\AnggotaKelas;
 use App\Http\Controllers\Controller;
-use App\Kelas;
+use App\Models\AnggotaKelas;
+use App\Models\Kelas;
 use Illuminate\Http\Request;
 
 class RekapKehadiranSiswaController extends Controller
@@ -25,7 +25,7 @@ class RekapKehadiranSiswaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)

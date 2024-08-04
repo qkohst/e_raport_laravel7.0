@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Guru\K13;
 
-use App\Guru;
 use App\Http\Controllers\Controller;
-use App\K13KdMapel;
-use App\Kelas;
-use App\Mapel;
-use App\Pembelajaran;
-use App\Tapel;
+use App\Models\Guru;
+use App\Models\K13KdMapel;
+use App\Models\Kelas;
+use App\Models\Mapel;
+use App\Models\Pembelajaran;
+use App\Models\Tapel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -75,7 +75,7 @@ class KdMapelController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -91,15 +91,15 @@ class KdMapelController extends Controller
         } else {
             for ($count = 0; $count < count($request->jenis_kompetensi); $count++) {
                 $data_kd = array(
-                    'mapel_id'  => $request->mapel_id,
-                    'tingkatan_kelas'  => $request->tingkatan_kelas,
-                    'semester'  => $request->semester,
-                    'jenis_kompetensi'  => $request->jenis_kompetensi[$count],
-                    'kode_kd'  => $request->kode_kd[$count],
-                    'kompetensi_dasar'  => $request->kompetensi_dasar[$count],
-                    'ringkasan_kompetensi'  => $request->ringkasan_kompetensi[$count],
-                    'created_at'  => Carbon::now(),
-                    'updated_at'  => Carbon::now(),
+                    'mapel_id' => $request->mapel_id,
+                    'tingkatan_kelas' => $request->tingkatan_kelas,
+                    'semester' => $request->semester,
+                    'jenis_kompetensi' => $request->jenis_kompetensi[$count],
+                    'kode_kd' => $request->kode_kd[$count],
+                    'kompetensi_dasar' => $request->kompetensi_dasar[$count],
+                    'ringkasan_kompetensi' => $request->ringkasan_kompetensi[$count],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
                 );
                 $store_data_kd[] = $data_kd;
             }
@@ -111,8 +111,8 @@ class KdMapelController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -137,7 +137,7 @@ class KdMapelController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

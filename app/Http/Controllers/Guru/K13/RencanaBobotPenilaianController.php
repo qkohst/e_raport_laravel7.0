@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Guru\K13;
 
-use App\Guru;
 use App\Http\Controllers\Controller;
-use App\K13RencanaBobotPenilaian;
-use App\Kelas;
-use App\Pembelajaran;
-use App\Tapel;
+use App\Models\Guru;
+use App\Models\K13RencanaBobotPenilaian;
+use App\Models\Kelas;
+use App\Models\Pembelajaran;
+use App\Models\Tapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -25,8 +25,8 @@ class RencanaBobotPenilaianController extends Controller
         $tapel = Tapel::findorfail(session()->get('tapel_id'));
 
         $guru = Guru::where('user_id', Auth::user()->id)->first();
-    $id_kelas = Kelas::where('tapel_id', $tapel->id)->get('id');
-        
+        $id_kelas = Kelas::where('tapel_id', $tapel->id)->get('id');
+
         $data_rencana_bobot_nilai = Pembelajaran::where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->orderBy('mapel_id', 'ASC')->orderBy('kelas_id', 'ASC')->get();
         foreach ($data_rencana_bobot_nilai as $penilaian) {
             $bobot = K13RencanaBobotPenilaian::where('pembelajaran_id', $penilaian->id)->first();
@@ -47,7 +47,7 @@ class RencanaBobotPenilaianController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -75,8 +75,8 @@ class RencanaBobotPenilaianController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)

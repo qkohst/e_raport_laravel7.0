@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Guru\KTSP;
 
-use App\Guru;
 use App\Http\Controllers\Controller;
-use App\Kelas;
-use App\KtspNilaiAkhirRaport;
-use App\Pembelajaran;
-use App\Tapel;
+use App\Models\Guru;
+use App\Models\Kelas;
+use App\Models\KtspNilaiAkhirRaport;
+use App\Models\Pembelajaran;
+use App\Models\Tapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;

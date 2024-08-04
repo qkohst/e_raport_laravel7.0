@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin\K13;
 
-use App\AnggotaKelas;
 use App\Http\Controllers\Controller;
-use App\K13NilaiAkhirRaport;
-use App\Kelas;
-use App\Mapel;
-use App\Pembelajaran;
+use App\Models\AnggotaKelas;
+use App\Models\K13NilaiAkhirRaport;
+use App\Models\Kelas;
+use App\Models\Mapel;
+use App\Models\Pembelajaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -29,7 +29,7 @@ class NilaiRaportSemesterController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)

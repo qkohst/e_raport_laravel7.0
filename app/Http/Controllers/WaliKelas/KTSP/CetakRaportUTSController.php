@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\WaliKelas\KTSP;
 
-use App\AnggotaKelas;
-use App\Guru;
 use App\Http\Controllers\Controller;
-use App\Kelas;
-use App\KtspKkmMapel;
-use App\KtspMappingMapel;
-use App\KtspNilaiTugas;
-use App\KtspNilaiUh;
-use App\KtspNilaiUtsUas;
-use App\Mapel;
-use App\Pembelajaran;
-use App\Sekolah;
-use App\Tapel;
+use App\Models\AnggotaKelas;
+use App\Models\Guru;
+use App\Models\Kelas;
+use App\Models\KtspKkmMapel;
+use App\Models\KtspMappingMapel;
+use App\Models\KtspNilaiTugas;
+use App\Models\KtspNilaiUh;
+use App\Models\KtspNilaiUtsUas;
+use App\Models\Mapel;
+use App\Models\Pembelajaran;
+use App\Models\Sekolah;
+use App\Models\Tapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PDF;
@@ -35,7 +35,7 @@ class CetakRaportUTSController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -55,7 +55,7 @@ class CetakRaportUTSController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $id)

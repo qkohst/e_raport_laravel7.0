@@ -2,8 +2,8 @@
 
 namespace App\Imports;
 
-use App\Mapel;
-use App\Tapel;
+use App\Models\Mapel;
+use App\Models\Tapel;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 

@@ -2,8 +2,8 @@
 
 namespace App\Exports;
 
-use App\AnggotaKelas;
-use App\Pembelajaran;
+use App\Models\AnggotaKelas;
+use App\Models\Pembelajaran;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;

@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\WaliKelas\KTSP;
 
-use App\AnggotaKelas;
-use App\Guru;
 use App\Http\Controllers\Controller;
-use App\Kelas;
-use App\KtspMappingMapel;
-use App\KtspNilaiAkhirRaport;
-use App\Mapel;
-use App\Pembelajaran;
-use App\Sekolah;
-use App\Tapel;
-use Illuminate\Http\Request;
+use App\Models\AnggotaKelas;
+use App\Models\Guru;
+use App\Models\Kelas;
+use App\Models\KtspMappingMapel;
+use App\Models\KtspNilaiAkhirRaport;
+use App\Models\Mapel;
+use App\Models\Pembelajaran;
+use App\Models\Sekolah;
+use App\Models\Tapel;
 use Illuminate\Support\Facades\Auth;
 
 class HasilPenilaianController extends Controller

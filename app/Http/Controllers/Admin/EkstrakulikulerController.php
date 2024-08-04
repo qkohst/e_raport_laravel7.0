@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\AnggotaEkstrakulikuler;
-use App\AnggotaKelas;
-use App\Ekstrakulikuler;
-use App\Guru;
 use App\Http\Controllers\Controller;
-use App\Siswa;
-use App\Tapel;
+use App\Models\AnggotaEkstrakulikuler;
+use App\Models\AnggotaKelas;
+use App\Models\Ekstrakulikuler;
+use App\Models\Guru;
+use App\Models\Tapel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -37,7 +36,7 @@ class EkstrakulikulerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -63,7 +62,7 @@ class EkstrakulikulerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -82,8 +81,8 @@ class EkstrakulikulerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -106,7 +105,7 @@ class EkstrakulikulerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -132,9 +131,9 @@ class EkstrakulikulerController extends Controller
             for ($count = 0; $count < count($anggota_kelas_id); $count++) {
                 $data = array(
                     'anggota_kelas_id' => $anggota_kelas_id[$count],
-                    'ekstrakulikuler_id'  => $request->ekstrakulikuler_id,
-                    'created_at'  => Carbon::now(),
-                    'updated_at'  => Carbon::now(),
+                    'ekstrakulikuler_id' => $request->ekstrakulikuler_id,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
                 );
                 $insert_data[] = $data;
             }

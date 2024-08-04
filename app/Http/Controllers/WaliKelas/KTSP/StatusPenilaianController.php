@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers\WaliKelas\KTSP;
 
-use App\Guru;
 use App\Http\Controllers\Controller;
-use App\Kelas;
-use App\KtspBobotPenilaian;
-use App\KtspDeskripsiNilaiSiswa;
-use App\KtspNilaiAkhirRaport;
-use App\KtspNilaiTugas;
-use App\KtspNilaiUh;
-use App\KtspNilaiUtsUas;
-use App\Pembelajaran;
-use App\Tapel;
-use Illuminate\Http\Request;
+use App\Models\Guru;
+use App\Models\Kelas;
+use App\Models\KtspBobotPenilaian;
+use App\Models\KtspDeskripsiNilaiSiswa;
+use App\Models\KtspNilaiAkhirRaport;
+use App\Models\KtspNilaiTugas;
+use App\Models\KtspNilaiUh;
+use App\Models\KtspNilaiUtsUas;
+use App\Models\Pembelajaran;
+use App\Models\Tapel;
 use Illuminate\Support\Facades\Auth;
 
 class StatusPenilaianController extends Controller

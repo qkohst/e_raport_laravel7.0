@@ -2,9 +2,9 @@
 
 namespace App\Exports;
 
-use App\Kelas;
-use App\Pembelajaran;
-use App\Tapel;
+use App\Models\Kelas;
+use App\Models\Pembelajaran;
+use App\Models\Tapel;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;

@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin\KTSP;
 
 use App\Http\Controllers\Controller;
-use App\KtspKkmMapel;
-use App\Mapel;
-use App\Tapel;
-use Illuminate\Http\Request;
+use App\Models\KtspKkmMapel;
+use App\Models\Mapel;
+use App\Models\Tapel;
 
 class IntervalPredikatController extends Controller
 {

@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Guru;
-use App\Kelas;
-use App\RiwayatLogin;
+use App\Models\Guru;
+use App\Models\Kelas;
+use App\Models\RiwayatLogin;
+use App\Models\Tapel;
+use App\Models\User;
 use App\Rules\MatchOldPassword;
-use App\Tapel;
-use App\User;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -53,7 +52,7 @@ class AuthController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)

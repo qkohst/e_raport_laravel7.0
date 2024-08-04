@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\WaliKelas\K13;
 
-use App\AnggotaKelas;
-use App\Guru;
 use App\Http\Controllers\Controller;
-use App\K13MappingMapel;
-use App\K13NilaiAkhirRaport;
-use App\Kelas;
-use App\Mapel;
-use App\Pembelajaran;
-use App\Sekolah;
-use App\Tapel;
-use Illuminate\Http\Request;
+use App\Models\AnggotaKelas;
+use App\Models\Guru;
+use App\Models\K13MappingMapel;
+use App\Models\K13NilaiAkhirRaport;
+use App\Models\Kelas;
+use App\Models\Mapel;
+use App\Models\Pembelajaran;
+use App\Models\Sekolah;
+use App\Models\Tapel;
 use Illuminate\Support\Facades\Auth;
 
 class HasilPengelolaanNilaiController extends Controller

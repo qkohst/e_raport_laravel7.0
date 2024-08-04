@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\WaliKelas;
 
-use App\AnggotaKelas;
-use App\Guru;
 use App\Http\Controllers\Controller;
-use App\Kelas;
-use App\Tapel;
-use Illuminate\Http\Request;
+use App\Models\AnggotaKelas;
+use App\Models\Guru;
+use App\Models\Kelas;
+use App\Models\Tapel;
 use Illuminate\Support\Facades\Auth;
 
 class PesertaDidikController extends Controller

@@ -3,21 +3,21 @@
 namespace App\Http\Controllers\Admin\K13;
 
 use App\Http\Controllers\Controller;
-use App\K13DeskripsiNilaiSiswa;
-use App\K13NilaiAkhirRaport;
-use App\K13NilaiKeterampilan;
-use App\K13NilaiPengetahuan;
-use App\K13NilaiPtsPas;
-use App\K13NilaiSosial;
-use App\K13NilaiSpiritual;
-use App\K13RencanaBobotPenilaian;
-use App\K13RencanaNilaiKeterampilan;
-use App\K13RencanaNilaiPengetahuan;
-use App\K13RencanaNilaiSosial;
-use App\K13RencanaNilaiSpiritual;
-use App\Kelas;
-use App\Pembelajaran;
-use App\Tapel;
+use App\Models\K13DeskripsiNilaiSiswa;
+use App\Models\K13NilaiAkhirRaport;
+use App\Models\K13NilaiKeterampilan;
+use App\Models\K13NilaiPengetahuan;
+use App\Models\K13NilaiPtsPas;
+use App\Models\K13NilaiSosial;
+use App\Models\K13NilaiSpiritual;
+use App\Models\K13RencanaBobotPenilaian;
+use App\Models\K13RencanaNilaiKeterampilan;
+use App\Models\K13RencanaNilaiPengetahuan;
+use App\Models\K13RencanaNilaiSosial;
+use App\Models\K13RencanaNilaiSpiritual;
+use App\Models\Kelas;
+use App\Models\Pembelajaran;
+use App\Models\Tapel;
 use Illuminate\Http\Request;
 
 class StatusPenilaianController extends Controller
@@ -37,7 +37,7 @@ class StatusPenilaianController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)

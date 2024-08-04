@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Guru;
+use App\Models\Guru;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;

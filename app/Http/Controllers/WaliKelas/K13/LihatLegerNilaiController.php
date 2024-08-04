@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers\WaliKelas\K13;
 
-use App\AnggotaEkstrakulikuler;
-use App\AnggotaKelas;
-use App\Ekstrakulikuler;
 use App\Exports\WaliKelasLegerNilaiExport;
-use App\Guru;
 use App\Http\Controllers\Controller;
-use App\K13DeskripsiSikapSiswa;
-use App\K13MappingMapel;
-use App\K13NilaiAkhirRaport;
-use App\Kelas;
-use App\Mapel;
-use App\NilaiEkstrakulikuler;
-use App\Pembelajaran;
-use App\Tapel;
-use Illuminate\Http\Request;
+use App\Models\AnggotaEkstrakulikuler;
+use App\Models\AnggotaKelas;
+use App\Models\Ekstrakulikuler;
+use App\Models\Guru;
+use App\Models\K13DeskripsiSikapSiswa;
+use App\Models\K13MappingMapel;
+use App\Models\K13NilaiAkhirRaport;
+use App\Models\Kelas;
+use App\Models\Mapel;
+use App\Models\NilaiEkstrakulikuler;
+use App\Models\Pembelajaran;
+use App\Models\Tapel;
 use Excel;
 use Illuminate\Support\Facades\Auth;
 

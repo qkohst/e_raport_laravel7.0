@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Guru\KTSP;
 
-use App\Guru;
 use App\Http\Controllers\Controller;
-use App\Kelas;
-use App\KtspDeskripsiNilaiSiswa;
-use App\KtspNilaiAkhirRaport;
-use App\Pembelajaran;
-use App\Tapel;
+use App\Models\Guru;
+use App\Models\Kelas;
+use App\Models\KtspDeskripsiNilaiSiswa;
+use App\Models\KtspNilaiAkhirRaport;
+use App\Models\Pembelajaran;
+use App\Models\Tapel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -75,7 +75,7 @@ class InputDeskripsiSiswaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -86,10 +86,10 @@ class InputDeskripsiSiswaController extends Controller
             for ($cound_siswa = 0; $cound_siswa < count($request->nilai_akhir_raport_id); $cound_siswa++) {
                 $data_deskripsi = array(
                     'pembelajaran_id' => $request->pembelajaran_id,
-                    'ktsp_nilai_akhir_raport_id'  => $request->nilai_akhir_raport_id[$cound_siswa],
-                    'deskripsi'  => $request->deskripsi[$cound_siswa],
-                    'created_at'  => Carbon::now(),
-                    'updated_at'  => Carbon::now(),
+                    'ktsp_nilai_akhir_raport_id' => $request->nilai_akhir_raport_id[$cound_siswa],
+                    'deskripsi' => $request->deskripsi[$cound_siswa],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
                 );
 
                 $cek_data = KtspDeskripsiNilaiSiswa::where('pembelajaran_id', $request->pembelajaran_id)->where('ktsp_nilai_akhir_raport_id', $request->nilai_akhir_raport_id[$cound_siswa])->first();

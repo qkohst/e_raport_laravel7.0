@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Siswa\KTSP;
 
-use App\AnggotaKelas;
 use App\Http\Controllers\Controller;
-use App\Kelas;
-use App\KtspNilaiAkhirRaport;
-use App\Pembelajaran;
-use App\Siswa;
-use Illuminate\Http\Request;
+use App\Models\AnggotaKelas;
+use App\Models\Kelas;
+use App\Models\KtspNilaiAkhirRaport;
+use App\Models\Pembelajaran;
+use App\Models\Siswa;
 use Illuminate\Support\Facades\Auth;
 
 class NilaiAkhirSemesterController extends Controller

@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\K13NilaiPengetahuan;
+use App\Models\K13NilaiPengetahuan;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 

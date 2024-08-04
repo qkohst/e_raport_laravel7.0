@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\Admin\K13;
 
-use App\AnggotaKelas;
 use App\Http\Controllers\Controller;
-use App\K13KkmMapel;
-use App\K13MappingMapel;
-use App\K13NilaiKeterampilan;
-use App\K13NilaiPengetahuan;
-use App\K13NilaiPtsPas;
-use App\K13RencanaNilaiKeterampilan;
-use App\K13RencanaNilaiPengetahuan;
-use App\Kelas;
-use App\Mapel;
-use App\Pembelajaran;
-use App\Sekolah;
+use App\Models\AnggotaKelas;
+use App\Models\K13KkmMapel;
+use App\Models\K13MappingMapel;
+use App\Models\K13NilaiKeterampilan;
+use App\Models\K13NilaiPengetahuan;
+use App\Models\K13NilaiPtsPas;
+use App\Models\K13RencanaNilaiKeterampilan;
+use App\Models\K13RencanaNilaiPengetahuan;
+use App\Models\Kelas;
+use App\Models\Mapel;
+use App\Models\Pembelajaran;
+use App\Models\Sekolah;
 use Illuminate\Http\Request;
 use PDF;
 
@@ -35,7 +35,7 @@ class CetakRaportPTSController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -54,7 +54,7 @@ class CetakRaportPTSController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $id)
